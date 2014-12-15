@@ -1,0 +1,11 @@
+build/
+external/
+node_modules/
+
+# IntellJ Idea config files
+.idea/
+*.iml
+out/
+
+/.idea/workspace.xml
+.DS_Store
