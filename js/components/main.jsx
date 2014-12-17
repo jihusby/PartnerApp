@@ -5,6 +5,7 @@ var Input = require("react-bootstrap/Input");
 
 
 var PartnerStore = require("../stores/PartnerStore");
+var PartnerSearchView = require("./PartnerSearchView.jsx");
 
 
 module.exports =
@@ -17,9 +18,10 @@ module.exports =
             var content;
 
             if ( this.state.rbkPartners.length > 0 ) {
-                content = this.state.rbkPartners.map(function(partner) {
-                    return <div>{partner.toString()}</div>;
-                });
+                content = <PartnerSearchView partners={this.state.rbkPartners}/>
+                //content = this.state.rbkPartners.map(function(partner) {
+                //    return <div>{partner.toString()}</div>;
+                //});
             } else {
                 console.log("No Data yet") ;
                 content = <span>Laster data, vennligst vent...</span>;
