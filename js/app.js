@@ -4,5 +4,5 @@
  */
 
 var React = require('react');
-var App = require('./components/partner-search.jsx');
-React.render(<App/>, document.getElementById("container"));
+var Main = require('./components/main.jsx');
+React.render(<Main/>, document.getElementById("container"));

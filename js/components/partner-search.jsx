@@ -20,7 +20,7 @@ module.exports =
             var json = $.parseJSON(this.state.rbkPartners);
 
             var partnerList = json.partners.sort().map(function (partner) {
-                return (<option value={partner.name}/>);
+                return (<option value={partner.city}/>);
             });
 
             partnerList.push(json.persons.sort().map(function (person) {
