@@ -3,7 +3,6 @@ var Reflux = require("reflux");
 var Label = require("react-bootstrap/Label");
 var Input = require("react-bootstrap/Input");
 
-var $ = require("jquery")
 
 var PartnerStore = require("../stores/PartnerStore");
 
@@ -31,9 +30,7 @@ module.exports =
                     {content}
                 </div>
             );
-
         }
-
     });
 
 
