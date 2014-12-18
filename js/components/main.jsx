@@ -1,8 +1,5 @@
 var React = require("react");
 var Reflux = require("reflux");
-var Label = require("react-bootstrap/Label");
-var Input = require("react-bootstrap/Input");
-
 
 var PartnerStore = require("../stores/PartnerStore");
 var PartnerSearchView = require("./PartnerSearchView.jsx");
