@@ -14,6 +14,10 @@ module.exports =
             };
         },
 
+        partnerClicked: function(key){
+            this.props.partnerSelected(key);
+        },
+
         handleSearchInput: function() {
            this.setState({
                searchText: this.refs.searchPartner.getValue()
@@ -25,10 +29,10 @@ module.exports =
 
             if(this.state.searchText.length > 0) {
                var currentSearch = this.state.searchText;
+                var callback = this.partnerClicked;
                this.props.partners.forEach(function(partner) {
-                   var name = partner.name;
-                   if(name.toLowerCase().indexOf(currentSearch.toLowerCase())==0){
-                       searchList.push(<ListGroupItem>{partner.name}</ListGroupItem>);
+                   if(partner.name.toLowerCase().indexOf(currentSearch.toLowerCase())==0){
+                       searchList.push(<ListGroupItem onClick={callback} eventKey={partner.id}>{partner.name}</ListGroupItem>);
                    }
                });
             }

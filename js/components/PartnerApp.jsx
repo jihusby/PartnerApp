@@ -6,7 +6,7 @@ var NavItem = require("react-bootstrap/NavItem");
 
 var MenuActions = require("../actions/MenuActions");
 var MenuStore = require("../stores/MenuStore");
-var PartnerSearchView = require("./PartnerSearchView.jsx");
+var PartnerView = require("./PartnerView.jsx");
 var Constants = require("../utils/partner-constants");
 
 
@@ -29,14 +29,12 @@ module.exports =
 
         render: function () {
             var content;
-            var activeKey = 0;
             switch(this.state.menuItem){
                 case Constants.MenuItems.home:
-                    content =  <PartnerSearchView partners={this.props.partners}/>;
+                    content =  <PartnerView partners={this.props.partners}/>;
                     break;
                 case Constants.MenuItems.favourites:
                     content = <div>Favourites clicked</div>
-                    activeKey = 1;
                     break;
             }
 

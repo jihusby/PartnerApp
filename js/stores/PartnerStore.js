@@ -10,8 +10,8 @@ var BackendActions = require("../actions/BackendActions");
 
 var Partner = require("../model/partner");
 var Contact = require("../model/contact");
-var Utils = require("../utils/partner-utils")
-var Constants = require("../utils/partner-constants")
+var Utils = require("../utils/partner-utils");
+var Constants = require("../utils/partner-constants");
 
 
 module.exports = Reflux.createStore({
