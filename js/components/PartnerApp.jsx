@@ -29,19 +29,19 @@ module.exports =
 
         render: function () {
             var content;
-            var activeKey = 1;
+            var activeKey = 0;
             switch(this.state.menuItem){
                 case Constants.MenuItems.home:
                     content =  <PartnerSearchView partners={this.props.partners}/>;
                     break;
                 case Constants.MenuItems.favourites:
                     content = <div>Favourites clicked</div>
-                    activeKey = 2;
+                    activeKey = 1;
                     break;
             }
 
             var menuInstance = (
-                <Nav bsStyle="pills" activeKey={activeKey} onSelect={this.handleMenuSelect}>
+                <Nav bsStyle="pills" activeKey={this.state.menuItem} onSelect={this.handleMenuSelect}>
                     <NavItem eventKey={Constants.MenuItems.home}>Hjem</NavItem>
                     <NavItem eventKey={Constants.MenuItems.favourites}>Favoritter</NavItem>
                 </Nav>
