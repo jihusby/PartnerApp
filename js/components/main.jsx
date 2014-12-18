@@ -2,7 +2,7 @@ var React = require("react");
 var Reflux = require("reflux");
 
 var PartnerStore = require("../stores/PartnerStore");
-var PartnerSearchView = require("./PartnerSearchView.jsx");
+var PartnerApp = require("./PartnerApp.jsx");
 
 
 module.exports =
@@ -15,10 +15,7 @@ module.exports =
             var content;
 
             if ( this.state.rbkPartners.length > 0 ) {
-                content = <PartnerSearchView partners={this.state.rbkPartners}/>
-                //content = this.state.rbkPartners.map(function(partner) {
-                //    return <div>{partner.toString()}</div>;
-                //});
+                content = <PartnerApp partners={this.state.rbkPartners}/>
             } else {
                 console.log("No Data yet") ;
                 content = <span>Laster data, vennligst vent...</span>;

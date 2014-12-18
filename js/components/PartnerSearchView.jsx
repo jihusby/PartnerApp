@@ -4,8 +4,6 @@ var ListGroup = require("react-bootstrap/ListGroup");
 var ListGroupItem = require("react-bootstrap/ListGroupItem");
 var Input = require("react-bootstrap/Input");
 
-// var $ = require("jquery");
-
 module.exports =
 
     React.createClass({
@@ -23,14 +21,9 @@ module.exports =
         },
 
         render: function () {
-            //var partnerList = this.props.partners.map(function(partner){
-            //   return <option value={partner.name}/>;
-            //});
-
             var searchList = [];
 
             if(this.state.searchText.length > 0) {
-               //searchList.push(<ListGroup/>);
                var currentSearch = this.state.searchText;
                this.props.partners.forEach(function(partner) {
                    var name = partner.name;
@@ -38,11 +31,6 @@ module.exports =
                        searchList.push(<ListGroupItem>{partner.name}</ListGroupItem>);
                    }
                });
-               //if(searchList.length > 0) {
-               //    searchList.unshift(<ListGroup>);
-               //
-               //}
-               //searchList.push(<ListGroup>);
             }
 
             return (
