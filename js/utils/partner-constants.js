@@ -1,5 +1,5 @@
 
 module.exports =  {
-        URLS: {search: "http://localhost:8080/api/search"},
+    URLS: { search: "http://localhost:49620/api/search" },
         MenuItems: {home: "home", favourites: "favourites"}
     }
