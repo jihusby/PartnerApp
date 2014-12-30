@@ -11,38 +11,50 @@ module.exports =
                 type: "POST",
                 url: Constants.URLS.login,
                 data: credentials,
-                success: function (msg) {
-                    var token = msg;
-                    console.log(msg);
+                success: function (token) {
+                    sessionStorage.setItem("bearer_token", token);
+                    // TODO: refresh component
                 },
 				error: function(errorMsg) {
-				    console.log(errorMsg.responseText);
+                    // TODO: Present error to user
+				    console.log(errorMsg);
 				}
-        });
+            });
+        },
+        logOut: function() {
+          sessionStorage.removeItem("bearer_token");
+            // TODO: refresh component
         },
         render: function () {
-            return (
-                <span>
-                    <div className="form-group">
-                        <Input
-                            type="text"
-                            placeholder="E-post"
-                            ref="username"
-                            className="form-control"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <Input
-                            type="password"
-                            placeholder="Passord"
-                            ref="password"
-                            className="form-control"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <Button bsStyle="primary" onClick={this.login}>Login</Button>                
-                    </div>
-                </span>
-            );
+            var isLoggendIn = !!sessionStorage.getItem("bearer_token");
+                if(isLoggendIn){
+                    return (
+                        <Button bsStyle="primary" onClick={this.logOut}>Logg ut</Button>
+                    );
+                }else{
+                    return (                    
+                        <span>
+                            <div className="form-group">
+                                <Input
+                                    type="text"
+                                    placeholder="E-post"
+                                    ref="username"
+                                    className="form-control"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <Input
+                                    type="password"
+                                    placeholder="Passord"
+                                    ref="password"
+                                    className="form-control"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <Button bsStyle="primary" onClick={this.login}>Logg inn</Button>                
+                            </div>
+                        </span>
+                    );
+                }
         }
     });

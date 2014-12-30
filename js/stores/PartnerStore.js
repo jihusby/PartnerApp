@@ -48,17 +48,24 @@ module.exports = Reflux.createStore({
 
 
     getPartnersFromBackend: function(callback) {
-        $.ajax({
-            url: Constants.URLS.search,
-            dataType: 'json',
-            success: function(data) {
-                console.log(data);
-                callback(data);
-            },
-            error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString())
-                callback({});
-            }
-        });
+        if(!sessionStorage.getItem("bearer_token")){
+         return;   
+        }else{
+            $.ajax({
+                url: Constants.URLS.search,
+                dataType: 'json',
+                beforeSend: function(request) {
+                    request.setRequestHeader("Authorize", sessionStorage.getItem("bearer_token"));
+                },
+                success: function(data) {
+                    console.log(data);
+                    callback(data);
+                },
+                error: function(xhr, status, err) {
+                    console.error(this.props.url, status, err.toString())
+                    callback({});
+                }
+            });
+        }
     }
 });
