@@ -5,7 +5,12 @@ var Constants = require("../utils/partner-constants");
 module.exports =
     
     React.createClass({
+    getInitialState: function() {
+      var state = { loggedIn: !!sessionStorage.getItem("bearer_token") };
+        return state;
+    },
         login: function() {
+            var that = this;
             var credentials = { Email: this.refs.username.getValue(), Password: this.refs.password.getValue() };
             $.ajax({
                 type: "POST",
@@ -13,21 +18,21 @@ module.exports =
                 data: credentials,
                 success: function (token) {
                     sessionStorage.setItem("bearer_token", token);
-                    // TODO: refresh component
+                    that.setState({ loggedIn: true });
                 },
 				error: function(errorMsg) {
+                    that.setState({ loggedIn: false });
                     // TODO: Present error to user
 				    console.log(errorMsg);
 				}
             });
         },
         logOut: function() {
-          sessionStorage.removeItem("bearer_token");
-            // TODO: refresh component
+            sessionStorage.removeItem("bearer_token");
+            this.setState({ loggedIn: false });
         },
         render: function () {
-            var isLoggendIn = !!sessionStorage.getItem("bearer_token");
-                if(isLoggendIn){
+                if(this.state.loggedIn){
                     return (
                         <Button bsStyle="primary" onClick={this.logOut}>Logg ut</Button>
                     );
