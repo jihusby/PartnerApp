@@ -5,10 +5,11 @@ module.exports =
     React.createClass({
    
     getInitialState: function(){
-        return { showAlert: false };
+        return { showAlert: this.props.showAlert };
     },
     
     render: function(){
+        var styles = {display:"none"};
         if(this.state.showAlert){
             return (
                 <Alert bsStyle="danger" onDismiss={this.handleAlertDismiss}>
@@ -18,7 +19,7 @@ module.exports =
             );
         }else{
          return (
-           <div style="display:none"></div>  
+           <div style={styles}></div>  
          );
         }
     },
