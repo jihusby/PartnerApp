@@ -34,5 +34,3 @@ Partner.prototype = {
 }
 
 module.exports = Partner;
-
-
