@@ -2,7 +2,8 @@
   "name": "ReactExamples",
   "version": "0.0.0",
   "authors": [
-    "Johan Arnt Markussen <johan.arnt.markussen@gmail.com>"
+    "Johan Arnt Markussen <johan.arnt.markussen@gmail.com>",
+    "Arnstein Johansen <arnstein.johansen@itema.no>"
   ],
   "license": "MIT",
   "private": true,
@@ -19,6 +20,7 @@
     "jquery": "~2.1.1",
     "react-bootstrap": "~0.13.0",
     "modernizr": "~2.8.3",
-    "bootstrap": "~3.3.1"
+    "bootstrap": "~3.3.1",
+    "underscore": "~1.7.0"
   }
 }
