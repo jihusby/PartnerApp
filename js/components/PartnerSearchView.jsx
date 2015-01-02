@@ -18,9 +18,9 @@ module.exports =
             this.props.partnerSelected(key);
         },
 
-        handleSearchInput: function() {
+        handleSearchInput: function(e) {
            this.setState({
-               searchText: this.refs.searchPartner.getValue()
+               searchText: e.target.value
            });
         },
 
@@ -30,6 +30,7 @@ module.exports =
             if(this.state.searchText.length > 0) {
                var currentSearch = this.state.searchText;
                 var callback = this.partnerClicked;
+                
                this.props.partners.forEach(function(partner) {
                    if(partner.name.toLowerCase().indexOf(currentSearch.toLowerCase())==0){
                        searchList.push(<ListGroupItem onClick={callback} eventKey={partner.id}>{partner.name}</ListGroupItem>);

@@ -1,15 +1,15 @@
 
 function Partner(partnerJson) {
 
-    this.id = partnerJson.Id;
-    this.name = partnerJson.Name;
-    this.address = partnerJson.Address;
-    this.zipCode = partnerJson.ZipCode;
-    this.city = partnerJson.City;
-    this.email = partnerJson.Email;
-    this.phone = partnerJson.Phone;
-    this.webSite = partnerJson.WebSite;
-    this.partnerType = partnerJson.PartnerType;
+    this.id = partnerJson.id;
+    this.name = partnerJson.name;
+    this.address = partnerJson.address;
+    this.zipCode = partnerJson.zipCode;
+    this.city = partnerJson.city;
+    this.email = partnerJson.email;
+    this.phone = partnerJson.phone;
+    this.webSite = partnerJson.webSite;
+    this.partnerType = partnerJson.partnerType;
     this.contacts = [];
 }
 

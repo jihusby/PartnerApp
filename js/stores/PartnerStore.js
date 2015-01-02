@@ -5,7 +5,7 @@
 var Reflux = require("reflux");
 
 var $ = require("jquery");
-
+var _ = require("underscore");
 var BackendActions = require("../actions/BackendActions");
 
 var Partner = require("../model/partner");
@@ -30,19 +30,18 @@ module.exports = Reflux.createStore({
     },
 
     updatePartners: function(json) {
-        var partners = Utils.sortByKey(json.partners, "Name").map(function(partner) {
+        var partners = _.map(_.sortBy(json.partners, "name"), function(partner){
             return new Partner(partner);
         });
         partners.forEach(function(partner){
             partner.setContacts(
                 json.persons.filter(function(contact){
-                    return partner.id == contact.PartnerId;
+                    return partner.id == contact.partnerId;
                 }).map(function(contactFound){
                      return new Contact(contactFound)
                 })
             )
         });
-
         this.trigger(partners);
     },
 
