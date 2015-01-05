@@ -1,5 +1,6 @@
 var install = require("gulp-install");
 var gulp = require('gulp');
+var plumber = require('gulp-plumber');
 var browserify = require('gulp-browserify');
 var bower = require('bower');
 
@@ -22,6 +23,12 @@ gulp.task('bower', function(cb){
 gulp.task('scripts', function() {
     // Single entry point to browserify
     return gulp.src('js/app.js')
+        .pipe(plumber({
+            handleError: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
+        }))
         .pipe(browserify({
             insertGlobals : false,
             debug : false,
