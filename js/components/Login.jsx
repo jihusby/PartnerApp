@@ -14,7 +14,9 @@ module.exports =
         return state;
     },
     render: function () {
-        var errorContent = !!this.state.error ? <Alert title={this.state.error.title} message={this.state.error.message} showAlert={true} /> : "";
+    if(!!this.state.error){
+        React.render(<Alert title={this.state.error.title} message={this.state.error.message} showAlert={true} />, document.getElementById("alert-container"));
+    }
             if(this.state.loggedIn){
                 return (
                     <Button bsStyle="primary" onClick={this.logOut}>Logg ut</Button>
@@ -41,7 +43,6 @@ module.exports =
                         <div className="form-group">
                             <Button bsStyle="primary" onClick={this.login}>Logg inn</Button>                
                         </div>
-                        {errorContent}
                     </span>
                 );
             }
