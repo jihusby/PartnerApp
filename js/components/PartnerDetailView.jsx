@@ -10,7 +10,7 @@ module.exports =
             var phone = "tel:" + partner.phone;
             return (
                 <div>
-                <h3>{partner.name}{" "}<i className="glyphicon glyphicon-star-empty"></i></h3>
+                <h3>{partner.name}{" "}</h3>
                 <address>
                 <strong>Adresse</strong><br/>
                   {partner.address}<br/>

@@ -4,5 +4,9 @@ module.exports =  {
         search: "http://localhost:49620/api/search",
         login: "http://localhost:49620/api/login",
     },
-    MenuItems: {home: "home", favourites: "favourites"}
+    MenuItems: {
+        home: "home", 
+        favorites: "favorites"
+    },
+    LocalStorageKeys: { favorites: "favorites" }
 }
