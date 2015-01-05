@@ -1,4 +1,5 @@
 var React = require("react");
+var Favorite = require("./Favorite.jsx");
 
 module.exports =
 
@@ -24,7 +25,7 @@ module.exports =
                 <ul className="list-unstyled">
                     {
                         partner.contacts.map(function(contact){
-                           return <li>{contact.firstName}{" "}{contact.lastName} - <small>{contact.position}</small></li>  
+                           return <li key={contact.id}>{contact.firstName}{" "}{contact.lastName} - <small>{contact.position}</small> <Favorite id={contact.id} /></li>  
                         })
                     }
                 </ul>
