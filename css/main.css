@@ -1,7 +1,8 @@
-.jumbotron > .container{
-    padding: 20px 0;
-}
 .content-container {
     margin-top: 50px;
     padding-top: 10px;
+}
+
+.jumbotron > .container{
+    padding: 20px 0;
 }
