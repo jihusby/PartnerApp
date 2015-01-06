@@ -5,7 +5,7 @@ var browserify = require('gulp-browserify');
 var bower = require('bower');
 
 var paths = {
-    js: ['js/*.js', 'js/stores/*.js', 'js/actions/*.js', 'js/components/*.jsx']
+    js: ['js/*.js', 'js/stores/*.js', 'js/actions/*.js', 'js/components/*.jsx', 'js/utils/*.js']
 };
 
 gulp.task('install', function(){
