@@ -23,10 +23,15 @@ module.exports =
             console.log('hellow orld');
             this.setState({showMenu:!this.state.showMenu});
         },
+
         handleMenuSelect: function(menuEvent) {
+            this.setState({showMenu: false});
             switch(menuEvent){
                 case Constants.MenuItems.home:
                     MenuActions.search();
+                    break;
+                case Constants.MenuItems.partnerlist:
+                    MenuActions.partnerlist();
                     break;
                 case Constants.MenuItems.favourites:
                     MenuActions.favourites();
@@ -40,6 +45,9 @@ module.exports =
                 case Constants.MenuItems.home:
                     content =  <PartnerView partners={this.props.partners}/>;
                     break;
+                case Constants.MenuItems.partnerlist:
+                    content = <div> hello partners</div>
+                    break;
                 case Constants.MenuItems.favourites:
                     content = <div>Favourites clicked</div>
                     break;
@@ -47,7 +55,8 @@ module.exports =
              if (this.state.showMenu) {
                 var menu = (
                     <Nav activeKey={this.state.menuItem} collapsable={true} expanded={false} onSelect={this.handleMenuSelect}>
-                        <NavItem eventKey={Constants.MenuItems.home}>Hjem</NavItem>
+                        <NavItem eventKey={Constants.MenuItems.home}>Søk</NavItem>
+                        <NavItem eventKey={Constants.MenuItems.partnerlist}>Partnerliste</NavItem>
                         <NavItem eventKey={Constants.MenuItems.favourites}>Favoritter</NavItem>
                     </Nav>
                     );
