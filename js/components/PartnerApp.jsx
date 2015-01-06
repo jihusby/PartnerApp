@@ -1,8 +1,11 @@
 var React = require("react");
 var Reflux = require("reflux");
 
+var Navbar = require("react-bootstrap/Navbar");
 var Nav = require("react-bootstrap/Nav");
 var NavItem = require("react-bootstrap/NavItem");
+
+var Button = require("react-bootstrap/Button");
 
 var MenuActions = require("../actions/MenuActions");
 var MenuStore = require("../stores/MenuStore");
@@ -16,6 +19,10 @@ module.exports =
 
         mixins: [Reflux.connect(MenuStore,"menuItem")],
 
+        handleMenuToggle: function() {
+            console.log('hellow orld');
+            this.setState({showMenu:!this.state.showMenu});
+        },
         handleMenuSelect: function(menuEvent) {
             switch(menuEvent){
                 case Constants.MenuItems.home:
@@ -37,22 +44,31 @@ module.exports =
                     content = <div>Favourites clicked</div>
                     break;
             }
-
-            var menuInstance = (
-                <Nav bsStyle="pills" activeKey={this.state.menuItem} onSelect={this.handleMenuSelect}>
-                    <NavItem eventKey={Constants.MenuItems.home}>Hjem</NavItem>
-                    <NavItem eventKey={Constants.MenuItems.favourites}>Favoritter</NavItem>
-                </Nav>
+             if (this.state.showMenu) {
+                var menu = (
+                    <Nav activeKey={this.state.menuItem} collapsable={true} expanded={false} onSelect={this.handleMenuSelect}>
+                        <NavItem eventKey={Constants.MenuItems.home}>Hjem</NavItem>
+                        <NavItem eventKey={Constants.MenuItems.favourites}>Favoritter</NavItem>
+                    </Nav>
+                    );
+            } else {
+                menu = undefined;
+            }
+            var navbar = (
+                <Navbar bsStyle="pills" toggleNavKey={1} inverse={true} navExpanded={false} onToggle={this.handleMenuToggle}>
+                    {menu}
+                </Navbar>
             );
 
             return (
                 <div>
-                    {menuInstance}
-                    {content}
+                    {navbar}
+                    <div className="container content-container">
+                        <div id="alert-container" />
+                        {content}
+                    </div>
                 </div>
             );
 
         }
     });
-
-
