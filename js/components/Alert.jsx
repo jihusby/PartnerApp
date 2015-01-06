@@ -1,20 +1,28 @@
 var React = require("react");
+var Reflux = require("reflux");
 var Alert = require("react-bootstrap/Alert");
+
+var AuthStore = require("../stores/AuthStore");
 
 module.exports =
     React.createClass({
-   
+    mixins: [Reflux.connect(AuthStore,"loginResult")],
     getInitialState: function(){
-        return { showAlert: this.props.showAlert };
+    var state = {
+            loginResult:{
+                  error: undefined
+              } 
+          };
+        return state;
     },
     
     render: function(){
         var styles = {display:"none"};
-        if(this.state.showAlert){
+        if(!!this.state.loginResult.error){
             return (
                 <Alert bsStyle="danger" onDismiss={this.handleAlertDismiss}>
-                    <h4>{this.props.title}</h4>
-                    <p>{this.props.message}</p>
+                    <h4>{this.state.loginResult.error.title}</h4>
+                    <p>{this.state.loginResult.error.message}</p>
                 </Alert>
             );
         }else{
@@ -25,6 +33,9 @@ module.exports =
     },
     
     handleAlertDismiss: function(){
-     this.setState({ showAlert: false});   
+     this.setState({             
+        loginResult:{
+              error: undefined
+      } });   
     }
 });

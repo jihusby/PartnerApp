@@ -8,7 +8,6 @@ var Constants = require("../utils/partner-constants");
 var AuthActions = require("../actions/AuthActions");
 var AuthStore = require("../stores/AuthStore");
 
-var Alert =require("./Alert.jsx");
 module.exports =
     
     React.createClass({
@@ -27,9 +26,6 @@ module.exports =
     },
     
     render: function () {
-    if(!!this.state.loginResult.error){
-        React.render(<Alert title={this.state.loginResult.error.title} message={this.state.loginResult.error.message} showAlert={true} />, document.getElementById("alert-container"));
-    }
             if(this.state.loginResult.loggedIn){
                 return (
                     <span>{this.state.loginResult.name} <Button bsStyle="primary" onClick={this.logOut}>Logg ut</Button></span>
