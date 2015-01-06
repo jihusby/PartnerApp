@@ -1,25 +1,38 @@
 var React = require("react");
+var Reflux = require("reflux");
+
 var Button = require("react-bootstrap/Button");
 var Input = require("react-bootstrap/Input");
 var Constants = require("../utils/partner-constants");
+
+var AuthActions = require("../actions/AuthActions");
+var AuthStore = require("../stores/AuthStore");
+
 var Alert =require("./Alert.jsx");
 module.exports =
     
     React.createClass({
+    
+    mixins: [Reflux.connect(AuthStore,"loginResult")],
+    
     getInitialState: function() {
-      var state = { 
-          loggedIn: !!sessionStorage.getItem("bearer_token"),
-          error: undefined
+      var state = {
+            loginResult:{
+              loggedIn: !!sessionStorage.getItem(Constants.SessionStorageKeys.bearer_token),
+              name: sessionStorage.getItem(Constants.SessionStorageKeys.name) || "",
+              error: undefined
+          }
       };
         return state;
     },
+    
     render: function () {
-    if(!!this.state.error){
-        React.render(<Alert title={this.state.error.title} message={this.state.error.message} showAlert={true} />, document.getElementById("alert-container"));
+    if(!!this.state.loginResult.error){
+        React.render(<Alert title={this.state.loginResult.error.title} message={this.state.loginResult.error.message} showAlert={true} />, document.getElementById("alert-container"));
     }
-            if(this.state.loggedIn){
+            if(this.state.loginResult.loggedIn){
                 return (
-                    <Button bsStyle="primary" onClick={this.logOut}>Logg ut</Button>
+                    <span>{this.state.loginResult.name} <Button bsStyle="primary" onClick={this.logOut}>Logg ut</Button></span>
                 );
             }else{
                 return (                    
@@ -38,6 +51,7 @@ module.exports =
                                 placeholder="Passord"
                                 ref="password"
                                 className="form-control"
+                                onKeyDown={this.handleKeyDown}
                             />
                         </div>
                         <div className="form-group">
@@ -47,26 +61,26 @@ module.exports =
                 );
             }
         },
+        
         login: function() {
-            var that = this;
-            var credentials = { Email: this.refs.username.getValue(), Password: this.refs.password.getValue() };
-            $.ajax({
-                type: "POST",
-                url: Constants.URLS.login,
-                data: credentials,
-                success: function (token) {
-                    sessionStorage.setItem("bearer_token", token);
-                    that.setState({ loggedIn: true, error: undefined });
-                },
-				error: function(errorMsg) {
-                    that.setState({ loggedIn: false, error: { title: "Det skjedde en feil.", message: errorMsg } });
-                    // TODO: Present error to user
-				    console.log(errorMsg);
-				}
-            });
+            var credentials = { 
+                Email: this.refs.username.getValue(), 
+                Password: this.refs.password.getValue() 
+            };
+            AuthActions.logIn(credentials);
         },
+        
+        handleKeyDown: function(evt) {
+            if (evt.keyCode == 13 ) {
+                var credentials = { 
+                    Email: this.refs.username.getValue(), 
+                    Password: this.refs.password.getValue() 
+                };
+                AuthActions.logIn(credentials);
+            }
+        },
+        
         logOut: function() {
-            sessionStorage.removeItem("bearer_token");
-            this.setState({ loggedIn: false, error: undefined });
+            AuthActions.logOut();
         },
     });
