@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var plumber = require('gulp-plumber');
 var browserify = require('gulp-browserify');
 var bower = require('bower');
+var shell = require('gulp-shell');
 
 var paths = {
     js: ['js/*.js', 'js/stores/*.js', 'js/actions/*.js', 'js/components/*.jsx', 'js/utils/*.js']
@@ -42,4 +43,23 @@ gulp.task('watch', function() {
     gulp.watch(paths.js, ['scripts']);
 });
 
-gulp.task('default', ['install', 'bower', 'scripts', 'watch'])
+// Copy files to phonegap folder
+gulp.task('phonegap-copy', function() {
+    gulp.src(['build/**/*']).pipe(gulp.dest('phonegap/www/build'));
+    gulp.src(['css/**/*']).pipe(gulp.dest('phonegap/www/css'));
+    gulp.src(['js/external/**/*']).pipe(gulp.dest('phonegap/www/js/external'));
+    gulp.src(['index.html']).pipe(gulp.dest('phonegap/www'));
+});
+
+gulp.task('phonegap-build', shell.task([
+    'phonegap platform add android',
+    'phonegap build'
+], {
+        ignoreErrors: 'true',
+        cwd: 'phonegap'
+    }
+));
+
+
+
+gulp.task('default', ['install', 'bower', 'scripts', 'watch', 'phonegap-copy', 'phonegap-build'])
