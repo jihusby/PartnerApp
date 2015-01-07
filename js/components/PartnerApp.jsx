@@ -3,13 +3,14 @@ var Reflux = require("reflux");
 
 var MenuActions = require("../actions/MenuActions");
 var AuthActions = require("../actions/AuthActions");
+
 var MenuStore = require("../stores/MenuStore");
 var AuthStore = require("../stores/AuthStore");
+
 var PartnerView = require("./PartnerView.jsx");
 var Login = require("./Login.jsx");
+
 var Constants = require("../utils/partner-constants");
-
-
 
 module.exports =
 
@@ -60,9 +61,11 @@ module.exports =
         render: function () {
             var content;
             var loginResult = this.state.loginResult;
-            var loginText = "";
-            if(!!loginResult) loginText = loginResult.loggedIn ? "Logg ut" : "Logg inn";
-            else loginText = "Logg inn";
+            var loginText = "Logg inn";
+            if(!!loginResult){
+                loginText = loginResult.loggedIn ? "Logg ut" : "Logg inn";
+            } 
+
             switch(this.state.menuItem){
                 case Constants.MenuItems.home:
                     content =  <PartnerView partners={this.props.partners}/>;
@@ -73,11 +76,11 @@ module.exports =
                 case Constants.MenuItems.favourites:
                     content = <div>Favourites clicked</div>
                     break;
-
                 case Constants.MenuItems.login:
                     content = <Login />
                     break;
             }
+
             var navbar = (
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container-fluid">
@@ -106,11 +109,9 @@ module.exports =
                 <div>
                     {navbar}
                     <div className="container content-container">
-                        <div id="alert-container" />
                         {content}
                     </div>
                 </div>
             );
-
         }
     });
