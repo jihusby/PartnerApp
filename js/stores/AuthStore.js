@@ -1,7 +1,3 @@
-/**
- *
- * Created by aj on 30/12/14.
- */
 var Reflux = require("reflux");
 
 var AuthActions = require("../actions/AuthActions");
