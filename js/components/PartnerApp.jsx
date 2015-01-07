@@ -84,7 +84,6 @@ module.exports =
                                 <li><a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)}>Partnerliste</a></li>
                                 <li><a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favourites)}>Favoritter</a></li>
                                 <li><a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)}>{loginText}</a></li>
-                                <li><a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>Logg ut</a></li>
                             </ul>
                         </div>
                     </div>
