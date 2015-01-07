@@ -17,10 +17,6 @@ module.exports =
 
         mixins: [Reflux.connect(MenuStore,"menuItem"),Reflux.connect(AuthStore,"loginResult")],
 
-        handleMenuToggle: function() {
-            this.setState({showMenu:!this.state.showMenu});
-        },
-
         handleMenuSelect: function(menuEvent) {
             $('#nav-menu').collapse('hide');
             switch(menuEvent){
