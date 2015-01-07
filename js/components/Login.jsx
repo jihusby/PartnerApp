@@ -4,6 +4,9 @@ var Reflux = require("reflux");
 var Button = require("react-bootstrap/Button");
 var Input = require("react-bootstrap/Input");
 var Constants = require("../utils/partner-constants");
+var Panel = require("react-bootstrap/Panel");
+
+var Alert = require("./Alert.jsx");
 
 var AuthActions = require("../actions/AuthActions");
 var AuthStore = require("../stores/AuthStore");
@@ -26,36 +29,43 @@ module.exports =
     },
     
     render: function () {
-            if(this.state.loginResult.loggedIn){
                 return (
-                    <span>{this.state.loginResult.name} <Button bsStyle="primary" onClick={this.logOut}>Logg ut</Button></span>
-                );
-            }else{
-                return (                    
-                    <span>
-                        <div className="form-group">
-                            <Input
+                <div>
+                    <Panel header="Logg inn">
+                        <form class="form-horizontal">
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">E-post</label>
+                            <div class="col-sm-10">
+                              <Input
                                 type="text"
                                 placeholder="E-post"
                                 ref="username"
                                 className="form-control"
                             />
-                        </div>
-                        <div className="form-group">
-                            <Input
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">Passord</label>
+                            <div class="col-sm-10">
+                              <Input
                                 type="password"
                                 placeholder="Passord"
                                 ref="password"
                                 className="form-control"
                                 onKeyDown={this.handleKeyDown}
                             />
-                        </div>
-                        <div className="form-group">
-                            <Button bsStyle="primary" onClick={this.login}>Logg inn</Button>                
-                        </div>
-                    </span>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <Button bsStyle="primary" onClick={this.login}>Logg inn</Button>            
+                            </div>
+                          </div>
+                        </form>
+                   </Panel>     
+                   <Alert />
+               </div>
                 );
-            }
         },
         
         login: function() {
@@ -74,9 +84,5 @@ module.exports =
                 };
                 AuthActions.logIn(credentials);
             }
-        },
-        
-        logOut: function() {
-            AuthActions.logOut();
-        },
+        }
     });

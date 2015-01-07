@@ -7,7 +7,8 @@ module.exports =  {
     MenuItems: {
         home: "home", 
         favorites: "favorites",
-        partnerlist: "partnerlist"
+        partnerlist: "partnerlist",
+        login: "login"
     },
     LocalStorageKeys: { 
         favorites: "favorites" 

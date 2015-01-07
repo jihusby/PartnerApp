@@ -8,16 +8,20 @@ var NavItem = require("react-bootstrap/NavItem");
 var Button = require("react-bootstrap/Button");
 
 var MenuActions = require("../actions/MenuActions");
+var AuthActions = require("../actions/AuthActions");
 var MenuStore = require("../stores/MenuStore");
+var AuthStore = require("../stores/AuthStore");
 var PartnerView = require("./PartnerView.jsx");
+var Login = require("./Login.jsx");
 var Constants = require("../utils/partner-constants");
+
 
 
 module.exports =
 
     React.createClass({
 
-        mixins: [Reflux.connect(MenuStore,"menuItem")],
+        mixins: [Reflux.connect(MenuStore,"menuItem"),Reflux.connect(AuthStore,"loginResult")],
 
         handleMenuToggle: function() {
             console.log('hellow orld');
@@ -36,11 +40,22 @@ module.exports =
                 case Constants.MenuItems.favourites:
                     MenuActions.favourites();
                     break;
+                case Constants.MenuItems.login:
+                    if(!this.state.loginResult || !this.state.loginResult.loggedIn){
+                        MenuActions.login();
+                    } else{
+                        AuthActions.logOut();      
+                    }
+                    break;
             }
         },
 
         render: function () {
             var content;
+            var loginResult = this.state.loginResult;
+            var loginText = "";
+            if(!!loginResult) loginText = loginResult.loggedIn ? "Logg ut" : "Logg inn";
+            else loginText = "Logg inn";
             switch(this.state.menuItem){
                 case Constants.MenuItems.home:
                     content =  <PartnerView partners={this.props.partners}/>;
@@ -51,13 +66,18 @@ module.exports =
                 case Constants.MenuItems.favourites:
                     content = <div>Favourites clicked</div>
                     break;
+                case Constants.MenuItems.login:
+                    content = <Login />
+                    break;
             }
              if (this.state.showMenu) {
+             
                 var menu = (
                     <Nav activeKey={this.state.menuItem} collapsable={true} expanded={false} onSelect={this.handleMenuSelect}>
                         <NavItem eventKey={Constants.MenuItems.home}>Søk</NavItem>
                         <NavItem eventKey={Constants.MenuItems.partnerlist}>Partnerliste</NavItem>
                         <NavItem eventKey={Constants.MenuItems.favourites}>Favoritter</NavItem>
+                        <NavItem eventKey={Constants.MenuItems.login}>{ loginText }</NavItem>
                     </Nav>
                     );
             } else {
