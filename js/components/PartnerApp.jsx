@@ -83,9 +83,9 @@ module.exports =
             } else {
                 menu = undefined;
             }
-            var brand2 = (<h1>PartnerApp</h1>);
+
             var navbar = (
-                <Navbar brand=brand2 bsStyle="pills" toggleNavKey={1} inverse={true} navExpanded={false} onToggle={this.handleMenuToggle}>
+                <Navbar brand="ParnerApp" bsStyle="pills" toggleNavKey={1} inverse={true} navExpanded={false} onToggle={this.handleMenuToggle}>
                     {menu}
                 </Navbar>
             );
