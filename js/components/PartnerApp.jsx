@@ -1,12 +1,6 @@
 var React = require("react");
 var Reflux = require("reflux");
 
-var Navbar = require("react-bootstrap/Navbar");
-var Nav = require("react-bootstrap/Nav");
-var NavItem = require("react-bootstrap/NavItem");
-
-var Button = require("react-bootstrap/Button");
-
 var MenuActions = require("../actions/MenuActions");
 var AuthActions = require("../actions/AuthActions");
 var MenuStore = require("../stores/MenuStore");
@@ -40,7 +34,7 @@ module.exports =
         },
 
         handleMenuSelect: function(menuEvent) {
-            this.setState({showMenu: false});
+            $('#nav-menu').collapse('hide');
             switch(menuEvent){
                 case Constants.MenuItems.home:
                     MenuActions.search();
@@ -58,6 +52,8 @@ module.exports =
                         AuthActions.logOut();      
                     }
                     break;
+                 default:
+                    console.error("Invalid menuItem");
             }
         },
 
@@ -77,27 +73,33 @@ module.exports =
                 case Constants.MenuItems.favourites:
                     content = <div>Favourites clicked</div>
                     break;
+
                 case Constants.MenuItems.login:
                     content = <Login />
                     break;
             }
-             if (this.state.showMenu) {
-             
-                var menu = (
-                    <Nav activeKey={this.state.menuItem} collapsable={true} expanded={false} onSelect={this.handleMenuSelect}>
-                        <NavItem eventKey={Constants.MenuItems.home}>Søk</NavItem>
-                        <NavItem eventKey={Constants.MenuItems.partnerlist}>Partnerliste</NavItem>
-                        <NavItem eventKey={Constants.MenuItems.favourites}>Favoritter</NavItem>
-                        <NavItem eventKey={Constants.MenuItems.login}>{ loginText }</NavItem>
-                    </Nav>
-                    );
-            } else {
-                menu = undefined;
-            }
             var navbar = (
-                <Navbar bsStyle="pills" toggleNavKey={1} inverse={true} navExpanded={false} onToggle={this.handleMenuToggle}>
-                    {menu}
-                </Navbar>
+                <nav className="navbar navbar-inverse navbar-fixed-top">
+                    <div className="container-fluid">
+                        <div className="navbar-header"> 
+                            <a className="navbar-brand">PartnerApp</a>
+                            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu">
+                                <span className="sr-only">Toggle navigation</span>
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div className="collapse navbar-collapse" id="nav-menu">
+                            <ul className="nav navbar-nav">
+                                <li className="active"><a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>Søk</a></li>
+                                <li><a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)}>Partnerliste</a></li>
+                                <li><a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favourites)}>Favoritter</a></li>
+                                <li><a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)}>{loginText}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             );
 
             return (

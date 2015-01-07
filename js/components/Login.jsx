@@ -32,10 +32,10 @@ module.exports =
                 return (
                 <div>
                     <Panel header="Logg inn">
-                        <form class="form-horizontal">
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label">E-post</label>
-                            <div class="col-sm-10">
+                        <form className="form-horizontal">
+                          <div className="form-group">
+                            <label className="col-sm-2 control-label">E-post</label>
+                            <div className="col-sm-10">
                               <Input
                                 type="text"
                                 placeholder="E-post"
@@ -44,9 +44,9 @@ module.exports =
                             />
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label">Passord</label>
-                            <div class="col-sm-10">
+                          <div className="form-group">
+                            <label className="col-sm-2 control-label">Passord</label>
+                            <div className="col-sm-10">
                               <Input
                                 type="password"
                                 placeholder="Passord"
@@ -56,8 +56,8 @@ module.exports =
                             />
                             </div>
                           </div>
-                          <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
+                          <div className="form-group">
+                            <div className="col-sm-offset-2 col-sm-10">
                               <Button bsStyle="primary" onClick={this.login}>Logg inn</Button>            
                             </div>
                           </div>
