@@ -27,7 +27,6 @@ module.exports = Reflux.createStore({
                 },
 				error: function(errorMsg) {
                     that.trigger({ loggedIn: false, name: "", error: { title: "Det skjedde en feil.", message: errorMsg.responseJSON } });
-				    console.log(errorMsg);
 				}
             });
     },
