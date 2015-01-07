@@ -20,10 +20,12 @@ module.exports =
         var styles = {display:"none"};
         if(!!this.state.loginResult.error){
             return (
+            <div>
                 <Alert bsStyle="danger" onDismiss={this.handleAlertDismiss}>
                     <h4>{this.state.loginResult.error.title}</h4>
                     <p>{this.state.loginResult.error.message}</p>
                 </Alert>
+            </div>
             );
         }else{
          return (

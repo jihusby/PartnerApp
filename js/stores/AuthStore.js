@@ -7,6 +7,7 @@ var Reflux = require("reflux");
 var AuthActions = require("../actions/AuthActions");
 
 var Constants = require("../utils/partner-constants");
+var MenuActions = require("../actions/MenuActions");
 
 
 module.exports = Reflux.createStore({
@@ -24,6 +25,7 @@ module.exports = Reflux.createStore({
                     sessionStorage.setItem(Constants.SessionStorageKeys.uid, data.userId);
                     sessionStorage.setItem(Constants.SessionStorageKeys.name, data.name);
                     that.trigger({ loggedIn: true, name: data.name, error: undefined });
+                    MenuActions.search();
                 },
 				error: function(errorMsg) {
                     that.trigger({ loggedIn: false, name: "", error: { title: "Det skjedde en feil.", message: errorMsg.responseJSON } });
@@ -32,7 +34,6 @@ module.exports = Reflux.createStore({
     },
 
     onLogOut: function () {
-        console.log("Loggout called");
         sessionStorage.removeItem(Constants.SessionStorageKeys.bearer_token);
         sessionStorage.removeItem(Constants.SessionStorageKeys.name);
         sessionStorage.removeItem(Constants.SessionStorageKeys.uid);

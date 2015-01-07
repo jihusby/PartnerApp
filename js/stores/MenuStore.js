@@ -8,9 +8,8 @@ var MenuActions = require("../actions/MenuActions");
 
 var Constants = require("../utils/partner-constants");
 
-
 module.exports = Reflux.createStore({
-
+    
     listenables: [MenuActions]  ,
 
     onSearch: function() {
@@ -27,6 +26,11 @@ module.exports = Reflux.createStore({
         this.menuItemSelected(Constants.MenuItems.favourites);
     },
 
+    onLogin: function(){
+        
+      this.menuItemSelected(Constants.MenuItems.login);
+    },
+    
     getInitialState: function () {
         console.log("React Component is connecting...")
         return Constants.MenuItems.home;

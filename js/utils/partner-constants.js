@@ -2,12 +2,13 @@
 module.exports =  {
     URLS: { 
         search: "http://godfotenrestapi.azurewebsites.net/api/search",
-        login: "http://localhost:49620/api/login",
+        login: "http://godfotenrestapi.azurewebsites.net/api/login",
     },
     MenuItems: {
         home: "home", 
         favorites: "favorites",
-        partnerlist: "partnerlist"
+        partnerlist: "partnerlist",
+        login: "login"
     },
     LocalStorageKeys: { 
         favorites: "favorites" 
