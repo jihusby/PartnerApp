@@ -23,6 +23,17 @@ module.exports =
 
         mixins: [Reflux.connect(MenuStore,"menuItem"),Reflux.connect(AuthStore,"loginResult")],
 
+        getInitialState: function() {
+            var state = {
+                loginResult:{
+                  loggedIn: !!sessionStorage.getItem(Constants.SessionStorageKeys.bearer_token),
+                  name: sessionStorage.getItem(Constants.SessionStorageKeys.name) || "",
+                  error: undefined
+              }
+            };
+            return state;
+        },
+
         handleMenuToggle: function() {
             console.log('hellow orld');
             this.setState({showMenu:!this.state.showMenu});

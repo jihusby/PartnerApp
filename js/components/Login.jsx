@@ -18,13 +18,13 @@ module.exports =
     mixins: [Reflux.connect(AuthStore,"loginResult")],
     
     getInitialState: function() {
-      var state = {
+        var state = {
             loginResult:{
               loggedIn: !!sessionStorage.getItem(Constants.SessionStorageKeys.bearer_token),
               name: sessionStorage.getItem(Constants.SessionStorageKeys.name) || "",
               error: undefined
           }
-      };
+        };
         return state;
     },
     
