@@ -10,3 +10,8 @@ out/
 /.idea/workspace.xml
 .DS_Store
 *.suo
+
+#Files copied into phonegap
+phonegap/www/index.html
+phonegap/www/js
+phonegap/www/main.css
