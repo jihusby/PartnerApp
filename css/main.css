@@ -25,7 +25,7 @@
 .contact-detail > div{
 }
 
-.contact-detail > div > a.btn{
+.contact-detail > div > a{
     float:right;
     margin-left: 10px;
 }

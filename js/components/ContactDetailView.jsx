@@ -1,6 +1,7 @@
 var React = require("react");
 
 var Button = require("react-bootstrap/Button");
+var Favorite = require("./Favorite.jsx");
 
 module.exports = React.createClass({
     render: function(){
@@ -14,11 +15,13 @@ module.exports = React.createClass({
         var collapseId = "col" + i;
         var collRefId = "#col" + i;
         console.log(contact);
-        var note = "<span />";
+        var note = "";
         if(this.props.note){
             note = (
-                <strong>Notat: </strong> <br/>
-                {this.props.note}
+                <div>
+                    <strong>Notat: </strong> <br/>
+                    {this.props.note}
+                </div>
             );
         }
         var name = contact.firstName + " " + contact.lastName;
@@ -29,10 +32,10 @@ module.exports = React.createClass({
                         <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href={collRefId} aria-expanded="false" aria-controls={collapseId}>
                             {name} </a>
                     </span>
-                    <a href={phone} className="btn btn-sm btn-primary"><i className="glyphicon glyphicon-earphone"></i></a>
+                    <Favorite contact={contact} />
                     <a href={mailTo} className="btn btn-sm btn-primary"><i className="glyphicon glyphicon-envelope"></i></a>
-                    <a href={sms} className="btn btn-sm btn-primary"><i className="glyphicon glyphicon-comment"></i></a>
-                    
+                    <a href={phone} className="btn btn-sm btn-primary"><i className="glyphicon glyphicon-earphone"></i></a>
+                    <a href={sms} className="btn btn-sm btn-primary"><i className="glyphicon glyphicon-comment"></i></a>                    
                 </div>
                 <div id={collapseId} className="panel-collapse collapse" role="tabpanel" aria-labelledby={headingId}>
                     <div className="panel-body">
