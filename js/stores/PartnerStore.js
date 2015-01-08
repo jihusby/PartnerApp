@@ -11,6 +11,8 @@ var store = require("store.js");
 
 var BackendActions = require("../actions/BackendActions");
 
+var AuthActions = require("../actions/AuthActions");
+
 var Partner = require("../model/partner");
 var Contact = require("../model/contact");
 var Utils = require("../utils/partner-utils");
@@ -65,7 +67,12 @@ module.exports = Reflux.createStore({
                     callback(data);
                 },
                 error: function(xhr, status, err) {
+                    if (xhr.status === 401){
+                        AuthActions.logOut();
+                        callback({});
+                    }
                     var data = store.get(Constants.LocalStorageKeys.partnerdata);
+                    data.isCached = true;
                     callback(data);
                 }
             });
