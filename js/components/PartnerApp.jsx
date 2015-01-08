@@ -66,21 +66,26 @@ module.exports =
                 loginText = loginResult.loggedIn ? "Logg ut" : "Logg inn";
             } 
 
-            switch(this.state.menuItem){
-                case Constants.MenuItems.home:
-                    content =  <PartnerView partners={this.props.partners}/>;
-                    break;
-                case Constants.MenuItems.partnerlist:
-                    content = <div> hello partners</div>
-                    break;
-                case Constants.MenuItems.favourites:
-                    content = <div>Favourites clicked</div>
-                    break;
-                case Constants.MenuItems.login:
-                    content = <Login />
-                    break;
+            if (!loginResult.loggedIn) {
+                content = <Login/>;
+            } else if (!(this.props.partners  && (this.props.partners.length > 0))){
+                content = <p>No result yet. Spinner here please!</p>
+            } else{
+                switch(this.state.menuItem){
+                    case Constants.MenuItems.home:
+                        content =  <PartnerView partners={this.props.partners}/>;
+                        break;
+                    case Constants.MenuItems.partnerlist:
+                        content = <div> hello partners</div>
+                        break;
+                    case Constants.MenuItems.favourites:
+                        content = <div>Favourites clicked</div>
+                        break;
+                    case Constants.MenuItems.login:
+                        content = <Login />
+                        break;
+                }
             }
-
             var navbar = (
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container-fluid">
