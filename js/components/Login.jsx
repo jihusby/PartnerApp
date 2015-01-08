@@ -1,6 +1,8 @@
 var React = require("react");
 var Reflux = require("reflux");
 
+var store = require("store.js");
+
 var Button = require("react-bootstrap/Button");
 var Input = require("react-bootstrap/Input");
 var Panel = require("react-bootstrap/Panel");
@@ -18,8 +20,8 @@ module.exports = React.createClass({
     getInitialState: function() {
         return {
             loginResult:{
-              loggedIn: !!sessionStorage.getItem(Constants.SessionStorageKeys.bearer_token),
-              name: sessionStorage.getItem(Constants.SessionStorageKeys.name) || "",
+              loggedIn: !!store.get(Constants.LocalStorageKeys.bearer_token),
+              name: store.get(Constants.LocalStorageKeys.name) || "",
               error: undefined
           }
         };

@@ -49,7 +49,6 @@ gulp.task('watch', function() {
 gulp.task('phonegap', function() {
         runSequence(
             'phonegap-init',
-            'phonegap-icons',
             'phonegap-copy',
             'phonegap-build');
 });
@@ -62,17 +61,6 @@ gulp.task('phonegap-init', shell.task([
         cwd: 'phonegap'
     }
 ));
-
-// copy icons
-gulp.task('phonegap-icons', function() {
-    gulp.src(['phonegap/www/res/icon/android/icon-96-xhdpi.png'])
-        .pipe(rename('icon.png'))
-        .pipe(gulp.dest('phonegap/platforms/android/res/drawable'));
-
-    gulp.src(['phonegap/www/res/icon/android/icon-72-hdpi.png'])
-        .pipe(rename('icon.png'))
-        .pipe(gulp.dest('phonegap/platforms/android/res/drawable-hdpi'));
-});
 
 // Copy files to phonegap folder
 gulp.task('phonegap-copy', function() {
@@ -90,6 +78,13 @@ gulp.task('phonegap-build', shell.task([
     }
 ));
 
+gulp.task('build', function() {
+   runSequence(
+       'scripts',
+       'phonegap'
+    );
+});
 
 
-gulp.task('default', ['install', 'bower', 'scripts', 'phonegap', 'watch'])
+
+gulp.task('default', ['install', 'bower', 'build', 'watch'])
