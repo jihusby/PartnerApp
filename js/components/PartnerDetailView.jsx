@@ -9,6 +9,7 @@ module.exports =
             var partner = this.props.selectedPartner;
             var mailTo = "mailto:" + partner.email;
             var phone = "tel:" + partner.phone;
+            var proffLink = "http://www.proff.no/bransjesøk?q=" + partner.name;
             return (
                 <div>
                 <h3>{partner.name}{" "}</h3>
@@ -20,6 +21,7 @@ module.exports =
                   <i className="glyphicon glyphicon-earphone"></i> <a href={phone}>{partner.phone}</a><br/>
                   <i className="glyphicon glyphicon-envelope"></i> <a href={mailTo}>{partner.email}</a><br/>
                   <i className="glyphicon glyphicon-globe"></i> <a href={partner.webSite}>{partner.webSite}</a><br/>
+                  <i className="glyphicon glyphicon-info-sign"></i> <a href={proffLink}>{partner.name} hos proff.no</a><br/>
                 </address>
                 <h4>Kontaktpersoner</h4>
                 <ul className="list-unstyled">
