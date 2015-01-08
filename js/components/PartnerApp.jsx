@@ -9,6 +9,7 @@ var AuthStore = require("../stores/AuthStore");
 
 var PartnerView = require("./PartnerView.jsx");
 var Login = require("./Login.jsx");
+var FavoriteView = require("./FavoriteView.jsx");
 
 var Constants = require("../utils/partner-constants");
 
@@ -79,7 +80,7 @@ module.exports =
                         content = <div> hello partners</div>
                         break;
                     case Constants.MenuItems.favourites:
-                        content = <div>Favourites clicked</div>
+                        content = <FavoriteView />
                         break;
                     case Constants.MenuItems.login:
                         content = <Login />

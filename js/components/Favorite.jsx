@@ -45,7 +45,7 @@ module.exports = React.createClass({
 
     addToFavorites: function(note){
         var favorites = this.state.favorites || [];
-        var favorite = { id: this.props.id, note: note };
+        var favorite = { contact: this.props.contact, note: note };
         FavoriteActions.set(Constants.LocalStorageKeys.favorites, _.union(favorites, [favorite]));
         // force update
         FavoriteActions.get(Constants.LocalStorageKeys.favorites);
@@ -59,7 +59,7 @@ module.exports = React.createClass({
         var favorites = this.state.favorites || [];
         
         FavoriteActions.set(Constants.LocalStorageKeys.favorites, _.without(favorites, _.find(favorites, function(f){ 
-                return f.id == that.props.id
+                return f.contact.id == that.props.contact.id
             })
         ));
         // force update
@@ -74,6 +74,6 @@ module.exports = React.createClass({
 
     isFavorite: function(favorites){
         var that = this;
-        return !!_.find(favorites, function(f){ return f.id == that.props.id});
+        return !!_.find(favorites, function(f){ return f.contact.id == that.props.contact.id});
     }
 });

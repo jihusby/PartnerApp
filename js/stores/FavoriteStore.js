@@ -1,7 +1,3 @@
-/**
- *
- * Created by aj on 06/01/15.
- */
 var Reflux = require("reflux");
 var store = require("store.js");
 
@@ -18,6 +14,7 @@ module.exports = Reflux.createStore({
     },
     
     onGet: function(key){
+        console.log("Getting");
         this.trigger(store.get(key));
     },
     

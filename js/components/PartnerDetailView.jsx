@@ -1,6 +1,8 @@
 var React = require("react");
 var Favorite = require("./Favorite.jsx");
 
+var _ = require("underscore");
+
 module.exports =
 
     React.createClass({
@@ -9,6 +11,7 @@ module.exports =
             var partner = this.props.selectedPartner;
             var mailTo = "mailto:" + partner.email;
             var phone = "tel:" + partner.phone;
+
             return (
                 <div>
                 <h3>{partner.name}{" "}</h3>
@@ -25,7 +28,10 @@ module.exports =
                 <ul className="list-unstyled">
                     {
                         partner.contacts.map(function(contact){
-                           return <li key={contact.id}>{contact.firstName}{" "}{contact.lastName} - <small>{contact.position}</small> <Favorite id={contact.id} /></li>  
+                            // avoids circular structure that causes an error when serializing to JSON
+                            var contactDto = _.omit(contact, "partner");
+                            var contactName = contact.firstName + " " + contact.lastName;
+                           return <li key={contact.id}>{contactName} - <small>{contact.position}</small> <Favorite contact={contactDto} /></li>  
                         })
                     }
                 </ul>
