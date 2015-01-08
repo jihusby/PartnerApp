@@ -4,6 +4,9 @@
  */
 
 var React = require('react');
+
+var fastclick = require('fastclick');
+fastclick(document.body);
 var Main = require('./components/Main.jsx');
 var Login = require('./components/Login.jsx');
 var Alert = require('./components/Alert.jsx');
