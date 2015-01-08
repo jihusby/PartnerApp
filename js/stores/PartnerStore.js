@@ -50,14 +50,14 @@ module.exports = Reflux.createStore({
 
 
     getPartnersFromBackend: function(callback) {
-        if(!sessionStorage.getItem("bearer_token")){
+        if(!store.get("bearer_token")){
          return;   
         }else{
             $.ajax({
                 url: Constants.URLS.search,
                 dataType: 'json',
                 beforeSend: function(request) {
-                    request.setRequestHeader("Authorize", sessionStorage.getItem("bearer_token"));
+                    request.setRequestHeader("Authorize", store.get("bearer_token"));
                 },
                 success: function(data) {
                     console.log(data);

@@ -12,11 +12,12 @@ module.exports =  {
     },
     LocalStorageKeys: { 
         favorites: "favorites" ,
-        partnerdata: "partnerdata"
-    },
-    SessionStorageKeys: {
+        partnerdata: "partnerdata",
         uid: "uid",
         bearer_token: "bearer_token",
         name: "name"
+    },
+    SessionStorageKeys: {
+       
     }
 }

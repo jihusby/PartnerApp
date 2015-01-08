@@ -2,6 +2,8 @@ var React = require("react");
 var Reflux = require("reflux");
 var Spinner = require("react-spinner");
 
+var store = require("store.js");
+
 var MenuActions = require("../actions/MenuActions");
 var AuthActions = require("../actions/AuthActions");
 
@@ -21,18 +23,10 @@ module.exports =
         mixins: [Reflux.connect(MenuStore,"menuItem"),Reflux.connect(AuthStore,"loginResult")],
 
         getInitialState: function() {
-            var state = {
-                loginResult:{
-                  loggedIn: !!sessionStorage.getItem(Constants.SessionStorageKeys.bearer_token),
-                  name: sessionStorage.getItem(Constants.SessionStorageKeys.name) || "",
-                  error: undefined
-              }
-            };
-            return state;
+            return {loginResult: AuthStore.getDefaultData()};
         },
 
         handleMenuToggle: function() {
-            console.log('hellow orld');
             this.setState({showMenu:!this.state.showMenu});
         },
 
@@ -68,8 +62,8 @@ module.exports =
                 loginText = loginResult.loggedIn ? "Logg ut" : "Logg inn";
             }
 
-            if (!loginResult.loggedIn) {
-                content = <Login/>;
+            if (!store.get(Constants.LocalStorageKeys.bearer_token)){
+                content = (<div>You must log in to get the partner data<br/><Login /> </div>);
             } else if (!(this.props.partners  && (this.props.partners.length > 0))){
                 content =  (
                     <div>
