@@ -1,5 +1,6 @@
 var React = require("react");
 var Reflux = require("reflux");
+var Spinner = require("react-spinner");
 
 var MenuActions = require("../actions/MenuActions");
 var AuthActions = require("../actions/AuthActions");
@@ -9,6 +10,7 @@ var AuthStore = require("../stores/AuthStore");
 
 var PartnerView = require("./PartnerView.jsx");
 var Login = require("./Login.jsx");
+var FavoriteView = require("./FavoriteView.jsx");
 
 var Constants = require("../utils/partner-constants");
 
@@ -64,12 +66,21 @@ module.exports =
             var loginText = "Logg inn";
             if(!!loginResult){
                 loginText = loginResult.loggedIn ? "Logg ut" : "Logg inn";
-            } 
+            }
 
             if (!loginResult.loggedIn) {
                 content = <Login/>;
             } else if (!(this.props.partners  && (this.props.partners.length > 0))){
-                content = <p>No result yet. Spinner here please!</p>
+                content =  (
+                    <div>
+                        <div className="center-text">
+                            Laster data...
+                        </div>
+                        <div className="spacing-top">
+                            <Spinner />
+                        </div>
+                    </div>
+                    );
             } else{
                 switch(this.state.menuItem){
                     case Constants.MenuItems.home:
@@ -79,7 +90,7 @@ module.exports =
                         content = <div> hello partners</div>
                         break;
                     case Constants.MenuItems.favourites:
-                        content = <div>Favourites clicked</div>
+                        content = <FavoriteView />
                         break;
                     case Constants.MenuItems.login:
                         content = <Login />
