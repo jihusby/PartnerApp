@@ -9,15 +9,3 @@
 .jumbotron > .container{
     padding: 20px 0;
 }
-
-.react-spinner_bar {
-    background-color: black;
-}
-
-.spacing-top {
-    margin-top: 15px;
-}
-
-.center-text {
-    text-align: center;
-}

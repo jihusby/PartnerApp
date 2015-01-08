@@ -6,6 +6,9 @@ var Reflux = require("reflux");
 
 var $ = require("jquery");
 var _ = require("underscore");
+
+var store = require("store.js");
+
 var BackendActions = require("../actions/BackendActions");
 
 var Partner = require("../model/partner");
@@ -58,10 +61,12 @@ module.exports = Reflux.createStore({
                 },
                 success: function(data) {
                     console.log(data);
+                    store.set(Constants.LocalStorageKeys.partnerdata, data);
                     callback(data);
                 },
                 error: function(xhr, status, err) {
-                    callback({});
+                    var data = store.get(Constants.LocalStorageKeys.partnerdata);
+                    callback(data);
                 }
             });
         }

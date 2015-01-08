@@ -5,11 +5,11 @@ var browserify = require('gulp-browserify');
 var bower = require('bower');
 var shell = require('gulp-shell');
 var rename = require('gulp-rename');
+var runSequence = require('run-sequence');
 
 var paths = {
     js: ['js/*.js', 'js/stores/*.js', 'js/actions/*.js', 'js/components/*.jsx', 'js/utils/*.js']
 };
-
 gulp.task('install', function(){
     gulp.src(['./package.json']).pipe(install());
 });
@@ -45,25 +45,34 @@ gulp.task('watch', function() {
 });
 
 
-// Init phonegap - add platforms and copy files
-gulp.task('phonegap-init', function() {
-    gulp.src("").pipe(shell([
-        'phonegap platform add android'],
-    {
+// Runs all phonegap tasks in sequence
+gulp.task('phonegap', function() {
+        runSequence(
+            'phonegap-init',
+            'phonegap-icons',
+            'phonegap-copy',
+            'phonegap-build');
+});
+
+// Init phonegap - add platforms
+gulp.task('phonegap-init', shell.task([
+   'phonegap platform add android']
+    , {
         ignoreErrors: 'true',
         cwd: 'phonegap'
-    }));
+    }
+));
 
+// copy icons
+gulp.task('phonegap-icons', function() {
     gulp.src(['phonegap/www/res/icon/android/icon-96-xhdpi.png'])
         .pipe(rename('icon.png'))
         .pipe(gulp.dest('phonegap/platforms/android/res/drawable'));
 
-    gulp.src(['phonegap/www/res/icon/android/icon-72-xhdpi.png'])
-        .pipe(rename('icon-png'))
-        .pipe(gulp.dest('phonegap/platforms/android/res/drawable'));
-
+    gulp.src(['phonegap/www/res/icon/android/icon-72-hdpi.png'])
+        .pipe(rename('icon.png'))
+        .pipe(gulp.dest('phonegap/platforms/android/res/drawable-hdpi'));
 });
-
 
 // Copy files to phonegap folder
 gulp.task('phonegap-copy', function() {
@@ -83,4 +92,4 @@ gulp.task('phonegap-build', shell.task([
 
 
 
-gulp.task('default', ['install', 'bower', 'scripts', 'watch', 'phonegap-init', 'phonegap-copy', 'phonegap-build'])
+gulp.task('default', ['install', 'bower', 'scripts', 'phonegap', 'watch'])
