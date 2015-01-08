@@ -14,7 +14,6 @@ module.exports = Reflux.createStore({
     },
     
     onGet: function(key){
-        console.log("Getting");
         this.trigger(store.get(key));
     },
     

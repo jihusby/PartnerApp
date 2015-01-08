@@ -21,3 +21,14 @@
 .center-text {
     text-align: center;
 }
+
+.contact-detail > div{
+}
+
+.contact-detail > div > a.btn{
+    float:right;
+    margin-left: 10px;
+}
+
+.contact-detail > div > .panel-title{
+}

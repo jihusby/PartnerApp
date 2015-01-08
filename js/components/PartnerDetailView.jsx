@@ -31,6 +31,7 @@ module.exports =
                         partner.contacts.map(function(contact){
                             // avoids circular structure that causes an error when serializing to JSON
                             var contactDto = _.omit(contact, "partner");
+                            contactDto.partnerName = partner.name;
                             var contactName = contact.firstName + " " + contact.lastName;
                            return <li key={contact.id}>{contactName} - <small>{contact.position}</small> <Favorite contact={contactDto} /></li>  
                         })
