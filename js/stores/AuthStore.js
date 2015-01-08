@@ -1,5 +1,7 @@
 var Reflux = require("reflux");
 
+var store = require("store.js");
+
 var AuthActions = require("../actions/AuthActions");
 var BackendActions = require("../actions/BackendActions");
 
@@ -12,8 +14,8 @@ module.exports = Reflux.createStore({
 
     getDefaultData: function(){
         return {
-            loggedIn: sessionStorage.getItem(Constants.SessionStorageKeys.bearer_token) ? true : false,
-            name: sessionStorage.getItem(Constants.SessionStorageKeys.name),
+            loggedIn: store.get(Constants.LocalStorageKeys.bearer_token) ? true : false,
+            name: store.get(Constants.LocalStorageKeys.name),
             error: undefined
         };
     },
@@ -24,9 +26,9 @@ module.exports = Reflux.createStore({
                 url: Constants.URLS.login,
                 data: credentials,
                 success: function (data) {
-                    sessionStorage.setItem(Constants.SessionStorageKeys.bearer_token, data.token);
-                    sessionStorage.setItem(Constants.SessionStorageKeys.uid, data.userId);
-                    sessionStorage.setItem(Constants.SessionStorageKeys.name, data.name);
+                    store.set(Constants.LocalStorageKeys.bearer_token, data.token);
+                    store.set(Constants.LocalStorageKeys.uid, data.userId);
+                    store.set(Constants.LocalStorageKeys.name, data.name);
 
                     BackendActions.synchronizePartners();
                     that.trigger({ loggedIn: true, name: data.name, error: undefined });
@@ -39,9 +41,9 @@ module.exports = Reflux.createStore({
     },
 
     onLogOut: function () {
-        sessionStorage.removeItem(Constants.SessionStorageKeys.bearer_token);
-        sessionStorage.removeItem(Constants.SessionStorageKeys.name);
-        sessionStorage.removeItem(Constants.SessionStorageKeys.uid);
+        store.remove(Constants.LocalStorageKeys.bearer_token);
+        store.remove(Constants.LocalStorageKeys.name);
+        store.remove(Constants.LocalStorageKeys.uid);
         this.trigger({loggedIn: false, name: "", error: undefined });
     }
 });
