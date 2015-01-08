@@ -78,6 +78,13 @@ gulp.task('phonegap-build', shell.task([
     }
 ));
 
+gulp.task('build', function() {
+   runSequence(
+       'scripts',
+       'phonegap'
+    );
+});
 
 
-gulp.task('default', ['install', 'bower', 'scripts', 'phonegap', 'watch'])
+
+gulp.task('default', ['install', 'bower', 'build', 'watch'])
