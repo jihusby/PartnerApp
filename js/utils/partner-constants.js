@@ -11,7 +11,8 @@ module.exports =  {
         login: "login"
     },
     LocalStorageKeys: { 
-        favorites: "favorites" 
+        favorites: "favorites" ,
+        partnerdata: "partnerdata"
     },
     SessionStorageKeys: {
         uid: "uid",
