@@ -6,6 +6,8 @@ var Constants = require("../utils/partner-constants.js");
 var FavoriteStore = require("../stores/FavoriteStore.js");
 var FavoriteActions = require("../actions/FavoriteActions.js");
 
+var ContactDetailView = require("./ContactDetailView.jsx");
+
 module.exports = React.createClass({
 
     mixins: [Reflux.connect(FavoriteStore,"favorites")],  
@@ -19,28 +21,10 @@ module.exports = React.createClass({
         var i = 0;
         if(!!this.state.favorites){
             var favoriteList = this.state.favorites.map(function(favorite){
-                var headingId = "acc" + i;
-                var collapseId = "col" + i;
-                var collRefId = "#col" + i;
-                
-                var name = favorite.contact.firstName + " " + favorite.contact.lastName;
                 i++;
                 return (
-                    <div className="panel panel-default">
-                        <div className="panel-heading" role="tab" id={headingId}>
-                            <h4 className="panel-title">
-                                <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href={collRefId} aria-expanded="false" aria-controls={collapseId}>
-                                    {name}
-                                </a>
-                            </h4>
-                        </div>
-                        <div id={collapseId} className="panel-collapse collapse" role="tabpanel" aria-labelledby={headingId}>
-                            <div className="panel-body">
-                                {favorite.note}
-                            </div>
-                        </div>
-                    </div>
-                );
+                    <ContactDetailView contact={favorite.contact} note={favorite.note} index={i} />
+                    );
             });
 
             return (
