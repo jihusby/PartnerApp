@@ -1,15 +1,22 @@
 var Reflux = require("reflux");
 
 var AuthActions = require("../actions/AuthActions");
+var BackendActions = require("../actions/BackendActions");
 
 var Constants = require("../utils/partner-constants");
 var MenuActions = require("../actions/MenuActions");
-
 
 module.exports = Reflux.createStore({
 
     listenables: [AuthActions],
 
+    getDefaultData: function(){
+        return {
+            loggedIn: sessionStorage.getItem(Constants.SessionStorageKeys.bearer_token) ? true : false,
+            name: sessionStorage.getItem(Constants.SessionStorageKeys.name),
+            error: undefined
+        };
+    },
     onLogIn: function(credentials) {
             var that = this;
             $.ajax({
@@ -20,6 +27,8 @@ module.exports = Reflux.createStore({
                     sessionStorage.setItem(Constants.SessionStorageKeys.bearer_token, data.token);
                     sessionStorage.setItem(Constants.SessionStorageKeys.uid, data.userId);
                     sessionStorage.setItem(Constants.SessionStorageKeys.name, data.name);
+
+                    BackendActions.synchronizePartners();
                     that.trigger({ loggedIn: true, name: data.name, error: undefined });
                     MenuActions.search();
                 },
