@@ -54,7 +54,7 @@ gulp.task('phonegap', function() {
 
 // Init phonegap - add platforms
 gulp.task('phonegap-init', shell.task([
-   'phonegap platform add android']
+   'phonegap platform add android', 'phonegap platform add ios']
     , {
         ignoreErrors: 'true',
         cwd: 'phonegap'

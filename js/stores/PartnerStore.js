@@ -1,7 +1,3 @@
-/**
- *
- * Created by jam on 05/12/14.
- */
 var Reflux = require("reflux");
 
 var $ = require("jquery");
@@ -50,7 +46,6 @@ module.exports = Reflux.createStore({
         this.trigger(partners);
     },
 
-
     getPartnersFromBackend: function(callback) {
         if(!store.get("bearer_token")){
          return;   
@@ -72,7 +67,6 @@ module.exports = Reflux.createStore({
                         callback({});
                     }
                     var data = store.get(Constants.LocalStorageKeys.partnerdata);
-                    data.isCached = true;
                     callback(data);
                 }
             });
