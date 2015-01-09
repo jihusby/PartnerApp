@@ -7,6 +7,8 @@ var ContactActions = require("../actions/ContactActions");
 
 var Constants = require("../utils/partner-constants");
 
+var Contact = require("../model/Contact.js");
+
 module.exports = Reflux.createStore({
     
     listenables: [ContactActions],
@@ -20,12 +22,10 @@ module.exports = Reflux.createStore({
     },
     
     onGetById: function(id){
-        console.log("Id: " + id);
         var key = Constants.LocalStorageKeys.partnerdata;
         var data = store.get(key);
-        var result = _.find(data.persons, function(person){ return person.id == id; });
-        console.log("Found: " + result);
-        this.trigger(result);
+        var contact = new Contact(_.find(data.persons, function(person){ return person.id == id; }));
+        this.trigger(contact);
     },
     
     onRemove: function(key){

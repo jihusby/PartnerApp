@@ -14,10 +14,6 @@ Contact.prototype = {
     setPartner: function(partner) {
         this.partner = partner;
     },
-    
-    getPartnerName: function(){
-      return this.partner.name;
-    },
 
     toString: function(){
         return this.id + " " + this.firstName + " " + this.lastName + " " + this.position;
