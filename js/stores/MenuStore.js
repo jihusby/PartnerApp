@@ -39,6 +39,4 @@ module.exports = Reflux.createStore({
     menuItemSelected: function(menuItem) {
         this.trigger(menuItem);
     }
-
-
 });

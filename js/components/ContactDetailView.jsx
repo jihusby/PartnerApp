@@ -32,9 +32,34 @@ module.exports = React.createClass({
         var contact = _.find(data.persons, function(person){ return person.id == id; });
         var partner = _.find(data.partners, function(partner){ return partner.id == contact.partnerId; });
         contact.partnerName = partner.name;
-        var mailTo = "mailto:" + "";
-        var phone = "tel:" + "";
-        var sms = "sms:" + "";
+        var mailTo = "mailto:" + contact.email;
+        var showPhone = !!contact.mobile;
+        var phone = "";
+        var sms = "";
+        if(contact.mobile || contact.phone){
+            if(contact.mobile){
+                var phoneLink = "tel:" + contact.mobile;
+                phone = (
+                    <a href={phoneLink} className="btn btn-sm btn-primary">
+                        <i className="glyphicon glyphicon-earphone"></i>
+                    </a>
+                );
+                var smsLink = "sms:" + contact.mobile;
+                sms = (
+                    <a href={smsLink} className="btn btn-sm btn-primary">
+                        <i className="glyphicon glyphicon-comment"></i>
+                    </a>
+                );
+            } else{
+                var phoneLink = "tel:" + contact.phone;
+                phone = (
+                    <a href={phoneLink} className="btn btn-sm btn-primary">
+                        <i className="glyphicon glyphicon-earphone"></i>
+                    </a>
+                );
+            }
+        }
+        
         var headingId = "acc" + i;
         var collapseId = "col" + i;
         var collRefId = "#col" + i;
@@ -51,12 +76,8 @@ module.exports = React.createClass({
                     <a href={mailTo} className="btn btn-sm btn-primary">
                         <i className="glyphicon glyphicon-envelope"></i>
                     </a>
-                    <a href={phone} className="btn btn-sm btn-primary">
-                        <i className="glyphicon glyphicon-earphone"></i>
-                        </a>
-                    <a href={sms} className="btn btn-sm btn-primary">
-                        <i className="glyphicon glyphicon-comment"></i>
-                        </a>                    
+                    {phone}
+                    {sms}
                 </div>
                 <div id={collapseId} className="panel-collapse collapse" role="tabpanel" aria-labelledby={headingId}>
                     <div className="panel-body">
