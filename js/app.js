@@ -1,11 +1,7 @@
-/**
- *
- * Created by jam on 01/12/14.
- */
+var React = require("react");
+var routie = require("routie");
+var fastclick = require("fastclick");
 
-var React = require('react');
-
-var fastclick = require('fastclick');
 fastclick(document.body);
 var Main = require('./components/Main.jsx');
 var Login = require('./components/Login.jsx');
@@ -16,5 +12,10 @@ parseInt(navigator.appVersion.match(/OS (\d)/)[1], 10) >= 7;
 if (updateStatusBar) {
     document.body.style.marginTop = '20px';
 }
-React.render(<Main/>, document.getElementById("container"));
+
+//routie("", function(){
+//  React.render(<Main/>, document.getElementById("container"));  
+//});
+
+React.render(<Main/>, document.getElementById("container"));  
 //React.render(<Login/>, document.getElementById("login"));
