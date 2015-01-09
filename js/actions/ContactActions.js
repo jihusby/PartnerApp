@@ -8,6 +8,7 @@ module.exports = Reflux.createActions(
     [
         "set",
         "get",
+        "getById",
         "remove"
     ]
 );

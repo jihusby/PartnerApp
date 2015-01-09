@@ -5,7 +5,6 @@ function Contact(json) {
     this.lastName = json.lastName;
     this.position = json.position;
     this.partner = {};
-    this.partnerName = "";
 }
 
 Contact.prototype = {
@@ -14,6 +13,10 @@ Contact.prototype = {
 
     setPartner: function(partner) {
         this.partner = partner;
+    },
+    
+    getPartnerName: function(){
+      return this.partner.name;
     },
 
     toString: function(){

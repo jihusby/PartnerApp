@@ -32,11 +32,8 @@ module.exports =
                         {
                             
                             partner.contacts.map(function(contact){                            
-                                // avoids circular structure that causes an error when serializing to JSON
                                 i++;
-                                var contactDto = _.omit(contact, "partner");                            
-                                contactDto.partnerName = partner.name;
-                                return <ContactDetailView contact={contactDto} index={i} />
+                                return <ContactDetailView id={contact.id} index={i} />
                             })
                         }
                     </div>

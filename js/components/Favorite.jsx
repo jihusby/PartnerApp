@@ -3,8 +3,8 @@ var Reflux = require("reflux");
 var _ = require("underscore");
 var Constants = require("../utils/partner-constants");
 
-var FavoriteActions = require("../actions/FavoriteActions.js");
-var FavoriteStore = require("../stores/FavoriteStore.js");
+var ContactActions = require("../actions/ContactActions.js");
+var ContactStore = require("../stores/ContactStore.js");
 
 var OverlayMixin = require("react-bootstrap/OverlayMixin");
 
@@ -12,10 +12,10 @@ var FavoriteModal = require("./FavoriteModal.jsx");
 
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(FavoriteStore,"favorites"), OverlayMixin],
+    mixins: [Reflux.connect(ContactStore,"favorites"), OverlayMixin],
     
     getInitialState: function() {
-        FavoriteActions.get(Constants.LocalStorageKeys.favorites);
+        ContactActions.get(Constants.LocalStorageKeys.favorites);
         return { isModalOpen: false};
     },
     
@@ -45,10 +45,10 @@ module.exports = React.createClass({
 
     addToFavorites: function(note){
         var favorites = this.state.favorites || [];
-        var favorite = { contact: this.props.contact, note: note };
-        FavoriteActions.set(Constants.LocalStorageKeys.favorites, _.union(favorites, [favorite]));
+        var favorite = { id: this.props.id, note: note };
+        ContactActions.set(Constants.LocalStorageKeys.favorites, _.union(favorites, [favorite]));
         // force update
-        FavoriteActions.get(Constants.LocalStorageKeys.favorites);
+        ContactActions.get(Constants.LocalStorageKeys.favorites);
         this.setState({
           isModalOpen: !this.state.isModalOpen
         });
@@ -58,12 +58,12 @@ module.exports = React.createClass({
         var that = this;
         var favorites = this.state.favorites || [];
         
-        FavoriteActions.set(Constants.LocalStorageKeys.favorites, _.without(favorites, _.find(favorites, function(f){ 
-                return f.contact.id == that.props.contact.id
+        ContactActions.set(Constants.LocalStorageKeys.favorites, _.without(favorites, _.find(favorites, function(f){ 
+                return f.id == that.props.id
             })
         ));
         // force update
-        FavoriteActions.get(Constants.LocalStorageKeys.favorites);
+        ContactActions.get(Constants.LocalStorageKeys.favorites);
     },
     
     showModal: function () {
@@ -74,6 +74,6 @@ module.exports = React.createClass({
 
     isFavorite: function(favorites){
         var that = this;
-        return !!_.find(favorites, function(f){ return f.contact.id == that.props.contact.id});
+        return !!_.find(favorites, function(f){ return f.id == that.props.id});
     }
 });
