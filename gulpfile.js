@@ -4,7 +4,6 @@ var plumber = require('gulp-plumber');
 var browserify = require('gulp-browserify');
 var bower = require('bower');
 var shell = require('gulp-shell');
-var rename = require('gulp-rename');
 var runSequence = require('run-sequence');
 
 var paths = {
