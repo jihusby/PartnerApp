@@ -59,9 +59,9 @@ module.exports =
         render: function () {
             var content;
             var loginResult = this.state.loginResult;
-            var loginText = "Logg inn";
-            if(!!loginResult){
-                loginText = loginResult.loggedIn ? "Logg ut" : "Logg inn";
+            var loginText = <div><span className="glyphicon glyphicon-log-in" />&nbsp;&nbsp;Logg inn</div>;
+            if(loginResult && loginResult.loggedIn){
+                loginText = <div><span className="glyphicon glyphicon-log-out" />&nbsp;&nbsp;Logg ut</div>;
             }
 
             if (!store.get(Constants.LocalStorageKeys.bearer_token)){
@@ -107,10 +107,26 @@ module.exports =
                         </div>
                         <div className="collapse navbar-collapse" id="nav-menu">
                             <ul className="nav navbar-nav">
-                                <li className="active"><a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>Søk</a></li>
-                                <li><a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)}>Partnerliste</a></li>
-                                <li><a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favourites)}>Favoritter</a></li>
-                                <li><a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)}>{loginText}</a></li>
+                                <li className="active">
+                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>
+                                        <span className="glyphicon glyphicon-search" /> &nbsp;&nbsp;Søk
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)}>
+                                        <span className="glyphicon glyphicon-briefcase" />&nbsp;&nbsp;Partnerliste
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favourites)}>
+                                        <span className="glyphicon glyphicon-star" />&nbsp;&nbsp;Favoritter
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)}>
+                                    {loginText}
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
