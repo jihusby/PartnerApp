@@ -16,7 +16,6 @@
     <preference name="webviewbounce" value="true" />
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
-    <preference name="ios-statusbarstyle" value="black-opaque" />
     <preference name="detect-data-types" value="true" />
     <preference name="exit-on-suspend" value="false" />
     <preference name="show-splash-screen-spinner" value="true" />
@@ -42,6 +41,7 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
+    <gap:plugin name="com.phonegap.plugin.statusbar" />
 	<icon src="www/icon.png" />
     <icon src="www/res/icon/android/icon-36-ldpi.png" platform="android" height="36" width="36" density="ldpi"/>
     <icon src="www/res/icon/android/icon-48-mdpi.png" platform="android" height="48" width="48" density="mdpi"/>
@@ -52,4 +52,7 @@
 	<access origin="mailto:*" launch-external="yes" />
 	<access origin="sms:*" launch-external="yes" />
 	<preference name="orientation" value="portrait" />
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" onload="true" />
+    </feature>
 </widget>

@@ -7,11 +7,11 @@ var Main = require('./components/Main.jsx');
 var Login = require('./components/Login.jsx');
 var Alert = require('./components/Alert.jsx');
 
-var updateStatusBar = navigator.userAgent.match(/iphone|ipad|ipod/i) &&
-parseInt(navigator.appVersion.match(/OS (\d)/)[1], 10) >= 7;
-if (updateStatusBar) {
-    document.body.style.marginTop = '20px';
-}
+document.addEventListener('deviceready', function() {
+    StatusBar.overlaysWebView(false);
+    StatusBar.styleBlackOpaque();
+    StatusBar.backgroundColorByHexString("#333333");
+}, false);
 
 //routie("", function(){
 //  React.render(<Main/>, document.getElementById("container"));  
