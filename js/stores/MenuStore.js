@@ -21,7 +21,7 @@ module.exports = Reflux.createStore({
         this.menuItemSelected(Constants.MenuItems.partnerlist);
     },
 
-    onFavourites: function() {
+    onFavorites: function() {
         console.log("Favourites called from React Component")
         this.menuItemSelected(Constants.MenuItems.favourites);
     },

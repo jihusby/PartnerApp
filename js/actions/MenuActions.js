@@ -8,7 +8,7 @@ module.exports = Reflux.createActions(
     [
         "search",
         "partnerlist",
-        "favourites",
+        "favorites",
         "login"
     ]
 );
