@@ -11,6 +11,8 @@ var MenuStore = require("../stores/MenuStore");
 var AuthStore = require("../stores/AuthStore");
 
 var PartnerView = require("./PartnerView.jsx");
+var PartnerListView = require(".//PartnerListView.jsx");
+
 var Login = require("./Login.jsx");
 var FavoriteView = require("./FavoriteView.jsx");
 
@@ -81,7 +83,7 @@ module.exports =
                         content =  <PartnerView partners={this.props.partners}/>;
                         break;
                     case Constants.MenuItems.partnerlist:
-                        content = <div> hello partners</div>
+                        content = <PartnerListView />
                         break;
                     case Constants.MenuItems.favourites:
                         content = <FavoriteView />
