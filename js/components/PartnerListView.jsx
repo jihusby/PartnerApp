@@ -6,9 +6,10 @@ var PartnerStore = require("../stores/PartnerStore");
 var PartnerBox = React.createClass({
   render: function() {
     return (
-      <div>
-        <h1>{this.props.partner.name}</h1>        
-      </div>
+      <a href="#" className="list-group-item">
+        <h4 className="list-group-item-heading">{this.props.partner.name}</h4>
+        <p className="list-group-item-text">{this.props.partner.partnerType}</p>
+      </a>
     );
   }
 });
@@ -29,7 +30,7 @@ module.exports = React.createClass({
                 return (<PartnerBox partner={partner} />);
             });
             return (
-                <div>
+                <div className="list-group">
                     {partnerNodes}
                 </div>
             );
