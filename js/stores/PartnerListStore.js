@@ -11,14 +11,13 @@ module.exports = Reflux.createStore({
     init: function() {
         this.listenTo(PartnerStore, this.onSynchronizePartners);
         this.listData = {partnerTypes: [], partnerList: []};
-        this.listData
     },
     getDefaultData: function() {
         return this.listData;
     },
     onSynchronizePartners: function(partners) {
         console.log("Synchronize partnertypes called");
-        this.listData.partnerList = partners;
+        this.listData.partnerList = partners.partners;
         this.trigger(this.listData);
     },
 
