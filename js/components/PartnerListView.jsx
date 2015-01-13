@@ -1,7 +1,11 @@
 var React = require("react");
 var Reflux = require("reflux");
+var ButtonGroup = require("react-bootstrap/ButtonGroup");
+var Button = require("react-bootstrap/Button");
+var DropdownButton = require("react-bootstrap/DropdownButton");
+var MenuItem = require("react-bootstrap/MenuItem");
 
-var PartnerStore = require("../stores/PartnerStore");
+var PartnerListStore = require("../stores/PartnerListStore");
 
 var PartnerBox = React.createClass({
   render: function() {
@@ -16,24 +20,65 @@ var PartnerBox = React.createClass({
 
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(PartnerStore,"rbkData")],  
-    
+    mixins: [Reflux.listenTo(PartnerListStore,"onPartnerListData", "onPartnerListData")],  
     getInitialState: function(){
+        return {
+            filteredPartnerList: [],
+            partnerListData: PartnerListStore.getDefaultData(),
+            dropdownTitle: "Partnertype"
+        };
     },
     
+    onPartnerListData: function(partnerListData){
+        this.setState({
+            filteredPartnerList: partnerListData.partnerList,
+            partnerListData: partnerListData
+        });
+    },
+    handleSelect: function(partnerType) {
+        console.log(partnerType);
+        if (partnerType){
+            if (partnerType === "all") {
+                this.setState({
+                    filteredPartnerList: this.state.partnerListData.partnerList,
+                    dropdownTitle: "Partnertype"
+                });
+            } else {
+                var filteredPartnerList = this.state.partnerListData.partnerList.filter(function(partner){
+                    return (partner.partnerType=== partnerType);
+                });
+                this.setState({
+                    filteredPartnerList: filteredPartnerList,
+                    dropdownTitle: partnerType
+                });
+            }
+        }
+    },
     render: function () {
-        var partners = this.state.rbkData.partners;
-        if(!partners || partners.length === 0){
-            return (
-                <span />
-                );
+        if(!this.state.filteredPartnerList || !this.state.partnerListData.partnerTypes){
+            return (<div>No data yet</div>);
         } else {
-            var partnerNodes = partners.map(function (partner) {
+            var that = this;
+            var partnerTypeMenuItems = this.state.partnerListData.partnerTypes.map(function(partnerType){
+                return (<MenuItem eventKey={partnerType.name} > {partnerType.name}</MenuItem>);
+            });
+            var buttonGroupInstance = (
+                <ButtonGroup className="spacing-bottom">
+                    <DropdownButton title={this.state.dropdownTitle} onSelect={this.handleSelect}>
+                        <MenuItem eventKey="all">All</MenuItem>
+                        {partnerTypeMenuItems}
+                    </DropdownButton>
+                </ButtonGroup>
+            );
+            var partnerNodes = this.state.filteredPartnerList.map(function (partner) {
                 return (<PartnerBox partner={partner} />);
             });
             return (
+                <div>
+                    {buttonGroupInstance}
                 <div className="list-group">
                     {partnerNodes}
+                </div>
                 </div>
             );
 

@@ -18,6 +18,10 @@
     margin-top: 15px;
 }
 
+.spacing-bottom {
+    margin-bottom: 15px;
+}
+
 .center-text {
     text-align: center;
 }
