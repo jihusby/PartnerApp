@@ -1,5 +1,6 @@
 var React = require("react");
 var Reflux = require("reflux");
+var routie = require("routie");
 
 var PartnerStore = require("../stores/PartnerStore");
 var AuthStore = require("../stores/AuthStore");
@@ -20,7 +21,5 @@ module.exports =
                     <PartnerApp partners={this.state.rbkPartners}/>
                 </div>
             );
-        }
+        }    
     });
-
-

@@ -41,8 +41,8 @@ module.exports =
                 case Constants.MenuItems.partnerlist:
                     MenuActions.partnerlist();
                     break;
-                case Constants.MenuItems.favourites:
-                    MenuActions.favourites();
+                case Constants.MenuItems.favorites:
+                    MenuActions.favorites();
                     break;
                 case Constants.MenuItems.login:
                     if(!this.state.loginResult || !this.state.loginResult.loggedIn){
@@ -85,7 +85,7 @@ module.exports =
                     case Constants.MenuItems.partnerlist:
                         content = <PartnerListView />
                         break;
-                    case Constants.MenuItems.favourites:
+                    case Constants.MenuItems.favorites:
                         content = <FavoriteView />
                         break;
                     case Constants.MenuItems.login:

@@ -1,11 +1,13 @@
 var React = require("react");
-var routie = require("routie");
+var Reflux = require("reflux");
+var MenuActions = require("./actions/MenuActions");
+
+var Main = require("./components/main.jsx");
 var fastclick = require("fastclick");
 
 fastclick(document.body);
+
 var Main = require('./components/Main.jsx');
-var Login = require('./components/Login.jsx');
-var Alert = require('./components/Alert.jsx');
 
 document.addEventListener('deviceready', function() {
     StatusBar.overlaysWebView(false);
@@ -13,9 +15,24 @@ document.addEventListener('deviceready', function() {
     StatusBar.backgroundColorByHexString("#333333");
 }, false);
 
-//routie("", function(){
-//  React.render(<Main/>, document.getElementById("container"));  
-//});
+    
+var updateStatusBar = navigator.userAgent.match(/iphone|ipad|ipod/i) &&
+parseInt(navigator.appVersion.match(/OS (\d)/)[1], 10) >= 7;
+if (updateStatusBar) {
+    document.body.style.marginTop = '20px';
+}
 
-React.render(<Main/>, document.getElementById("container"));  
-//React.render(<Login/>, document.getElementById("login"));
+
+React.render(<Main/>, document.getElementById("container")); 
+
+routie({
+    "": function() {
+        MenuActions.search(); 
+    },
+    "favorites": function() {
+        MenuActions.favorites();
+    },
+    "login": function() {
+        MenuActions.login();
+    }
+});
