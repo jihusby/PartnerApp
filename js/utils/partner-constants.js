@@ -8,7 +8,9 @@ module.exports =  {
         home: "home", 
         favorites: "favorites",
         partnerlist: "partnerlist",
-        login: "login"
+        login: "login",
+        partner_detail: "partner_detail",
+        person_detail: "person_detail"
     },
     LocalStorageKeys: { 
         favorites: "favorites" ,

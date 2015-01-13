@@ -34,5 +34,13 @@ routie({
     },
     "login": function() {
         MenuActions.login();
+    },
+    "partner/?:id": function(id) {
+        if(id){
+            MenuActions.partnerDetail(id);
+        } else{
+         // goto partnerlist
+            console.log("Partnerlist");
+        }
     }
 });

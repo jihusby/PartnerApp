@@ -34,7 +34,7 @@ module.exports =
 
         handleMenuSelect: function(menuEvent) {
             $('#nav-menu').collapse('hide');
-            switch(menuEvent){
+            switch(menuEvent.path){
                 case Constants.MenuItems.home:
                     MenuActions.search();
                     break;

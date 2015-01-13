@@ -1,7 +1,3 @@
-/**
- *
- * Created by jam on 05/12/14.
- */
 var Reflux = require("reflux");
 
 var MenuActions = require("../actions/MenuActions");
@@ -13,7 +9,6 @@ module.exports = Reflux.createStore({
     listenables: [MenuActions]  ,
 
     onSearch: function() {
-        console.log("Search partners called from React Component")
         this.menuItemSelected(Constants.MenuItems.home);
     },
 
@@ -22,13 +17,19 @@ module.exports = Reflux.createStore({
     },
 
     onFavorites: function() {
-        console.log("Favourites called from React Component")
         this.menuItemSelected(Constants.MenuItems.favourites);
     },
-
+    
     onLogin: function(){
-        
       this.menuItemSelected(Constants.MenuItems.login);
+    },
+    
+    onPartnerDetail: function(id){
+        this.menuItemSelected(Constant.MenuItems.partner_detail, id);
+    },
+    
+    onPersonDetail: function(id){
+        this.menueItemSelected(Constant.MenuItems.person_detail, id);
     },
     
     getInitialState: function () {
@@ -36,7 +37,11 @@ module.exports = Reflux.createStore({
         return Constants.MenuItems.home;
     },
 
-    menuItemSelected: function(menuItem) {
-        this.trigger(menuItem);
+    menuItemSelected: function(menuItem, id) {
+        if(id){
+            this.trigger({path: menuItem, id: id});
+        }else{
+            this.trigger({path: menuItem});
+        }
     }
 });
