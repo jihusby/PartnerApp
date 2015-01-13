@@ -35,15 +35,15 @@ module.exports = React.createClass({
             var partnerCallback = this.partnerClicked;
             var personCallback = this.personClicked;
             var searchString = currentSearch.toLowerCase();
-            searchList.push(<ListGroupItem>Parnere</ListGroupItem>);
+            searchList.push(<ListGroupItem><strong>Partnere</strong></ListGroupItem>);
             this.props.partners.forEach(function(partner) {
                 if(partner.name.toLowerCase().indexOf(searchString)==0){
                     searchList.push(<ListGroupItem onClick={partnerCallback} eventKey={partner.id}>{partner.name}</ListGroupItem>);
                 }
             });
-                    
+            searchList.push(<ListGroupItem><strong>Personer</strong></ListGroupItem>);
             this.props.persons.forEach(function(person) {
-                if(person.firstName.toLowerCase().indexOf(searchString)==0 || person.lastName.toLowerCase().indexOf(searchString)){
+                if(person.firstName.toLowerCase().indexOf(searchString)==0 || person.lastName.toLowerCase().indexOf(searchString)==0){
                     searchList.push(<ListGroupItem onClick={personCallback} eventKey={person.id}>{person.firstName}{" "}{person.lastName}</ListGroupItem>);
                 }
             });

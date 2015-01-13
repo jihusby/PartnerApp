@@ -16,17 +16,19 @@ var PartnerBox = React.createClass({
 
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(PartnerStore,"partners")],  
+    mixins: [Reflux.connect(PartnerStore,"rbkData")],  
     
     getInitialState: function(){
     },
     
     render: function () {
-        console.log(this.state.partners);
-        if(!this.state.partners){
-
+        var partners = this.state.rbkData.partners;
+        if(!partners || partners.length === 0){
+            return (
+                <span />
+                );
         } else {
-            var partnerNodes = this.state.partners.map(function (partner) {
+            var partnerNodes = partners.map(function (partner) {
                 return (<PartnerBox partner={partner} />);
             });
             return (
