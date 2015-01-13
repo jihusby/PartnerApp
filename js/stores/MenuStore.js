@@ -17,7 +17,7 @@ module.exports = Reflux.createStore({
     },
 
     onFavorites: function() {
-        this.menuItemSelected(Constants.MenuItems.favourites);
+        this.menuItemSelected(Constants.MenuItems.favorites);
     },
     
     onLogin: function(){
@@ -25,11 +25,12 @@ module.exports = Reflux.createStore({
     },
     
     onPartnerDetail: function(id){
-        this.menuItemSelected(Constant.MenuItems.partner_detail, id);
+        console.log("Going to person: " + id);
+        this.menuItemSelected(Constants.MenuItems.partner_detail, id);
     },
     
     onPersonDetail: function(id){
-        this.menueItemSelected(Constant.MenuItems.person_detail, id);
+        this.menuItemSelected(Constants.MenuItems.person_detail, id);
     },
     
     getInitialState: function () {
