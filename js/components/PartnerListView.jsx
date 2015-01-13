@@ -32,7 +32,8 @@ module.exports = React.createClass({
     getInitialState: function(){
         return {
             filteredPartnerList: [],
-            partnerListData: PartnerListStore.getDefaultData()
+            partnerListData: PartnerListStore.getDefaultData(),
+            dropdownTitle: "Partnertype"
         };
     },
    
@@ -48,7 +49,10 @@ module.exports = React.createClass({
             var filteredPartnerList = this.state.partnerListData.partnerList.filter(function(partner){
                 return (partner.partnerType=== partnerType);
             });
-            this.setState({filteredPartnerList: filteredPartnerList});
+            this.setState({
+                filteredPartnerList: filteredPartnerList,
+                dropdownTitle: partnerType
+            });
         }
     },
     render: function () {
@@ -60,8 +64,8 @@ module.exports = React.createClass({
                 return (<MenuItem eventKey={partnerType.name} > {partnerType.name}</MenuItem>);
             });
             var buttonGroupInstance = (
-                <ButtonGroup>
-                    <DropdownButton title="Dropdown" onSelect={this.handleSelect}>
+                <ButtonGroup className="spacing-bottom">
+                    <DropdownButton title={this.state.dropdownTitle} onSelect={this.handleSelect}>
                         {partnerTypeMenuItems}
                     </DropdownButton>
                 </ButtonGroup>
