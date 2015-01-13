@@ -1,5 +1,6 @@
 var React = require("react");
 var Reflux = require("reflux");
+var _ = require("underscore");
 var Spinner = require("react-spinner");
 
 var store = require("store.js");
@@ -15,6 +16,8 @@ var PartnerListView = require(".//PartnerListView.jsx");
 
 var Login = require("./Login.jsx");
 var FavoriteView = require("./FavoriteView.jsx");
+var ContactDetailView = require("./ContactDetailView.jsx");
+var PartnerDetailView = require("./PartnerDetailView.jsx");
 
 var Constants = require("../utils/partner-constants");
 
@@ -34,19 +37,19 @@ module.exports =
 
         handleMenuSelect: function(menuEvent) {
             $('#nav-menu').collapse('hide');
-            switch(menuEvent.path){
+            switch(menuEvent){
                 case Constants.MenuItems.home:
-                    MenuActions.search();
+                    routie("");
                     break;
                 case Constants.MenuItems.partnerlist:
-                    MenuActions.partnerlist();
+                    routie("partnerList");
                     break;
                 case Constants.MenuItems.favorites:
-                    MenuActions.favorites();
+                    routie("favorites");
                     break;
                 case Constants.MenuItems.login:
                     if(!this.state.loginResult || !this.state.loginResult.loggedIn){
-                        MenuActions.login();
+                        routie("login");
                     } else{
                         AuthActions.logOut();      
                     }
@@ -78,9 +81,9 @@ module.exports =
                     </div>
                     );
             } else{
-                switch(this.state.menuItem){
+                switch(this.state.menuItem.path){
                     case Constants.MenuItems.home:
-                        content =  <PartnerView partners={this.props.partners}/>;
+                        content = <PartnerView partners={this.props.partners} persons={this.props.persons} />;
                         break;
                     case Constants.MenuItems.partnerlist:
                         content = <PartnerListView />
@@ -90,6 +93,16 @@ module.exports =
                         break;
                     case Constants.MenuItems.login:
                         content = <Login />
+                        break;
+                    case Constants.MenuItems.partner_detail:
+                        console.log("Partner Detail");
+                        var partnerId = this.state.menuItem.id;
+                        var partner = _.find(this.props.partners, function(partner){return partner.id ==                            partnerId;})
+                        content = <PartnerDetailView selectedPartner={partner} />
+                        break;
+                    case Constants.MenuItems.person_detail:
+                        console.log("Person detail");
+                        content = <ContactDetailView index="0" id={this.state.menuItem.id} />
                         break;
                 }
             }
@@ -118,7 +131,7 @@ module.exports =
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favourites)}>
+                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favorites)}>
                                         <span className="glyphicon glyphicon-star" />&nbsp;&nbsp;Favoritter
                                     </a>
                                 </li>

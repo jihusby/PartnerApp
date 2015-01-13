@@ -19,11 +19,8 @@ module.exports =
 
         partnerClicked: function(key){
             var partner = Utils.lookupPartner(this.props.partners, key);
-            if(partner!=undefined) {
-                this.setState({
-                   viewDetails: true,
-                   selectedPartner: partner
-                });
+            if(partner != undefined) {
+                routie("partner/" + partner.id);
             }
         },
 
@@ -31,13 +28,15 @@ module.exports =
             var person = _.find(this.props.persons, function(person){
                return person.id == key;
             });
-            
+            if(person != undefined){
+                routie("person/" + person.id);
+            }
         },
     
         render: function () {
             var content;
             if(!this.state.viewDetails) {
-                content = <PartnerSearchView partners={this.props.partners} partnerSelected={this.partnerClicked} personSelected={this.personClicked} />;
+                content = <PartnerSearchView partners={this.props.partners} partnerSelected={this.partnerClicked} personSelected={this.personClicked} persons={this.props.persons} />;
             }  else {
                 content = <PartnerDetailView selectedPartner={this.state.selectedPartner}/>;
             }
