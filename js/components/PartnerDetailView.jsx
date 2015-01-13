@@ -4,46 +4,43 @@ var _ = require("underscore");
 var Favorite = require("./Favorite.jsx");
 var ContactDetailView = require("./ContactDetailView.jsx");
 
-module.exports =
+module.exports = React.createClass({
 
-    React.createClass({
-
-        render: function () {
-            var partner = this.props.selectedPartner;
-            var sortedContacts = _.sortBy(partner.contacts, function(contact) {
-              return [contact.lastName, contact.firstName].join("_");
-            });
-            
-            var mailTo = "mailto:" + partner.email;
-            var phone = "tel:" + partner.phone;
-            var proffLink = "http://www.proff.no/bransjesøk?q=" + partner.name;
-            var i = 0;
-            return (
-                <div>
-                    <h3>{partner.name}{" "} <small>{partner.partnerType}</small></h3>
-                    <address>
-                    <strong>Adresse</strong><br/>
-                      {partner.address}<br/>
-                      {partner.zipCode} {partner.city}<br/><br/>
-                    <strong>Kontakt</strong><br/>
-                      <i className="glyphicon glyphicon-earphone"></i> <a href={phone}>{partner.phone}</a><br/>
-                      <i className="glyphicon glyphicon-envelope"></i> <a href={mailTo}>{partner.email}</a><br/>
-                      <i className="glyphicon glyphicon-globe"></i> <a href={partner.webSite}>{partner.webSite}</a><br/>
-                      <i className="glyphicon glyphicon-info-sign"></i> <a href={proffLink}>{partner.name} hos proff.no</a><br/>
-                    </address>
-                    <h4>Kontaktpersoner</h4>
-                    <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        {
-                            
-                            sortedContacts.map(function(contact){                            
-                                i++;
-                                return <ContactDetailView id={contact.id} index={i} />
-                            })
-                        }
-                    </div>
-                </div>
-            );
-        }
+render: function () {
+    var partner = this.props.selectedPartner;
+    var sortedContacts = _.sortBy(partner.contacts, function(contact) {
+        return [contact.lastName, contact.firstName].join("_");
     });
 
-
+    var mailTo = "mailto:" + partner.email;
+    var phone = "tel:" + partner.phone;
+    var proffLink = "http://www.proff.no/bransjesøk?q=" + partner.name;
+    var mapLink = "http://maps.google.com/maps?q=" + encodeURIComponent(partner.address + ", " + partner.zipCode + ", " + partner.city + ", " + "norway");
+    var i = 0;
+    return (
+        <div>
+            <h3>{partner.name}{" "} <small>{partner.partnerType}</small></h3>
+            <address>
+            <strong>Adresse</strong><br/>
+                {partner.address}<br/>
+                {partner.zipCode} {partner.city}<br/><br/>
+            <strong>Kontakt</strong><br/>
+                <i className="glyphicon glyphicon-earphone"></i> <a href={phone}>{partner.phone}</a><br/>
+                <i className="glyphicon glyphicon-envelope"></i> <a href={mailTo}>{partner.email}</a><br/>
+                <i className="glyphicon glyphicon-globe"></i> <a href={partner.webSite}>{partner.webSite}</a><br/>
+                <i className="glyphicon glyphicon-info-sign"></i> <a href={proffLink}>{partner.name} hos proff.no</a><br/>
+                <i className="glyphicon glyphicon-map-marker"></i> <a href={mapLink} target="_blank">Åpne i kart</a><br/>
+            </address>
+            <h4>Kontaktpersoner</h4>
+            <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                {
+                    sortedContacts.map(function(contact){                            
+                        i++;
+                        return <ContactDetailView id={contact.id} index={i} />
+                    })
+                }
+            </div>
+        </div>
+    );
+    }
+});
