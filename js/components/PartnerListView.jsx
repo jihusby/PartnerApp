@@ -18,14 +18,6 @@ var PartnerBox = React.createClass({
   }
 });
 
-/*var PartnerTypeMenuItem = React.createClass({
-    render: function() {
-
-        return (
-            <MenuItem eventKey={this.props.partnerType.name} onSelect={this.props.selectCallback}>{this.props.partnerType.name}</MenuItem>
-            );
-    }
-});*/
 module.exports = React.createClass({
 
     mixins: [Reflux.listenTo(PartnerListStore,"onPartnerListData", "onPartnerListData")],  
@@ -46,13 +38,20 @@ module.exports = React.createClass({
     handleSelect: function(partnerType) {
         console.log(partnerType);
         if (partnerType){
-            var filteredPartnerList = this.state.partnerListData.partnerList.filter(function(partner){
-                return (partner.partnerType=== partnerType);
-            });
-            this.setState({
-                filteredPartnerList: filteredPartnerList,
-                dropdownTitle: partnerType
-            });
+            if (partnerType === "all") {
+                this.setState({
+                    filteredPartnerList: this.state.partnerListData.partnerList,
+                    dropdownTitle: "Partnertype"
+                });
+            } else {
+                var filteredPartnerList = this.state.partnerListData.partnerList.filter(function(partner){
+                    return (partner.partnerType=== partnerType);
+                });
+                this.setState({
+                    filteredPartnerList: filteredPartnerList,
+                    dropdownTitle: partnerType
+                });
+            }
         }
     },
     render: function () {
@@ -66,6 +65,7 @@ module.exports = React.createClass({
             var buttonGroupInstance = (
                 <ButtonGroup className="spacing-bottom">
                     <DropdownButton title={this.state.dropdownTitle} onSelect={this.handleSelect}>
+                        <MenuItem eventKey="all">All</MenuItem>
                         {partnerTypeMenuItems}
                     </DropdownButton>
                 </ButtonGroup>
