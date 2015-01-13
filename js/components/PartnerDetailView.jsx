@@ -10,13 +10,17 @@ module.exports =
 
         render: function () {
             var partner = this.props.selectedPartner;
+            var sortedContacts = _.sortBy(partner.contacts, function(contact) {
+              return [contact.lastName, contact.firstName].join("_");
+            });
+            
             var mailTo = "mailto:" + partner.email;
             var phone = "tel:" + partner.phone;
             var proffLink = "http://www.proff.no/bransjesøk?q=" + partner.name;
             var i = 0;
             return (
                 <div>
-                    <h3>{partner.name}{" "}</h3>
+                    <h3>{partner.name}{" "} <small>{partner.partnerType}</small></h3>
                     <address>
                     <strong>Adresse</strong><br/>
                       {partner.address}<br/>
@@ -31,7 +35,7 @@ module.exports =
                     <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         {
                             
-                            partner.contacts.map(function(contact){                            
+                            sortedContacts.map(function(contact){                            
                                 i++;
                                 return <ContactDetailView id={contact.id} index={i} />
                             })
