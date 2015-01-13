@@ -43,7 +43,13 @@ module.exports = Reflux.createStore({
                 })
             )
         });
-        this.trigger(partners);
+        
+        var persons = _.map(_.sortBy(json.persons, function(person) {
+            return [person.lastName, person.firstName].join("_");
+        }), function(person){
+            return new Contact(person);
+        });
+        this.trigger({partners: partners, persons: persons});
     },
 
     getPartnersFromBackend: function(callback) {

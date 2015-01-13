@@ -10,7 +10,7 @@ module.exports =
 
     React.createClass({
 
-        mixins: [Reflux.connect(PartnerStore,"rbkPartners")],
+        mixins: [Reflux.connect(PartnerStore,"rbkData")],
         getInitialState: function(){
             return {loginResult: AuthStore.getDefaultData()};
         },
@@ -18,7 +18,7 @@ module.exports =
         render: function () {
             return (
                 <div>
-                    <PartnerApp partners={this.state.rbkPartners}/>
+                    <PartnerApp partners={this.state.rbkData.partners} persons={this.state.rbkData.persons}/>
                 </div>
             );
         }    
