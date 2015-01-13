@@ -35,12 +35,17 @@ routie({
     "login": function() {
         MenuActions.login();
     },
+    "partnerList": function(){
+      MenuActions.partnerlist();  
+    },
     "partner/?:id": function(id) {
         if(id){
             MenuActions.partnerDetail(id);
-        } else{
-         // goto partnerlist
-            console.log("Partnerlist");
+        }
+    },
+    "person/?:id": function(id){
+        if(id){
+            MenuActions.personDetail(id);
         }
     }
 });
