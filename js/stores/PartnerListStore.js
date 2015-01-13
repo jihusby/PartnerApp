@@ -13,6 +13,9 @@ module.exports = Reflux.createStore({
         this.listData = {partnerTypes: [], partnerList: []};
         this.listData
     },
+    getDefaultData: function() {
+        return this.listData;
+    },
     onSynchronizePartners: function(partners) {
         console.log("Synchronize partnertypes called");
         this.listData.partnerList = partners;

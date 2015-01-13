@@ -28,13 +28,31 @@ var PartnerBox = React.createClass({
 });*/
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(PartnerListStore,"partnerListData")],  
-    handleSelect: function(data) {
-        console.log(data);
+    mixins: [Reflux.listenTo(PartnerListStore,"onPartnerListData", "onPartnerListData")],  
+    getInitialState: function(){
+        return {
+            filteredPartnerList: [],
+            partnerListData: PartnerListStore.getDefaultData()
+        };
+    },
+   
+    onPartnerListData: function(partnerListData){
+        this.setState({
+            filteredPartnerList: partnerListData.partnerList,
+            partnerListData: partnerListData
+        });
+    },
+    handleSelect: function(partnerType) {
+        console.log(partnerType);
+        if (partnerType){
+            var filteredPartnerList = this.state.partnerListData.partnerList.filter(function(partner){
+                return (partner.partnerType=== partnerType);
+            });
+            this.setState({filteredPartnerList: filteredPartnerList});
+        }
     },
     render: function () {
-        console.log(this.state.partners);
-        if(!this.state.partnerListData.partnerList || !this.state.partnerListData.partnerTypes){
+        if(!this.state.filteredPartnerList || !this.state.partnerListData.partnerTypes){
             return (<div>No data yet</div>);
         } else {
             var that = this;
@@ -48,7 +66,7 @@ module.exports = React.createClass({
                     </DropdownButton>
                 </ButtonGroup>
             );
-            var partnerNodes = this.state.partnerListData.partnerList.map(function (partner) {
+            var partnerNodes = this.state.filteredPartnerList.map(function (partner) {
                 return (<PartnerBox partner={partner} />);
             });
             return (
