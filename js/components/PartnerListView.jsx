@@ -1,7 +1,11 @@
 var React = require("react");
 var Reflux = require("reflux");
+var ButtonGroup = require("react-bootstrap/ButtonGroup");
+var Button = require("react-bootstrap/Button");
+var DropdownButton = require("react-bootstrap/DropdownButton");
+var MenuItem = require("react-bootstrap/MenuItem");
 
-var PartnerStore = require("../stores/PartnerStore");
+var PartnerListStore = require("../stores/PartnerListStore");
 
 var PartnerBox = React.createClass({
   render: function() {
@@ -14,24 +18,45 @@ var PartnerBox = React.createClass({
   }
 });
 
+/*var PartnerTypeMenuItem = React.createClass({
+    render: function() {
+
+        return (
+            <MenuItem eventKey={this.props.partnerType.name} onSelect={this.props.selectCallback}>{this.props.partnerType.name}</MenuItem>
+            );
+    }
+});*/
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(PartnerStore,"partners")],  
-    
-    getInitialState: function(){
+    mixins: [Reflux.connect(PartnerListStore,"partnerListData")],  
+    handleSelect: function(data) {
+        console.log(data);
     },
-    
     render: function () {
         console.log(this.state.partners);
-        if(!this.state.partners){
-
+        if(!this.state.partnerListData.partnerList || !this.state.partnerListData.partnerTypes){
+            return (<div>No data yet</div>);
         } else {
-            var partnerNodes = this.state.partners.map(function (partner) {
+            var that = this;
+            var partnerTypeMenuItems = this.state.partnerListData.partnerTypes.map(function(partnerType){
+                return (<MenuItem eventKey={partnerType.name} > {partnerType.name}</MenuItem>);
+            });
+            var buttonGroupInstance = (
+                <ButtonGroup>
+                    <DropdownButton title="Dropdown" onSelect={this.handleSelect}>
+                        {partnerTypeMenuItems}
+                    </DropdownButton>
+                </ButtonGroup>
+            );
+            var partnerNodes = this.state.partnerListData.partnerList.map(function (partner) {
                 return (<PartnerBox partner={partner} />);
             });
             return (
-                <div className="list-group">
-                    {partnerNodes}
+                <div>
+                    {buttonGroupInstance}
+                    <div className="list-group">
+                        {partnerNodes}
+                    </div>
                 </div>
             );
 
