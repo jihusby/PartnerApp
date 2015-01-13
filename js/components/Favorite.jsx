@@ -22,11 +22,11 @@ module.exports = React.createClass({
     render: function(){
     if(this.isFavorite(this.state.favorites)){
         return  (
-            <a href="#" className="btn btn-primary btn-sm" onClick={this.removeFavorite}><i className="glyphicon glyphicon-star"></i></a>
+            <a className="btn btn-primary btn-sm" onClick={this.removeFavorite}><i className="glyphicon glyphicon-star"></i></a>
         );
     } else{
         return  (
-            <a href="#" className="btn btn-primary btn-sm" onClick={this.showModal}><i className="glyphicon glyphicon-star-empty"></i></a>
+            <a className="btn btn-primary btn-sm" onClick={this.showModal}><i className="glyphicon glyphicon-star-empty"></i></a>
             );
         }
     },
