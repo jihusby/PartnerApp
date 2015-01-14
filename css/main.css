@@ -36,3 +36,8 @@
 
 .contact-detail > div > .panel-title{
 }
+
+a:hover{
+    cursor: pointer;
+    cursor: hand;
+}
