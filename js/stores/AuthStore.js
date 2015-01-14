@@ -1,5 +1,7 @@
 var Reflux = require("reflux");
 
+var $ = require("jquery");
+
 var store = require("store.js");
 
 var AuthActions = require("../actions/AuthActions");

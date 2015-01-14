@@ -1,6 +1,11 @@
 var React = require("react");
 var Reflux = require("reflux");
 var _ = require("underscore");
+
+jQuery = require("jquery"); // bootstrap needs jQuery variable to be set
+var $ = jQuery;
+require("bootstrap");
+
 var Spinner = require("react-spinner");
 
 var store = require("store.js");
@@ -68,6 +73,8 @@ module.exports =
             }
 
             if (!store.get(Constants.LocalStorageKeys.bearer_token)){
+                $("nav.navbar").find("li.active").removeClass('active');
+                $("nav.navbar").find("li#"+Constants.MenuItems.login).addClass('active');
                 content = (<div>You must log in to get the partner data<br/><Login /> </div>);
             } else if (!(this.props.partners  && (this.props.partners.length > 0))){
                 content =  (
@@ -81,6 +88,11 @@ module.exports =
                     </div>
                     );
             } else{
+                $("nav.navbar").find("li.active").removeClass('active');
+                var selectedMenuElement = $("nav.navbar").find("li#"+this.state.menuItem.path);
+                if (selectedMenuElement) {
+                    selectedMenuElement.addClass('active');
+                }
                 switch(this.state.menuItem.path){
                     case Constants.MenuItems.home:
                         content = <PartnerView partners={this.props.partners} persons={this.props.persons} />;
@@ -123,22 +135,22 @@ module.exports =
                         </div>
                         <div className="collapse navbar-collapse" id="nav-menu">
                             <ul className="nav navbar-nav">
-                                <li className="active">
+                                <li id={Constants.MenuItems.home} className="active">
                                     <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>
                                         <span className="glyphicon glyphicon-search" /> &nbsp;&nbsp;Søk
                                     </a>
                                 </li>
-                                <li>
+                                <li id={Constants.MenuItems.partnerlist}>
                                     <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)}>
                                         <span className="glyphicon glyphicon-briefcase" />&nbsp;&nbsp;Partnerliste
                                     </a>
                                 </li>
-                                <li>
+                                <li id={Constants.MenuItems.favorites}>
                                     <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favorites)}>
                                         <span className="glyphicon glyphicon-star" />&nbsp;&nbsp;Favoritter
                                     </a>
                                 </li>
-                                <li>
+                                <li id={Constants.MenuItems.login}>
                                     <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)}>
                                     {loginText}
                                     </a>
