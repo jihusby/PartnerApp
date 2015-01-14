@@ -11,14 +11,17 @@ var MenuItem = require("react-bootstrap/MenuItem");
 var PartnerListStore = require("../stores/PartnerListStore");
 
 var PartnerBox = React.createClass({
-  render: function() {
-    return (
-      <a className="list-group-item">
-        <h4 className="list-group-item-heading">{this.props.partner.name}</h4>
-        <p className="list-group-item-text">{this.props.partner.partnerType}</p>
-      </a>
-    );
-  }
+    onClickPartner: function(id) {
+        routie("partner/" + id);
+    },
+    render: function() {
+        return (
+            <a className="list-group-item" onClick={this.onClickPartner.bind(this, this.props.partner.id)}>
+                <h4 className="list-group-item-heading">{this.props.partner.name}</h4>
+                <p className="list-group-item-text">{this.props.partner.partnerType}</p>
+            </a>
+        );
+    }
 });
 
 module.exports = React.createClass({
