@@ -1,6 +1,8 @@
 var React = require("react");
 var Reflux = require("reflux");
 
+var Spinner = require("react-spinner");
+
 var ButtonGroup = require("react-bootstrap/ButtonGroup");
 var Button = require("react-bootstrap/Button");
 var DropdownButton = require("react-bootstrap/DropdownButton");
@@ -57,7 +59,14 @@ module.exports = React.createClass({
     },
     render: function () {
         if(!this.state.filteredPartnerList || !this.state.partnerListData.partnerTypes){
-            return (<div>No data yet</div>); // spinner here 
+            return (<div>
+                        <div className="center-text">
+                            Venter på data...
+                        </div>
+                        <div className="spacing-top">
+                            <Spinner />
+                        </div>
+                    </div>);
         } else {
             var that = this;
             var partnerTypeMenuItems = this.state.partnerListData.partnerTypes.map(function(partnerType){
