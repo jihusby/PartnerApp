@@ -1,8 +1,6 @@
 var React = require("react");
 var Reflux = require("reflux");
 
-var Constants = require("../utils/partner-constants.js");
-
 var ContactStore = require("../stores/ContactStore.js");
 var ContactActions = require("../actions/ContactActions.js");
 
@@ -13,17 +11,16 @@ module.exports = React.createClass({
     mixins: [Reflux.connect(ContactStore,"favorites")],  
     
     getInitialState: function(){
-        ContactActions.get(Constants.LocalStorageKeys.favorites);
+        ContactActions.getFavorites();
         return this.state;
     },
     
     render: function () {
         var i = 0;
-        if(!!this.state.favorites){
+        if(this.state.favorites){
             var favoriteList = this.state.favorites.map(function(favorite){
-                i++;
                 return (
-                    <ContactDetailView id={favorite.id} note={favorite.note} index={i} />
+                    <ContactDetailView id={favorite.id} note={favorite.note} index={i++} />
                     );
             });
 

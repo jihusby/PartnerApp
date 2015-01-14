@@ -1,5 +1,6 @@
 var React = require("react");
 var Reflux = require("reflux");
+
 var ButtonGroup = require("react-bootstrap/ButtonGroup");
 var Button = require("react-bootstrap/Button");
 var DropdownButton = require("react-bootstrap/DropdownButton");
@@ -10,7 +11,7 @@ var PartnerListStore = require("../stores/PartnerListStore");
 var PartnerBox = React.createClass({
   render: function() {
     return (
-      <a href="#" className="list-group-item">
+      <a className="list-group-item">
         <h4 className="list-group-item-heading">{this.props.partner.name}</h4>
         <p className="list-group-item-text">{this.props.partner.partnerType}</p>
       </a>
@@ -56,7 +57,7 @@ module.exports = React.createClass({
     },
     render: function () {
         if(!this.state.filteredPartnerList || !this.state.partnerListData.partnerTypes){
-            return (<div>No data yet</div>);
+            return (<div>No data yet</div>); // spinner here 
         } else {
             var that = this;
             var partnerTypeMenuItems = this.state.partnerListData.partnerTypes.map(function(partnerType){
@@ -65,7 +66,7 @@ module.exports = React.createClass({
             var buttonGroupInstance = (
                 <ButtonGroup className="spacing-bottom">
                     <DropdownButton title={this.state.dropdownTitle} onSelect={this.handleSelect}>
-                        <MenuItem eventKey="all">All</MenuItem>
+                        <MenuItem eventKey="all">Alle</MenuItem>
                         {partnerTypeMenuItems}
                     </DropdownButton>
                 </ButtonGroup>
@@ -76,9 +77,9 @@ module.exports = React.createClass({
             return (
                 <div>
                     {buttonGroupInstance}
-                <div className="list-group">
-                    {partnerNodes}
-                </div>
+                    <div className="list-group">
+                        {partnerNodes}
+                    </div>
                 </div>
             );
 

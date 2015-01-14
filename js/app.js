@@ -15,7 +15,7 @@ document.addEventListener('deviceready', function() {
     StatusBar.backgroundColorByHexString("#333333");
 }, false);
 
-    
+// check if needed    
 var updateStatusBar = navigator.userAgent.match(/iphone|ipad|ipod/i) &&
 parseInt(navigator.appVersion.match(/OS (\d)/)[1], 10) >= 7;
 if (updateStatusBar) {
@@ -41,9 +41,11 @@ routie({
     "partner/?:id": function(id) {
         if(id){
             MenuActions.partnerDetail(id);
+        } else {
+            MenuActions.partnerList();
         }
     },
-    "person/?:id": function(id){
+    "person/:id": function(id){
         if(id){
             MenuActions.personDetail(id);
         }

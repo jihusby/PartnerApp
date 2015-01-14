@@ -1,7 +1,6 @@
 var React = require("react");
 var Reflux = require("reflux");
 var _ = require("underscore");
-var Constants = require("../utils/partner-constants");
 
 var ContactActions = require("../actions/ContactActions.js");
 var ContactStore = require("../stores/ContactStore.js");
@@ -15,28 +14,32 @@ module.exports = React.createClass({
     mixins: [Reflux.connect(ContactStore,"favorites"), OverlayMixin],
     
     getInitialState: function() {
-        ContactActions.get(Constants.LocalStorageKeys.favorites);
+        ContactActions.getFavorites();
         return { isModalOpen: false};
     },
     
     render: function(){
-    if(this.isFavorite(this.state.favorites)){
-        return  (
-            <a className="btn btn-primary btn-sm" onClick={this.removeFavorite}><i className="glyphicon glyphicon-star"></i></a>
-        );
-    } else{
-        return  (
-            <a className="btn btn-primary btn-sm" onClick={this.showModal}><i className="glyphicon glyphicon-star-empty"></i></a>
+        if(this.isFavorite(this.state.favorites)){
+            return  (
+                <a className="btn btn-primary btn-sm" onClick={this.removeFavorite}>
+                    <i className="glyphicon glyphicon-star"></i>
+                </a>
+                );
+        } else {
+            return  (
+                <a className="btn btn-primary btn-sm" onClick={this.showModal}>
+                    <i className="glyphicon glyphicon-star-empty"></i>
+                </a>
             );
         }
     },
     
-  renderOverlay: function () {
+    renderOverlay: function () {
         if(this.state.isModalOpen){
           return (
                 <FavoriteModal onToggle={this.showModal} addToFavorites={this.addToFavorites} />
             );
-        }else{
+        } else {
             return (
                 <span/>
             );
@@ -46,9 +49,9 @@ module.exports = React.createClass({
     addToFavorites: function(note){
         var favorites = this.state.favorites || [];
         var favorite = { id: this.props.id, note: note };
-        ContactActions.set(Constants.LocalStorageKeys.favorites, _.union(favorites, [favorite]));
+        ContactActions.setFavorites(_.union(favorites, [favorite]));
         // force update
-        ContactActions.get(Constants.LocalStorageKeys.favorites);
+        ContactActions.getFavorites();
         this.setState({
           isModalOpen: !this.state.isModalOpen
         });
@@ -58,12 +61,12 @@ module.exports = React.createClass({
         var that = this;
         var favorites = this.state.favorites || [];
         
-        ContactActions.set(Constants.LocalStorageKeys.favorites, _.without(favorites, _.find(favorites, function(f){ 
+        ContactActions.setFavorites(_.without(favorites, _.find(favorites, function(f){ 
                 return f.id == that.props.id
             })
         ));
         // force update
-        ContactActions.get(Constants.LocalStorageKeys.favorites);
+        ContactActions.getFavorites();
     },
     
     showModal: function () {

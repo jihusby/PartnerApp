@@ -6,8 +6,8 @@ var Reflux = require("reflux");
 
 module.exports = Reflux.createActions(
     [
-        "set",
-        "get",
+        "setFavorites",
+        "getFavorites",
         "getById",
         "remove"
     ]

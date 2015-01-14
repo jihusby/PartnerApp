@@ -96,8 +96,11 @@ module.exports =
                         break;
                     case Constants.MenuItems.partner_detail:
                         console.log("Partner Detail");
+                        // refactor - pass id
                         var partnerId = this.state.menuItem.id;
-                        var partner = _.find(this.props.partners, function(partner){return partner.id ==                            partnerId;})
+                        var partner = _.find(this.props.partners, function(partner){
+                            return partner.id == partnerId;
+                        });
                         content = <PartnerDetailView selectedPartner={partner} />
                         break;
                     case Constants.MenuItems.person_detail:

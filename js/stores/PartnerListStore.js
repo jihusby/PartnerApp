@@ -20,8 +20,8 @@ module.exports = Reflux.createStore({
         this.listData.partnerList = partners.partners;
         this.trigger(this.listData);
     },
-
     getInitialState: function () {
+        // Need getInitialState to initialize listeners
         console.log("PartnerListStore is aquiring partnertypes")
         var that = this;
         this.getPartnerTypesFromBackend(function(partnerTypes){

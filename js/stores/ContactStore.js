@@ -13,12 +13,12 @@ module.exports = Reflux.createStore({
     
     listenables: [ContactActions],
     
-    onSet: function(key, value){
-        store.set(key, value);
+    onSetFavorites: function(value){
+        store.set(Constants.LocalStorageKeys.favorites, value);
     },
     
-    onGet: function(key){
-        this.trigger(store.get(key));
+    onGetFavorites: function(){
+        this.trigger(store.get(Constants.LocalStorageKeys.favorites));
     },
     
     onGetById: function(id){
