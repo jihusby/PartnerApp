@@ -36,7 +36,7 @@ module.exports = React.createClass({
                             <label className="col-sm-2 control-label">E-post</label>
                             <div className="col-sm-10">
                               <Input
-                                type="text"
+                                type="email"
                                 placeholder="E-post"
                                 ref="username"
                                 className="form-control"
