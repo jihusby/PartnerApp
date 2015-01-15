@@ -31,6 +31,7 @@ render: function () {
                 {phone}
                 {mailTo}
                 <i className="glyphicon glyphicon-info-sign"></i> <a href={proffLink}>{partner.name} hos proff.no</a><br/>
+                {website}
                 {mapLink}                
             </address>
             <h4>Kontaktpersoner</h4>
