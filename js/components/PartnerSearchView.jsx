@@ -36,15 +36,19 @@ module.exports = React.createClass({
             var personCallback = this.personClicked;
             var searchString = currentSearch.toLowerCase();
             searchList.push(<ListGroupItem><strong>Partnere</strong></ListGroupItem>);
-            this.props.partners.forEach(function(partner) {
+            var partners = this.props.partners;
+            var persons = this.props.persons;
+            partners.forEach(function(partner) {
                 if(partner.name.toLowerCase().indexOf(searchString)==0){
-                    searchList.push(<ListGroupItem onClick={partnerCallback} eventKey={partner.id}>{partner.name}</ListGroupItem>);
+                    searchList.push(<ListGroupItem onClick={partnerCallback} eventKey={partner.id}>{partner.name}<br/><small>{partner.partnerType}</small></ListGroupItem>);
                 }
             });
             searchList.push(<ListGroupItem><strong>Personer</strong></ListGroupItem>);
-            this.props.persons.forEach(function(person) {
+            persons.forEach(function(person) {
                 if(person.firstName.toLowerCase().indexOf(searchString)==0 || person.lastName.toLowerCase().indexOf(searchString)==0){
-                    searchList.push(<ListGroupItem onClick={personCallback} eventKey={person.id}>{person.firstName}{" "}{person.lastName}</ListGroupItem>);
+                    var partnerForPerson = _.find(partners, function(partner){ return !!_.find(partner.contacts, function(contact) { return contact.id == person.id; });});
+                    if(partnerForPerson) person.partnerName = partnerForPerson.name;
+                    searchList.push(<ListGroupItem onClick={personCallback} eventKey={person.id}>{person.firstName}{" "}{person.lastName}<br/><small>{person.partnerName}</small></ListGroupItem>);
                 }
             });
         }
