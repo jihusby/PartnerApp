@@ -2,7 +2,7 @@ var React = require("react");
 var Reflux = require("reflux");
 var routie = require("routie");
 
-var PartnerStore = require("../stores/PartnerStore");
+var DataStore = require("../stores/DataStore");
 var AuthStore = require("../stores/AuthStore");
 var PartnerApp = require("./PartnerApp.jsx");
 
@@ -10,7 +10,7 @@ module.exports =
 
     React.createClass({
 
-        mixins: [Reflux.connect(PartnerStore,"rbkData")],
+        mixins: [Reflux.connect(DataStore,"rbkData")],
         getInitialState: function(){
             return {loginResult: AuthStore.getDefaultData()};
         },

@@ -19,18 +19,18 @@ module.exports = Reflux.createStore({
 
     listenables: [BackendActions],
 
-    onSynchronizePartners: function() {
+    onSynchronizeData: function() {
         console.log("Synchronize partners called from React Component")
-        this.getPartnersFromBackend(this.updatePartners);
+        this.getDataFromBackend(this.updateData);
     },
 
     getInitialState: function () {
         console.log("React Component is connecting...")
-        this.getPartnersFromBackend(this.updatePartners);
+        this.getDataFromBackend(this.updateData);
         return [];
     },
 
-    updatePartners: function(json) {
+    updateData: function(json) {
         var partners = _.map(_.sortBy(json.partners, "name"), function(partner){
             return new Partner(partner);
         });
@@ -52,7 +52,7 @@ module.exports = Reflux.createStore({
         this.trigger({partners: partners, persons: persons});
     },
 
-    getPartnersFromBackend: function(callback) {
+    getDataFromBackend: function(callback) {
         if(!store.get("bearer_token")){
          return;   
         }else{
@@ -65,6 +65,7 @@ module.exports = Reflux.createStore({
                 success: function(data) {
                     console.log(data);
                     store.set(Constants.LocalStorageKeys.partnerdata, data);
+                    store.set(Constants.LocalStorageKeys.partnerTypes, data.partnerTypes);
                     callback(data);
                 },
                 error: function(xhr, status, err) {
