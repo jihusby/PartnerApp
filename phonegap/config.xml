@@ -10,7 +10,7 @@
     <content src="index.html" />
     <preference name="permissions" value="none" />
     <preference name="phonegap-version" value="3.5.0" />
-    <preference name="orientation" value="default" />
+	<preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="true" />
@@ -47,11 +47,22 @@
     <icon src="www/res/icon/android/icon-48-mdpi.png" platform="android" height="48" width="48" density="mdpi"/>
     <icon src="www/res/icon/android/icon-72-hdpi.png" platform="android" height="72" width="72" density="hdpi"/>
     <icon src="www/res/icon/android/icon-96-xhdpi.png" platform="android" height="96" width="96" density="xhdpi"/>
+	<icon src="www/res/ios/icon-36-ldpi.png" platform="ios" width="36" height="36" density="ldpi" />
+	<icon src="www/res/ios/icon-48-mdpi.png" platform="ios" width="48" height="48" density="mdpi" />
+	<icon src="www/res/ios/icon-57.png" platform="ios" width="57" height="57" />
+	<icon src="www/res/ios/icon-57-2x.png" platform="ios" width="114" height="114" />
+	<icon src="www/res/ios/icon-72.png" platform="ios" width="72" height="72" />
+	<icon src="www/res/ios/icon-72-2x.png" platform="ios" width="144" height="144" />
+	<icon src="www/res/ios/icon-72-hdpi.png" platform="ios" width="72" height="72" density="hdpi" />
+	<icon src="www/res/ios/icon-96-xhdpi.png" platform="ios" width="96" height="96" density="xhdpi" />
+	<icon src="www/res/windows-phone/icon-48.png" platform="wp8" width="48" height="48" />
+	<icon src="www/res/windows-phone/icon-62-tile.png" platform="wp8" width="62" height="62" />
+	<icon src="www/res/windows-phone/icon-173-tile.png" platform="wp8" width="173" height="173" />
+
     <access origin="*" />
 	<access origin="tel:*" launch-external="yes" />
 	<access origin="mailto:*" launch-external="yes" />
 	<access origin="sms:*" launch-external="yes" />
-	<preference name="orientation" value="portrait" />
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true" />
     </feature>
