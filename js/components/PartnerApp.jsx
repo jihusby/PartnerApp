@@ -16,7 +16,7 @@ var AuthActions = require("../actions/AuthActions");
 var MenuStore = require("../stores/MenuStore");
 var AuthStore = require("../stores/AuthStore");
 
-var PartnerView = require("./PartnerView.jsx");
+var PartnerSearchView = require("./PartnerSearchView.jsx");
 var PartnerListView = require(".//PartnerListView.jsx");
 
 var Login = require("./Login.jsx");
@@ -95,7 +95,7 @@ module.exports =
                 }
                 switch(this.state.menuItem.path){
                     case Constants.MenuItems.home:
-                        content = <PartnerView partners={this.props.partners} persons={this.props.persons} />;
+                        content = <PartnerSearchView partners={this.props.partners} persons={this.props.persons} />
                         break;
                     case Constants.MenuItems.partnerlist:
                         content = <PartnerListView />

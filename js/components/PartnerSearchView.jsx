@@ -1,8 +1,9 @@
 var React = require("react");
 var _ = require("underscore");
 
-var ListGroup = require("react-bootstrap/ListGroup");
-var ListGroupItem = require("react-bootstrap/ListGroupItem");
+var PartnerBox = require("./PartnerBox.jsx");
+var PersonBox = require("./PersonBox.jsx");
+
 var Input = require("react-bootstrap/Input");
 
 module.exports = React.createClass({
@@ -11,14 +12,6 @@ module.exports = React.createClass({
         return {
             searchText: ''
         };
-    },
-
-    partnerClicked: function(key){
-        this.props.partnerSelected(key);
-    },
-    
-    personClicked: function(key){
-        this.props.personSelected(key);
     },
 
     handleSearchInput: function(e) {
@@ -35,20 +28,20 @@ module.exports = React.createClass({
             var partnerCallback = this.partnerClicked;
             var personCallback = this.personClicked;
             var searchString = currentSearch.toLowerCase();
-            searchList.push(<ListGroupItem><strong>Partnere</strong></ListGroupItem>);
+            searchList.push(<div className="list-group-item"><h3 className="list-group-item-heading"><strong>Partnere</strong></h3></div>);
             var partners = this.props.partners;
             var persons = this.props.persons;
             partners.forEach(function(partner) {
                 if(partner.name.toLowerCase().indexOf(searchString)==0){
-                    searchList.push(<ListGroupItem onClick={partnerCallback} eventKey={partner.id}>{partner.name}<br/><small>{partner.partnerType}</small></ListGroupItem>);
+                    searchList.push(<PartnerBox partner={partner} />);
                 }
             });
-            searchList.push(<ListGroupItem><strong>Personer</strong></ListGroupItem>);
+            searchList.push(<div className="list-group-item"><h3 className="list-group-item-heading"><strong>Personer</strong></h3></div>);
             persons.forEach(function(person) {
                 if(person.firstName.toLowerCase().indexOf(searchString)==0 || person.lastName.toLowerCase().indexOf(searchString)==0){
                     var partnerForPerson = _.find(partners, function(partner){ return !!_.find(partner.contacts, function(contact) { return contact.id == person.id; });});
                     if(partnerForPerson) person.partnerName = partnerForPerson.name;
-                    searchList.push(<ListGroupItem onClick={personCallback} eventKey={person.id}>{person.firstName}{" "}{person.lastName}<br/><small>{person.partnerName}</small></ListGroupItem>);
+                    searchList.push(<PersonBox person={person} />);
                 }
             });
         }
@@ -61,9 +54,9 @@ module.exports = React.createClass({
                     placeholder="Søk på firma eller navn på person"
                     ref="searchPartner"
                     onChange={this.handleSearchInput}/>
-                <ListGroup>
+                <div className="list-group">
                     {searchList}
-                </ListGroup>
+                </div>
             </div>
         );
     }

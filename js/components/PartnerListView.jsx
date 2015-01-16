@@ -9,20 +9,7 @@ var DropdownButton = require("react-bootstrap/DropdownButton");
 var MenuItem = require("react-bootstrap/MenuItem");
 
 var DataStore = require("../stores/DataStore");
-
-var PartnerBox = React.createClass({
-    onClickPartner: function(id) {
-        routie("partner/" + id);
-    },
-    render: function() {
-        return (
-            <a className="list-group-item" onClick={this.onClickPartner.bind(this, this.props.partner.id)}>
-                <h4 className="list-group-item-heading">{this.props.partner.name}</h4>
-                <p className="list-group-item-text">{this.props.partner.partnerType}</p>
-            </a>
-        );
-    }
-});
+var PartnerBox = require("./PartnerBox.jsx");
 
 module.exports = React.createClass({
 
