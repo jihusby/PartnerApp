@@ -121,7 +121,7 @@ module.exports =
                         break;
                 }
                 // hack to ensure scrolling to top of page
-                $(document).scrollTop();
+                $(window).scrollTop(0);
             }
             var navbar = (
                 <nav className="navbar navbar-inverse navbar-fixed-top">
