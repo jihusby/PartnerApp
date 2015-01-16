@@ -62,7 +62,7 @@ module.exports = React.createClass({
             var buttonGroupInstance = (
                 <ButtonGroup className="spacing-bottom">
                     <DropdownButton title={this.state.dropdownTitle} onSelect={this.handleSelect}>
-                        <MenuItem eventKey="all">Alle</MenuItem>
+                        <MenuItem eventKey="all">Alle partnertyper</MenuItem>
                         {partnerTypeMenuItems}
                     </DropdownButton>
                 </ButtonGroup>
