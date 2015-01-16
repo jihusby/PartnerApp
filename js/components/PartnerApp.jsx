@@ -63,9 +63,21 @@ module.exports =
                     console.error("Invalid menuItem");
             }
         },
-
+        
+        goBack: function () {
+            var nav = window.navigator;
+            if( this.phonegapNavigationEnabled &&
+                nav &&
+                nav.app &&
+                nav.app.backHistory ){
+                nav.app.backHistory();
+            } else {
+                //history.go(-1);
+                window.history.back();
+            }
+        },
         render: function () {
-            var content;
+            var content, title;
             var loginResult = this.state.loginResult;
             var loginText = <div><span className="glyphicon glyphicon-log-in" />&nbsp;&nbsp;Logg inn</div>;
             if(loginResult && loginResult.loggedIn){
@@ -95,18 +107,23 @@ module.exports =
                 }
                 switch(this.state.menuItem.path){
                     case Constants.MenuItems.home:
+                        title = "Søk";
                         content = <PartnerSearchView partners={this.props.partners} persons={this.props.persons} />
                         break;
                     case Constants.MenuItems.partnerlist:
+                        title = "Partnere";
                         content = <PartnerListView />
                         break;
                     case Constants.MenuItems.favorites:
+                        title = "Favoritter";
                         content = <FavoriteView />
                         break;
                     case Constants.MenuItems.login:
+                        title = "Logg inn";
                         content = <Login />
                         break;
                     case Constants.MenuItems.partner_detail:
+                        title = "Partner";
                         console.log("Partner Detail");
                         // refactor - pass id
                         var partnerId = this.state.menuItem.id;
@@ -116,6 +133,7 @@ module.exports =
                         content = <PartnerDetailView selectedPartner={partner} />
                         break;
                     case Constants.MenuItems.person_detail:
+                        title = "Person";
                         console.log("Person detail");
                         content = <ContactDetailView index="0" id={this.state.menuItem.id} />
                         break;
@@ -127,7 +145,7 @@ module.exports =
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container-fluid">
                         <div className="navbar-header"> 
-                            <a className="navbar-brand">PartnerApp</a>
+                            <a className="navbar-brand" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>
                             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu">
                                 <span className="sr-only">Toggle navigation</span>
                                 <span className="icon-bar"></span>
@@ -137,6 +155,7 @@ module.exports =
                         </div>
                         <div className="collapse navbar-collapse" id="nav-menu">
                             <ul className="nav navbar-nav">
+                                <li><a href="#">{title}</a></li>
                                 <li id={Constants.MenuItems.home} className="active">
                                     <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>
                                         <span className="glyphicon glyphicon-search" /> &nbsp;&nbsp;Søk
