@@ -15,6 +15,7 @@ module.exports = Reflux.createStore({
     
     onSetFavorites: function(value){
         store.set(Constants.LocalStorageKeys.favorites, value);
+        this.trigger(value);
     },
     
     onGetFavorites: function(){

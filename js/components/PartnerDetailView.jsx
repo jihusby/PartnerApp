@@ -1,6 +1,5 @@
 var React = require("react");
 var _ = require("underscore");
-
 var Favorite = require("./Favorite.jsx");
 var ContactDetailView = require("./ContactDetailView.jsx");
 
