@@ -32,7 +32,7 @@ module.exports = Reflux.createStore({
                     store.set(Constants.LocalStorageKeys.uid, data.userId);
                     store.set(Constants.LocalStorageKeys.name, data.name);
 
-                    BackendActions.synchronizePartners();
+                    BackendActions.synchronizeData();
                     that.trigger({ loggedIn: true, name: data.name, error: undefined });
                     MenuActions.search();
                 },
