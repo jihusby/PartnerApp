@@ -8,7 +8,7 @@ var Button = require("react-bootstrap/Button");
 var DropdownButton = require("react-bootstrap/DropdownButton");
 var MenuItem = require("react-bootstrap/MenuItem");
 
-var PartnerListStore = require("../stores/PartnerListStore");
+var DataStore = require("../stores/DataStore");
 
 var PartnerBox = React.createClass({
     onClickPartner: function(id) {
@@ -26,31 +26,28 @@ var PartnerBox = React.createClass({
 
 module.exports = React.createClass({
 
-    mixins: [Reflux.listenTo(PartnerListStore,"onPartnerListData", "onPartnerListData")],  
+    mixins: [Reflux.connect(DataStore,"rbkData")],
     getInitialState: function(){
         return {
             filteredPartnerList: [],
-            partnerListData: PartnerListStore.getDefaultData(),
-            dropdownTitle: "Partnertype"
+            partnerListData: [],
+            dropdownTitle: "Partnertype",
+            init: true
         };
     },
     
-    onPartnerListData: function(partnerListData){
-        this.setState({
-            filteredPartnerList: partnerListData.partnerList,
-            partnerListData: partnerListData
-        });
-    },
     handleSelect: function(partnerType) {
+    
+        this.setState({init: false });
         console.log(partnerType);
         if (partnerType){
             if (partnerType === "all") {
                 this.setState({
-                    filteredPartnerList: this.state.partnerListData.partnerList,
+                    filteredPartnerList: this.state.rbkData.partners,
                     dropdownTitle: "Partnertype"
                 });
             } else {
-                var filteredPartnerList = this.state.partnerListData.partnerList.filter(function(partner){
+                var filteredPartnerList = this.state.rbkData.partners.filter(function(partner){
                     return (partner.partnerType=== partnerType);
                 });
                 this.setState({
@@ -61,7 +58,7 @@ module.exports = React.createClass({
         }
     },
     render: function () {
-        if(!this.state.filteredPartnerList || !this.state.partnerListData.partnerTypes){
+        if(!this.state.rbkData || !this.state.rbkData.partners || !this.state.rbkData.partnerTypes){
             return (<div>
                         <div className="center-text">
                             Venter på data...
@@ -72,7 +69,7 @@ module.exports = React.createClass({
                     </div>);
         } else {
             var that = this;
-            var partnerTypeMenuItems = this.state.partnerListData.partnerTypes.map(function(partnerType){
+            var partnerTypeMenuItems = this.state.rbkData.partnerTypes.map(function(partnerType){
                 return (<MenuItem eventKey={partnerType.name} > {partnerType.name}</MenuItem>);
             });
             var buttonGroupInstance = (
@@ -83,9 +80,16 @@ module.exports = React.createClass({
                     </DropdownButton>
                 </ButtonGroup>
             );
-            var partnerNodes = this.state.filteredPartnerList.map(function (partner) {
-                return (<PartnerBox partner={partner} />);
-            });
+            var partnerNodes;
+            if(this.state.init){
+                partnerNodes = this.state.rbkData.partners.map(function (partner) {
+                    return (<PartnerBox partner={partner} />);
+                });
+            } else{
+                partnerNodes = this.state.filteredPartnerList.map(function (partner) {
+                    return (<PartnerBox partner={partner} />);
+                });
+            }
             return (
                 <div>
                     {buttonGroupInstance}

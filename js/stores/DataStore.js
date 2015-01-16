@@ -49,7 +49,7 @@ module.exports = Reflux.createStore({
         }), function(person){
             return new Contact(person);
         });
-        this.trigger({partners: partners, persons: persons});
+        this.trigger({partners: partners, persons: persons, partnerTypes: json.partnerTypes.partnerTypes});
     },
 
     getDataFromBackend: function(callback) {
@@ -65,7 +65,7 @@ module.exports = Reflux.createStore({
                 success: function(data) {
                     console.log(data);
                     store.set(Constants.LocalStorageKeys.partnerdata, data);
-                    store.set(Constants.LocalStorageKeys.partnerTypes, data.partnerTypes);
+                    store.set(Constants.LocalStorageKeys.partnerTypes, data.partnerTypes.partnerTypes);
                     callback(data);
                 },
                 error: function(xhr, status, err) {
