@@ -120,6 +120,8 @@ module.exports =
                         content = <ContactDetailView index="0" id={this.state.menuItem.id} />
                         break;
                 }
+                // hack to ensure scrolling to top of page
+                $(document).scrollTop();
             }
             var navbar = (
                 <nav className="navbar navbar-inverse navbar-fixed-top">
