@@ -30,14 +30,17 @@ module.exports = React.createClass({
     render: function () {
                 return (
                 <div>
-                    <Panel header="Logg inn">
+                    <Panel>
+                        <p>
+                            Du kan logge inn med samme brukernavn og passord som du bruker på nettsiden til GodFoten.
+                        </p>
                         <form className="form-horizontal">
                           <div className="form-group">
                             <label className="col-sm-2 control-label">E-post</label>
                             <div className="col-sm-10">
                               <Input
                                 type="email"
-                                placeholder="E-post"
+                                placeholder=""
                                 ref="username"
                                 className="form-control"
                             />
@@ -48,7 +51,7 @@ module.exports = React.createClass({
                             <div className="col-sm-10">
                               <Input
                                 type="password"
-                                placeholder="Passord"
+                                placeholder=""
                                 ref="password"
                                 className="form-control"
                                 onKeyDown={this.handleKeyDown}
@@ -56,7 +59,7 @@ module.exports = React.createClass({
                             </div>
                           </div>
                           <div className="form-group">
-                            <div className="col-sm-offset-2 col-sm-10">
+                            <div className="col-sm-offset-2 col-sm-10 pull-right">
                               <Button bsStyle="primary" onClick={this.login}>Logg inn</Button>            
                             </div>
                           </div>
