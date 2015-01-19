@@ -178,12 +178,17 @@ module.exports =
                                         <span className="glyphicon glyphicon-star" />&nbsp;&nbsp;Favoritter
                                     </a>
                                 </li>
+                                <li id={Constants.MenuItems.activities}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.activities)}>
+                                        <span className="glyphicon glyphicon-calendar" />&nbsp;&nbsp;Aktiviteter
+                                    </a>
+                                </li>
+                                <li className="hide-on-small"><a onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Oppdater</a></li>
                                 <li id={Constants.MenuItems.login}>
                                     <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)}>
                                     {loginText}
                                     </a>
                                 </li>
-                                <li className="hide-on-small"><a onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Oppdater</a></li>
                             </ul>
                         </div>
                     </div>
