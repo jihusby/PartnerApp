@@ -66,6 +66,7 @@ module.exports = Reflux.createStore({
                     console.log(data);
                     store.set(Constants.LocalStorageKeys.partnerdata, data);
                     store.set(Constants.LocalStorageKeys.partnerTypes, data.partnerTypes.partnerTypes);
+                    store.set(Constants.LocalStorageKeys.activities, data.activities);
                     callback(data);
                 },
                 error: function(xhr, status, err) {
