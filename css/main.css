@@ -53,3 +53,8 @@ a:hover{
 .firm-list-item{
     text-align: right;
 }
+
+.mobile-header{
+    text-align: center;
+    width: calc(100% - 109px);
+}

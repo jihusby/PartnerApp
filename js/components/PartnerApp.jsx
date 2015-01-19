@@ -145,7 +145,8 @@ module.exports =
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container-fluid">
                         <div className="navbar-header"> 
-                            <a className="navbar-brand" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>
+                            <a className="navbar-brand btn" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>
+                            <a className="navbar-brand mobile-header"><strong>{title}</strong></a>
                             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu">
                                 <span className="sr-only">Toggle navigation</span>
                                 <span className="icon-bar"></span>
@@ -155,24 +156,24 @@ module.exports =
                         </div>
                         <div className="collapse navbar-collapse" id="nav-menu">
                             <ul className="nav navbar-nav">
-                                <li><a href="#">{title}</a></li>
+                                <li><a><strong>{title}</strong></a></li>
                                 <li id={Constants.MenuItems.home} className="active">
-                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>
                                         <span className="glyphicon glyphicon-search" /> &nbsp;&nbsp;Søk
                                     </a>
                                 </li>
                                 <li id={Constants.MenuItems.partnerlist}>
-                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)}>
                                         <span className="glyphicon glyphicon-briefcase" />&nbsp;&nbsp;Partnerliste
                                     </a>
                                 </li>
                                 <li id={Constants.MenuItems.favorites}>
-                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favorites)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favorites)}>
                                         <span className="glyphicon glyphicon-star" />&nbsp;&nbsp;Favoritter
                                     </a>
                                 </li>
                                 <li id={Constants.MenuItems.login}>
-                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)}>
                                     {loginText}
                                     </a>
                                 </li>
