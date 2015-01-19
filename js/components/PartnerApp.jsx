@@ -12,6 +12,7 @@ var store = require("store.js");
 
 var MenuActions = require("../actions/MenuActions");
 var AuthActions = require("../actions/AuthActions");
+var BackendActions = require("../actions/BackendActions");
 
 var MenuStore = require("../stores/MenuStore");
 var AuthStore = require("../stores/AuthStore");
@@ -76,6 +77,11 @@ module.exports =
                 window.history.back();
             }
         },
+        
+        synchronize: function(){
+            BackendActions.synchronizeData();
+        },
+        
         render: function () {
             var content, title;
             var loginResult = this.state.loginResult;
@@ -146,7 +152,8 @@ module.exports =
                     <div className="container-fluid">
                         <div className="navbar-header"> 
                             <a className="navbar-brand btn" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>
-                            <a className="navbar-brand mobile-header"><strong>{title}</strong></a>
+                            <a className="navbar-brand mobile-header hide-on-large"><strong>{title}</strong></a>
+                            <a className="navbar-brand btn btn-sync hide-on-large" onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i></a>
                             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu">
                                 <span className="sr-only">Toggle navigation</span>
                                 <span className="icon-bar"></span>
@@ -156,7 +163,6 @@ module.exports =
                         </div>
                         <div className="collapse navbar-collapse" id="nav-menu">
                             <ul className="nav navbar-nav">
-                                <li><a><strong>{title}</strong></a></li>
                                 <li id={Constants.MenuItems.home} className="active">
                                     <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>
                                         <span className="glyphicon glyphicon-search" /> &nbsp;&nbsp;Søk
@@ -177,6 +183,7 @@ module.exports =
                                     {loginText}
                                     </a>
                                 </li>
+                                <li className="hide-on-small"><a onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Oppdater</a></li>
                             </ul>
                         </div>
                     </div>

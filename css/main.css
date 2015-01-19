@@ -42,6 +42,26 @@ a:hover{
 .contact-detail > div > .panel-title{
 }
 
+.hide-on-small{
+    display: none !important;
+}
+
+@media (min-width: 768px) {
+    .hide-on-small{
+        display: inherit !important;
+    }
+}
+
+.hide-on-large{
+   display: inherit !important;
+}
+
+@media (min-width: 768px) {
+    .hide-on-large{
+        display: none !important;
+    }
+}
+
 .list-heading{
     background-color: #A0A0A0;
 }
@@ -56,5 +76,9 @@ a:hover{
 
 .mobile-header{
     text-align: center;
-    width: calc(100% - 109px);
+    width: calc(100% - 159px);
+}
+
+.navbar-nav{
+    float:right;   
 }
