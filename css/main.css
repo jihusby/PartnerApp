@@ -1,3 +1,8 @@
+a:hover{
+    cursor: pointer;
+    cursor: hand;
+}
+
 .navbar-form{
  color:#fff;   
 }
@@ -37,7 +42,10 @@
 .contact-detail > div > .panel-title{
 }
 
-a:hover{
-    cursor: pointer;
-    cursor: hand;
+.list-heading{
+    background-color: #A0A0A0;
+}
+
+.partnertype-list-item{
+    text-align: right;
 }
