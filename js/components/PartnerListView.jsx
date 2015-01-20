@@ -18,7 +18,7 @@ module.exports = React.createClass({
         return {
             filteredPartnerList: [],
             partnerListData: [],
-            dropdownTitle: "Partnertype",
+            dropdownTitle: "Alle partnertyper",
             init: true
         };
     },
@@ -31,7 +31,7 @@ module.exports = React.createClass({
             if (partnerType === "all") {
                 this.setState({
                     filteredPartnerList: this.state.rbkData.partners,
-                    dropdownTitle: "Partnertype"
+                    dropdownTitle: "Alle partnertyper"
                 });
             } else {
                 var filteredPartnerList = this.state.rbkData.partners.filter(function(partner){
