@@ -69,7 +69,7 @@ module.exports = Reflux.createStore({
                 },
                 success: function(data) {
                     console.log(data);
-                    store.set(Constants.LocalStorageKeys.partnerdata, data);
+                    store.set(Constants.LocalStorageKeys.partnerdata, data.partners);
                     store.set(Constants.LocalStorageKeys.persons, data.persons);
                     store.set(Constants.LocalStorageKeys.partnerTypes, data.partnerTypes.partnerTypes);
                     store.set(Constants.LocalStorageKeys.activities, data.activities);
