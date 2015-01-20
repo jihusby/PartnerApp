@@ -49,7 +49,12 @@ module.exports = Reflux.createStore({
         }), function(person){
             return new Contact(person);
         });
-        this.trigger({partners: partners, persons: persons, partnerTypes: json.partnerTypes.partnerTypes});
+        this.trigger({
+            partners: partners, 
+            persons: persons, 
+            partnerTypes: json.partnerTypes.partnerTypes, 
+            activities: json.activities
+        });
     },
 
     getDataFromBackend: function(callback) {
@@ -65,6 +70,7 @@ module.exports = Reflux.createStore({
                 success: function(data) {
                     console.log(data);
                     store.set(Constants.LocalStorageKeys.partnerdata, data);
+                    store.set(Constants.LocalStorageKeys.persons, data.persons);
                     store.set(Constants.LocalStorageKeys.partnerTypes, data.partnerTypes.partnerTypes);
                     store.set(Constants.LocalStorageKeys.activities, data.activities);
                     callback(data);
@@ -74,7 +80,13 @@ module.exports = Reflux.createStore({
                         AuthActions.logOut();
                         callback({});
                     }
-                    var data = store.get(Constants.LocalStorageKeys.partnerdata);
+                    var data = { 
+                        partners: store.get(Constants.LocalStorageKeys.partnerdata),
+                        persons: store.get(Constants.LocalStorageKeys.persons),
+                        partnerTypes: store.get(Constants.LocalStorageKeys.partnerTypes),
+                        activities: store.get(Constants.LocalStorageKeys.activities)
+                    };
+                    
                     callback(data);
                 }
             });

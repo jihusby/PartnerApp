@@ -49,5 +49,8 @@ routie({
         if(id){
             MenuActions.personDetail(id);
         }
+    },
+    "activities": function(){
+        MenuActions.activities();
     }
 });

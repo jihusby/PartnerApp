@@ -24,6 +24,7 @@ var Login = require("./Login.jsx");
 var FavoriteView = require("./FavoriteView.jsx");
 var ContactDetailView = require("./ContactDetailView.jsx");
 var PartnerDetailView = require("./PartnerDetailView.jsx");
+var ActivityListView = require("./ActivityListView.jsx");
 
 var Constants = require("../utils/partner-constants");
 
@@ -59,6 +60,9 @@ module.exports =
                     } else{
                         AuthActions.logOut();      
                     }
+                    break;
+                case Constants.MenuItems.activities:
+                    routie("activities");
                     break;
                  default:
                     console.error("Invalid menuItem");
@@ -142,6 +146,10 @@ module.exports =
                         title = "Person";
                         console.log("Person detail");
                         content = <ContactDetailView index="0" id={this.state.menuItem.id} />
+                        break;
+                    case Constants.MenuItems.activities:
+                        title = "Aktiviteter";
+                        content = <ActivityListView />;
                         break;
                 }
                 // hack to ensure scrolling to top of page
