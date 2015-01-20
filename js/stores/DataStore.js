@@ -31,7 +31,7 @@ module.exports = Reflux.createStore({
     },
 
     updateData: function(json) {
-        var partners = _.map(_.sortBy(json.partners, "name"), function(partner){
+        var partners = _.map(_.sortBy(_.filter(json.partners, function(partner){ return partner.partnerType !== "VIP-Kunde";}), "name"), function(partner){
             return new Partner(partner);
         });
         partners.forEach(function(partner){
@@ -52,7 +52,9 @@ module.exports = Reflux.createStore({
         this.trigger({
             partners: partners, 
             persons: persons, 
-            partnerTypes: json.partnerTypes.partnerTypes, 
+            partnerTypes: _.filter(json.partnerTypes.partnerTypes, function(partnerType) { 
+                        return partnerType.name !== "VIP-Kunde";
+                    }), 
             activities: json.activities
         });
     },
@@ -69,9 +71,13 @@ module.exports = Reflux.createStore({
                 },
                 success: function(data) {
                     console.log(data);
-                    store.set(Constants.LocalStorageKeys.partnerdata, data.partners);
+                    store.set(Constants.LocalStorageKeys.partnerdata, _.filter(data.partners, function(partner) { 
+                        return partner.partnerType !== "VIP-Kunde";
+                    }));
                     store.set(Constants.LocalStorageKeys.persons, data.persons);
-                    store.set(Constants.LocalStorageKeys.partnerTypes, data.partnerTypes.partnerTypes);
+                    store.set(Constants.LocalStorageKeys.partnerTypes, _.filter(data.partnerTypes.partnerTypes, function(partnerType){
+                        return partnerType.name !== "VIP-Kunde";
+                    }));
                     store.set(Constants.LocalStorageKeys.activities, data.activities);
                     callback(data);
                 },
