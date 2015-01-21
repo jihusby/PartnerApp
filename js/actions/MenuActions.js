@@ -12,6 +12,7 @@ module.exports = Reflux.createActions(
         "login",
         "partnerDetail",
         "personDetail",
-        "activities"
+        "activities",
+        "activity"
     ]
 );

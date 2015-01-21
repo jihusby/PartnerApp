@@ -1,14 +1,13 @@
 var React = require("react");
 var Reflux = require("reflux");
 var _ = require("underscore");
+var store = require("store.js");
 
 jQuery = require("jquery"); // bootstrap needs jQuery variable to be set
 var $ = jQuery;
 require("bootstrap");
 
 var Spinner = require("react-spinner");
-
-var store = require("store.js");
 
 var MenuActions = require("../actions/MenuActions");
 var AuthActions = require("../actions/AuthActions");
@@ -25,6 +24,7 @@ var FavoriteView = require("./FavoriteView.jsx");
 var ContactDetailView = require("./ContactDetailView.jsx");
 var PartnerDetailView = require("./PartnerDetailView.jsx");
 var ActivityListView = require("./ActivityListView.jsx");
+var ActivityDetailView = require("./ActivityDetailView.jsx");
 
 var Constants = require("../utils/partner-constants");
 
@@ -77,7 +77,6 @@ module.exports =
                 nav.app.backHistory ){
                 nav.app.backHistory();
             } else {
-                //history.go(-1);
                 window.history.back();
             }
         },
@@ -150,6 +149,10 @@ module.exports =
                     case Constants.MenuItems.activities:
                         title = "Aktiviteter";
                         content = <ActivityListView />;
+                        break;
+                    case Constants.MenuItems.activity:
+                        title = "Aktivitet";
+                        content = <ActivityDetailView id={this.state.menuItem.id} />;
                         break;
                 }
                 // hack to ensure scrolling to top of page

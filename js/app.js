@@ -52,5 +52,8 @@ routie({
     },
     "activities": function(){
         MenuActions.activities();
+    },
+    "activity/:id": function(id){
+        MenuActions.activity(id);   
     }
 });

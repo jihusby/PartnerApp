@@ -12,7 +12,8 @@ module.exports =  {
         login: "login",
         partner_detail: "partner_detail",
         person_detail: "person_detail",
-        activities: "activities"
+        activities: "activities",
+        activity: "activity"
     },
     LocalStorageKeys: { 
         activities: "activities",
