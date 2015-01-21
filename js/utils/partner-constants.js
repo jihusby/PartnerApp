@@ -11,7 +11,8 @@ module.exports =  {
         partnerlist: "partnerlist",
         login: "login",
         partner_detail: "partner_detail",
-        person_detail: "person_detail"
+        person_detail: "person_detail",
+        contact_detail: "contact_detail"
     },
     LocalStorageKeys: { 
         favorites: "favorites" ,

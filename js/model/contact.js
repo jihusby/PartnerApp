@@ -3,6 +3,9 @@ function Contact(json) {
     this.id = json.id;
     this.firstName = json.firstName;
     this.lastName = json.lastName;
+    this.email = json.email;
+    this.phone = json.phone;
+    this.mobile = json.mobile;
     this.position = json.position;
     this.partner = {};
 }

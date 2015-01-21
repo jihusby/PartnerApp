@@ -4,7 +4,9 @@ var Reflux = require("reflux");
 var ContactStore = require("../stores/ContactStore.js");
 var ContactActions = require("../actions/ContactActions.js");
 
+var localStorageUtils = require("../utils/localstorage-utils");
 var ContactDetailView = require("./ContactDetailView.jsx");
+var ContactBox = require("./ContactBox.jsx");
 
 module.exports = React.createClass({
 
@@ -19,8 +21,12 @@ module.exports = React.createClass({
         var i = 0;
         if(this.state.favorites){
             var favoriteList = this.state.favorites.map(function(favorite){
+                var contact = localStorageUtils.findContact(this.props.id);
+                var partner = localStorageUtils.findPartner(contact.partnerId);
+                contact.partnerName = partner.name;
+
                 return (
-                    <ContactDetailView id={favorite.id} note={favorite.note} index={i++} />
+                    <ContactBox contact={contact}/>
                     );
             });
 

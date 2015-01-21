@@ -124,7 +124,6 @@ module.exports =
                         break;
                     case Constants.MenuItems.partner_detail:
                         title = "Partner";
-                        console.log("Partner Detail");
                         // refactor - pass id
                         var partnerId = this.state.menuItem.id;
                         var partner = _.find(this.props.partners, function(partner){
@@ -134,9 +133,14 @@ module.exports =
                         break;
                     case Constants.MenuItems.person_detail:
                         title = "Person";
-                        console.log("Person detail");
                         content = <ContactDetailView index="0" id={this.state.menuItem.id} />
                         break;
+                    case Constants.MenuItems.contact_detail:
+                        title = "Contact";
+                        var contactId = this.state.menuItem.id;
+                        content = <ContactDetailView id={contactId} />
+                        break;
+
                 }
                 // hack to ensure scrolling to top of page
                 $(window).scrollTop(0);

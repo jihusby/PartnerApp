@@ -1,7 +1,7 @@
 var React = require("react");
 var _ = require("underscore");
 var Favorite = require("./Favorite.jsx");
-var ContactDetailView = require("./ContactDetailView.jsx");
+var ContactBox = require("./ContactBox.jsx");
 
 module.exports = React.createClass({
 
@@ -34,16 +34,13 @@ render: function () {
                 {mapLink}                
             </address>
             <h4>Kontaktpersoner</h4>
-            <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 {
-                    sortedContacts.map(function(contact){                            
-                        return <ContactDetailView id={contact.id} index={i++} />
+                    sortedContacts.map(function(contact){
+                        return <ContactBox contact={contact} />
                     })
                 }
-            </div>
         </div>
-    );
-    },
+    )},
     
     buildAddress: function(address, zipCode, city){
         if(address && address.length > 0){

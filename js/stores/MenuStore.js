@@ -25,14 +25,18 @@ module.exports = Reflux.createStore({
     },
     
     onPartnerDetail: function(id){
-        console.log("Going to person: " + id);
+        console.log("Going to partner: " + id);
         this.menuItemSelected(Constants.MenuItems.partner_detail, id);
     },
     
     onPersonDetail: function(id){
         this.menuItemSelected(Constants.MenuItems.person_detail, id);
     },
-    
+
+    onContactDetail: function(id){
+        this.menuItemSelected(Constants.MenuItems.contact_detail, id);
+    },
+
     getInitialState: function () {
         console.log("React Component is connecting...")
         return Constants.MenuItems.home;

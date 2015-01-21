@@ -49,5 +49,11 @@ routie({
         if(id){
             MenuActions.personDetail(id);
         }
+    },
+    "contact/:id": function(id){
+        if(id){
+            MenuActions.contactDetail(id);
+        }
     }
+
 });
