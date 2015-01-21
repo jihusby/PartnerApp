@@ -10,6 +10,8 @@ module.exports = React.createClass({
     mixins: [Reflux.connect(DataStore,"rbkData")],
     
     render: function(){
+        console.log("Activities triggered");
+        console.log("Activities: " + JSON.stringify(this.state.rbkData));
         if(!this.state.rbkData || !this.state.rbkData.activities){
             return (<div>
                 <div className="center-text">
