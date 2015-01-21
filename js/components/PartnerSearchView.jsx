@@ -31,7 +31,7 @@ module.exports = React.createClass({
             
             // partners
             var partnerList = [];
-            searchList.push(<div className="list-group-item"><h3 className="list-group-item-heading"><strong>Partnere</strong></h3></div>);
+            searchList.push(<div className="list-group-item list-heading"><h3 className="list-group-item-heading"><strong>Partnere</strong></h3></div>);
             var partners = this.props.partners;
             partners.forEach(function(partner) {
                 if(partner.name.toLowerCase().indexOf(searchString)==0){
@@ -47,7 +47,7 @@ module.exports = React.createClass({
             
             // persons
             var persons = this.props.persons;
-            searchList.push(<div className="list-group-item"><h3 className="list-group-item-heading"><strong>Personer</strong></h3></div>);
+            searchList.push(<div className="list-group-item list-heading"><h3 className="list-group-item-heading"><strong>Personer</strong></h3></div>);
             var personList = [];
             persons.forEach(function(person) {
                 if(person.firstName.toLowerCase().indexOf(searchString)==0 || person.lastName.toLowerCase().indexOf(searchString)==0){

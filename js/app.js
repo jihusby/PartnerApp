@@ -54,6 +54,11 @@ routie({
         if(id){
             MenuActions.contactDetail(id);
         }
+    "activities": function(){
+        MenuActions.activities();
+    },
+    "activity/:id": function(id){
+        MenuActions.activity(id);   
     }
 
 });

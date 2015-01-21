@@ -13,8 +13,11 @@ module.exports =  {
         partner_detail: "partner_detail",
         person_detail: "person_detail",
         contact_detail: "contact_detail"
+        activities: "activities",
+        activity: "activity"
     },
     LocalStorageKeys: { 
+        activities: "activities",
         favorites: "favorites" ,
         partnerdata: "partnerdata",
         partnerTypes: "partnerTypes",

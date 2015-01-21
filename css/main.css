@@ -1,3 +1,12 @@
+html, body{
+    font-family: Helvetica,Arial,sans-serif; 
+}
+
+a:hover{
+    cursor: pointer;
+    cursor: hand;
+}
+
 .navbar-form{
  color:#fff;   
 }
@@ -37,7 +46,43 @@
 .contact-detail > div > .panel-title{
 }
 
-a:hover{
-    cursor: pointer;
-    cursor: hand;
+.hide-on-small{
+    display: none !important;
+}
+
+@media (min-width: 768px) {
+    .hide-on-small{
+        display: inherit !important;
+    }
+}
+
+.hide-on-large{
+   display: inherit !important;
+}
+
+@media (min-width: 768px) {
+    .hide-on-large{
+        display: none !important;
+    }
+}
+
+.list-heading{
+    background-color: #A0A0A0;
+}
+
+.partnertype-list-item{
+    text-align: right;
+}
+
+.firm-list-item{
+    text-align: right;
+}
+
+.mobile-header{
+    text-align: center;
+    width: calc(100% - 159px);
+}
+
+.navbar-nav{
+    float:right;   
 }

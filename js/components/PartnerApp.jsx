@@ -1,6 +1,7 @@
 var React = require("react");
 var Reflux = require("reflux");
 var _ = require("underscore");
+var store = require("store.js");
 
 jQuery = require("jquery"); // bootstrap needs jQuery variable to be set
 var $ = jQuery;
@@ -8,10 +9,9 @@ require("bootstrap");
 
 var Spinner = require("react-spinner");
 
-var store = require("store.js");
-
 var MenuActions = require("../actions/MenuActions");
 var AuthActions = require("../actions/AuthActions");
+var BackendActions = require("../actions/BackendActions");
 
 var MenuStore = require("../stores/MenuStore");
 var AuthStore = require("../stores/AuthStore");
@@ -23,6 +23,8 @@ var Login = require("./Login.jsx");
 var FavoriteView = require("./FavoriteView.jsx");
 var ContactDetailView = require("./ContactDetailView.jsx");
 var PartnerDetailView = require("./PartnerDetailView.jsx");
+var ActivityListView = require("./ActivityListView.jsx");
+var ActivityDetailView = require("./ActivityDetailView.jsx");
 
 var Constants = require("../utils/partner-constants");
 
@@ -59,6 +61,9 @@ module.exports =
                         AuthActions.logOut();      
                     }
                     break;
+                case Constants.MenuItems.activities:
+                    routie("activities");
+                    break;
                  default:
                     console.error("Invalid menuItem");
             }
@@ -72,10 +77,14 @@ module.exports =
                 nav.app.backHistory ){
                 nav.app.backHistory();
             } else {
-                //history.go(-1);
                 window.history.back();
             }
         },
+        
+        synchronize: function(){
+            BackendActions.synchronizeData();
+        },
+        
         render: function () {
             var content, title;
             var loginResult = this.state.loginResult;
@@ -140,7 +149,14 @@ module.exports =
                         var contactId = this.state.menuItem.id;
                         content = <ContactDetailView id={contactId} />
                         break;
-
+                    case Constants.MenuItems.activities:
+                        title = "Aktiviteter";
+                        content = <ActivityListView />;
+                        break;
+                    case Constants.MenuItems.activity:
+                        title = "Aktivitet";
+                        content = <ActivityDetailView id={this.state.menuItem.id} />;
+                        break;
                 }
                 // hack to ensure scrolling to top of page
                 $(window).scrollTop(0);
@@ -149,7 +165,9 @@ module.exports =
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container-fluid">
                         <div className="navbar-header"> 
-                            <a className="navbar-brand" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>
+                            <a className="navbar-brand btn" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>
+                            <a className="navbar-brand mobile-header hide-on-large"><strong>{title}</strong></a>
+                            <a className="navbar-brand btn btn-sync hide-on-large" onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i></a>
                             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu">
                                 <span className="sr-only">Toggle navigation</span>
                                 <span className="icon-bar"></span>
@@ -159,24 +177,29 @@ module.exports =
                         </div>
                         <div className="collapse navbar-collapse" id="nav-menu">
                             <ul className="nav navbar-nav">
-                                <li><a href="#">{title}</a></li>
                                 <li id={Constants.MenuItems.home} className="active">
-                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>
                                         <span className="glyphicon glyphicon-search" /> &nbsp;&nbsp;Søk
                                     </a>
                                 </li>
                                 <li id={Constants.MenuItems.partnerlist}>
-                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)}>
                                         <span className="glyphicon glyphicon-briefcase" />&nbsp;&nbsp;Partnerliste
                                     </a>
                                 </li>
                                 <li id={Constants.MenuItems.favorites}>
-                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favorites)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favorites)}>
                                         <span className="glyphicon glyphicon-star" />&nbsp;&nbsp;Favoritter
                                     </a>
                                 </li>
+                                <li id={Constants.MenuItems.activities}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.activities)}>
+                                        <span className="glyphicon glyphicon-calendar" />&nbsp;&nbsp;Aktiviteter
+                                    </a>
+                                </li>
+                                <li className="hide-on-small"><a onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Oppdater</a></li>
                                 <li id={Constants.MenuItems.login}>
-                                    <a href="#" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)}>
                                     {loginText}
                                     </a>
                                 </li>

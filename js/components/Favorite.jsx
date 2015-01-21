@@ -50,23 +50,19 @@ module.exports = React.createClass({
         var favorites = this.state.favorites || [];
         var favorite = { id: this.props.id, note: note };
         ContactActions.setFavorites(_.union(favorites, [favorite]));
-        // force update
-        ContactActions.getFavorites();
         this.setState({
           isModalOpen: !this.state.isModalOpen
         });
     },
     
     removeFavorite: function(){
-        var that = this;
+        var favoriteId = this.props.id;
         var favorites = this.state.favorites || [];
         
         ContactActions.setFavorites(_.without(favorites, _.find(favorites, function(f){ 
-                return f.id == that.props.id
+                return f.id == favoriteId;
             })
         ));
-        // force update
-        ContactActions.getFavorites();
     },
     
     showModal: function () {
