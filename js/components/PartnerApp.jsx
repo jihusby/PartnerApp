@@ -82,7 +82,7 @@ module.exports =
         },
         
         synchronize: function(){
-            BackendActions.synchronizeData();
+            BackendActions.synchronizeData(true);
         },
         
         render: function () {
