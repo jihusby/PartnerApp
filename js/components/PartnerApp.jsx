@@ -44,6 +44,9 @@ module.exports =
         },
 
         handleMenuSelect: function(menuEvent) {
+            if(this.state.rbkData.isUpdating){
+                return;   
+            }
             $('#nav-menu').collapse('hide');
             switch(menuEvent){
                 case Constants.MenuItems.home:
@@ -161,10 +164,13 @@ module.exports =
                 $(window).scrollTop(0);
             }
                 var spinIcon;
+                var additionalClasses ="";
                 if(this.state.rbkData.isUpdating){
-                    spinIcon = (<a><i className="glyphicon glyphicon-refresh spin"></i>&nbsp;&nbsp;Oppdaterer</a>);
+                    spinIcon = (<a className="disabled"><i className="glyphicon glyphicon-refresh spin"></i>&nbsp;&nbsp;Oppdaterer</a>);
+                    additionalClasses = "disabled";
                 } else {
                     spinIcon = (<a onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Oppdater</a>);
+                    additionalClasses = "";
                 }
             var navbar = (
                 <nav className="navbar navbar-inverse navbar-fixed-top">
@@ -183,28 +189,28 @@ module.exports =
                         <div className="collapse navbar-collapse" id="nav-menu">
                             <ul className="nav navbar-nav">
                                 <li id={Constants.MenuItems.home} className="active">
-                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)} className={additionalClasses}>
                                         <span className="glyphicon glyphicon-search" /> &nbsp;&nbsp;Søk
                                     </a>
                                 </li>
                                 <li id={Constants.MenuItems.partnerlist}>
-                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)} className={additionalClasses}>
                                         <span className="glyphicon glyphicon-briefcase" />&nbsp;&nbsp;Partnerliste
                                     </a>
                                 </li>
                                 <li id={Constants.MenuItems.favorites}>
-                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favorites)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favorites)} className={additionalClasses}>
                                         <span className="glyphicon glyphicon-star" />&nbsp;&nbsp;Favoritter
                                     </a>
                                 </li>
                                 <li id={Constants.MenuItems.activities}>
-                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.activities)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.activities)} className={additionalClasses}>
                                         <span className="glyphicon glyphicon-calendar" />&nbsp;&nbsp;Aktiviteter
                                     </a>
                                 </li>
                                 <li className="hide-on-small">{spinIcon}</li>
                                 <li id={Constants.MenuItems.login}>
-                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)} className={additionalClasses}>
                                     {loginText}
                                     </a>
                                 </li>

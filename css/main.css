@@ -7,6 +7,10 @@ a:hover{
     cursor: hand;
 }
 
+a.disabled:hover{
+    cursor: wait;
+}
+
 .spin {
   -webkit-animation: spin .8s infinite linear;
   -moz-animation: spin .8s infinite linear;
@@ -94,6 +98,10 @@ a:hover{
 
 .navbar-nav{
     float:right;   
+}
+
+.disabled{
+   color: #606060 !important;
 }
 
 @-moz-keyframes spin {
