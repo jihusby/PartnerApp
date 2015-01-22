@@ -5,7 +5,7 @@ module.exports =  {
         login: "http://godfotenrestapi.azurewebsites.net/api/login",
         partnerTypes: "http://godfotenrestapi.azurewebsites.net/api/partnertypes",
         image: "http://godfoten.rbk.no/media/",
-        active: "http://godfotenrestapi.azurewebsites.net/api/person/aktiv"
+        active: "http://godfotenrestapi.azurewebsites.net/api/persons/active"
     },
     MenuItems: {
         home: "home", 

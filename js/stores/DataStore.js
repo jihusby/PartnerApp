@@ -40,8 +40,8 @@ module.exports = Reflux.createStore({
     getDataFromBackend: function(callback, forceUpdate) {
         var that = this;
         if(store.get("bearer_token")){
-            //var isActive = this.checkIfActive();
-            //console.log("Is activce: " + isActive);
+            var isActive = this.checkIfActive();
+            console.log("Is activce: " + isActive);
             // check if user is active, once per day
             // if active, get data
             // if not, delete data and send user to a not active screen
@@ -116,18 +116,23 @@ module.exports = Reflux.createStore({
     },
     
     checkIfActive: function(){
-        var that = this;
-        $.ajax({
-            type: "POST",
-            url: Constants.URLS.active,
-            data: store.get(Constants.LocalStorageKeys.uid),
-            success: function (data) {
-                return data;
-            },
-            error: function(errorMsg) {
-                
-            }
-        });   
+        if(store.get("bearer_token")){
+            var that = this;
+            $.ajax({
+                type: "POST",
+                url: Constants.URLS.active,
+                beforeSend: function(request) {
+                    request.setRequestHeader("Authorize", store.get("bearer_token"));
+                },
+                success: function (data) {
+                    console.log("Success");
+                    return data;
+                },
+                error: function(errorMsg) {
+                    console.log("Error: " + errorMsg);
+                }
+            });
+        }
     },
     
     getDataFromLocalStorage: function(){
