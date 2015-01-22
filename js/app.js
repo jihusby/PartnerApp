@@ -7,8 +7,6 @@ var fastclick = require("fastclick");
 
 fastclick(document.body);
 
-var Main = require('./components/Main.jsx');
-
 document.addEventListener('deviceready', function() {
     StatusBar.overlaysWebView(false);
     StatusBar.styleBlackOpaque();
