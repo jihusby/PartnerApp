@@ -15,6 +15,7 @@ var BackendActions = require("../actions/BackendActions");
 
 var MenuStore = require("../stores/MenuStore");
 var AuthStore = require("../stores/AuthStore");
+var DataStore = require("../stores/DataStore");
 
 var PartnerSearchView = require("./PartnerSearchView.jsx");
 var PartnerListView = require(".//PartnerListView.jsx");
@@ -32,7 +33,7 @@ module.exports =
 
     React.createClass({
 
-        mixins: [Reflux.connect(MenuStore,"menuItem"),Reflux.connect(AuthStore,"loginResult")],
+        mixins: [Reflux.connect(MenuStore,"menuItem"),Reflux.connect(AuthStore,"loginResult"), Reflux.connect(DataStore, "rbkData")],
 
         getInitialState: function() {
             return {loginResult: AuthStore.getDefaultData()};
@@ -82,6 +83,7 @@ module.exports =
         },
         
         synchronize: function(){
+            this.setState({ rbkData: {isUpdating: true}});
             BackendActions.synchronizeData(true);
         },
         
@@ -158,6 +160,12 @@ module.exports =
                 // hack to ensure scrolling to top of page
                 $(window).scrollTop(0);
             }
+                var spinIcon;
+                if(this.state.rbkData.isUpdating){
+                    spinIcon = (<a><i className="glyphicon glyphicon-refresh spin"></i>&nbsp;&nbsp;Oppdaterer</a>);
+                } else {
+                    spinIcon = (<a onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Oppdater</a>);
+                }
             var navbar = (
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container-fluid">
@@ -194,7 +202,7 @@ module.exports =
                                         <span className="glyphicon glyphicon-calendar" />&nbsp;&nbsp;Aktiviteter
                                     </a>
                                 </li>
-                                <li className="hide-on-small"><a onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Oppdater</a></li>
+                                <li className="hide-on-small">{spinIcon}</li>
                                 <li id={Constants.MenuItems.login}>
                                     <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)}>
                                     {loginText}

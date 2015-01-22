@@ -29,7 +29,7 @@ module.exports = Reflux.createStore({
     getInitialState: function () {
         console.log("React Component is connecting...")
         this.getDataFromBackend(this.updateData, false);
-        return [];
+        return { isUpdating: false};
     },
 
     updateData: function(data) {
@@ -93,7 +93,8 @@ module.exports = Reflux.createStore({
                             partners: partners, 
                             persons: persons, 
                             partnerTypes: partnerTypes,
-                            activities: activities
+                            activities: activities,
+                            isUpdating: false
                         };
                         console.log("Data updated from server");
                         callback(data);
@@ -101,7 +102,7 @@ module.exports = Reflux.createStore({
                     error: function(xhr, status, err) {
                         if (xhr.status === 401){
                             AuthActions.logOut();
-                            callback({});
+                            callback({ isUpdating: false});
                         }
                         
                         this.getDataFromLocalStorage(callback);
@@ -139,7 +140,8 @@ module.exports = Reflux.createStore({
             partners: partners, 
             persons: persons, 
             partnerTypes: partnerTypes,
-            activities: activities
+            activities: activities,
+            isUpdating: false
         };
         return data;
     }
