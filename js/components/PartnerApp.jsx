@@ -163,20 +163,22 @@ module.exports =
                 // hack to ensure scrolling to top of page
                 $(window).scrollTop(0);
             }
-                var spinIcon;
+                var spinIcon, mobileSpinIcon;
                 var additionalClasses ="";
                 if(this.state.rbkData.isUpdating){
                     spinIcon = (<a className="disabled"><i className="glyphicon glyphicon-refresh spin"></i>&nbsp;&nbsp;Oppdaterer</a>);
+                    mobileSpinIcon = (<a className="disabled hide-on-large"><i className="glyphicon glyphicon-refresh spin"></i></a>);
                     additionalClasses = "disabled";
                 } else {
                     spinIcon = (<a onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Oppdater</a>);
+                    mobileSpinIcon = (<a onClick={this.synchronize} className="hide-on-large"><i className="glyphicon glyphicon-refresh"></i></a>);
                     additionalClasses = "";
                 }
             var navbar = (
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container-fluid">
                         <div className="navbar-header"> 
-                            <a className="navbar-brand btn" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>
+                            <a className="navbar-brand btn {additionalClasses}" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>
                             <a className="navbar-brand mobile-header hide-on-large"><strong>{title}</strong></a>
                             <a className="navbar-brand btn btn-sync hide-on-large" onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i></a>
                             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu">
