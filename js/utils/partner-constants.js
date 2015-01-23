@@ -26,7 +26,8 @@ module.exports =  {
         uid: "uid",
         bearer_token: "bearer_token",
         name: "name",
-        last_refresh_date: "last_refresh_date"
+        last_refresh_date: "last_refresh_date",
+        last_active_check: "last_active_check"
     },
     SessionStorageKeys: {
        

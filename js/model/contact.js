@@ -4,17 +4,12 @@ function Contact(json) {
     this.firstName = json.firstName;
     this.lastName = json.lastName;
     this.position = json.position;
-    this.partner = {};
     this.partnerId = json.partnerId;
 }
 
 Contact.prototype = {
 
     constructor: Contact,
-
-    setPartner: function(partner) {
-        this.partner = partner;
-    },
 
     toString: function(){
         return this.id + " " + this.firstName + " " + this.lastName + " " + this.position;

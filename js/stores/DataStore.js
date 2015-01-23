@@ -7,8 +7,8 @@ var moment = require("moment");
 var store = require("store.js");
 
 var BackendActions = require("../actions/BackendActions");
-
 var AuthActions = require("../actions/AuthActions");
+var MenuActions = require("../actions/MenuActions");
 
 var Partner = require("../model/partner");
 var Contact = require("../model/contact");
@@ -40,114 +40,132 @@ module.exports = Reflux.createStore({
     getDataFromBackend: function(callback, forceUpdate) {
         var that = this;
         if(store.get("bearer_token")){
-            var isActive = this.checkIfActive();
-            console.log("Is activce: " + isActive);
             // check if user is active, once per day
-            // if active, get data
-            // if not, delete data and send user to a not active screen
-            var refreshDate = store.get(Constants.LocalStorageKeys.last_refresh_date);
+            this.checkIfActive(function(isActive){ 
+                if(isActive){ // if active, get data
+                    var refreshDate = store.get(Constants.LocalStorageKeys.last_refresh_date);
 
-            if(!forceUpdate && refreshDate && moment(refreshDate).add(1, "days").diff(moment()) > 0){ // data is fresh, get from localstorage
-                setTimeout(function(){ // hack
-                    callback(that.getDataFromLocalStorage());
-                }, 10);
-                console.log("Data updated from localstorage");
-            } else{
-                console.log("Fetching data from server");
-                $.ajax({
-                    url: Constants.URLS.search,
-                    dataType: 'json',
-                    beforeSend: function(request) {
-                        request.setRequestHeader("Authorize", store.get("bearer_token"));
-                    },
-                    success: function(json) {
-                        var partnerTypes = _.filter(json.partnerTypes.partnerTypes, function(partnerType)                         {
-                            return partnerType.name !== "VIP-Kunde";
-                        });
-                        
-                        var persons = _.map(_.sortBy(json.persons, function(person) {
-                            return [person.lastName, person.firstName].join("_");
-                        }), function(person){
-                            return new Contact(person);
-                        });
-                        
-                        var partners = _.map(_.sortBy(_.filter(json.partners, function(partner){ 
-                            return partner.partnerType !== "VIP-Kunde";
-                        }), "name"), function(p){
-                            var partner = new Partner(p);
-                            partner.setContacts(
-                                _.filter(persons, function(person){ 
-                                    return person.partnerId == partner.id;
-                                })
-                            );
-                            return partner;
-                        });
-
-                        store.set(Constants.LocalStorageKeys.partnerdata, partners);
-                        store.set(Constants.LocalStorageKeys.persons, persons);
-                        store.set(Constants.LocalStorageKeys.partnerTypes, partnerTypes);
-                        store.set(Constants.LocalStorageKeys.activities, json.activities);
-                        store.set(Constants.LocalStorageKeys.last_refresh_date, moment());
-                        
-                        var data = {
-                            partners: partners, 
-                            persons: persons, 
-                            partnerTypes: partnerTypes,
-                            activities: activities,
-                            isUpdating: false
-                        };
-                        console.log("Data updated from server");
-                        callback(data);
-                    },
-                    error: function(xhr, status, err) {
-                        if (xhr.status === 401){
-                            AuthActions.logOut();
-                            callback({ isUpdating: false});
-                        }
-                        
-                        this.getDataFromLocalStorage(callback);
+                    if(!forceUpdate && that.aDayHasPassed(refreshDate)){ // data is fresh, get from localstorage
+                        setTimeout(function(){ // hack
+                            callback(that.getDataFromLocalStorage());
+                        }, 10);
+                        console.log("Data updated from localstorage");
+                    } else{
+                        console.log("Fetching data from server");
+                        that.getDataFromServer(callback);
                     }
-                });
-            }
+                } else { // if not, delete data and send user to a not active screen
+                    that.invalidateUser();
+                }
+            });
         } else {
             // user is not logged in, return
             return;   
         }
     },
     
-    checkIfActive: function(){
+    invalidateUser: function(){
+        store.clear();
+        MenuActions.search();
+    },
+    
+    checkIfActive: function(callback){
         if(store.get("bearer_token")){
-            var that = this;
-            $.ajax({
-                type: "POST",
-                url: Constants.URLS.active,
-                beforeSend: function(request) {
-                    request.setRequestHeader("Authorize", store.get("bearer_token"));
-                },
-                success: function (data) {
-                    console.log("Success");
-                    return data;
-                },
-                error: function(errorMsg) {
-                    console.log("Error: " + errorMsg);
-                }
-            });
+            var lastActiveCheck = store.get(Constants.LocalStorageKeys.last_active_check);
+            if(this.aDayHasPassed(lastActiveCheck)){
+                $.ajax({
+                    type: "GET",
+                    url: Constants.URLS.active,
+                    beforeSend: function(request) {
+                        request.setRequestHeader("Authorize", store.get("bearer_token"));
+                    },
+                    success: function (data) {
+                        console.log("Success: " + JSON.stringify(data));
+                        store.set(Constants.LocalStorageKeys.last_active_check, moment());
+                        callback(data.active);
+                    },
+                    error: function(errorMsg) {
+                        console.log("Error: " + errorMsg);
+                        callback(false);
+                    }
+                });
+            } else {
+                callback(true);   
+            }
+        } else {
+            callback(false);   
         }
     },
     
+    aDayHasPassed: function(date){
+        return date && moment(date).add(1, "days").diff(moment()) > 0;
+    },
+    
     getDataFromLocalStorage: function(){
-        console.log("Fetching data from local storage: " + store.get(Constants.LocalStorageKeys.last_refresh_date));
-        var partners = store.get(Constants.LocalStorageKeys.partnerdata);
-        var persons = store.get(Constants.LocalStorageKeys.persons);
-        var partnerTypes = store.get(Constants.LocalStorageKeys.partnerTypes);
-        var activities = store.get(Constants.LocalStorageKeys.activities);
         var data = {
-            partners: partners, 
-            persons: persons, 
-            partnerTypes: partnerTypes,
-            activities: activities,
+            partners: store.get(Constants.LocalStorageKeys.partnerdata), 
+            persons: store.get(Constants.LocalStorageKeys.persons), 
+            partnerTypes: store.get(Constants.LocalStorageKeys.partnerTypes),
+            activities: store.get(Constants.LocalStorageKeys.activities),
             isUpdating: false
         };
         return data;
+    },
+    
+    getDataFromServer: function(callback){
+        $.ajax({
+            url: Constants.URLS.search,
+            dataType: 'json',
+            beforeSend: function(request) {
+                request.setRequestHeader("Authorize", store.get("bearer_token"));
+            },
+            success: function(json) {
+                var partnerTypes = _.filter(json.partnerTypes.partnerTypes, function(partnerType)                         {
+                    return partnerType.name !== "VIP-Kunde";
+                });
+
+                var persons = _.map(_.sortBy(json.persons, function(person) {
+                    return [person.lastName, person.firstName].join("_");
+                }), function(person){
+                    return new Contact(person);
+                });
+
+                var partners = _.map(_.sortBy(_.filter(json.partners, function(partner){ 
+                    return partner.partnerType !== "VIP-Kunde";
+                }), "name"), function(p){
+                    var partner = new Partner(p);
+                    partner.setContacts(
+                        _.filter(persons, function(person){ 
+                            return person.partnerId == partner.id;
+                        })
+                    );
+                    return partner;
+                });
+
+                store.set(Constants.LocalStorageKeys.partnerdata, partners);
+                store.set(Constants.LocalStorageKeys.persons, persons);
+                store.set(Constants.LocalStorageKeys.partnerTypes, partnerTypes);
+                store.set(Constants.LocalStorageKeys.activities, json.activities);
+                store.set(Constants.LocalStorageKeys.last_refresh_date, moment());
+
+                var data = {
+                    partners: partners, 
+                    persons: persons, 
+                    partnerTypes: partnerTypes,
+                    activities: activities,
+                    isUpdating: false
+                };
+                console.log("Data updated from server");
+                callback(data);
+            },
+            error: function(xhr, status, err) {
+                if (xhr.status === 401){
+                    AuthActions.logOut();
+                    callback({ isUpdating: false });
+                }
+
+                this.getDataFromLocalStorage(callback);
+            }
+        });
     }
 });
