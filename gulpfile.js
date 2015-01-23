@@ -7,7 +7,7 @@ var shell = require('gulp-shell');
 var runSequence = require('run-sequence');
 
 var paths = {
-    js: ['js/*.js', 'js/stores/*.js', 'js/actions/*.js', 'js/components/*.jsx', 'js/utils/*.js']
+    js: ['js/*.js', 'js/stores/*.js', 'js/actions/*.js', 'js/model/*.js', 'js/components/*.jsx', 'js/utils/*.js']
 };
 gulp.task('install', function(){
     gulp.src(['./package.json']).pipe(install());
