@@ -167,11 +167,9 @@ module.exports =
                 var additionalClasses ="";
                 if(this.state.rbkData.isUpdating){
                     spinIcon = (<a className="disabled"><i className="glyphicon glyphicon-refresh spin"></i>&nbsp;&nbsp;Oppdaterer</a>);
-                    mobileSpinIcon = (<a className="navbar-brand btn btn-sync hide-on-large disabled"><i className="glyphicon glyphicon-refresh spin"></i></a>);
                     additionalClasses = "disabled";
                 } else {
                     spinIcon = (<a onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Oppdater</a>);
-                    mobileSpinIcon = (<a onClick={this.synchronize} className="navbar-brand btn btn-sync hide-on-large"><i className="glyphicon glyphicon-refresh"></i></a>);
                     additionalClasses = "";
                 }
             var navbar = (
@@ -180,7 +178,6 @@ module.exports =
                         <div className="navbar-header"> 
                             <a className="navbar-brand btn {additionalClasses}" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>
                             <a className="navbar-brand mobile-header hide-on-large"><strong>{title}</strong></a>
-                            {mobileSpinIcon}
                             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu">
                                 <span className="sr-only">Toggle navigation</span>
                                 <span className="icon-bar"></span>
@@ -210,7 +207,7 @@ module.exports =
                                         <span className="glyphicon glyphicon-calendar" />&nbsp;&nbsp;Aktiviteter
                                     </a>
                                 </li>
-                                <li className="hide-on-small">{spinIcon}</li>
+                                <li>{spinIcon}</li>
                                 <li id={Constants.MenuItems.login}>
                                     <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)} className={additionalClasses}>
                                     {loginText}
