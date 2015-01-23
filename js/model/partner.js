@@ -20,10 +20,6 @@ Partner.prototype = {
 
     setContacts: function(contacts) {
         this.contacts  = contacts;
-        //var partner = this;
-        //this.contacts.forEach(function(contact){
-        //   contact.setPartner(partner)
-        //});
     },
 
 

@@ -5,6 +5,7 @@ function Contact(json) {
     this.lastName = json.lastName;
     this.position = json.position;
     this.partner = {};
+    this.partnerId = json.partnerId;
 }
 
 Contact.prototype = {

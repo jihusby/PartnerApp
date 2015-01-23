@@ -70,7 +70,7 @@ module.exports = Reflux.createStore({
                         }), function(person){
                             return new Contact(person);
                         });
-
+                        
                         var partners = _.map(_.sortBy(_.filter(json.partners, function(partner){ 
                             return partner.partnerType !== "VIP-Kunde";
                         }), "name"), function(p){

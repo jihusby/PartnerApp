@@ -22,6 +22,7 @@ module.exports =  {
         favorites: "favorites" ,
         partnerdata: "partnerdata",
         partnerTypes: "partnerTypes",
+        persons: "persons",
         uid: "uid",
         bearer_token: "bearer_token",
         name: "name",

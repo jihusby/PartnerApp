@@ -26,11 +26,11 @@ module.exports = React.createClass({
             );
         }
         var content = "";    
-        var key = Constants.LocalStorageKeys.partnerdata;
-        var data = store.get(key);
+        var partners = store.get(Constants.LocalStorageKeys.partnerdata);
+        var persons = store.get(Constants.LocalStorageKeys.persons);
         var id = this.props.id;
-        var contact = _.find(data.persons, function(person){ return person.id == id; });
-        var partner = _.find(data.partners, function(partner){ return partner.id == contact.partnerId; });
+        var contact = _.find(persons, function(person){ return person.id == id; });
+        var partner = _.find(partners, function(partner){ return partner.id == contact.partnerId; });
         contact.partnerName = partner.name;
         var mailTo = "mailto:" + contact.email;
         var showPhone = !!contact.mobile;
