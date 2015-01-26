@@ -12,6 +12,10 @@ a.disabled:hover{
     cursor: wait;
 }
 
+address{
+    line-height: 1.875em;
+}
+
 .helper{
     display: inline-block;
     height: 100%;
