@@ -10,6 +10,7 @@ function Partner(partnerJson) {
     this.phone = partnerJson.phone;
     this.webSite = partnerJson.webSite;
     this.partnerType = partnerJson.partnerType;
+    this.logo = partnerJson.logo;
     this.contacts = [];
 }
 

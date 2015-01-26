@@ -2,6 +2,7 @@ var React = require("react");
 var _ = require("underscore");
 var Favorite = require("./Favorite.jsx");
 var ContactBox = require("./ContactBox.jsx");
+var Constants = require("../utils/partner-constants.js");
 
 module.exports = React.createClass({
 
@@ -18,12 +19,21 @@ render: function () {
     
     var proffLink = "http://www.proff.no/bransjesøk?q=" + partner.name;
     var mapLink = this.buildMapLink(partner.address, partner.zipCode, partner.city);
-
+    var logoSrc = Constants.URLS.partnerLogos + partner.logo;
     var i = 0;
     
-    return (
+    return (        
         <div>
-            <h3>{partner.name}{" "} <small>{partner.partnerType}</small></h3>
+            <div className="media">
+                <div className="media-left">
+                    <span className="helper"></span>
+                    <img className="media-object" src={logoSrc} />
+                </div>
+                <div className="media-body">
+                    <h3>{partner.name}</h3>
+                    <small>{partner.partnerType}</small>
+                </div>
+            </div>
             <address>
             {address}
             <strong>Kontakt</strong><br/>

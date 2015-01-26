@@ -1,5 +1,6 @@
 html, body{
-    font-family: Helvetica,Arial,sans-serif; 
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 1.125em;
 }
 
 a:hover{
@@ -9,6 +10,26 @@ a:hover{
 
 a.disabled:hover{
     cursor: wait;
+}
+
+.helper{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.list-group-item-text{
+    font-size: 0.875em;
+}
+
+.media-left{
+    white-space: nowrap;    
+    text-align: center; margin: 1em 0;    
+}
+.media-object{
+    vertical-align: middle;
+    width:  75px;
+    height: auto;   
 }
 
 .spin {
