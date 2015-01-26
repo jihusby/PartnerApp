@@ -12,14 +12,8 @@ module.exports = React.createClass({
         return (
             <a className="list-group-item" onClick={this.onClickActivity.bind(this, activity.id)}>
                 <h4 className="list-group-item-heading">{activity.titleShort}</h4>
-                <div className="row">
-                    <div className="col-xs-6">
-                        <p className="list-group-item-text">{dateString}</p>   
-                    </div>
-                    <div className="col-xs-6">
-                        <p className="list-group-item-text firm-list-item">{activity.location}</p>
-                    </div>
-                </div>
+                <small><p className="list-group-item-text">{dateString}</p></small>
+                <p className="list-group-item-text">{activity.location}</p>
             </a>
         );
     }
