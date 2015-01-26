@@ -14,10 +14,14 @@ module.exports = React.createClass({
         var endDate ="";
         var date = "";
         var dateFormat = "DD.MM YYYY HH.mm";
+        var strippedDateFormat = "HH.mm"
         if(activity.startDate){
+            var startDay = moment(activity.startDate).dayOfYear();
             date = moment(activity.startDate).format(dateFormat);
             if(activity.endDate){
-                date = date + " - " + moment(activity.endDate).format(dateFormat);
+                var endDay = moment(activity.endDate).dayOfYear();
+                var format = startDay - endDay === 0 ? strippedDateFormat : dateFormat;
+                date = date + " - " + moment(activity.endDate).format(format);
             }
         }
         return (
