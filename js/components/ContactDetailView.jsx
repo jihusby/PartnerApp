@@ -22,7 +22,6 @@ module.exports = React.createClass({
 render: function () {
     var contact = LocalStorageUtils.findContact(this.props.id);
     var partner = LocalStorageUtils.findPartner(contact.partnerId);
-
     var name = [contact.firstName, contact.lastName].join(" ");
     var position = this.buildPosition(contact.position);
     var phone = this.buildPhone(contact.phone);
