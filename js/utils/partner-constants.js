@@ -4,7 +4,8 @@ module.exports =  {
         search: "http://godfotenrestapi.azurewebsites.net/api/search",
         login: "http://godfotenrestapi.azurewebsites.net/api/login",
         partnerTypes: "http://godfotenrestapi.azurewebsites.net/api/partnertypes",
-        imageUrl: "http://godfoten.rbk.no/media/"
+        image: "http://godfoten.rbk.no/media/",
+        active: "http://godfotenrestapi.azurewebsites.net/api/persons/active"
     },
     MenuItems: {
         home: "home", 
@@ -22,10 +23,12 @@ module.exports =  {
         favorites: "favorites" ,
         partnerdata: "partnerdata",
         partnerTypes: "partnerTypes",
+        persons: "persons",
         uid: "uid",
         bearer_token: "bearer_token",
         name: "name",
-        last_refresh_date: "last_refresh_date"
+        last_refresh_date: "last_refresh_date",
+        last_active_check: "last_active_check"
     },
     SessionStorageKeys: {
        

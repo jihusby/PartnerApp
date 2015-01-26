@@ -29,7 +29,7 @@ render: function () {
             <strong>Kontakt</strong><br/>
                 {phone}
                 {mailTo}
-                <i className="glyphicon glyphicon-info-sign"></i> <a href={proffLink}>{partner.name} hos proff.no</a><br/>
+                <i className="glyphicon glyphicon-info-sign"></i> <a onClick={this.openExtrernalLink.bind(this, proffLink)}>{partner.name} hos proff.no</a><br/>
                 {website}
                 {mapLink}                
             </address>
@@ -41,6 +41,10 @@ render: function () {
                 }
         </div>
     )},
+    
+    openExtrernalLink: function(link){
+        window.open(link, '_system');
+    },
     
     buildAddress: function(address, zipCode, city){
         if(address && address.length > 0){
@@ -62,7 +66,7 @@ render: function () {
             var websiteLink = hasHttp ? website : "http://" + website;
             return (
             <span>
-                <i className="glyphicon glyphicon-globe"></i> <a href={websiteLink}>{websiteLink}</a><br/>
+                <i className="glyphicon glyphicon-globe"></i> <a onClick={this.openExtrernalLink.bind(this, websiteLink)}>{websiteLink}</a><br/>
                 </span>
             );
         } else {
@@ -101,7 +105,7 @@ render: function () {
             var mapLink = "http://maps.google.com/maps?q=" + encodeURIComponent(address + ", " + zipCode + ", " + city + ", " + "norway");
             return (
             <span>
-                <i className="glyphicon glyphicon-map-marker"></i> <a href={mapLink}>Åpne i kart</a><br/>             </span>
+                <i className="glyphicon glyphicon-map-marker"></i> <a onClick={this.openExtrernalLink.bind(this, mapLink)}>Åpne i kart</a><br/>             </span>
             );
         } else {
             return ("");

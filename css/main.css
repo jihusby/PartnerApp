@@ -7,6 +7,19 @@ a:hover{
     cursor: hand;
 }
 
+a.disabled:hover{
+    cursor: wait;
+}
+
+.spin {
+  -webkit-animation: spin .8s infinite linear;
+  -moz-animation: spin .8s infinite linear;
+  -o-animation: spin .8s infinite linear;
+  animation: spin .8s infinite linear;
+     -webkit-transform-origin: 50% 50%;
+         transform-origin:50% 50%;
+         -ms-transform-origin:50% 50%; /* IE 9 */
+}
 .navbar-form{
  color:#fff;   
 }
@@ -85,4 +98,35 @@ a:hover{
 
 .navbar-nav{
     float:right;   
+}
+
+.disabled{
+   color: #606060 !important;
+}
+
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -15,6 +15,7 @@ var BackendActions = require("../actions/BackendActions");
 
 var MenuStore = require("../stores/MenuStore");
 var AuthStore = require("../stores/AuthStore");
+var DataStore = require("../stores/DataStore");
 
 var PartnerSearchView = require("./PartnerSearchView.jsx");
 var PartnerListView = require(".//PartnerListView.jsx");
@@ -32,7 +33,7 @@ module.exports =
 
     React.createClass({
 
-        mixins: [Reflux.connect(MenuStore,"menuItem"),Reflux.connect(AuthStore,"loginResult")],
+        mixins: [Reflux.connect(MenuStore,"menuItem"),Reflux.connect(AuthStore,"loginResult"), Reflux.connect(DataStore, "rbkData")],
 
         getInitialState: function() {
             return {loginResult: AuthStore.getDefaultData()};
@@ -43,6 +44,9 @@ module.exports =
         },
 
         handleMenuSelect: function(menuEvent) {
+            if(this.state.rbkData.isUpdating){
+                return;   
+            }
             $('#nav-menu').collapse('hide');
             switch(menuEvent){
                 case Constants.MenuItems.home:
@@ -82,6 +86,7 @@ module.exports =
         },
         
         synchronize: function(){
+            this.setState({ rbkData: {isUpdating: true}});
             BackendActions.synchronizeData(true);
         },
         
@@ -161,13 +166,21 @@ module.exports =
                 // hack to ensure scrolling to top of page
                 $(window).scrollTop(0);
             }
+                var spinIcon, mobileSpinIcon;
+                var additionalClasses ="";
+                if(this.state.rbkData.isUpdating){
+                    spinIcon = (<a className="disabled"><i className="glyphicon glyphicon-refresh spin"></i>&nbsp;&nbsp;Oppdaterer</a>);
+                    additionalClasses = "disabled";
+                } else {
+                    spinIcon = (<a onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Oppdater</a>);
+                    additionalClasses = "";
+                }
             var navbar = (
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container-fluid">
                         <div className="navbar-header"> 
-                            <a className="navbar-brand btn" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>
+                            <a className="navbar-brand btn {additionalClasses}" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>
                             <a className="navbar-brand mobile-header hide-on-large"><strong>{title}</strong></a>
-                            <a className="navbar-brand btn btn-sync hide-on-large" onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i></a>
                             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu">
                                 <span className="sr-only">Toggle navigation</span>
                                 <span className="icon-bar"></span>
@@ -178,28 +191,28 @@ module.exports =
                         <div className="collapse navbar-collapse" id="nav-menu">
                             <ul className="nav navbar-nav">
                                 <li id={Constants.MenuItems.home} className="active">
-                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)} className={additionalClasses}>
                                         <span className="glyphicon glyphicon-search" /> &nbsp;&nbsp;Søk
                                     </a>
                                 </li>
                                 <li id={Constants.MenuItems.partnerlist}>
-                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)} className={additionalClasses}>
                                         <span className="glyphicon glyphicon-briefcase" />&nbsp;&nbsp;Partnerliste
                                     </a>
                                 </li>
                                 <li id={Constants.MenuItems.favorites}>
-                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favorites)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favorites)} className={additionalClasses}>
                                         <span className="glyphicon glyphicon-star" />&nbsp;&nbsp;Favoritter
                                     </a>
                                 </li>
                                 <li id={Constants.MenuItems.activities}>
-                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.activities)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.activities)} className={additionalClasses}>
                                         <span className="glyphicon glyphicon-calendar" />&nbsp;&nbsp;Aktiviteter
                                     </a>
                                 </li>
-                                <li className="hide-on-small"><a onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Oppdater</a></li>
+                                <li>{spinIcon}</li>
                                 <li id={Constants.MenuItems.login}>
-                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)}>
+                                    <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)} className={additionalClasses}>
                                     {loginText}
                                     </a>
                                 </li>
