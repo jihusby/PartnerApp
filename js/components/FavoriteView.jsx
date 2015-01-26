@@ -18,16 +18,12 @@ module.exports = React.createClass({
     },
     
     render: function () {
-        var i = 0;
         if(this.state.favorites){
             var favoriteList = this.state.favorites.map(function(favorite){
-                var contact = localStorageUtils.findContact(this.props.id);
+                var contact = localStorageUtils.findContact(favorite.id);
                 var partner = localStorageUtils.findPartner(contact.partnerId);
                 contact.partnerName = partner.name;
-
-                return (
-                    <ContactBox contact={contact}/>
-                    );
+                return <ContactBox contact={contact} showPartner={true} />
             });
 
             return (

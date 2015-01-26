@@ -1,8 +1,7 @@
 var React = require("react");
 var _ = require("underscore");
-var store = require("store.js");
-
 var Constants = require("../utils/partner-constants");
+var store = require("store.js");
 var key = Constants.LocalStorageKeys.partnerdata;
 var data = store.get(key);
 
@@ -16,3 +15,4 @@ module.exports = {
         return _.find(data.partners, function(partner){ return partner.id == id; });
     }
 }
+

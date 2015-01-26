@@ -142,10 +142,10 @@ module.exports =
                         break;
                     case Constants.MenuItems.person_detail:
                         title = "Person";
-                        content = <ContactDetailView index="0" id={this.state.menuItem.id} />
+                        content = <PersonDetailView index="0" id={this.state.menuItem.id} />
                         break;
                     case Constants.MenuItems.contact_detail:
-                        title = "Contact";
+                        title = "Kontakt";
                         var contactId = this.state.menuItem.id;
                         content = <ContactDetailView id={contactId} />
                         break;

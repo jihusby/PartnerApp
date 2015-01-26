@@ -54,6 +54,7 @@ routie({
         if(id){
             MenuActions.contactDetail(id);
         }
+    },
     "activities": function(){
         MenuActions.activities();
     },
