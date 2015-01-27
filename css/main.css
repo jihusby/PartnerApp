@@ -112,6 +112,10 @@ address{
     text-align: right;
 }
 
+.position-list-item{
+    text-align: left;
+}
+
 .firm-list-item{
     text-align: right;
 }

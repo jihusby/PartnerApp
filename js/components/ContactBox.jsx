@@ -1,27 +1,8 @@
 var React = require("react");
-var Favorite = require("./Favorite.jsx");
-
 
 module.exports = React.createClass({
     onClickContact: function(id) {
         routie("contact/" + id);
-    },
-    render: function() {
-        var partnerName = this.buildPartnerName(this.props.contact, this.props.showPartner);
-        var contactName = this.props.contact.firstName + " " + this.props.contact.lastName;
-        return (
-            <div className="row list-group-item container">
-                <h4 className="list-group-item-heading"><Favorite id={this.props.contact.id} /></h4>
-                <a onClick={this.onClickContact.bind(this, this.props.contact.id)}>
-                    <div className="col-xs-10">
-                        <div>
-                            <h4 className="list-group-item-heading"> {contactName}</h4>
-                            {partnerName}
-                        </div>
-                    </div>
-                </a>
-            </div>
-        );
     },
 
     buildPartnerName: function(contact, showName) {
@@ -29,12 +10,26 @@ module.exports = React.createClass({
             if(contact.partnerName) {
                 return (
                     <p className="list-group-item-text partnertype-list-item">{contact.partnerName}</p>
-                );
-            } else {
-                return ("");
-            }
-        }else {
+        );
+        } else {
             return ("");
         }
-    }
+    }else {
+        return ("");
+}
+},
+
+render: function() {
+    var contact = this.props.contact;
+    var showPartner = this.props.showPartner;
+    var partnerName = this.buildPartnerName(contact, showPartner);
+    var contactName = contact.firstName + " " + contact.lastName;
+    return (
+        <a className="list-group-item" onClick={this.onClickContact.bind(this, contact.id)}>
+<h4 className="list-group-item-heading">{contactName}</h4>
+<small><span className="list-group-item-text position-list-item">{contact.position}&nbsp;</span>
+{partnerName}</small>
+</a>
+);
+}
 });
