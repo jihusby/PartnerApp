@@ -120,25 +120,37 @@ module.exports = Reflux.createStore({
                 var partnerTypes = _.filter(json.partnerTypes.partnerTypes, function(partnerType)                         {
                     return partnerType.name !== "VIP-Kunde";
                 });
-
-                var persons = _.map(_.sortBy(json.persons, function(person) {
-                    return [person.lastName, person.firstName].join("_");
-                }), function(person){
-                    return new Contact(person);
-                });
-
-                var partners = _.map(_.sortBy(_.filter(json.partners, function(partner){ 
-                    return partner.partnerType !== "VIP-Kunde";
-                }), "name"), function(p){
-                    var partner = new Partner(p);
-                    partner.setContacts(
-                        _.filter(persons, function(person){ 
-                            return person.partnerId == partner.id;
-                        })
-                    );
-                    return partner;
-                });
-
+                
+                var partners = _.chain(json.partners)
+                    .filter(function(p){
+                        return p.partnerType !== "VIP-Kunde";
+                    })
+                    .sortBy("name")
+                    .map(function(p){
+                        var partner = new Partner(p);
+                        partner.setContacts(
+                            _.filter(json.persons, function(person){ 
+                                return person.partnerId == partner.id;
+                            })
+                        );
+                        return partner;
+                    })
+                    .value();
+                
+                var persons = _.chain(json.persons)
+                    .filter(function(person){
+                        return !!_.find(partners, function(partner){ 
+                            return partner.id === person.partnerId;
+                        });
+                    })
+                    .sortBy(function(person){
+                        return [person.lastName, person.firstName].join("_");
+                    })
+                    .map(function(person){
+                        return new Contact(person);
+                    })
+                    .value();
+                                    
                 store.set(Constants.LocalStorageKeys.partnerdata, partners);
                 store.set(Constants.LocalStorageKeys.persons, persons);
                 store.set(Constants.LocalStorageKeys.partnerTypes, partnerTypes);
@@ -162,7 +174,8 @@ module.exports = Reflux.createStore({
                 }
 
                 this.getDataFromLocalStorage(callback);
-            }
+            },
+            timeout: 20000
         });
     }
 });
