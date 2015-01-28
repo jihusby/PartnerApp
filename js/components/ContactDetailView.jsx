@@ -66,7 +66,7 @@ render: function () {
                                 <i className="glyphicon glyphicon-envelope btn btn-sm btn-primary"></i>
                             </span>
                             <span className="list-link">
-                                 Send e-post
+                                &nbsp;Send e-post
                             </span>
                         </h4>
                     </div>
@@ -89,7 +89,7 @@ render: function () {
                                 <i className="glyphicon glyphicon-earphone btn btn-sm btn-primary"></i>
                             </span>
                             <span className="list-link">
-                                 {phoneFormatted}
+                                &nbsp;{phoneFormatted}
                             </span>
                         </h4>
                     </div>
@@ -110,7 +110,7 @@ render: function () {
                                 <i className="glyphicon glyphicon-earphone btn btn-sm btn-primary"></i>
                             </span>
                             <span className="list-link">
-                                {mobileFormatted}
+                                &nbsp;{mobileFormatted}
                             </span>
                         </h4>
                     </div>
@@ -132,7 +132,7 @@ render: function () {
                                 <i className="glyphicon glyphicon-comment btn btn-sm btn-primary"></i>
                             </span>
                             <span className="list-link">
-                                 Send SMS
+                                &nbsp;Send SMS
                             </span>
                         </h4>
                     </div>

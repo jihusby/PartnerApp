@@ -1,5 +1,5 @@
 var React = require("react");
-var Utils = require("../utils/partner-utils");
+var Utils = require("../utils/format-utils");
 
 module.exports = React.createClass({
     onClickActivity: function(id) {

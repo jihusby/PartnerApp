@@ -3,7 +3,6 @@ module.exports =  {
     URLS: { 
         search: "http://godfotenrestapi.azurewebsites.net/api/search",
         login: "http://godfotenrestapi.azurewebsites.net/api/login",
-        partnerTypes: "http://godfotenrestapi.azurewebsites.net/api/partnertypes",
         personImages: "http://godfoten.rbk.no/media/",
         partnerLogos: "http://godfoten.rbk.no/media/firmalogo/",
         active: "http://godfotenrestapi.azurewebsites.net/api/persons/active"

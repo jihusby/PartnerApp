@@ -16,5 +16,6 @@ module.exports = {
     findPartner: function(id) {
         return _.find(partnerdata, function(partner){ return partner.id == id; });
     }
+
 }
 

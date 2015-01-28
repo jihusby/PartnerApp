@@ -12,7 +12,7 @@ var MenuActions = require("../actions/MenuActions");
 
 var Partner = require("../model/partner");
 var Contact = require("../model/contact");
-var Utils = require("../utils/partner-utils");
+var Utils = require("../utils/format-utils");
 var Constants = require("../utils/partner-constants");
 
 
@@ -45,7 +45,7 @@ module.exports = Reflux.createStore({
                 if(isActive){ // if active, get data
                     var refreshDate = store.get(Constants.LocalStorageKeys.last_refresh_date);
 
-                    if(!forceUpdate && that.aDayHasPassed(refreshDate)){ // data is fresh, get from localstorage
+                    if(!forceUpdate && !that.aDayHasPassed(refreshDate)){ // data is fresh, get from localstorage
                         setTimeout(function(){ // hack
                             callback(that.getDataFromLocalStorage());
                         }, 10);
@@ -66,34 +66,31 @@ module.exports = Reflux.createStore({
     
     invalidateUser: function(){
         store.clear();
-        MenuActions.search();
+        AuthActions.logOut();
+        MenuActions.login();
     },
     
     checkIfActive: function(callback){
-        if(store.get("bearer_token")){
-            var lastActiveCheck = store.get(Constants.LocalStorageKeys.last_active_check);
-            if(this.aDayHasPassed(lastActiveCheck)){
-                $.ajax({
-                    type: "GET",
-                    url: Constants.URLS.active,
-                    beforeSend: function(request) {
-                        request.setRequestHeader("Authorize", store.get("bearer_token"));
-                    },
-                    success: function (data) {
-                        console.log("Success: " + JSON.stringify(data));
-                        store.set(Constants.LocalStorageKeys.last_active_check, moment());
-                        callback(data.active);
-                    },
-                    error: function(errorMsg) {
-                        console.log("Error: " + errorMsg);
-                        callback(false);
-                    }
-                });
-            } else {
-                callback(true);   
-            }
+        var lastActiveCheck = store.get(Constants.LocalStorageKeys.last_active_check);
+        if(this.aDayHasPassed(lastActiveCheck)){
+            $.ajax({
+                type: "GET",
+                url: Constants.URLS.active,
+                beforeSend: function(request) {
+                    request.setRequestHeader("Authorize", store.get("bearer_token"));
+                },
+                success: function (data) {
+                    console.log("Success: " + JSON.stringify(data));
+                    store.set(Constants.LocalStorageKeys.last_active_check, moment());
+                    callback(data.active);
+                },
+                error: function(errorMsg) {
+                    console.log("Error: " + errorMsg);
+                    callback(false);
+                }
+            });
         } else {
-            callback(false);   
+            callback(true);
         }
     },
     
@@ -152,7 +149,7 @@ module.exports = Reflux.createStore({
                     partners: partners, 
                     persons: persons, 
                     partnerTypes: partnerTypes,
-                    activities: activities,
+                    activities: json.activities,
                     isUpdating: false
                 };
                 console.log("Data updated from server");

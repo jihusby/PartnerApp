@@ -43,7 +43,7 @@ module.exports = React.createClass({
     buildFavorite: function(contact, showFavorite) {
         if(showFavorite) {
             return (
-                <Favorite  id={contact.id} />
+                <Favorite id={contact.id} />
                 );
         }else {
             return ("");
@@ -60,15 +60,16 @@ module.exports = React.createClass({
         var partnerName = this.buildPartnerName(contact, this.props.showPartner);
         var contactName = contact.firstName + " " + contact.lastName;
         return (
-        <div>
-            <a className="list-group-item" onClick={this.onClickContact.bind(this, contact.id)}>
-                <h4 className="list-group-item-heading"> {contactName}</h4>
-                <small>
-                    {position}
-                    {partnerName}
-                </small>
+
+            <a onClick={this.onClickContact.bind(this, contact.id)}>
+                <div className="list-group-item">
+                    <h4 className="list-group-item-heading">{contactName}</h4>
+                    <small>
+                        {position}
+                        {partnerName}
+                    </small>
+                </div>
             </a>
-            </div>
         );
     }
 });

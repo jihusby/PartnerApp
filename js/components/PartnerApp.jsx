@@ -101,6 +101,7 @@ module.exports =
             if (!store.get(Constants.LocalStorageKeys.bearer_token)){
                 $("nav.navbar").find("li.active").removeClass('active');
                 $("nav.navbar").find("li#"+Constants.MenuItems.login).addClass('active');
+                title = "Logg inn";
                 content = (<div>Du må logge inn for å få tilgang til partnerdata.<br/><Login /> </div>);
             } else if (!(this.props.partners  && (this.props.partners.length > 0))){
                 content =  (

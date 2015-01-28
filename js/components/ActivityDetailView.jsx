@@ -1,7 +1,7 @@
 var React = require("react");
 var _ = require("underscore");
 var store = require("store.js");
-var Utils = require("../utils/partner-utils");
+var Utils = require("../utils/format-utils");
 var Constants = require("../utils/partner-constants.js");
 
 module.exports = React.createClass({
