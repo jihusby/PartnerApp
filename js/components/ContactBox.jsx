@@ -50,9 +50,6 @@ module.exports = React.createClass({
         }
     },
 
-    /*
-    TODO: Show favorite star before the contact name
-     */
     render: function() {
         var contact = this.props.contact;
         var favorite = this.buildFavorite(contact, this.props.showFavorite);
@@ -60,16 +57,23 @@ module.exports = React.createClass({
         var partnerName = this.buildPartnerName(contact, this.props.showPartner);
         var contactName = contact.firstName + " " + contact.lastName;
         return (
-
-            <a onClick={this.onClickContact.bind(this, contact.id)}>
-                <div className="list-group-item">
-                    <h4 className="list-group-item-heading">{contactName}</h4>
-                    <small>
-                        {position}
-                        {partnerName}
-                    </small>
+            <div className="list-group-item">
+                <div className="container list-container">
+                    <div className="row list-container">
+                        <div className="col-xs-9" onClick={this.onClickContact.bind(this, contact.id)}>
+                            <h4 className="list-group-item-heading">{contactName}</h4>
+                            <small><p className="list-group-item-text">{position}</p></small>
+                        </div>
+                        <div className="col-xs-3 firm-list-item">
+                            {favorite}
+                        </div>
+                    </div>
                 </div>
-            </a>
+                <div className="partnertype-list-item list-container">
+                    <small><p className="list-group-item-text">{partnerName}</p></small>
+                </div>
+            </div>
+
         );
     }
 });

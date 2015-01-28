@@ -22,13 +22,13 @@ module.exports = React.createClass({
         if(this.isFavorite(this.state.favorites)){
             return  (
                 <a onClick={this.removeFavorite}>
-                        <i className="glyphicon glyphicon-star"></i>
+                        <i className="glyphicon glyphicon-star gold"></i>
                 </a>
             );
         } else {
             return  (
                 <a onClick={this.showModal}>
-                        <i className="glyphicon glyphicon-star-empty"></i>
+                        <i className="glyphicon glyphicon-star-empty gold"></i>
                 </a>
             );
         }

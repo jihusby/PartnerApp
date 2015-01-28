@@ -116,6 +116,13 @@ address{
     text-align: right;
 }
 
+.list-container{
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+}
+
 .position-list-item{
     text-align: left;
 }
@@ -131,6 +138,10 @@ address{
 
 .navbar-nav{
     float:right;   
+}
+
+.gold{
+    color:gold;
 }
 
 .disabled{
