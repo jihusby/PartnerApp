@@ -165,7 +165,8 @@ module.exports = Reflux.createStore({
                 }
 
                 this.getDataFromLocalStorage(callback);
-            }
+            },
+            timeout: 20000
         });
     }
 });
