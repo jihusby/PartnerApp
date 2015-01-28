@@ -24,8 +24,12 @@ address{
 
 .list-group-item-text{
     font-size: 0.875em;
+    line-height: 1em;
 }
 
+.list-group-item-heading{
+    margin-bottom: 0px;   
+}
 .media-left{
     white-space: nowrap;    
     text-align: center; margin: 1em 0;    

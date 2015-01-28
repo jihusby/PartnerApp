@@ -51,8 +51,14 @@ module.exports = React.createClass({
             var contactList = [];
             contacts.forEach(function(contact) {
                 if(contact.firstName.toLowerCase().indexOf(searchString)==0 || contact.lastName.toLowerCase().indexOf(searchString)==0){
-                    var partnerForPerson = _.find(partners, function(partner){ return !!_.find(partner.contacts, function(contact) { return contact.id == contact.id; });});
-                    if(partnerForPerson) contact.partnerName = partnerForPerson.name;
+                    var partnerForPerson = _.find(partners, function(partner){ 
+                        return !!_.find(partner.contacts, function(contact) { 
+                            return partner.id == contact.partnerId; 
+                        });
+                    });
+                    if(partnerForPerson) {
+                        contact.partnerName = partnerForPerson.name;
+                    }
                     contactList.push(<ContactBox contact={contact} />);
                 }
             });
