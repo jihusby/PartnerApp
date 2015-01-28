@@ -47,7 +47,7 @@ module.exports = React.createClass({
             
             // persons
             var contacts = this.props.persons;
-            searchList.push(<div className="list-group-item list-heading"><h3 className="list-group-item-heading"><strong>Personer</strong></h3></div>);
+            searchList.push(<div className="list-group-item list-heading"><h3 className="list-group-item-heading"><strong>Kontakter</strong></h3></div>);
             var contactList = [];
             contacts.forEach(function(contact) {
                 if(contact.firstName.toLowerCase().indexOf(searchString)==0 || contact.lastName.toLowerCase().indexOf(searchString)==0){
@@ -66,7 +66,7 @@ module.exports = React.createClass({
             if(contactList.length > 0){
                 searchList = _.union(searchList, contactList);
             } else {
-                searchList.push(<div className="list-group-item"><h4 className="list-group-item-heading">Ingen personer samsvarte med ditt søk.</h4></div>);
+                searchList.push(<div className="list-group-item"><h4 className="list-group-item-heading">Ingen kontakter samsvarte med ditt søk.</h4></div>);
             }
         }
 
