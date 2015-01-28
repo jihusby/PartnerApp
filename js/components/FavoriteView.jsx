@@ -23,7 +23,7 @@ module.exports = React.createClass({
                 var contact = localStorageUtils.findContact(favorite.id);
                 var partner = localStorageUtils.findPartner(contact.partnerId);
                 contact.partnerName = partner.name;
-                return <ContactBox contact={contact} showPartner={true} showPosition={true} />
+                return <ContactBox contact={contact} showPartner={true} showPosition={true} showFavorite={true} />
             });
 
             return (

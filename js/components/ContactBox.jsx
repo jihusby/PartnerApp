@@ -1,10 +1,11 @@
 /**
  * Shows a single Contact in a list view
- * input:
- *  showPosition: Show the Contact's Position on the line below the name
- *  showPartner: Show Partner name to the right on the first available line
+ *  input showPosition: Show the Contact's Position on 2nd line left-aligned
+ *  input showPartner: Show Partner name on 3rd line right-aligned
+ *  input showFavorite: Show favorite star on 1st line to the left of the name
  */
 var React = require("react");
+var Favorite = require("./Favorite.jsx");
 
 module.exports = React.createClass({
     onClickContact: function(id) {
@@ -39,19 +40,35 @@ module.exports = React.createClass({
         }
     },
 
+    buildFavorite: function(contact, showFavorite) {
+        if(showFavorite) {
+            return (
+                <Favorite  id={contact.id} />
+                );
+        }else {
+            return ("");
+        }
+    },
+
+    /*
+    TODO: Show favorite star before the contact name
+     */
     render: function() {
         var contact = this.props.contact;
-        var partnerName = this.buildPartnerName(contact, this.props.showPartner);
+        var favorite = this.buildFavorite(contact, this.props.showFavorite);
         var position = this.buildPosition(contact, this.props.showPosition);
+        var partnerName = this.buildPartnerName(contact, this.props.showPartner);
         var contactName = contact.firstName + " " + contact.lastName;
         return (
+        <div>
             <a className="list-group-item" onClick={this.onClickContact.bind(this, contact.id)}>
-                <h4 className="list-group-item-heading">{contactName}</h4>
+                <h4 className="list-group-item-heading"> {contactName}</h4>
                 <small>
                     {position}
                     {partnerName}
                 </small>
             </a>
+            </div>
         );
     }
 });

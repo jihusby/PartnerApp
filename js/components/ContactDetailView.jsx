@@ -59,16 +59,18 @@ render: function () {
         if(email && email.length > 0){
             var mail = "mailto:" + email;
             return (
-                <div className="list-group-item list-group-item-heading">
-                    <h4>
-                        <span>
-                            <i className="glyphicon glyphicon-envelope btn btn-sm btn-primary"></i>
-                        </span>
-                        <span className="list-link" onClick={mail}>
-                            <a href={mail}> Send e-post</a>
-                        </span>
-                    </h4>
-                </div>
+                <a href={mail}>
+                    <div className="list-group-item list-group-item-heading">
+                        <h4>
+                            <span>
+                                <i className="glyphicon glyphicon-envelope btn btn-sm btn-primary"></i>
+                            </span>
+                            <span className="list-link">
+                                 Send e-post
+                            </span>
+                        </h4>
+                    </div>
+                </a>
             );
         } else {
             return ("");
@@ -80,16 +82,18 @@ render: function () {
             var phoneLink = "tel:" + phone;
             var phoneFormatted = FormatUtils.formatPhone(phone);
             return (
-                <div className="list-group-item list-group-item-heading">
-                    <h4>
-                        <span>
-                            <i className="glyphicon glyphicon-earphone btn btn-sm btn-primary"></i>
-                        </span>
-                        <span className="list-link" onClick={phoneLink}>
-                            <a href={phoneLink}> {phoneFormatted}</a>
-                        </span>
-                    </h4>
-                </div>
+                <a href={phoneLink}>
+                    <div className="list-group-item list-group-item-heading">
+                        <h4>
+                            <span>
+                                <i className="glyphicon glyphicon-earphone btn btn-sm btn-primary"></i>
+                            </span>
+                            <span className="list-link">
+                                 {phoneFormatted}
+                            </span>
+                        </h4>
+                    </div>
+                </a>
             );
         }
     },
@@ -99,16 +103,18 @@ render: function () {
             var mobileLink = "tel:" + mobile;
             var mobileFormatted = FormatUtils.formatMobile(mobile);
             return (
-                <div className="list-group-item list-group-item-heading">
-                    <h4>
-                        <span>
-                            <i className="glyphicon glyphicon-earphone btn btn-sm btn-primary"></i>
-                        </span>
-                        <span className="list-link" onClick={mobileLink}>
-                            <a href={mobileLink}> {mobileFormatted}</a>
-                        </span>
-                    </h4>
-                </div>
+                <a href={mobileLink}>
+                    <div className="list-group-item list-group-item-heading">
+                        <h4>
+                            <span>
+                                <i className="glyphicon glyphicon-earphone btn btn-sm btn-primary"></i>
+                            </span>
+                            <span className="list-link">
+                                {mobileFormatted}
+                            </span>
+                        </h4>
+                    </div>
+                </a>
             );
         }else{
             return ("");
@@ -119,16 +125,18 @@ render: function () {
         if(mobile && mobile.length > 0){
             var smsLink = "sms:" + mobile;
             return (
-                <div className="list-group-item list-group-item-heading">
-                    <h4>
-                        <span>
-                            <i className="glyphicon glyphicon-comment btn btn-sm btn-primary"></i>
-                        </span>
-                        <span className="list-link" onClick={smsLink}>
-                            <a href={smsLink}> Send SMS</a>
-                        </span>
-                    </h4>
-                </div>
+                <a href={smsLink}>
+                    <div className="list-group-item list-group-item-heading">
+                        <h4>
+                            <span>
+                                <i className="glyphicon glyphicon-comment btn btn-sm btn-primary"></i>
+                            </span>
+                            <span className="list-link">
+                                 Send SMS
+                            </span>
+                        </h4>
+                    </div>
+                </a>
 
             );
         }else{
