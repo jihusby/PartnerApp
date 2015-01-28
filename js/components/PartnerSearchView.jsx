@@ -52,14 +52,12 @@ module.exports = React.createClass({
             contacts.forEach(function(contact) {
                 if(contact.firstName.toLowerCase().indexOf(searchString)==0 || contact.lastName.toLowerCase().indexOf(searchString)==0){
                     var partnerForPerson = _.find(partners, function(partner){ 
-                        return !!_.find(partner.contacts, function(contact) { 
-                            return partner.id == contact.partnerId; 
-                        });
+                        return partner.id === contact.partnerId;
                     });
                     if(partnerForPerson) {
                         contact.partnerName = partnerForPerson.name;
                     }
-                    contactList.push(<ContactBox contact={contact} />);
+                    contactList.push(<ContactBox contact={contact} showPartner="true" />);
                 }
             });
             
