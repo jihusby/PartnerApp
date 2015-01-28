@@ -31,7 +31,7 @@ module.exports = React.createClass({
 
         var contacts = sortedContacts.map(function(contact){
             return (
-                <ContactBox contact={contact} />
+                <ContactBox contact={contact} showPosition={true} />
             );
         });
 

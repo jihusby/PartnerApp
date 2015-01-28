@@ -1,3 +1,9 @@
+/**
+ * Shows a single Contact in a list view
+ * input:
+ *  showPosition: Show the Contact's Position on the line below the name
+ *  showPartner: Show Partner name to the right on the first available line
+ */
 var React = require("react");
 
 module.exports = React.createClass({
@@ -10,26 +16,42 @@ module.exports = React.createClass({
             if(contact.partnerName) {
                 return (
                     <p className="list-group-item-text partnertype-list-item">{contact.partnerName}</p>
-        );
-        } else {
+                );
+            } else {
+                return ("");
+            }
+        }else {
             return ("");
         }
-    }else {
-        return ("");
-}
-},
+    },
 
-render: function() {
-    var contact = this.props.contact;
-    var showPartner = this.props.showPartner;
-    var partnerName = this.buildPartnerName(contact, showPartner);
-    var contactName = contact.firstName + " " + contact.lastName;
-    return (
-        <a className="list-group-item" onClick={this.onClickContact.bind(this, contact.id)}>
-<h4 className="list-group-item-heading">{contactName}</h4>
-<small><span className="list-group-item-text position-list-item">{contact.position}&nbsp;</span>
-{partnerName}</small>
-</a>
-);
-}
+    buildPosition: function(contact, showPosition) {
+        if(showPosition) {
+            if(contact.position) {
+                return (
+                    <p className="list-group-item-text position-list-item">{contact.position}</p>
+                );
+            } else {
+                return <p className="list-group-item-text position-list-item">&nbsp;</p>
+            }
+        }else {
+            return ("");
+        }
+    },
+
+    render: function() {
+        var contact = this.props.contact;
+        var partnerName = this.buildPartnerName(contact, this.props.showPartner);
+        var position = this.buildPosition(contact, this.props.showPosition);
+        var contactName = contact.firstName + " " + contact.lastName;
+        return (
+            <a className="list-group-item" onClick={this.onClickContact.bind(this, contact.id)}>
+                <h4 className="list-group-item-heading">{contactName}</h4>
+                <small>
+                    {position}
+                    {partnerName}
+                </small>
+            </a>
+        );
+    }
 });
