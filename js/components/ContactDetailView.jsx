@@ -29,26 +29,46 @@ render: function () {
     var mail = this.buildMailTo(contact.email);
     var sms = this.buildSMS(contact.mobile);
     var note = this.buildNote(contact.note);
-    var partnerName = partner.name;
+    var partnerName = this.buildPartnerName(partner.name);
+
+    /* TODO: Remove this placeholder and add contact image */
+    var logoSrc = Constants.URLS.partnerLogos + partner.logo;
     return (
         <div>
-            <h3>{name} <Favorite id={contact.id} />{position}<small> <br/><a onClick={this.onClickPartner.bind(this, partner.id)}>{partnerName}</a></small></h3>
-            {phone}
-            {mobile}
-            {mail}
-            {sms}
-            <div>
-                <div className="panel-body">
-                    {note}
+            <div className="media">
+                <div className="media-left">
+                    <span className="helper"></span>
+                    <img className="media-object" src={logoSrc} />
+                </div>
+                <div className="media-body">
+                    <h3><strong>{name}</strong></h3>
+                    <small>{position}</small>
                 </div>
             </div>
+            <address>
+{partnerName}
+{phone}
+{mobile}
+{mail}
+{sms}
+            </address>
+            <strong>Notat</strong>
+        {contact.note}
         </div>
     )},
+
+    buildPartnerName: function(partnerName){
+        return (
+            <div>
+                {partnerName}<br/>
+            </div>
+        )
+    },
 
     buildPosition: function(position){
         if(position && position.length > 0){
         return (
-            <small><br /><strong>{position}</strong></small>
+            <small>{position}</small>
         );
         }else{
             return ("");
@@ -59,18 +79,9 @@ render: function () {
         if(email && email.length > 0){
             var mail = "mailto:" + email;
             return (
-                <a href={mail}>
-                    <div className="list-group-item list-group-item-heading">
-                        <h4>
-                            <span>
-                                <i className="glyphicon glyphicon-envelope btn btn-sm btn-primary"></i>
-                            </span>
-                            <span className="list-link">
-                                &nbsp;Send e-post
-                            </span>
-                        </h4>
-                    </div>
-                </a>
+            <span>
+                <i className="glyphicon glyphicon-envelope"></i> <small><a href={mail}>Send e-post</a></small><br/>
+            </span>
             );
         } else {
             return ("");
@@ -82,19 +93,12 @@ render: function () {
             var phoneLink = "tel:" + phone;
             var phoneFormatted = FormatUtils.formatPhone(phone);
             return (
-                <a href={phoneLink}>
-                    <div className="list-group-item list-group-item-heading">
-                        <h4>
-                            <span>
-                                <i className="glyphicon glyphicon-earphone btn btn-sm btn-primary"></i>
-                            </span>
-                            <span className="list-link">
-                                &nbsp;{phoneFormatted}
-                            </span>
-                        </h4>
-                    </div>
-                </a>
+                <span>
+                    <i className="glyphicon glyphicon-earphone"></i> <small><a href={phoneLink}>{phoneFormatted}</a></small><br/>
+                </span>
             );
+        }else{
+            return("");
         }
     },
 
@@ -103,18 +107,9 @@ render: function () {
             var mobileLink = "tel:" + mobile;
             var mobileFormatted = FormatUtils.formatMobile(mobile);
             return (
-                <a href={mobileLink}>
-                    <div className="list-group-item list-group-item-heading">
-                        <h4>
-                            <span>
-                                <i className="glyphicon glyphicon-earphone btn btn-sm btn-primary"></i>
-                            </span>
-                            <span className="list-link">
-                                &nbsp;{mobileFormatted}
-                            </span>
-                        </h4>
-                    </div>
-                </a>
+                <span>
+                    <i className="glyphicon glyphicon-earphone"></i> <small><a href={mobileLink}>{mobileFormatted}</a></small><br/>
+                </span>
             );
         }else{
             return ("");
@@ -125,19 +120,9 @@ render: function () {
         if(mobile && mobile.length > 0){
             var smsLink = "sms:" + mobile;
             return (
-                <a href={smsLink}>
-                    <div className="list-group-item list-group-item-heading">
-                        <h4>
-                            <span>
-                                <i className="glyphicon glyphicon-comment btn btn-sm btn-primary"></i>
-                            </span>
-                            <span className="list-link">
-                                &nbsp;Send SMS
-                            </span>
-                        </h4>
-                    </div>
-                </a>
-
+                <span>
+                    <i className="glyphicon glyphicon-comment"></i> <small><a href={smsLink}>Send SMS</a></small><br/>
+                </span>
             );
         }else{
             return ("");
