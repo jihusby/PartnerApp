@@ -33,7 +33,6 @@ module.exports = Reflux.createStore({
     },
 
     updateData: function(data) {
-        //console.log("Data: " + JSON.stringify(data));
         this.trigger(data);
     },
 
@@ -45,7 +44,7 @@ module.exports = Reflux.createStore({
                 if(isActive){ // if active, get data
                     var refreshDate = store.get(Constants.LocalStorageKeys.last_refresh_date);
 
-                    if(!forceUpdate && !that.aDayHasPassed(refreshDate)){ // data is fresh, get from localstorage
+                    if(!forceUpdate && refreshDate && !that.aDayHasPassed(refreshDate)){ // data is fresh, get from localstorage
                         setTimeout(function(){ // hack
                             callback(that.getDataFromLocalStorage());
                         }, 10);
@@ -59,8 +58,8 @@ module.exports = Reflux.createStore({
                 }
             });
         } else {
-            // user is not logged in, return
-            return;   
+            // user is not logged in
+            callback({ isUpdating: false});
         }
     },
     
@@ -95,7 +94,12 @@ module.exports = Reflux.createStore({
     },
     
     aDayHasPassed: function(date){
-        return date && moment(date).add(1, "days").diff(moment()) > 0;
+        if(date){
+            var lastRefreshDate = moment(date).add(1, "days");
+            var today = moment();
+            return lastRefreshDate.diff(today) < 0;
+        }
+        return true; // hack to ensure we fetch data from server
     },
     
     getDataFromLocalStorage: function(){
