@@ -85,6 +85,30 @@ module.exports =
             }
         },
         
+        buildSpinButton: function(){
+            if(this.state.rbkData.isUpdating){
+                    return (<a className="disabled"><i className="glyphicon glyphicon-refresh spin"></i>&nbsp;&nbsp;Oppdaterer</a>);
+                } else {
+                    return (<a onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Oppdater</a>);
+                }
+        },
+        
+        buildBackButton: function(){
+            if(window.history && window.history.length > 0){
+                return (<a className="navbar-brand btn {additionalClasses}" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>);
+            } else {
+                return (<span></span>);
+            }
+        },
+        
+        buildAdditionalClasses: function(){
+            if(this.state.rbkData.isUpdating){
+                    return "disabled";
+                } else {
+                    return "";
+                }
+        },
+        
         synchronize: function(){
             this.setState({ rbkData: {isUpdating: true}});
             BackendActions.synchronizeData(true);
@@ -167,20 +191,15 @@ module.exports =
                 // hack to ensure scrolling to top of page
                 $(window).scrollTop(0);
             }
-                var spinIcon, mobileSpinIcon;
-                var additionalClasses ="";
-                if(this.state.rbkData.isUpdating){
-                    spinIcon = (<a className="disabled"><i className="glyphicon glyphicon-refresh spin"></i>&nbsp;&nbsp;Oppdaterer</a>);
-                    additionalClasses = "disabled";
-                } else {
-                    spinIcon = (<a onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Oppdater</a>);
-                    additionalClasses = "";
-                }
+                var spinIcon = this.buildSpinButton();
+                var backButton = this.buildBackButton();
+                var additionalClasses = this.buildAdditionalClasses();
+
             var navbar = (
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container-fluid">
                         <div className="navbar-header"> 
-                            <a className="navbar-brand btn {additionalClasses}" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>
+                            {backButton}
                             <a className="navbar-brand mobile-header hide-on-large"><strong>{title}</strong></a>
                             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu">
                                 <span className="sr-only">Toggle navigation</span>
