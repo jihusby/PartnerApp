@@ -30,10 +30,8 @@ module.exports = React.createClass({
     render: function () {
                 return (
                 <div>
+                <p>Logg inn med samme brukernavn og passord som du bruker på nettsiden til Godfoten.</p>
                     <Panel>
-                        <p>
-                            Du kan logge inn med samme brukernavn og passord som du bruker på nettsiden til GodFoten.
-                        </p>
                         <form className="form-horizontal">
                           <div className="form-group">
                             <label className="col-sm-2 control-label">E-post</label>

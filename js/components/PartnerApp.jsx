@@ -126,7 +126,7 @@ module.exports =
                 $("nav.navbar").find("li.active").removeClass('active');
                 $("nav.navbar").find("li#"+Constants.MenuItems.login).addClass('active');
                 title = "Logg inn";
-                content = (<div>Du må logge inn for å få tilgang til partnerdata.<br/><Login /> </div>);
+                content = (<Login />);
             } else if (!(this.props.partners  && (this.props.partners.length > 0))){
                 content =  (
                     <div>
