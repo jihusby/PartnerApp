@@ -114,6 +114,7 @@ module.exports = Reflux.createStore({
     },
     
     getDataFromServer: function(callback){
+        var that = this;
         $.ajax({
             url: Constants.URLS.search,
             dataType: 'json',
@@ -176,8 +177,8 @@ module.exports = Reflux.createStore({
                     AuthActions.logOut();
                     callback({ isUpdating: false });
                 }
-
-                this.getDataFromLocalStorage(callback);
+                console.log("Timeout: " + status);
+                callback(that.getDataFromLocalStorage());
             },
             timeout: 20000
         });
