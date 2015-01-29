@@ -1,6 +1,7 @@
 var React = require("react");
 var Reflux = require("reflux");
 var moment = require("moment");
+var _ = require("underscore");
 
 var Spinner = require("react-spinner");
 var ButtonGroup = require("react-bootstrap/ButtonGroup");
@@ -12,6 +13,8 @@ var DataStore = require("../stores/DataStore.js");
 
 var ActivityBox = require("./ActivityBox.jsx");
 
+var commingActivities = "Kommende aktiviteter";
+
 module.exports = React.createClass({
     mixins: [Reflux.connect(DataStore,"rbkData")],
     
@@ -19,7 +22,7 @@ module.exports = React.createClass({
         return {
             filteredActivities: [],
             activities: [],
-            dropdownTitle: "Kommende aktiviteter",
+            dropdownTitle: commingActivities,
             init: true
         };
     },
@@ -28,8 +31,10 @@ module.exports = React.createClass({
         var that = this;
         this.setState({init: false });
         if (filter){
-            var filteredActivities = this.state.rbkData.activities.filter(function(activity){
+            var filteredActivities = _.sortBy(this.state.rbkData.activities.filter(function(activity){
                 return that.filterOnYear(activity, filter);
+            }), function(activity){
+                return that.sortActivities(activity, filter);
             });
 
             this.setState({
@@ -66,9 +71,12 @@ module.exports = React.createClass({
             
             var activities;
             if(this.state.init){
-            var commingActivities = this.state.rbkData.activities.filter(function(activity){
-                    return that.filterOnYear(activity, "Kommende aktiviteter");
+            var commingActivities = _.sortBy(this.state.rbkData.activities.filter(function(activity){
+                    return that.filterOnYear(activity, commingActivities);
+                }), function(activity){
+                    return that.sortActivities(activity, filter);
                 });
+
                 activities = commingActivities.map(function(activity){
                         return (
                             <ActivityBox activity={activity} />
@@ -91,11 +99,18 @@ module.exports = React.createClass({
             );
         }
     },
+    sortActivities: function(activity, filterKey){
+        if(filterKey === commingActivities){
+            return activity.startDate ? moment(activity.startDate).format("X") : 0;
+        } else{
+            return activity.startDate ? moment(activity.startDate).format("X") * -1 : 0;
+        }
+    },
     
     filterOnYear: function(activity, filterKey){
         if(filterKey === "Alle"){
             return true;
-        } else if(filterKey == "Kommende aktiviteter"){
+        } else if(filterKey == commingActivities){
             if(activity.startDate){
                 var date = moment(activity.startDate);
                 return date.diff(moment()) > 0;
@@ -118,7 +133,7 @@ module.exports = React.createClass({
         var previousYear2 = currentYear - 2;
         var previousYear3 = currentYear - 3;
         return [ 
-            { text: "Kommende aktiviteter" }, 
+            { text: commingActivities }, 
             { text: currentYear.toString() }, 
             { text: previousYear1.toString() }, 
             { text: previousYear2.toString() }, 

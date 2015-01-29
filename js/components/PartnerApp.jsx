@@ -95,7 +95,6 @@ module.exports =
         
         buildBackButton: function(){
             if(window.history && window.history.length > 1){
-                console.log("Length: " + window.history.length);
                 return (<a className="navbar-brand btn {additionalClasses}" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>);
             } else {
                 return  (<a className="navbar-brand">&nbsp;</a>);
