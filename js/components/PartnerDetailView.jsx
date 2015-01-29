@@ -69,7 +69,7 @@ buildAddress: function(address, zipCode, city){
         return (
             <div>
             {address}<br/>
-            {zipCode} {city}<br/><br/>
+            {zipCode} {city}<br/>
         </div>
     );
     } else{

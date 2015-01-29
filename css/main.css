@@ -144,6 +144,10 @@ address{
     color:gold;
 }
 
+.black{
+    background-color: #000000;
+}
+
 .disabled{
    color: #606060 !important;
 }
