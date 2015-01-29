@@ -140,6 +140,10 @@ address{
     float:right;   
 }
 
+.activity-detail img{
+    max-width: 100%;
+}
+
 .gold{
     color:gold;
 }
