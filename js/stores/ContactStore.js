@@ -21,7 +21,16 @@ module.exports = Reflux.createStore({
     onGetFavorites: function(){
         this.trigger(store.get(Constants.LocalStorageKeys.favorites));
     },
-    
+
+    onSetContactNotes: function(value){
+        store.set(Constants.LocalStorageKeys.contactNotes, value);
+        this.trigger(value);
+    },
+
+    onGetContactNotes: function(){
+        this.trigger(store.get(Constants.LocalStorageKeys.contactNotes));
+    },
+
     onGetById: function(id){
         var key = Constants.LocalStorageKeys.partnerdata;
         var data = store.get(key);

@@ -9,6 +9,7 @@ var Input = require("react-bootstrap/Input");
 module.exports = React.createClass({
 
     getInitialState: function() {
+        console.log("--initial state");
         return {
             searchText: ''
         };
@@ -57,7 +58,7 @@ module.exports = React.createClass({
                     if(partnerForPerson) {
                         contact.partnerName = partnerForPerson.name;
                     }
-                    contactList.push(<ContactBox contact={contact} showPartner="true" />);
+                    contactList.push(<ContactBox contact={contact} showPartner={true} showPosition={true} showFavorite={true} />);
                 }
             });
             

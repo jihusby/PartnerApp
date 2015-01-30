@@ -8,6 +8,8 @@ module.exports = Reflux.createActions(
     [
         "setFavorites",
         "getFavorites",
+        "setContactNotes",
+        "getContactNotes",
         "getById",
         "remove"
     ]

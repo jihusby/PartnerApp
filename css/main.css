@@ -156,7 +156,9 @@ address{
 .black{
     background-color: #000000;
 }
-
+.textarea{
+    width: 100%;
+}
 .disabled{
    color: #606060 !important;
 }

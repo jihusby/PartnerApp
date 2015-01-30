@@ -16,7 +16,7 @@ module.exports = React.createClass({
         if(showName) {
             if(contact.partnerName) {
                 return (
-                    <p className="list-group-item-text partnertype-list-item">{contact.partnerName}</p>
+                    <p className="list-group-item-text">{contact.partnerName}</p>
                 );
             } else {
                 return ("");
@@ -30,7 +30,7 @@ module.exports = React.createClass({
         if(showPosition) {
             if(contact.position) {
                 return (
-                    <p className="list-group-item-text position-list-item">{contact.position}</p>
+                    <p className="list-group-item-text position-list-item"><i>{contact.position}</i></p>
                 );
             } else {
                 return <p className="list-group-item-text position-list-item">&nbsp;</p>
@@ -59,18 +59,21 @@ module.exports = React.createClass({
         return (
             <div className="list-group-item">
                 <div className="container list-container">
+
                     <div className="row list-container">
-                        <div className="col-xs-9" onClick={this.onClickContact.bind(this, contact.id)}>
+                        <div className="col-xs-10" onClick={this.onClickContact.bind(this, contact.id)}>
                             <h4 className="list-group-item-heading">{contactName}</h4>
                             <small><p className="list-group-item-text">{position}</p></small>
                         </div>
-                        <div className="col-xs-3 firm-list-item">
-                            {favorite}
+                        <div className="col-xs-2 firm-list-item">
+                            <big>{favorite}</big>
                         </div>
                     </div>
                 </div>
-                <div className="partnertype-list-item list-container">
-                    <small><p className="list-group-item-text">{partnerName}</p></small>
+                <div>
+                    <div>
+                        <small>{partnerName}</small>
+                    </div>
                 </div>
             </div>
 
