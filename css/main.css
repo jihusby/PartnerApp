@@ -1,6 +1,20 @@
 html, body{
     font-family: Helvetica,Arial,sans-serif;
     font-size: 1.125em;
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0.65) 30%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(30%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0.65) 30%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 30%,rgba(0,0,0,0) 100%); /* W3C */    
+    background-repeat: repeat-x;
+    background-size: 100%;
+    
+    overflow-x: hidden;
+    height: 100%;
+    color: white;
+}
+
+a{
+    font-weight: 600;
 }
 
 a:hover{
@@ -16,6 +30,10 @@ address{
     line-height: 1.875em;
 }
 
+form{
+    color: black;
+}
+
 .helper{
     display: inline-block;
     height: 100%;
@@ -25,10 +43,12 @@ address{
 .list-group-item-text{
     font-size: 0.875em;
     line-height: 1em;
+    color: black;
 }
 
 .list-group-item-heading{
-    margin-bottom: 0px;   
+    margin-bottom: 0px;
+    color: black;
 }
 .media-left{
     white-space: nowrap;    
@@ -108,6 +128,10 @@ address{
     }
 }
 
+.panel-body{
+    padding: 15px 30px 0;
+}
+
 .list-heading{
     background-color: #A0A0A0;
 }
@@ -133,8 +157,8 @@ address{
 
 .mobile-header{
     text-align: center;    
-    padding-right: 159px;
-    margin-right: -159px;    
+    padding-right: 138px;
+    margin-right: -138px;    
     width: 100%;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -161,6 +185,15 @@ address{
 }
 .disabled{
    color: #606060 !important;
+}
+
+.logo-container{
+    width: 100%;
+    text-align: center;
+}
+.rbk-logo{
+    width: 60%;
+    margin: auto;
 }
 
 @-moz-keyframes spin {

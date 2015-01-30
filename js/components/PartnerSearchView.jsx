@@ -71,6 +71,10 @@ module.exports = React.createClass({
 
         return (
             <div>
+                <div className="logo-container">
+                    <img src="images/logo_xs_small.png" className="rbk-logo" />
+                </div>
+                <br/>
                 <Input
                     type="Search"
                     value={this.state.searchText}
