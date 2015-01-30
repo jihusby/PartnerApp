@@ -70,14 +70,14 @@ module.exports = React.createClass({
             );
             
             var activities;
-            if(this.state.init){
-            var commingActivities = _.sortBy(this.state.rbkData.activities.filter(function(activity){
+            if(this.state.init){                
+                var commingActivitiesList = _.sortBy(this.state.rbkData.activities.filter(function(activity){
                     return that.filterOnYear(activity, commingActivities);
                 }), function(activity){
-                    return that.sortActivities(activity, filter);
+                    return that.sortActivities(activity, commingActivities);
                 });
 
-                activities = commingActivities.map(function(activity){
+                activities = commingActivitiesList.map(function(activity){
                         return (
                             <ActivityBox activity={activity} />
                             );
@@ -111,8 +111,8 @@ module.exports = React.createClass({
         if(filterKey === "Alle"){
             return true;
         } else if(filterKey == commingActivities){
-            if(activity.startDate){
-                var date = moment(activity.startDate);
+            if(activity.endDate){
+                var date = moment(activity.endDate);
                 return date.diff(moment()) > 0;
             } else {
                 return false;
