@@ -132,8 +132,12 @@ address{
 }
 
 .mobile-header{
-    text-align: center;
-    width: calc(100% - 159px);
+    text-align: center;    
+    padding-right: 159px;
+    margin-right: -159px;    
+    width: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .navbar-nav{
