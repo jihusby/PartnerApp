@@ -149,6 +149,7 @@ module.exports =
                     case Constants.MenuItems.home:
                         title = "Søk";
                         content = <PartnerSearchView partners={this.props.partners} persons={this.props.persons} />
+                        console.log("Search called");
                         break;
                     case Constants.MenuItems.partnerlist:
                         title = "Partnere";

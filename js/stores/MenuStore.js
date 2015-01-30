@@ -9,6 +9,7 @@ module.exports = Reflux.createStore({
     listenables: [MenuActions]  ,
 
     onSearch: function() {
+        console.log("Search");
         this.menuItemSelected(Constants.MenuItems.home);
     },
 
