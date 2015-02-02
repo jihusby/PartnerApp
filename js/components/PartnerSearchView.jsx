@@ -22,7 +22,7 @@ module.exports = React.createClass({
 
     render: function () {
         var searchList = [];
-
+        var bodyContent;
         if(this.state.searchText.length > 0) {
             var currentSearch = this.state.searchText;
             var partnerCallback = this.partnerClicked;
@@ -66,23 +66,31 @@ module.exports = React.createClass({
             } else {
                 searchList.push(<div className="list-group-item"><h4 className="list-group-item-heading">Ingen kontakter samsvarte med ditt søk.</h4></div>);
             }
+            
+            
+            bodyContent = (                
+                <div className="list-group">
+                    {searchList}
+                </div>
+            );
+        } else {
+            bodyContent = (
+                <div className="logo-container">
+                    <img src="images/logo_xs_small.png" className="rbk-logo" />
+                </div>
+            );
         }
 
         return (
             <div>
-                <div className="logo-container">
-                    <img src="images/logo_xs_small.png" className="rbk-logo" />
-                </div>
-                <br/>
                 <Input
                     type="Search"
                     value={this.state.searchText}
                     placeholder="Søk på firma eller navn på person"
                     ref="searchPartner"
                     onChange={this.handleSearchInput}/>
-                <div className="list-group">
-                    {searchList}
-                </div>
+                <br/>
+                {bodyContent}
             </div>
         );
     }
