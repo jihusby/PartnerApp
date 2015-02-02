@@ -20,7 +20,7 @@ module.exports =  {
     },
     LocalStorageKeys: { 
         activities: "activities",
-        favorites: "favorites" ,
+        favorites: "favorites",
         partnerdata: "partnerdata",
         partnerTypes: "partnerTypes",
         persons: "persons",

@@ -33,7 +33,7 @@ module.exports = React.createClass({
                <div className="logo-container">
                     <img src="images/logo_xs_small.png" className="rbk-logo" />
                </div>
-                <p>Logg inn med samme brukernavn og passord som du bruker på nettsiden til Godfoten.</p>
+                <p>Logg inn med samme epostadresse og passord som du bruker på nettsiden til Godfoten.</p>
                     <Panel>
                         <form className="form-horizontal">
                           <div className="form-group">

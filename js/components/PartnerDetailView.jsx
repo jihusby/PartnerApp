@@ -26,7 +26,6 @@ module.exports = React.createClass({
         var phone = this.buildPhone(partner.phone);
 
         var proffLink = this.buildProffLink(partner.name);
-        var mapLink = this.buildMapLink(partner.address, partner.zipCode, partner.city);
         var logoSrc = Constants.URLS.partnerLogos + partner.logo;
 
         var contacts = sortedContacts.map(function(contact){
@@ -48,12 +47,11 @@ module.exports = React.createClass({
 </div>
 </div>
 <address>
-{address}
-{phone}
-{mailTo}
-{proffLink}
-{website}
-{mapLink}
+    {address}
+    {phone}
+    {mailTo}
+    {website}
+    {proffLink}
 </address>
 <strong>Kontaktpersoner</strong>
 {contacts}
@@ -66,13 +64,29 @@ openExternalLink: function(link){
 
 buildAddress: function(address, zipCode, city){
     if(address && address.length > 0){
+        var mapLink = "http://maps.google.com/maps?q=" + encodeURIComponent(address + ", " + zipCode + ", " + city + ", " + "norway");
+
         return (
-            <div>
-            {address}<br/>
-            {zipCode} {city}<br/>
-        </div>
-    );
-    } else{
+            <span>
+                <div className="row">
+                    <div className="col-xs-1 top-margin">
+                        <div className="parent-content">
+                            <div className="left-icon">
+                                <i className="glyphicon glyphicon-map-marker"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-xs-11 top-margin">
+                        <div className="parent-content">
+                            <div className="right-line">
+                                <small><a onClick={this.openExternalLink.bind(this, mapLink)}> {address}<br/>{zipCode} {city}</a></small><br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </span>
+        );
+    } else {
         return ("");
     }
 },
@@ -83,9 +97,24 @@ buildWebsite: function(website){
         var websiteLink = hasHttp ? website : "http://" + website;
         return (
             <span>
-            <i className="glyphicon glyphicon-globe"></i> <small><a onClick={this.openExternalLink.bind(this, websiteLink)}>{websiteLink}</a></small><br/>
-        </span>
-    );
+                <div className="row">
+                    <div className="col-xs-1">
+                        <div className="parent-content">
+                            <div className="left-icon">
+                                <i className="glyphicon glyphicon-globe"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-xs-11">
+                        <div className="parent-content">
+                            <div className="right-line">
+                                <small><a onClick={this.openExternalLink.bind(this, websiteLink)}>{websiteLink}</a></small><br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </span>
+        );
     } else {
         return ("");
     }
@@ -95,9 +124,24 @@ buildProffLink: function(name){
     var proffLink = "http://www.proff.no/bransjesøk?q=" + name;
     return (
         <span>
-        <i className="glyphicon glyphicon-info-sign"></i> <small><a onClick={this.openExternalLink.bind(this, proffLink)}>Info fra proff.no</a></small><br/>
-    </span>
-);
+            <div className="row">
+                <div className="col-xs-1">
+                    <div className="parent-content">
+                        <div className="left-icon">
+                            <i className="glyphicon glyphicon-info-sign"></i>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-xs-11">
+                    <div className="parent-content">
+                        <div className="right-line">
+                            <small><a onClick={this.openExternalLink.bind(this, proffLink)}>Info fra proff.no</a></small><br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    );
 },
 
 buildMailTo: function(email){
@@ -105,9 +149,24 @@ buildMailTo: function(email){
         var mailTo = "mailto:" + email;
         return (
             <span>
-            <i className="glyphicon glyphicon-envelope"></i> <small><a href={mailTo}>{email}</a></small><br/>
-        </span>
-    );
+                <div className="row">
+                    <div className="col-xs-1">
+                        <div className="parent-content">
+                            <div className="left-icon">
+                                <i className="glyphicon glyphicon-envelope"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-xs-11">
+                        <div className="parent-content">
+                            <div className="right-line">
+                                <small><a href={mailTo}>{email}</a></small><br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </span>
+        );
     } else {
         return ("");
     }
@@ -118,23 +177,25 @@ buildPhone: function(phone){
         var phoneLink = "tel:" + phone;
         return (
             <span>
-            <i className="glyphicon glyphicon-earphone"></i> <small><a href={phoneLink}>{phone}</a></small><br/>
-        </span>
-    );
+                <div className="row">
+                    <div className="col-xs-1">
+                        <div className="parent-content">
+                            <div className="left-icon">
+                                <i className="glyphicon glyphicon-earphone"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-xs-11">
+                        <div className="parent-content">
+                            <div className="right-line">
+                                <small><a href={phoneLink}>{phone}</a></small><br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </span>
+        );
     }else{
-        return ("");
-    }
-},
-
-buildMapLink: function(address, zipCode, city){
-    if(address && address.length > 0){
-        var mapLink = "http://maps.google.com/maps?q=" + encodeURIComponent(address + ", " + zipCode + ", " + city + ", " + "norway");
-        return (
-            <span>
-            <i className="glyphicon glyphicon-map-marker"></i> <small><a onClick={this.openExternalLink.bind(this, mapLink)}>Åpne i kart</a></small><br/>
-        </span>
-    );
-    } else {
         return ("");
     }
 }

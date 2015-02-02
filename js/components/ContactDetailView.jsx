@@ -6,6 +6,7 @@ var FormatUtils = require("../utils/format-utils");
 var Constants = require("../utils/partner-constants");
 var Button = require("react-bootstrap/Button");
 var Favorite = require("./Favorite.jsx");
+var ContactNote = require("./ContactNote.jsx");
 var ContactBox = require("./ContactBox.jsx");
 
 var ContactStore = require("../stores/ContactStore.js");
@@ -16,11 +17,14 @@ var Reflux = require("reflux");
 
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(ContactStore,"favorites"), Reflux.connect(ContactStore,"contactNotes")],
+    mixins: [Reflux.connect(ContactStore,"contactNotes")],
 
     getInitialState: function() {
-        ContactActions.getFavorites();
         ContactActions.getContactNotes();
+        return {
+            contactNote: 'Initial'
+        };
+
     },
 
     onClickPartner: function(id) {
@@ -42,49 +46,6 @@ module.exports = React.createClass({
         /* TODO: Remove this placeholder and add contact image */
         var logoSrc = Constants.URLS.partnerLogos + partner.logo;
 
-        var CommentForm = React.createClass({
-
-            getInitialState: function() {
-                /*ContactActions.getFavorites();
-                ContactActions.getContactNotes();*/
-                console.log("initial state");
-                return {
-                    note: "note is " + LocalStorageUtils.getNote(contact.id)
-                }
-            },
-
-            handleChange: function(e) {
-                /*
-                this.setState({
-                    contactNote: e.target.value
-                });
-                var contactNotes = this.state.contactNotes || [];
-                /
-                /* FIXME: test code */
-                /*
-                console.log("notes are " + contactNotes);
-                console.log("state are " + JSON.stringify(this.state));
-                var favorites = this.state.favorites || [];
-                console.log("favorites are " + favorites);
-                var contactNote = { id: this.props.contact.id, contactNote: e.target.value };
-                ContactActions.setContactNotes(_.union(contactNotes, [contactNote]));
-                */
-            },
-
-            render: function() {
-                return (
-                    <textarea className="textarea"
-                        id="contactNote"
-                        key="contactNote"
-                        type="text"
-                        ref="contactNote"
-                        value={this.state.contactNote}
-                        contact={contact}
-                        onChange={this.handleChange} />
-                );
-            }
-        });
-
         return (
             <div>
                 <div className="media">
@@ -104,9 +65,29 @@ module.exports = React.createClass({
                 {mail}
                 {sms}
                 </address>
-                <CommentForm key="commentForm1" contact={contact} ref="commentForm" onCommentSubmit={this.handleCommentSubmit} />
+                <ContactNote addToContactNotes={this.addToContactNotes} />
             </div>
         )},
+
+    addToContactNotes: function(contactNote){
+        var contactNotes = this.state.contactNotes || [];
+        var contactNote = { id: this.props.id, contactNote: contactNote };
+
+        console.log("cn.length: " + contactNotes.length);
+        var cn = _.findWhere(contactNotes, {contactNote: contactNote});
+        console.log("cn: " + cn);
+        var found = _.findWhere(contactNotes, {id: this.props.id});
+        if(found){
+            console.log("found: " + found);
+            ContactActions.setContactNotes(_.union(contactNotes, [found]));
+        }else{
+
+        }
+
+        console.log("contactNotes are " + JSON.stringify(contactNotes));
+        ContactActions.setContactNotes(_.union(contactNotes, [contactNote]));
+
+    },
 
     buildPartnerName: function(partner){
         return (
@@ -128,10 +109,25 @@ module.exports = React.createClass({
 
     buildMailTo: function(email){
         if(email && email.length > 0){
-            var mail = "mailto:" + email;
+            var mailTo = "mailto:" + email;
             return (
                 <span>
-                    <i className="glyphicon glyphicon-envelope"></i> <small><a href={mail}>Send e-post</a></small><br/>
+                    <div className="row">
+                        <div className="col-xs-1">
+                            <div className="parent-content">
+                                <div className="left-icon">
+                                    <i className="glyphicon glyphicon-envelope"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-xs-11">
+                            <div className="parent-content">
+                                <div className="right-line">
+                                    <small><a href={mailTo}>Send e-post</a></small><br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </span>
             );
         } else {
@@ -145,7 +141,22 @@ module.exports = React.createClass({
             var phoneFormatted = FormatUtils.formatPhone(phone);
             return (
                 <span>
-                    <i className="glyphicon glyphicon-earphone"></i> <small><a href={phoneLink}>{phoneFormatted}</a></small><br/>
+                    <div className="row">
+                        <div className="col-xs-1">
+                            <div className="parent-content">
+                                <div className="left-icon">
+                                    <i className="glyphicon glyphicon-earphone"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-xs-11">
+                            <div className="parent-content">
+                                <div className="right-line">
+                                    <small><a href={phoneLink}>{phoneFormatted}</a></small><br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </span>
             );
         }else{
@@ -159,7 +170,22 @@ module.exports = React.createClass({
             var mobileFormatted = FormatUtils.formatMobile(mobile);
             return (
                 <span>
-                    <i className="glyphicon glyphicon-earphone"></i> <small><a href={mobileLink}>{mobileFormatted}</a></small><br/>
+                    <div className="row">
+                        <div className="col-xs-1">
+                            <div className="parent-content">
+                                <div className="left-icon">
+                                    <i className="glyphicon glyphicon-earphone"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-xs-11">
+                            <div className="parent-content">
+                                <div className="right-line">
+                                    <small><a href={mobileLink}>{mobileFormatted}</a></small><br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </span>
             );
         }else{
@@ -172,7 +198,22 @@ module.exports = React.createClass({
             var smsLink = "sms:" + mobile;
             return (
                 <span>
-                    <i className="glyphicon glyphicon-comment"></i> <small><a href={smsLink}>Send SMS</a></small><br/>
+                    <div className="row">
+                        <div className="col-xs-1">
+                            <div className="parent-content">
+                                <div className="left-icon">
+                                    <i className="glyphicon glyphicon-comment"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-xs-11">
+                            <div className="parent-content">
+                                <div className="right-line">
+                                    <small><a href={smsLink}>Send SMS</a></small><br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </span>
             );
         }else{

@@ -9,7 +9,6 @@ var Input = require("react-bootstrap/Input");
 module.exports = React.createClass({
 
     getInitialState: function() {
-        console.log("--initial state");
         return {
             searchText: ''
         };
@@ -48,7 +47,7 @@ module.exports = React.createClass({
             
             // persons
             var contacts = this.props.persons;
-            searchList.push(<div className="list-group-item list-heading"><h3 className="list-group-item-heading"><strong>Kontakter</strong></h3></div>);
+            searchList.push(<div className="list-group-item list-heading"><h3 className="list-group-item-heading"><strong>Kontaktpersoner</strong></h3></div>);
             var contactList = [];
             contacts.forEach(function(contact) {
                 if(contact.firstName.toLowerCase().indexOf(searchString)==0 || contact.lastName.toLowerCase().indexOf(searchString)==0){

@@ -177,12 +177,37 @@ form{
     color:gold;
 }
 
+.top-margin{
+    margin-top: 10px;
+}
+
+.parent-content{
+    display: table;
+    height: 30px;
+}
+
+.left-icon{
+    width: 10px;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: right;
+    font-size: 120%
+}
+
+.right-line{
+    vertical-align: middle;
+    line-height: 17px;
+    display: table-cell;
+}
+
 .black{
     background-color: #000000;
 }
+
 .textarea{
     width: 100%;
 }
+
 .disabled{
    color: #606060 !important;
 }
