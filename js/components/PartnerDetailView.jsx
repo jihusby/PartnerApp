@@ -76,7 +76,7 @@ buildAddress: function(address, zipCode, city){
                             </div>
                         </div>
                     </div>
-                    <div className="col-xs-11 top-margin">
+                    <div className="col-xs-10 top-margin">
                         <div className="parent-content">
                             <div className="right-line">
                                 <small><a onClick={this.openExternalLink.bind(this, mapLink)}> {address}<br/>{zipCode} {city}</a></small><br/>
@@ -105,7 +105,7 @@ buildWebsite: function(website){
                             </div>
                         </div>
                     </div>
-                    <div className="col-xs-11">
+                    <div className="col-xs-10">
                         <div className="parent-content">
                             <div className="right-line">
                                 <small><a onClick={this.openExternalLink.bind(this, websiteLink)}>{websiteLink}</a></small><br/>
@@ -132,7 +132,7 @@ buildProffLink: function(name){
                         </div>
                     </div>
                 </div>
-                <div className="col-xs-11">
+                <div className="col-xs-10">
                     <div className="parent-content">
                         <div className="right-line">
                             <small><a onClick={this.openExternalLink.bind(this, proffLink)}>Info fra proff.no</a></small><br/>
@@ -157,7 +157,7 @@ buildMailTo: function(email){
                             </div>
                         </div>
                     </div>
-                    <div className="col-xs-11">
+                    <div className="col-xs-10">
                         <div className="parent-content">
                             <div className="right-line">
                                 <small><a href={mailTo}>{email}</a></small><br/>
@@ -185,7 +185,7 @@ buildPhone: function(phone){
                             </div>
                         </div>
                     </div>
-                    <div className="col-xs-11">
+                    <div className="col-xs-10">
                         <div className="parent-content">
                             <div className="right-line">
                                 <small><a href={phoneLink}>{phone}</a></small><br/>

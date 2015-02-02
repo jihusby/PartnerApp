@@ -19,7 +19,9 @@ module.exports = Reflux.createStore({
     },
     
     onGetFavorites: function(){
-        this.trigger(store.get(Constants.LocalStorageKeys.favorites));
+        var result = store.get(Constants.LocalStorageKeys.favorites)
+        console.log("ContactStore favorites are " + JSON.stringify(result));
+        this.trigger(result);
     },
 
     onSetContactNotes: function(value){
@@ -28,7 +30,9 @@ module.exports = Reflux.createStore({
     },
 
     onGetContactNotes: function(){
-        this.trigger(store.get(Constants.LocalStorageKeys.contactNotes));
+        var result = store.get(Constants.LocalStorageKeys.contactNotes);
+        console.log("ContactStore contact notes are " + JSON.stringify(result));
+        this.trigger(result);
     },
 
     onGetById: function(id){
