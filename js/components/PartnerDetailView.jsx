@@ -39,7 +39,7 @@ module.exports = React.createClass({
             <div className="media">
         <div className="media-left">
         <span className="helper"></span>
-        <img className="media-object" src={logoSrc} />
+        <img className="media-object" src={logoSrc} data-rel="external" />
         </div>
         <div className="media-body">
         <h3><strong>{partner.name}</strong></h3>

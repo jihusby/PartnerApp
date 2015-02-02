@@ -28,12 +28,13 @@ var ActivityListView = require("./ActivityListView.jsx");
 var ActivityDetailView = require("./ActivityDetailView.jsx");
 
 var Constants = require("../utils/partner-constants");
+var Navigator = require("../utils/navigator");
 
 module.exports =
 
     React.createClass({
 
-        mixins: [Reflux.connect(MenuStore,"menuItem"),Reflux.connect(AuthStore,"loginResult"), Reflux.connect(DataStore, "rbkData")],
+        mixins: [Reflux.connect(MenuStore,"menuItem"),Reflux.connect(AuthStore,"loginResult"), Reflux.connect(DataStore, "rbkData"), Navigator],
 
         getInitialState: function() {
             return {loginResult: AuthStore.getDefaultData()};
@@ -50,23 +51,28 @@ module.exports =
             $('#nav-menu').collapse('hide');
             switch(menuEvent){
                 case Constants.MenuItems.home:
-                    routie("");
+                    Navigator.goTo("");
+                    //routie("");
                     break;
                 case Constants.MenuItems.partnerlist:
-                    routie("partnerList");
+                    Navigator.goTo("partnerList");
+                    //routie("partnerList");
                     break;
                 case Constants.MenuItems.favorites:
-                    routie("favorites");
+                    Navigator.goTo("favorites");
+                    //routie("favorites");
                     break;
                 case Constants.MenuItems.login:
                     if(!this.state.loginResult || !this.state.loginResult.loggedIn){
-                        routie("login");
+                        Navigator.goTo("login");
+                        //routie("login");
                     } else{
                         AuthActions.logOut();      
                     }
                     break;
                 case Constants.MenuItems.activities:
-                    routie("activities");
+                    Navigator.goTo("activities");
+                    //routie("activities");
                     break;
                  default:
                     console.error("Invalid menuItem");
@@ -94,6 +100,7 @@ module.exports =
         },
         
         buildBackButton: function(){
+            console.log("History length: " + window.history.length);
             if(window.history && window.history.length > 1){
                 return (<a className="navbar-brand btn {additionalClasses}" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>);
             } else {
@@ -250,6 +257,7 @@ module.exports =
                     <div className="container content-container">
                         {content}
                     </div>
+
                 </div>
             );
         }
