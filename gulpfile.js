@@ -67,6 +67,7 @@ gulp.task('phonegap-copy', function() {
     gulp.src(['css/**/*']).pipe(gulp.dest('phonegap/www/css'));
     gulp.src(['js/external/**/*']).pipe(gulp.dest('phonegap/www/js/external'));
     gulp.src(['index.html']).pipe(gulp.dest('phonegap/www'));
+    gulp.src(['images/*']).pipe(gulp.dest('phonegap/www/images'));
 });
 
 gulp.task('phonegap-build', shell.task([
