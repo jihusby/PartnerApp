@@ -8,10 +8,10 @@ html, body{
     background: -moz-linear-gradient(top,  rgba(0,0,0,0.65) 30%, rgba(0,0,0,0) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(30%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top,  rgba(0,0,0,0.65) 30%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
-    background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 30%,rgba(0,0,0,0) 100%); /* W3C */    
+    background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 30%,rgba(0,0,0,0) 100%); /* W3C */
     background-repeat: repeat-x;
     background-size: 100%;
-    
+
     overflow-x: hidden;
     height: 100%;
     color: white;
@@ -76,26 +76,26 @@ form{
     color: black;
 }
 .media-left{
-    white-space: nowrap;    
-    text-align: center; margin: 1em 0;    
+    white-space: nowrap;
+    text-align: center; margin: 1em 0;
 }
 .media-object{
     vertical-align: middle;
     width:  75px;
-    height: auto;   
+    height: auto;
 }
 
 .spin {
-  -webkit-animation: spin .8s infinite linear;
-  -moz-animation: spin .8s infinite linear;
-  -o-animation: spin .8s infinite linear;
-  animation: spin .8s infinite linear;
-     -webkit-transform-origin: 50% 50%;
-         transform-origin:50% 50%;
-         -ms-transform-origin:50% 50%; /* IE 9 */
+    -webkit-animation: spin .8s infinite linear;
+    -moz-animation: spin .8s infinite linear;
+    -o-animation: spin .8s infinite linear;
+    animation: spin .8s infinite linear;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin:50% 50%;
+    -ms-transform-origin:50% 50%; /* IE 9 */
 }
 .navbar-form{
- color:#fff;   
+    color:#fff;
 }
 .content-container {
     margin-top: 50px;
@@ -144,7 +144,7 @@ form{
 }
 
 .hide-on-large{
-   display: inherit !important;
+    display: inherit !important;
 }
 
 @media (min-width: 768px) {
@@ -181,16 +181,16 @@ form{
 }
 
 .mobile-header{
-    text-align: center;    
+    text-align: center;
     padding-right: 138px;
-    margin-right: -138px;    
+    margin-right: -138px;
     width: 100%;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
 .navbar-nav{
-    float:right;   
+    float:right;
 }
 
 .activity-detail img{
@@ -216,7 +216,7 @@ form{
     vertical-align: middle;
     display: table-cell;
     text-align: right;
-    font-size: 120%
+    font-size: 120%;
 }
 
 .right-line{
@@ -234,7 +234,7 @@ form{
 }
 
 .disabled{
-   color: #606060 !important;
+    color: #606060 !important;
 }
 
 .logo-container{
@@ -250,28 +250,28 @@ form{
     height: 95%;
 }
 @-moz-keyframes spin {
-  from {
-    -moz-transform: rotate(0deg);
-  }
-  to {
-    -moz-transform: rotate(360deg);
-  }
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
 }
 
 @-webkit-keyframes spin {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-  }
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

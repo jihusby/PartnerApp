@@ -24,7 +24,6 @@ module.exports = React.createClass({
         return {
             contactNote: 'Initial'
         };
-
     },
 
     onClickPartner: function(id) {
@@ -40,7 +39,6 @@ module.exports = React.createClass({
         var mobile = this.buildMobile(contact.mobile);
         var mail = this.buildMailTo(contact.email);
         var sms = this.buildSMS(contact.mobile);
-        /*var note = this.buildNote(contact.note);*/
         var partnerName = this.buildPartnerName(partner);
 
         /* TODO: Remove this placeholder and add contact image */
@@ -71,6 +69,7 @@ module.exports = React.createClass({
 
     addToContactNotes: function(contactNote){
         var contactNotes = this.state.contactNotes || [];
+        console.log("ContactDetailView: old contactNotes are " + JSON.stringify(contactNotes));
         var contactNote = { id: this.props.id, contactNote: contactNote };
 
         console.log("cn.length: " + contactNotes.length);
@@ -84,7 +83,7 @@ module.exports = React.createClass({
 
         }
 
-        console.log("contactNotes are " + JSON.stringify(contactNotes));
+        console.log("ContactDetailView: new contactNotes are " + JSON.stringify(contactNotes));
         ContactActions.setContactNotes(_.union(contactNotes, [contactNote]));
 
     },
@@ -120,7 +119,7 @@ module.exports = React.createClass({
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xs-11">
+                        <div className="col-xs-10">
                             <div className="parent-content">
                                 <div className="right-line">
                                     <small><a href={mailTo}>Send e-post</a></small><br/>
@@ -149,7 +148,7 @@ module.exports = React.createClass({
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xs-11">
+                        <div className="col-xs-10">
                             <div className="parent-content">
                                 <div className="right-line">
                                     <small><a href={phoneLink}>{phoneFormatted}</a></small><br/>
@@ -178,7 +177,7 @@ module.exports = React.createClass({
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xs-11">
+                        <div className="col-xs-10">
                             <div className="parent-content">
                                 <div className="right-line">
                                     <small><a href={mobileLink}>{mobileFormatted}</a></small><br/>
@@ -206,7 +205,7 @@ module.exports = React.createClass({
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xs-11">
+                        <div className="col-xs-10">
                             <div className="parent-content">
                                 <div className="right-line">
                                     <small><a href={smsLink}>Send SMS</a></small><br/>
@@ -219,15 +218,5 @@ module.exports = React.createClass({
         }else{
             return ("");
         }
-    },
-
-
-    handleChange: function(field, e) {
-        console.log("field is " + field);
-        var nextState = {}
-        nextState[field] = e.target.checked
-        this.setState(nextState)
-        console.log("nextState is " + nextState[field]);
     }
-
 });
