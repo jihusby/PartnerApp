@@ -33,8 +33,8 @@ module.exports = Reflux.createStore({
                     store.set(Constants.LocalStorageKeys.name, data.name);
 
                     BackendActions.synchronizeData();
-                    that.trigger({ loggedIn: true, name: data.name, error: undefined });
                     MenuActions.search();
+                    that.trigger({ loggedIn: true, name: data.name, error: undefined });
                 },
 				error: function(errorMsg) {
                     that.trigger({ loggedIn: false, name: "", error: { title: "Det skjedde en feil.", message: errorMsg.responseJSON } });
