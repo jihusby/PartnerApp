@@ -1,10 +1,14 @@
 var React = require("react");
 var Utils = require("../utils/format-utils");
+var Navigator = require("../utils/navigator");
 
 module.exports = React.createClass({
+    mixins: [Navigator],
+    
     onClickActivity: function(id) {
-        routie("activity/" + id);
+        this.goTo("activity/" + id);
     },
+    
     render: function() {
         var activity = this.props.activity;
         var dateString = Utils.formatDates(activity.startDate, activity.endDate);

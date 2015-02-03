@@ -1,8 +1,11 @@
 var React = require("react");
+var Navigator = require("../utils/navigator");
 
 module.exports = React.createClass({
+    mixins: [Navigator],
+    
     onClickPerson: function(id) {
-        routie("person/" + id);
+        this.goTo("person/" + id);
     },
     render: function() {
         return (

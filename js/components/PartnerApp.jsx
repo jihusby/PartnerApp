@@ -51,43 +51,26 @@ module.exports =
             $('#nav-menu').collapse('hide');
             switch(menuEvent){
                 case Constants.MenuItems.home:
-                    Navigator.goTo("");
-                    //routie("");
+                    this.goTo("");
                     break;
                 case Constants.MenuItems.partnerlist:
-                    Navigator.goTo("partnerList");
-                    //routie("partnerList");
+                    this.goTo("partnerList");
                     break;
                 case Constants.MenuItems.favorites:
-                    Navigator.goTo("favorites");
-                    //routie("favorites");
+                    this.goTo("favorites");
                     break;
                 case Constants.MenuItems.login:
                     if(!this.state.loginResult || !this.state.loginResult.loggedIn){
-                        Navigator.goTo("login");
-                        //routie("login");
+                        this.goTo("login");
                     } else{
                         AuthActions.logOut();      
                     }
                     break;
                 case Constants.MenuItems.activities:
-                    Navigator.goTo("activities");
-                    //routie("activities");
+                    this.goTo("activities");
                     break;
                  default:
                     console.error("Invalid menuItem");
-            }
-        },
-        
-        goBack: function () {
-            var nav = window.navigator;
-            if( this.phonegapNavigationEnabled &&
-                nav &&
-                nav.app &&
-                nav.app.backHistory ){
-                nav.app.backHistory();
-            } else {
-                window.history.back();
             }
         },
         
@@ -100,8 +83,8 @@ module.exports =
         },
         
         buildBackButton: function(){
-            console.log("History length: " + window.history.length);
-            if(window.history && window.history.length > 1){
+            console.log("History length: " + this.getIterator());
+            if(this.getIterator() > 0){
                 return (<a className="navbar-brand btn {additionalClasses}" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>);
             } else {
                 var style = {width:"68px"};

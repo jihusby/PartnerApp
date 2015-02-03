@@ -2,11 +2,15 @@
  * Showing a single partner in a list view
 */
 var React = require("react");
+var Navigator = require("../utils/navigator");
 
 module.exports = React.createClass({
+    mixins: [Navigator],
+    
     onClickPartner: function(id) {
-        routie("partner/" + id);
+        this.goTo("partner/" + id);
     },
+    
     render: function() {
         return (
             <a className="list-group-item" onClick={this.onClickPartner.bind(this, this.props.partner.id)}>

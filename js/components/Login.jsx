@@ -38,11 +38,10 @@ module.exports = React.createClass({
                         <form className="form-horizontal">
                           <div className="form-group">
                               <div className="row">
-                                <label className="col-xs-3 control-label">E-post</label>
-                                <div className="col-xs-8">
+                                <div className="col-sm-12">
                                   <Input
                                     type="email"
-                                    placeholder=""
+                                    placeholder="E-post"
                                     ref="username"
                                     className="form-control"
                                 />
@@ -51,11 +50,10 @@ module.exports = React.createClass({
                           </div>
                           <div className="form-group">
                               <div className="row">
-                                <label className="col-xs-3 control-label">Passord</label>
-                                <div className="col-xs-8">
+                                <div className="col-sm-12">
                                   <Input
                                     type="password"
-                                    placeholder=""
+                                    placeholder="Passord"
                                     ref="password"
                                     className="form-control"
                                     onKeyDown={this.handleKeyDown}

@@ -11,13 +11,14 @@ var ContactBox = require("./ContactBox.jsx");
 
 var ContactStore = require("../stores/ContactStore.js");
 var ContactActions = require("../actions/ContactActions.js");
+var Navigator = require("../utils/navigator");
 
 var Contact = require("../model/Contact.js");
 var Reflux = require("reflux");
 
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(ContactStore,"contactNotes")],
+    mixins: [Reflux.connect(ContactStore,"contactNotes"), Navigator],
 
     getInitialState: function() {
         ContactActions.getContactNotes();
@@ -27,7 +28,7 @@ module.exports = React.createClass({
     },
 
     onClickPartner: function(id) {
-        routie("partner/" + id);
+        this.goTo("partner/" + id);
     },
 
     render: function () {

@@ -6,10 +6,13 @@
  */
 var React = require("react");
 var Favorite = require("./Favorite.jsx");
+var Navigator = require("../utils/Navigator");
 
 module.exports = React.createClass({
+    mixins: [Navigator],
+    
     onClickContact: function(id) {
-        routie("contact/" + id);
+        this.goTo("contact/" + id);
     },
 
     buildPartnerName: function(contact, showName) {

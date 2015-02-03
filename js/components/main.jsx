@@ -1,6 +1,5 @@
 var React = require("react");
 var Reflux = require("reflux");
-var routie = require("routie");
 
 var DataStore = require("../stores/DataStore");
 var AuthStore = require("../stores/AuthStore");
@@ -22,7 +21,7 @@ module.exports =
                         <PartnerApp partners={this.state.rbkData.partners} persons={this.state.rbkData.persons}/>
                     </div>
                     <div className="footer">
-                            Utviklet av: <img src="images/itema-logo_graa_xsmall.png" />
+                            Utviklet av: <img src="images/itema-logo_graa_xxsmall.png" />
                     </div>
                 </div>
             );
