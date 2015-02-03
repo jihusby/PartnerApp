@@ -8,6 +8,7 @@ function Contact(json) {
     this.mobile = json.mobile;
     this.position = json.position;
     this.partnerId = json.partnerId;
+    this.picture = json.picture;
 }
 
 Contact.prototype = {

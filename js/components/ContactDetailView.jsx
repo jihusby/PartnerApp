@@ -42,7 +42,7 @@ module.exports = React.createClass({
         var partnerName = this.buildPartnerName(partner);
 
         /* TODO: Remove this placeholder and add contact image */
-        var logoSrc = Constants.URLS.partnerLogos + partner.logo;
+        var logoSrc = contact.picture ? Constants.URLS.personImages + contact.picture : "";
 
         return (
             <div>
