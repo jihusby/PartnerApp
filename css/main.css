@@ -1,7 +1,3 @@
-* {
-    margin: 0;
-}
-
 html, body{
     font-family: Helvetica,Arial,sans-serif;
     font-size: 1.125em;
@@ -11,10 +7,9 @@ html, body{
     background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 30%,rgba(0,0,0,0) 100%); /* W3C */
     background-repeat: repeat-x;
     background-size: 100%;
-
     overflow-x: hidden;
-    height: 100%;
     color: white;
+    min-height: 400px;
 }
 
 a{
@@ -38,25 +33,17 @@ form{
     color: black;
 }
 
-.filler {
-    height: 100%;
-}
-
-.wrapper {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -53px;
-}
-.footer, .push {
-    height: 53px;
-}
-
 .footer{
     height: auto;
     color: black;
     text-align: center;
-    padding-bottom: 5px;
+    margin-left: -15px;
+    padding-top: 5px;
+    width: 100%;
+}
+
+.filler {
+    height: 100%;
 }
 
 .helper{
@@ -246,8 +233,8 @@ form{
     margin: auto;
 }
 
-#wrap{
-    height: 95%;
+#container{
+    height: 100%;
 }
 @-moz-keyframes spin {
     from {

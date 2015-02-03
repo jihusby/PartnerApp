@@ -36,31 +36,31 @@ module.exports = React.createClass({
 
         return (
             <div>
-            <div className="media">
-        <div className="media-left">
-        <span className="helper"></span>
-        <img className="media-object" src={logoSrc} data-rel="external" />
-        </div>
-        <div className="media-body">
-        <h3><strong>{partner.name}</strong></h3>
-<small>{partner.partnerType}</small>
-</div>
-</div>
-<address>
-    {address}
-    {phone}
-    {mailTo}
-    {website}
-    {proffLink}
-</address>
-<strong>Kontaktpersoner</strong>
-{contacts}
-</div>
-)},
+                <div className="media">
+                    <div className="media-left">
+                        <span className="helper"></span>
+                        <img className="media-object" src={logoSrc} data-rel="external" />
+                    </div>
+                    <div className="media-body">
+                        <h3><strong>{partner.name}</strong></h3>
+                        <small>{partner.partnerType}</small>
+                    </div>
+                </div>
+                <address>
+                    {address}
+                    {phone}
+                    {mailTo}
+                    {website}
+                    {proffLink}
+                </address>
+                <strong>Kontaktpersoner</strong>
+                {contacts}
+            </div>
+        )},
 
-openExternalLink: function(link){
-    window.open(link, '_system');
-},
+    openExternalLink: function(link){
+        window.open(link, '_system');
+        },
 
 buildAddress: function(address, zipCode, city){
     if(address && address.length > 0){

@@ -2,7 +2,7 @@ var React = require("react");
 var Reflux = require("reflux");
 var MenuActions = require("./actions/MenuActions");
 
-var Main = require("./components/main.jsx");
+var Main = require("./components/Main.jsx");
 var fastclick = require("fastclick");
 
 fastclick(document.body);

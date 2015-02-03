@@ -17,15 +17,12 @@ module.exports =
 
         render: function () {
             return (
-                <div className="filler">
-                    <div className="wrapper">
+                <div>
+                    <div>
                         <PartnerApp partners={this.state.rbkData.partners} persons={this.state.rbkData.persons}/>
-                        <div className="push"></div>
                     </div>
                     <div className="footer">
-                        <div className="container">
                             Utviklet av: <img src="images/itema-logo_graa_xsmall.png" />
-                        </div>
                     </div>
                 </div>
             );
