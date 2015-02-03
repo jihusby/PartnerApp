@@ -4,6 +4,9 @@ var MenuActions = require("./actions/MenuActions");
 
 var Main = require("./components/Main.jsx");
 var fastclick = require("fastclick");
+var Hammer = require("hammer.js");
+
+var Navigator = require("./utils/navigator");
 
 fastclick(document.body);
 
@@ -20,8 +23,15 @@ if (updateStatusBar) {
     document.body.style.marginTop = '20px';
 }
 
+var container = document.getElementById("container");
+React.render(<Main/>, container); 
 
-React.render(<Main/>, document.getElementById("container")); 
+var swipe = new Hammer(document.body);
+swipe.get('swipe').set({ direction: Hammer.DIRECTION_RIGHT });
+
+swipe.on("swiperight", function(){
+    Navigator.goBack();
+});
 
 routie({
     "": function() {

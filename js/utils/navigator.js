@@ -15,16 +15,18 @@ module.exports = {
     },
     
     goBack: function(){
-        var nav = window.navigator;
-        if( this.phonegapNavigationEnabled &&
-            nav &&
-            nav.app &&
-            nav.app.backHistory ){
-            nav.app.backHistory();
-        } else {
-            window.history.back();
-        }        
-        navigatorIterator--;
+        if(navigatorIterator > 0){
+            var nav = window.navigator;
+            if( this.phonegapNavigationEnabled &&
+                nav &&
+                nav.app &&
+                nav.app.backHistory ){
+                nav.app.backHistory();
+            } else {
+                window.history.back();
+            }        
+            navigatorIterator--;
+        }
     }
 }
 
