@@ -13,6 +13,8 @@ var ContactStore = require("../stores/ContactStore.js");
 var ContactActions = require("../actions/ContactActions.js");
 var Navigator = require("../utils/navigator");
 
+var store = require("store.js");
+
 var Contact = require("../model/Contact.js");
 var Reflux = require("reflux");
 
@@ -64,29 +66,12 @@ module.exports = React.createClass({
                 {mail}
                 {sms}
                 </address>
-                <ContactNote addToContactNotes={this.addToContactNotes} />
+                <small><ContactNote contact={contact} setContactNote={this.setContactNote} /></small>
             </div>
         )},
 
-    addToContactNotes: function(contactNote){
-        var contactNotes = this.state.contactNotes || [];
-        console.log("ContactDetailView: old contactNotes are " + JSON.stringify(contactNotes));
-        var contactNote = { id: this.props.id, contactNote: contactNote };
-
-        console.log("cn.length: " + contactNotes.length);
-        var cn = _.findWhere(contactNotes, {contactNote: contactNote});
-        console.log("cn: " + cn);
-        var found = _.findWhere(contactNotes, {id: this.props.id});
-        if(found){
-            console.log("found: " + found);
-            ContactActions.setContactNotes(_.union(contactNotes, [found]));
-        }else{
-
-        }
-
-        console.log("ContactDetailView: new contactNotes are " + JSON.stringify(contactNotes));
-        ContactActions.setContactNotes(_.union(contactNotes, [contactNote]));
-
+    setContactNote: function(noteText){
+        ContactActions.setContactNotes({ id: this.props.id, contactNote: noteText });
     },
 
     buildPartnerName: function(partner){

@@ -49,7 +49,6 @@ module.exports = React.createClass({
     addToFavorites: function(note){
         var favorites = this.state.favorites || [];
         var favorite = { id: this.props.id, note: note };
-        console.log("Favorites are " + favorites);
         ContactActions.setFavorites(_.union(favorites, [favorite]));
         this.setState({
           isModalOpen: !this.state.isModalOpen

@@ -4,7 +4,6 @@ var Constants = require("../utils/partner-constants");
 var store = require("store.js");
 var contactdata = store.get(Constants.LocalStorageKeys.persons);
 var partnerdata = store.get(Constants.LocalStorageKeys.partnerdata);
-var notedata = store.get(Constants.LocalStorageKeys.contactNotes);
 var ContactActions = require("../actions/ContactActions.js");
 
 module.exports = {
@@ -18,7 +17,12 @@ module.exports = {
     },
 
     getContactNote: function(contactId) {
-        return _.find(notedata, function(contactNote){ return contactNote.id == contactId; });
+        var result = _.find(store.get(Constants.LocalStorageKeys.contactNotes), function(contactNote){ return contactNote.id == contactId; });
+        if(result) {
+            return result.contactNote;
+        }else{
+            return ("");
+        }
     }
 
 }
