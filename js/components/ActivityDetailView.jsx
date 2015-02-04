@@ -12,7 +12,7 @@ module.exports = React.createClass({
         var html = activity.description.replace(/["]/g, "");
         var dateString = Utils.formatDates(activity.startDate, activity.endDate);
         return (
-            <div className="activity-detail">
+            <div className="activity-detail panel">
                 <h3>{activity.title}</h3>
                 <h4>{activity.location}</h4>
                 <p>{dateString}</p>

@@ -180,6 +180,11 @@ form{
     float:right;
 }
 
+.activity-detail{
+    color: black;
+    padding: 15px;
+}
+
 .activity-detail img{
     max-width: 100%;
     height:auto;
