@@ -16,7 +16,9 @@ var ActivityBox = require("./ActivityBox.jsx");
 var commingActivities = "Kommende aktiviteter";
 
 module.exports = React.createClass({
-    mixins: [Reflux.connect(DataStore,"rbkData")],
+    propTypes: {
+        activities: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+    },
     
     getInitialState: function(){
         return {
@@ -31,7 +33,7 @@ module.exports = React.createClass({
         var that = this;
         this.setState({init: false });
         if (filter){
-            var filteredActivities = _.sortBy(this.state.rbkData.activities.filter(function(activity){
+            var filteredActivities = _.sortBy(this.props.activities.filter(function(activity){
                 return that.filterOnYear(activity, filter);
             }), function(activity){
                 return that.sortActivities(activity, filter);
@@ -45,7 +47,7 @@ module.exports = React.createClass({
     },
     render: function(){
         var that = this;
-        if(!this.state.rbkData || !this.state.rbkData.activities){
+        if(!this.props.activities){
             return (
                 <div>
                     <div className="center-text">
@@ -71,7 +73,7 @@ module.exports = React.createClass({
             
             var activities;
             if(this.state.init){                
-                var commingActivitiesList = _.sortBy(this.state.rbkData.activities.filter(function(activity){
+                var commingActivitiesList = _.sortBy(this.props.activities.filter(function(activity){
                     return that.filterOnYear(activity, commingActivities);
                 }), function(activity){
                     return that.sortActivities(activity, commingActivities);

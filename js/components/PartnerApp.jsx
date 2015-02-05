@@ -34,8 +34,14 @@ module.exports =
 
     React.createClass({
 
-        mixins: [Reflux.connect(MenuStore,"menuItem"),Reflux.connect(AuthStore,"loginResult"), Reflux.connect(DataStore, "rbkData"), Navigator],
+        mixins: [Reflux.connect(MenuStore,"menuItem"), Reflux.connect(DataStore, "rbkData"), Reflux.connect(AuthStore,"loginResult"), Navigator],
 
+        propTypes: {
+            activities: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+            persons: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+            partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+        },
+        
         getInitialState: function() {
             return {loginResult: AuthStore.getDefaultData()};
         },
@@ -173,11 +179,11 @@ module.exports =
                         break;
                     case Constants.MenuItems.activities:
                         title = "Aktiviteter";
-                        content = <ActivityListView />;
+                        content = <ActivityListView activities={this.props.activities} />;
                         break;
                     case Constants.MenuItems.activity:
                         title = "Aktivitet";
-                        content = <ActivityDetailView id={this.state.menuItem.id} />;
+                        content = <ActivityDetailView activities={this.props.activities} contacts={this.props.persons} id={this.state.menuItem.id} />;
                         break;
                 }
                 // hack to ensure scrolling to top of page
