@@ -12,6 +12,7 @@ var MenuActions = require("../actions/MenuActions");
 
 var Partner = require("../model/partner");
 var Contact = require("../model/contact");
+var Activity = require("../model/activity");
 var Utils = require("../utils/format-utils");
 var Constants = require("../utils/partner-constants");
 
@@ -155,7 +156,11 @@ module.exports = Reflux.createStore({
                         return new Contact(person);
                     })
                     .value();
-                                    
+                
+                var activities = _.map(json.activities, function(activity){
+                   return new Activity(activity); 
+                });
+                console.log("Activities: " + JSON.stringify(activities));
                 store.set(Constants.LocalStorageKeys.partnerdata, partners);
                 store.set(Constants.LocalStorageKeys.persons, persons);
                 store.set(Constants.LocalStorageKeys.partnerTypes, partnerTypes);
@@ -166,7 +171,7 @@ module.exports = Reflux.createStore({
                     partners: partners, 
                     persons: persons, 
                     partnerTypes: partnerTypes,
-                    activities: json.activities,
+                    activities: activities,
                     isUpdating: false
                 };
                 console.log("Data updated from server");
