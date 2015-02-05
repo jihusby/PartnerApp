@@ -7,6 +7,10 @@ var ContactBox = require("./ContactBox.jsx");
 var Input = require("react-bootstrap/Input");
 
 module.exports = React.createClass({
+    propTypes: {
+        partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+        contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+    },
 
     getInitialState: function() {
         return {
@@ -46,10 +50,9 @@ module.exports = React.createClass({
             }
             
             // persons
-            var contacts = this.props.persons;
             searchList.push(<div className="list-group-item list-heading"><h3 className="list-group-item-heading"><strong>Kontaktpersoner</strong></h3></div>);
             var contactList = [];
-            contacts.forEach(function(contact) {
+            this.props.contacts.forEach(function(contact) {
                 if(contact.firstName.toLowerCase().indexOf(searchString)==0 || contact.lastName.toLowerCase().indexOf(searchString)==0){
                     var partnerForPerson = _.find(partners, function(partner){ 
                         return partner.id === contact.partnerId;

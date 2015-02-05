@@ -38,8 +38,9 @@ module.exports =
 
         propTypes: {
             activities: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-            persons: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-            partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+            contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+            partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+            partnerTypes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
         },
         
         getInitialState: function() {
@@ -144,12 +145,12 @@ module.exports =
                 switch(this.state.menuItem.path){
                     case Constants.MenuItems.home:
                         title = "Søk";
-                        content = <PartnerSearchView partners={this.props.partners} persons={this.props.persons} />
+                        content = <PartnerSearchView partners={this.props.partners} contacts={this.props.contacts} />
                         console.log("Search called");
                         break;
                     case Constants.MenuItems.partnerlist:
                         title = "Partnere";
-                        content = <PartnerListView />
+                        content = <PartnerListView partners={this.props.partners} partnerTypes={this.props.partnerTypes} />
                         break;
                     case Constants.MenuItems.favorites:
                         title = "Favoritter";
@@ -175,7 +176,7 @@ module.exports =
                     case Constants.MenuItems.contact_detail:
                         title = "Kontakt";
                         var contactId = this.state.menuItem.id;
-                        content = <ContactDetailView id={contactId} />
+                        content = <ContactDetailView contacts={this.props.contacts} partners={this.props.partners} id={contactId} />
                         break;
                     case Constants.MenuItems.activities:
                         title = "Aktiviteter";
@@ -183,7 +184,7 @@ module.exports =
                         break;
                     case Constants.MenuItems.activity:
                         title = "Aktivitet";
-                        content = <ActivityDetailView activities={this.props.activities} contacts={this.props.persons} id={this.state.menuItem.id} />;
+                        content = <ActivityDetailView activities={this.props.activities} contacts={this.props.contacts} partners={this.props.partners} id={this.state.menuItem.id} />;
                         break;
                 }
                 // hack to ensure scrolling to top of page

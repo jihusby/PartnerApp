@@ -23,7 +23,6 @@ module.exports = Reflux.createStore({
 
     onSynchronizeData: function(forceUpdate) {
         console.log("Updating: " + forceUpdate);
-        console.log("Synchronize partners called from React Component")
         this.getDataFromBackend(this.updateData, forceUpdate);
     },
 
@@ -80,7 +79,6 @@ module.exports = Reflux.createStore({
                     request.setRequestHeader("Authorize", store.get("bearer_token"));
                 },
                 success: function (data) {
-                    console.log("Success: " + JSON.stringify(data));
                     store.set(Constants.LocalStorageKeys.last_active_check, moment());
                     callback(data.active);
                 },
@@ -160,7 +158,6 @@ module.exports = Reflux.createStore({
                 var activities = _.map(json.activities, function(activity){
                    return new Activity(activity); 
                 });
-                console.log("Activities: " + JSON.stringify(activities));
                 store.set(Constants.LocalStorageKeys.partnerdata, partners);
                 store.set(Constants.LocalStorageKeys.persons, persons);
                 store.set(Constants.LocalStorageKeys.partnerTypes, partnerTypes);
@@ -174,7 +171,6 @@ module.exports = Reflux.createStore({
                     activities: activities,
                     isUpdating: false
                 };
-                console.log("Data updated from server");
                 callback(data);
             },
             error: function(xhr, status, err) {

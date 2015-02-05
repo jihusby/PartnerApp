@@ -13,7 +13,11 @@ var PartnerBox = require("./PartnerBox.jsx");
 
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(DataStore,"rbkData")],
+    propTypes: {
+        partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+        partnerTypes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+    },
+    
     getInitialState: function(){
         return {
             filteredPartnerList: [],
@@ -26,15 +30,14 @@ module.exports = React.createClass({
     handleSelect: function(partnerType) {
     
         this.setState({init: false });
-        console.log(partnerType);
         if (partnerType){
             if (partnerType === "all") {
                 this.setState({
-                    filteredPartnerList: this.state.rbkData.partners,
+                    filteredPartnerList: this.props.partners,
                     dropdownTitle: "Alle partnertyper"
                 });
             } else {
-                var filteredPartnerList = this.state.rbkData.partners.filter(function(partner){
+                var filteredPartnerList = this.props.partners.filter(function(partner){
                     return (partner.partnerType=== partnerType);
                 });
                 this.setState({
@@ -45,7 +48,7 @@ module.exports = React.createClass({
         }
     },
     render: function () {
-        if(!this.state.rbkData || !this.state.rbkData.partners || !this.state.rbkData.partnerTypes){
+        if(!this.props.partners || !this.props.partnerTypes){
             return (<div>
                         <div className="center-text">
                             Venter på data...
@@ -56,7 +59,7 @@ module.exports = React.createClass({
                     </div>);
         } else {
             var that = this;
-            var partnerTypeMenuItems = this.state.rbkData.partnerTypes.map(function(partnerType){
+            var partnerTypeMenuItems = this.props.partnerTypes.map(function(partnerType){
                 return (<MenuItem eventKey={partnerType.name} > {partnerType.name}</MenuItem>);
             });
             var buttonGroupInstance = (
@@ -69,7 +72,7 @@ module.exports = React.createClass({
             );
             var partnerNodes;
             if(this.state.init){
-                partnerNodes = this.state.rbkData.partners.map(function (partner) {
+                partnerNodes = this.props.partners.map(function (partner) {
                     return (<PartnerBox partner={partner} />);
                 });
             } else{

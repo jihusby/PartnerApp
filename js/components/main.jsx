@@ -18,7 +18,7 @@ module.exports =
             return (
                 <div>
                     <div>
-                        <PartnerApp partners={this.state.rbkData.partners} persons={this.state.rbkData.persons} activities={this.state.rbkData.activities} />
+                        <PartnerApp partners={this.state.rbkData.partners} contacts={this.state.rbkData.persons} activities={this.state.rbkData.activities} partnerTypes={this.state.rbkData.partnerTypes} />
                     </div>
                     <div className="footer">
                             Utviklet av: <img src="images/itema-logo_graa_xxsmall.png" />

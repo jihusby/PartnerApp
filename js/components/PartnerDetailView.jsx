@@ -5,7 +5,10 @@ var ContactBox = require("./ContactBox.jsx");
 var Constants = require("../utils/partner-constants.js");
 
 module.exports = React.createClass({
-
+    propTypes: {
+        selectedPartner: React.PropTypes.object.isRequired
+    },
+    
     getInitialState: function(){
         return {
             sortedContacts: [],

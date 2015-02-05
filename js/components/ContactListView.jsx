@@ -14,6 +14,13 @@ var ContactActions = require("../actions/ContactActions.js");
 var Contact = require("../model/Contact.js");
 
 module.exports = React.createClass({
+    propTypes: {
+        index: React.PropTypes.number.isRequired,
+        note: React.PropTypes.string,
+        contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+        partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+    },
+    
     render: function(){
         var i = this.props.index;
         var note = "";
@@ -26,11 +33,9 @@ module.exports = React.createClass({
             );
         }
         var content = "";
-        var key = Constants.LocalStorageKeys.partnerdata;
-        var data = store.get(key);
         var id = this.props.id;
-        var contact = _.find(data.persons, function(person){ return person.id == id; });
-        var partner = _.find(data.partners, function(partner){ return partner.id == contact.partnerId; });
+        var contact = _.find(this.props.contacts, function(person){ return person.id == id; });
+        var partner = _.find(this.props.partners, function(partner){ return partner.id == contact.partnerId; });
         contact.partnerName = partner.name;
         var mailTo = "mailto:" + contact.email;
         var showPhone = !!contact.mobile;

@@ -5,12 +5,13 @@ var store = require("store.js");
 var Utils = require("../utils/format-utils");
 var Constants = require("../utils/partner-constants.js");
 var ContactBox = require("./ContactBox.jsx");
-var BackendActions = require
+var PersonBox = require("./PersonBox.jsx");
 
 module.exports = React.createClass({
     propTypes: {
         activities: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-        contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+        contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+        partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
     },
     
     render: function(){
@@ -22,15 +23,24 @@ module.exports = React.createClass({
         
         console.log("Enrollments: " + JSON.stringify(activity.enrollments));
         console.log("Contacts: " + JSON.stringify(this.props.contacts));
-        var enrollments = activity.enrollments.map(function(enrollment){
-            var contact = _.find(that.props.contacts, function(c){
-                return c.id === enrollment.personId;
-            });
-            
-            if(contact){
-                console.log("Found contact: " + JSON.stringify(contact));
+        var contacts = activity.enrollments.map(function(enrollment){
+            if(enrollment.personId){
+                var contact = _.find(that.props.contacts, function(c){
+                    return c.id === enrollment.personId;
+                });
+
+                if(contact){
+                    return (
+                        <ContactBox contact={contact} showPosition={true} showFavorite={true} />
+                    );
+                }
+            }
+        });
+        
+        var persons = activity.enrollments.map(function(enrollment){
+            if(enrollment.freeText){
                 return (
-                    <ContactBox contact={contact} showPosition={true} showFavorite={true} />
+                    <PersonBox freeText={enrollment.freeText} partnerId={enrollment.partnerId} partners={that.props.partners} />
                 );
             }
         });
@@ -43,7 +53,8 @@ module.exports = React.createClass({
                 <span dangerouslySetInnerHTML={{__html:html}}></span>
                 <br/>
                 <strong>Påmeldte</strong>
-                {enrollments}
+                {contacts}
+                {persons}
             </div>
         );
     }

@@ -13,6 +13,12 @@ var Contact = require("../model/Contact.js");
 
 module.exports = React.createClass({
 
+    propTypes: {
+        contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+        partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+        id: React.PropTypes.number.isRequired
+    },
+    
     mixins: [Navigator],
 
     onClickPartner: function(id) {
@@ -20,8 +26,13 @@ module.exports = React.createClass({
     },
 
     render: function () {
-        var contact = LocalStorageUtils.findContact(this.props.id);
-        var partner = LocalStorageUtils.findPartner(contact.partnerId);
+        var that = this;
+        var contact = _.find(this.props.contacs, function(c){
+            return c.id === that.props.id;
+        });
+        var partner = _.find(this.props.partners, function(p){
+            return p.id === contact.partnerId;
+        });
         var name = [contact.firstName, contact.lastName].join(" ");
         var position = this.buildPosition(contact.position);
         var phone = this.buildPhone(contact.phone);
