@@ -5,17 +5,12 @@ var _ = require("underscore");
 var ContactActions = require("../actions/ContactActions.js");
 var ContactStore = require("../stores/ContactStore.js");
 
-var OverlayMixin = require("react-bootstrap/OverlayMixin");
-
-var FavoriteModal = require("./FavoriteModal.jsx");
-
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(ContactStore,"favorites"), OverlayMixin],
+    mixins: [Reflux.connect(ContactStore,"favorites")],
     
     getInitialState: function() {
         ContactActions.getFavorites();
-        return { isModalOpen: false};
     },
     
     render: function(){
@@ -27,32 +22,17 @@ module.exports = React.createClass({
             );
         } else {
             return  (
-                <a onClick={this.showModal}>
+                <a onClick={this.addToFavorites}>
                         <i className="glyphicon glyphicon-star-empty gold"></i>
                 </a>
             );
         }
     },
-    
-    renderOverlay: function () {
-        if(this.state.isModalOpen){
-          return (
-                <FavoriteModal onToggle={this.showModal} addToFavorites={this.addToFavorites} />
-            );
-        } else {
-            return (
-                <span/>
-            );
-        }
-    },
 
-    addToFavorites: function(note){
+    addToFavorites: function(){
         var favorites = this.state.favorites || [];
-        var favorite = { id: this.props.id, note: note };
+        var favorite = { id: this.props.id };
         ContactActions.setFavorites(_.union(favorites, [favorite]));
-        this.setState({
-          isModalOpen: !this.state.isModalOpen
-        });
     },
     
     removeFavorite: function(){
@@ -65,12 +45,6 @@ module.exports = React.createClass({
         ));
     },
     
-    showModal: function () {
-        this.setState({
-          isModalOpen: !this.state.isModalOpen
-        });
-    },
-
     isFavorite: function(favorites){
         var that = this;
         return !!_.find(favorites, function(f){ return f.id == that.props.id});
