@@ -19,6 +19,7 @@ module.exports = Reflux.createStore({
     },
     
     onGetFavorites: function(){
+        console.log("getFavorites: " + Constants.LocalStorageKeys.favorites)
         var result = store.get(Constants.LocalStorageKeys.favorites)
         this.trigger(result);
     },
@@ -29,11 +30,12 @@ module.exports = Reflux.createStore({
                 return contactNote.id != value.id;
             });
             store.set(Constants.LocalStorageKeys.contactNotes, _.union(contactNotes, [value]));
-            this.trigger(value);
+            /*this.trigger(value);*/
         }
     },
 
     onGetContactNotes: function(){
+        console.log("getContactNotes: " + Constants.LocalStorageKeys.contactNotes)
         var result = store.get(Constants.LocalStorageKeys.contactNotes);
         this.trigger(result);
     },

@@ -226,7 +226,6 @@ form{
 }
 
 .textareaPassive{
-    resize: both;
     background-color: #dedede;
     color: #545454;
     font-size: 0.875em;
@@ -238,7 +237,6 @@ form{
 }
 
 .textareaActive{
-    resize: both;
     background-color: #ffffff;
     color: #000000;
     font-size: 0.875em;

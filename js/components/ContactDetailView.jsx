@@ -4,30 +4,16 @@ var _ = require("underscore");
 var LocalStorageUtils = require("../utils/localstorage-utils");
 var FormatUtils = require("../utils/format-utils");
 var Constants = require("../utils/partner-constants");
-var Button = require("react-bootstrap/Button");
 var Favorite = require("./Favorite.jsx");
 var ContactNote = require("./ContactNote.jsx");
-var ContactBox = require("./ContactBox.jsx");
 
-var ContactStore = require("../stores/ContactStore.js");
-var ContactActions = require("../actions/ContactActions.js");
 var Navigator = require("../utils/navigator");
 
-var store = require("store.js");
-
 var Contact = require("../model/Contact.js");
-var Reflux = require("reflux");
 
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(ContactStore,"contactNotes"), Navigator],
-
-    getInitialState: function() {
-        ContactActions.getContactNotes();
-        return {
-            contactNote: 'Initial'
-        };
-    },
+    mixins: [Navigator],
 
     onClickPartner: function(id) {
         this.goTo("partner/" + id);
@@ -66,13 +52,9 @@ module.exports = React.createClass({
                 {mail}
                 {sms}
                 </address>
-                <small><ContactNote contact={contact} setContactNote={this.setContactNote} /></small>
+                <small><ContactNote contact={contact} /></small>
             </div>
         )},
-
-    setContactNote: function(noteText){
-        ContactActions.setContactNotes({ id: this.props.id, contactNote: noteText });
-    },
 
     buildPartnerName: function(partner){
         return (
