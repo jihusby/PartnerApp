@@ -27,11 +27,11 @@ module.exports = React.createClass({
 
     render: function () {
         var that = this;
-        var contact = _.find(this.props.contacs, function(c){
-            return c.id === that.props.id;
+        var contact = _.find(this.props.contacts, function(c){
+            return c.id == that.props.id;
         });
         var partner = _.find(this.props.partners, function(p){
-            return p.id === contact.partnerId;
+            return p.id == contact.partnerId;
         });
         var name = [contact.firstName, contact.lastName].join(" ");
         var position = this.buildPosition(contact.position);
