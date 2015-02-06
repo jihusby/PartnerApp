@@ -27,7 +27,7 @@ module.exports = React.createClass({
     render: function () {
         var searchList = [];
         var bodyContent;
-        if(this.state.searchText.length > 0) {
+        if(this.state.searchText.length > 1) {
             var currentSearch = this.state.searchText;
             var partnerCallback = this.partnerClicked;
             var personCallback = this.personClicked;
@@ -38,7 +38,7 @@ module.exports = React.createClass({
             searchList.push(<div className="list-group-item list-heading"><h3 className="list-group-item-heading"><strong>Partnere</strong></h3></div>);
             var partners = this.props.partners;
             partners.forEach(function(partner) {
-                if(partner.name.toLowerCase().indexOf(searchString)==0){
+                if(partner.name.toLowerCase().indexOf(searchString) > -1){
                     partnerList.push(<PartnerBox partner={partner} />);
                 }
             });
@@ -53,7 +53,7 @@ module.exports = React.createClass({
             searchList.push(<div className="list-group-item list-heading"><h3 className="list-group-item-heading"><strong>Kontaktpersoner</strong></h3></div>);
             var contactList = [];
             this.props.contacts.forEach(function(contact) {
-                if(contact.firstName.toLowerCase().indexOf(searchString)==0 || contact.lastName.toLowerCase().indexOf(searchString)==0){
+                if(contact.firstName.toLowerCase().indexOf(searchString) > -1 || contact.lastName.toLowerCase().indexOf(searchString) > -1){
                     var partnerForPerson = _.find(partners, function(partner){ 
                         return partner.id === contact.partnerId;
                     });
