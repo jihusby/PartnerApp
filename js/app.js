@@ -1,6 +1,8 @@
 var React = require("react");
 var Reflux = require("reflux");
 var MenuActions = require("./actions/MenuActions");
+var DataStore = require("./stores/DataStore");
+var Alerter = require("./utils/alerter");
 
 var Main = require("./components/Main.jsx");
 var fastclick = require("fastclick");
@@ -46,6 +48,15 @@ $(document).click(function (event) {
         $navbar.collapse('hide');
     }
 });
+
+// check if user is active on resume
+document.addEventListener("resume", onResume, false);
+
+function onResume() {
+    Alerter.alert("Sjekker om bruker er aktiv.", "Test"); // remove after tested OK.
+    DataStore.getDataFromBackend(DataStore.updateData, false);
+}
+
 
 routie({
     "": function() {
