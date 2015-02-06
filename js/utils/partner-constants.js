@@ -32,6 +32,7 @@ module.exports =  {
         contactNotes: "contactNotes"
     },
     SessionStorageKeys: {
-       
+        partnerFilter: "partnerFilter",
+        activityFilter: "activityFilter"
     }
 }

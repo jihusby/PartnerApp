@@ -12,6 +12,8 @@ var MenuItem = require("react-bootstrap/MenuItem");
 var DataStore = require("../stores/DataStore.js");
 
 var ActivityBox = require("./ActivityBox.jsx");
+var SessionStorage = require("../utils/sessionstorage");
+var Constants = require("../utils/partner-constants");
 
 var commingActivities = "Kommende aktiviteter";
 
@@ -21,30 +23,27 @@ module.exports = React.createClass({
     },
     
     getInitialState: function(){
+        var activityFilter = SessionStorage.get(Constants.SessionStorageKeys.activityFilter);
         return {
             filteredActivities: [],
             activities: [],
-            dropdownTitle: commingActivities,
+            dropdownTitle: activityFilter || commingActivities,
             init: true
         };
     },
     
     handleSelect: function(filter) {
-        var that = this;
         this.setState({init: false });
         if (filter){
-            var filteredActivities = _.sortBy(this.props.activities.filter(function(activity){
-                return that.filterOnYear(activity, filter);
-            }), function(activity){
-                return that.sortActivities(activity, filter);
-            });
-
+            SessionStorage.set(Constants.SessionStorageKeys.activityFilter, filter);
+            var filteredActivities = this.filterActivities(filter);
             this.setState({
                 filteredActivities: filteredActivities,
                 dropdownTitle: filter
             });
         }
     },
+    
     render: function(){
         var that = this;
         if(!this.props.activities){
@@ -72,13 +71,9 @@ module.exports = React.createClass({
             );
             
             var activities;
-            if(this.state.init){                
-                var commingActivitiesList = _.sortBy(this.props.activities.filter(function(activity){
-                    return that.filterOnYear(activity, commingActivities);
-                }), function(activity){
-                    return that.sortActivities(activity, commingActivities);
-                });
-
+            if(this.state.init){
+                var filterInStorage = SessionStorage.get(Constants.SessionStorageKeys.activityFilter);
+                var commingActivitiesList = this.filterActivities(filterInStorage || commingActivities);
                 activities = commingActivitiesList.map(function(activity){
                         return (
                             <ActivityBox activity={activity} />
@@ -101,6 +96,7 @@ module.exports = React.createClass({
             );
         }
     },
+                                                    
     sortActivities: function(activity, filterKey){
         if(filterKey === commingActivities){
             return activity.startDate ? moment(activity.startDate).format("X") : 0;
@@ -127,6 +123,15 @@ module.exports = React.createClass({
                 return false;
             }
         }
+    },
+        
+    filterActivities: function(filter){
+        var that = this;
+        return _.sortBy(this.props.activities.filter(function(activity){
+            return that.filterOnYear(activity, filter);
+        }), function(activity){
+            return that.sortActivities(activity, filter);
+        });
     },
     
     buildFilters: function(){

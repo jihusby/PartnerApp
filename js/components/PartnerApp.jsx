@@ -27,6 +27,7 @@ var PartnerDetailView = require("./PartnerDetailView.jsx");
 var ActivityListView = require("./ActivityListView.jsx");
 var ActivityDetailView = require("./ActivityDetailView.jsx");
 
+var SessionStorage = require("../utils/sessionstorage");
 var Constants = require("../utils/partner-constants");
 var Navigator = require("../utils/navigator");
 
@@ -61,6 +62,7 @@ module.exports =
                     this.goTo("");
                     break;
                 case Constants.MenuItems.partnerlist:
+                    SessionStorage.remove(Constants.SessionStorageKeys.partnerFilter);
                     this.goTo("partnerList");
                     break;
                 case Constants.MenuItems.favorites:
@@ -74,6 +76,7 @@ module.exports =
                     }
                     break;
                 case Constants.MenuItems.activities:
+                    SessionStorage.remove(Constants.SessionStorageKeys.activityFilter);
                     this.goTo("activities");
                     break;
                  default:

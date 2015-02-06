@@ -11,6 +11,9 @@ var MenuItem = require("react-bootstrap/MenuItem");
 var DataStore = require("../stores/DataStore");
 var PartnerBox = require("./PartnerBox.jsx");
 
+var SessionStorage = require("../utils/sessionstorage");
+var Constants = require("../utils/partner-constants");
+
 module.exports = React.createClass({
 
     propTypes: {
@@ -19,10 +22,11 @@ module.exports = React.createClass({
     },
     
     getInitialState: function(){
+        var filterInStorage = SessionStorage.get(Constants.SessionStorageKeys.partnerFilter);
         return {
             filteredPartnerList: [],
             partnerListData: [],
-            dropdownTitle: "Alle partnertyper",
+            dropdownTitle: filterInStorage ? (filterInStorage == "all" ? "Alle partnertyper" : filterInStorage) : "Alle partnertyper",
             init: true
         };
     },
@@ -31,22 +35,24 @@ module.exports = React.createClass({
     
         this.setState({init: false });
         if (partnerType){
-            if (partnerType === "all") {
-                this.setState({
-                    filteredPartnerList: this.props.partners,
-                    dropdownTitle: "Alle partnertyper"
-                });
-            } else {
-                var filteredPartnerList = this.props.partners.filter(function(partner){
-                    return (partner.partnerType=== partnerType);
-                });
-                this.setState({
-                    filteredPartnerList: filteredPartnerList,
-                    dropdownTitle: partnerType
-                });
-            }
+            SessionStorage.set(Constants.SessionStorageKeys.partnerFilter, partnerType);
+            var filteredPartnerList = this.filterPartners(partnerType);
+            this.setState({
+                filteredPartnerList: filteredPartnerList,
+                dropdownTitle: partnerType === "all" ? "Alle partnertyper" : partnerType
+            });
         }
     },
+    
+    filterPartners: function(filter){
+        if(filter === "all"){
+            return this.props.partners;
+        }
+        return filteredPartnerList = this.props.partners.filter(function(partner){
+            return (partner.partnerType=== filter);
+        });
+    },
+    
     render: function () {
         if(!this.props.partners || !this.props.partnerTypes){
             return (<div>
@@ -72,7 +78,9 @@ module.exports = React.createClass({
             );
             var partnerNodes;
             if(this.state.init){
-                partnerNodes = this.props.partners.map(function (partner) {
+                var filterInStorage = SessionStorage.get(Constants.SessionStorageKeys.partnerFilter);
+                var filteredPartnerList = this.filterPartners(filterInStorage || "all");
+                partnerNodes = filteredPartnerList.map(function (partner) {
                     return (<PartnerBox partner={partner} />);
                 });
             } else{
