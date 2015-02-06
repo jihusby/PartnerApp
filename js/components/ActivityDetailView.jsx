@@ -23,8 +23,6 @@ module.exports = React.createClass({
         var html = activity.description.replace(/["]/g, "");
         var dateString = this.formatDates(activity.startDate, activity.endDate);
         var deadlineDate = this.buildDeadlineDate(activity.deadlineDate);
-        console.log("Enrollments: " + JSON.stringify(activity.enrollments));
-        console.log("Contacts: " + JSON.stringify(this.props.contacts));
         var contacts = activity.enrollments.map(function(enrollment){
             if(enrollment.personId){
                 var contact = _.find(that.props.contacts, function(c){

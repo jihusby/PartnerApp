@@ -5,6 +5,8 @@ var MenuActions = require("./actions/MenuActions");
 var Main = require("./components/Main.jsx");
 var fastclick = require("fastclick");
 var Hammer = require("hammer.js");
+jQuery = require("jquery"); // bootstrap needs jQuery variable to be set
+var $ = jQuery;
 
 var Navigator = require("./utils/navigator");
 
@@ -31,6 +33,16 @@ swipe.get('swipe').set({ direction: Hammer.DIRECTION_RIGHT });
 
 swipe.on("swiperight", function(){
     Navigator.goBack();
+});
+
+// thanks to: http://stackoverflow.com/a/25409035
+$(document).click(function (event) {
+    var clickover = $(event.target);
+    var $navbar = $(".navbar-collapse");               
+    var _opened = $navbar.hasClass("in");
+    if (_opened === true && !clickover.hasClass("navbar-toggle")) {      
+        $navbar.collapse('hide');
+    }
 });
 
 routie({
