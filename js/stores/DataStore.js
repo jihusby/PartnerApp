@@ -182,6 +182,7 @@ module.exports = Reflux.createStore({
             },
             error: function(xhr, status, err) {
                 if (xhr.status === 401){
+                    Alerter.alert("Ugyldig tilkoblingsdata. Logg inn på nytt", "Autorisering feilet.");
                     AuthActions.logOut();
                     callback({ isUpdating: false });
                 } else {
