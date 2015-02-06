@@ -15,6 +15,7 @@ var Contact = require("../model/contact");
 var Activity = require("../model/activity");
 var Utils = require("../utils/format-utils");
 var Constants = require("../utils/partner-constants");
+var Alerter = require("../utils/alerter");
 
 
 module.exports = Reflux.createStore({
@@ -177,11 +178,13 @@ module.exports = Reflux.createStore({
                 if (xhr.status === 401){
                     AuthActions.logOut();
                     callback({ isUpdating: false });
+                } else {
+                    Alerter.alert("Oppdateringen tok for lang tid. Prøv igjen.", "Oppdatering feilet.");
+                    console.log("Timeout: " + status);
+                    callback(that.getDataFromLocalStorage());
                 }
-                console.log("Timeout: " + status);
-                callback(that.getDataFromLocalStorage());
             },
-            timeout: 20000
+            timeout: 5000
         });
     }
 });
