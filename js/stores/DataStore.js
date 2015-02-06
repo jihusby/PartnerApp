@@ -116,6 +116,7 @@ module.exports = Reflux.createStore({
             activities: store.get(Constants.LocalStorageKeys.activities),
             isUpdating: false
         };
+        $(".navbar-collapse").collapse('hide'); // closes menu
         return data;
     },
     
@@ -178,6 +179,7 @@ module.exports = Reflux.createStore({
                     activities: activities,
                     isUpdating: false
                 };
+                $(".navbar-collapse").collapse('hide'); // closes menu
                 callback(data);
             },
             error: function(xhr, status, err) {
@@ -190,6 +192,7 @@ module.exports = Reflux.createStore({
                     console.log("Timeout: " + status);
                     callback(that.getDataFromLocalStorage());
                 }
+                $(".navbar-collapse").collapse('hide'); // closes menu
             },
             timeout: 20000
         });

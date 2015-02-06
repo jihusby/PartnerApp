@@ -90,7 +90,6 @@ module.exports =
         },
         
         buildBackButton: function(){
-            console.log("History length: " + this.getIterator());
             if(this.getIterator() > 0){
                 return (<a className="navbar-brand btn {additionalClasses}" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>);
             } else {
@@ -146,7 +145,6 @@ module.exports =
                     case Constants.MenuItems.home:
                         title = "Søk";
                         content = <PartnerSearchView partners={this.props.partners} contacts={this.props.contacts} />
-                        console.log("Search called");
                         break;
                     case Constants.MenuItems.partnerlist:
                         title = "Partnere";
@@ -229,7 +227,7 @@ module.exports =
                                         <span className="glyphicon glyphicon-calendar" />&nbsp;&nbsp;Aktiviteter
                                     </a>
                                 </li>
-                                <li>{spinIcon}</li>
+                                <li className="updater">{spinIcon}</li>
                                 <li id={Constants.MenuItems.login}>
                                     <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)} className={additionalClasses}>
                                     {loginText}
