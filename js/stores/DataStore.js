@@ -41,8 +41,8 @@ module.exports = Reflux.createStore({
         var that = this;
         if(store.get("bearer_token")){
             // check if user is active, once per day
-            this.checkIfActive(function(isActive){ 
-                if(isActive){ // if active, get data
+            this.checkIfActive(function(isActive){
+                if(isActive === true){ // if active, get data
                     var refreshDate = store.get(Constants.LocalStorageKeys.last_refresh_date);
 
                     if(!forceUpdate && refreshDate && !that.aDayHasPassed(refreshDate)){ // data is fresh, get from localstorage
@@ -54,8 +54,14 @@ module.exports = Reflux.createStore({
                         console.log("Fetching data from server");
                         that.getDataFromServer(callback);
                     }
-                } else { // if not, delete data and send user to a not active screen
+                } else if(!isActive) { // if not, delete data and send user to a not active screen
                     that.invalidateUser();
+                } else { // error, most likely due to dropped connection, use data from local storage
+                    setTimeout(function(){ // hack
+                        callback(that.getDataFromLocalStorage());
+                    }, 10);
+                    Alerter.alert("Fikk ikke kontakt med serveren.", "Tilkobling feilet.");
+                    console.log("Offline. Data updated from localstorage.");
                 }
             });
         } else {
@@ -72,7 +78,7 @@ module.exports = Reflux.createStore({
     
     checkIfActive: function(callback){
         var lastActiveCheck = store.get(Constants.LocalStorageKeys.last_active_check);
-        if(this.aDayHasPassed(lastActiveCheck)){
+        if(!lastActiveCheck || this.aDayHasPassed(lastActiveCheck)){
             $.ajax({
                 type: "GET",
                 url: Constants.URLS.active,
@@ -83,9 +89,9 @@ module.exports = Reflux.createStore({
                     store.set(Constants.LocalStorageKeys.last_active_check, moment());
                     callback(data.active);
                 },
-                error: function(errorMsg) {
-                    console.log("Error: " + errorMsg);
-                    callback(false);
+                error: function(xhr, status, err) {
+                    console.log("Error: " + status);
+                    callback(status);
                 }
             });
         } else {
@@ -184,7 +190,7 @@ module.exports = Reflux.createStore({
                     callback(that.getDataFromLocalStorage());
                 }
             },
-            timeout: 5000
+            timeout: 20000
         });
     }
 });
