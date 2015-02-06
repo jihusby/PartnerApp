@@ -26,7 +26,8 @@ if (updateStatusBar) {
 }
 
 var container = document.getElementById("container");
-React.render(<Main/>, container); 
+React.render(<Main/>, container);
+$(".navbar-collapse").collapse('hide'); // close on startup
 
 var swipe = new Hammer(document.body);
 swipe.get('swipe').set({ direction: Hammer.DIRECTION_RIGHT });
