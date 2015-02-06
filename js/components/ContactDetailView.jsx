@@ -16,7 +16,7 @@ module.exports = React.createClass({
     propTypes: {
         contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
         partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-        id: React.PropTypes.number.isRequired
+        id: React.PropTypes.any.isRequired
     },
     
     mixins: [Navigator],
@@ -27,8 +27,9 @@ module.exports = React.createClass({
 
     render: function () {
         var that = this;
-        var contact = _.find(this.props.contacs, function(c){
-            return c.id === that.props.id;
+        console.log("ID: " + that.props.id);
+        var contact = _.find(this.props.contacts, function(c){
+            return c.id == that.props.id;
         });
         var partner = _.find(this.props.partners, function(p){
             return p.id === contact.partnerId;
