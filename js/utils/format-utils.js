@@ -1,5 +1,6 @@
 var React = require("react");
 var moment = require("moment");
+var fullDateFormat = "DD.MM YYYY HH.mm";
 
 module.exports = {
 
@@ -23,7 +24,6 @@ module.exports = {
 
     formatDates: function(startDate, endDate){
         var date = "";
-        var fullDateFormat = "DD.MM YYYY HH.mm";
         var timeFormat = "HH.mm"
         if(startDate){
             var startDay = moment(startDate).dayOfYear();
@@ -35,6 +35,9 @@ module.exports = {
             }
         }
         return date;
+    },
+    
+    formatDate: function(date){
+        return moment(date).format(fullDateFormat);
     }
-
 }

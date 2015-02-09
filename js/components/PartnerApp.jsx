@@ -27,6 +27,7 @@ var PartnerDetailView = require("./PartnerDetailView.jsx");
 var ActivityListView = require("./ActivityListView.jsx");
 var ActivityDetailView = require("./ActivityDetailView.jsx");
 
+var SessionStorage = require("../utils/sessionstorage");
 var Constants = require("../utils/partner-constants");
 var Navigator = require("../utils/navigator");
 
@@ -61,6 +62,7 @@ module.exports =
                     this.goTo("");
                     break;
                 case Constants.MenuItems.partnerlist:
+                    SessionStorage.remove(Constants.SessionStorageKeys.partnerFilter);
                     this.goTo("partnerList");
                     break;
                 case Constants.MenuItems.favorites:
@@ -74,6 +76,7 @@ module.exports =
                     }
                     break;
                 case Constants.MenuItems.activities:
+                    SessionStorage.remove(Constants.SessionStorageKeys.activityFilter);
                     this.goTo("activities");
                     break;
                  default:
@@ -90,7 +93,6 @@ module.exports =
         },
         
         buildBackButton: function(){
-            console.log("History length: " + this.getIterator());
             if(this.getIterator() > 0){
                 return (<a className="navbar-brand btn {additionalClasses}" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>);
             } else {
@@ -146,7 +148,6 @@ module.exports =
                     case Constants.MenuItems.home:
                         title = "Søk";
                         content = <PartnerSearchView partners={this.props.partners} contacts={this.props.contacts} />
-                        console.log("Search called");
                         break;
                     case Constants.MenuItems.partnerlist:
                         title = "Partnere";
@@ -229,7 +230,7 @@ module.exports =
                                         <span className="glyphicon glyphicon-calendar" />&nbsp;&nbsp;Aktiviteter
                                     </a>
                                 </li>
-                                <li>{spinIcon}</li>
+                                <li className="updater">{spinIcon}</li>
                                 <li id={Constants.MenuItems.login}>
                                     <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)} className={additionalClasses}>
                                     {loginText}

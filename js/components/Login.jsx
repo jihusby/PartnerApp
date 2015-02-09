@@ -34,42 +34,40 @@ module.exports = React.createClass({
                     <img src="images/logo_xs_small.png" className="rbk-logo" />
                </div>
                 <p>Logg inn med samme epostadresse og passord som du bruker på nettsiden til Godfoten.</p>
-                    <Panel>
-                        <form className="form-horizontal">
-                          <div className="form-group">
-                              <div className="row">
-                                <div className="col-sm-12">
-                                  <Input
-                                    type="email"
-                                    placeholder="E-post"
-                                    ref="username"
-                                    className="form-control"
-                                />
-                                </div>
-                              </div>
-                          </div>
-                          <div className="form-group">
-                              <div className="row">
-                                <div className="col-sm-12">
-                                  <Input
-                                    type="password"
-                                    placeholder="Passord"
-                                    ref="password"
-                                    className="form-control"
-                                    onKeyDown={this.handleKeyDown}
-                                />
-                                </div>
+                    <form className="form-horizontal">
+                      <div className="form-group">
+                          <div className="row">
+                            <div className="col-sm-12">
+                              <Input
+                                type="email"
+                                placeholder="E-post"
+                                ref="username"
+                                className="form-control"
+                            />
                             </div>
                           </div>
-                          <div className="form-group">
-                              <div className="row">
-                                <div className="col-sm-offset-1 col-sm-9 pull-right">
-                                  <Button bsStyle="primary" onClick={this.login}>Logg inn</Button>            
-                                </div>
-                              </div>
+                      </div>
+                      <div className="form-group">
+                          <div className="row">
+                            <div className="col-sm-12">
+                              <Input
+                                type="password"
+                                placeholder="Passord"
+                                ref="password"
+                                className="form-control"
+                                onKeyDown={this.handleKeyDown}
+                            />
+                            </div>
+                        </div>
+                      </div>
+                      <div className="form-group">
+                          <div className="row">
+                            <div className="col-sm-offset-1 col-sm-9 pull-right">
+                              <Button bsStyle="primary" onClick={this.login}>Logg inn</Button>            
+                            </div>
                           </div>
-                        </form>
-                   </Panel> 
+                      </div>
+                    </form>
                    <Alert />
                </div>
                 );

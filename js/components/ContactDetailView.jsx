@@ -16,7 +16,7 @@ module.exports = React.createClass({
     propTypes: {
         contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
         partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-        id: React.PropTypes.number.isRequired
+        id: React.PropTypes.any.isRequired
     },
     
     mixins: [Navigator],

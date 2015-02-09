@@ -8,6 +8,8 @@ var ContactBox = require("./ContactBox.jsx");
 var PersonBox = require("./PersonBox.jsx");
 
 module.exports = React.createClass({
+    mixins: [Utils],
+    
     propTypes: {
         activities: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
         contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
@@ -19,10 +21,8 @@ module.exports = React.createClass({
         var id = this.props.id;
         var activity = _.find(this.props.activities, function(a){return a.id == id;});
         var html = activity.description.replace(/["]/g, "");
-        var dateString = Utils.formatDates(activity.startDate, activity.endDate);
-        
-        console.log("Enrollments: " + JSON.stringify(activity.enrollments));
-        console.log("Contacts: " + JSON.stringify(this.props.contacts));
+        var dateString = this.formatDates(activity.startDate, activity.endDate);
+        var deadlineDate = this.buildDeadlineDate(activity.deadlineDate);
         var contacts = activity.enrollments.map(function(enrollment){
             if(enrollment.personId){
                 var contact = _.find(that.props.contacts, function(c){
@@ -51,11 +51,28 @@ module.exports = React.createClass({
                 <h4>{activity.location}</h4>
                 <p>{dateString}</p>
                 <span dangerouslySetInnerHTML={{__html:html}}></span>
+                {deadlineDate}
                 <br/>
                 <strong>Påmeldte</strong>
                 {contacts}
                 {persons}
             </div>
         );
+    },
+    
+    buildDeadlineDate : function(deadlineDate){
+        if(deadlineDate){
+            var formattedDate = this.formatDate(deadlineDate);
+            return (
+                <div>
+                    <br/>
+                    <small><strong>Påmeldingsfrist:</strong> {formattedDate}</small>
+                </div>
+            );
+        } else{
+            return (
+                <span></span>
+            );
+        }
     }
 });

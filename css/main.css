@@ -30,6 +30,7 @@ address{
 }
 
 form{
+    padding: 15px;
     color: black;
 }
 
@@ -181,7 +182,7 @@ form{
 }
 
 .activity-detail{
-    color: black;
+    color: black !important;
     padding: 15px;
 }
 
