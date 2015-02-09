@@ -54,7 +54,7 @@ module.exports =
 
         handleMenuSelect: function(menuEvent) {
             if(this.state.rbkData.isUpdating){
-                return;   
+                return;
             }
             $('#nav-menu').collapse('hide');
             switch(menuEvent){
@@ -72,7 +72,8 @@ module.exports =
                     if(!this.state.loginResult || !this.state.loginResult.loggedIn){
                         this.goTo("login");
                     } else{
-                        AuthActions.logOut();      
+                        this.goTo("");
+                        AuthActions.logOut();
                     }
                     break;
                 case Constants.MenuItems.activities:

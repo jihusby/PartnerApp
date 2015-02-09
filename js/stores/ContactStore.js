@@ -34,7 +34,6 @@ module.exports = Reflux.createStore({
     },
 
     onGetContactNotes: function(){
-        console.log("getContactNotes: " + Constants.LocalStorageKeys.contactNotes)
         var result = store.get(Constants.LocalStorageKeys.contactNotes);
         this.trigger(result);
     },
