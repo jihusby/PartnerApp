@@ -14,6 +14,7 @@ html, body{
 
 a{
     font-weight: 600;
+    color: gold;
 }
 
 a:hover{
@@ -32,6 +33,13 @@ address{
 form{
     padding: 15px;
     color: black;
+}
+
+.navbar-header-gold{
+    background-color: dimgray;
+}
+.headertext{
+    color: white;
 }
 
 .footer{
@@ -57,6 +65,7 @@ form{
     font-size: 0.875em;
     line-height: 1em;
     color: black;
+    font-weight: normal;
 }
 
 .list-group-item-heading{
@@ -100,6 +109,22 @@ form{
 
 .spacing-top {
     margin-top: 15px;
+}
+
+.dropdown-list{
+    font-size: 1.1em;
+}
+
+.input-obj{
+    padding-top: 11px;
+    padding-bottom: 11px;
+    font-size: 1.1em;
+    width: 100%;
+    color: black;
+}
+
+.dropdown-list-item{
+    font-size: 1.1em;
 }
 
 .spacing-bottom {
@@ -191,8 +216,14 @@ form{
     height:auto;
 }
 
-.gold{
-    color:gold;
+.gold-header{
+    color: black;
+    background-color: gold;
+}
+
+.gold-btn{
+    color: black;
+    background-color: gold;
 }
 
 .top-margin{

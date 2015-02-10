@@ -24,6 +24,10 @@ module.exports = React.createClass({
         });
     },
 
+    componentDidMount: function() {
+        document.getElementById("search").className="input-obj";
+    },
+
     render: function () {
         var searchList = [];
         var bodyContent;
@@ -35,7 +39,7 @@ module.exports = React.createClass({
             
             // partners
             var partnerList = [];
-            searchList.push(<div className="list-group-item list-heading"><h3 className="list-group-item-heading"><strong>Partnere</strong></h3></div>);
+            searchList.push(<div className="list-group-item list-heading gold-header"><h4 className="list-group-item-heading"><strong>Partnere</strong></h4></div>);
             var partners = this.props.partners;
             partners.forEach(function(partner) {
                 if(partner.name.toLowerCase().indexOf(searchString) > -1){
@@ -46,11 +50,11 @@ module.exports = React.createClass({
             if(partnerList.length > 0){
                 searchList = _.union(searchList, partnerList);
             } else {
-                searchList.push(<div className="list-group-item"><h4 className="list-group-item-heading">Ingen partnere samsvarte med ditt søk.</h4></div>);
+                searchList.push(<div className="list-group-item"><h4 className="list-group-item-heading"><small>Ingen partnere samsvarte med ditt søk.</small></h4></div>);
             }
             
             // persons
-            searchList.push(<div className="list-group-item list-heading"><h3 className="list-group-item-heading"><strong>Kontaktpersoner</strong></h3></div>);
+            searchList.push(<div className="list-group-item list-heading gold-header"><h4 className="list-group-item-heading"><strong>Kontaktpersoner</strong></h4></div>);
             var contactList = [];
             this.props.contacts.forEach(function(contact) {
                 if(contact.firstName.toLowerCase().indexOf(searchString) > -1 || contact.lastName.toLowerCase().indexOf(searchString) > -1){
@@ -67,7 +71,7 @@ module.exports = React.createClass({
             if(contactList.length > 0){
                 searchList = _.union(searchList, contactList);
             } else {
-                searchList.push(<div className="list-group-item"><h4 className="list-group-item-heading">Ingen kontakter samsvarte med ditt søk.</h4></div>);
+                searchList.push(<div className="list-group-item"><h4 className="list-group-item-heading"><small>Ingen kontakter samsvarte med ditt søk.</small></h4></div>);
             }
             
             
@@ -87,6 +91,7 @@ module.exports = React.createClass({
         return (
             <div>
                 <Input
+                    id="search"
                     type="Search"
                     value={this.state.searchText}
                     placeholder="Søk på firma eller navn på person"

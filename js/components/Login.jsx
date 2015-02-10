@@ -63,7 +63,7 @@ module.exports = React.createClass({
                       <div className="form-group">
                           <div className="row">
                             <div className="col-sm-offset-1 col-sm-9 pull-right">
-                              <Button bsStyle="primary" onClick={this.login}>Logg inn</Button>            
+                              <Button className="gold-btn" bsStyle="btn" onClick={this.login}>Logg inn</Button>
                             </div>
                           </div>
                       </div>

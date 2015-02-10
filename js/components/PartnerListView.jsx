@@ -66,12 +66,12 @@ module.exports = React.createClass({
         } else {
             var that = this;
             var partnerTypeMenuItems = this.props.partnerTypes.map(function(partnerType){
-                return (<MenuItem eventKey={partnerType.name} > {partnerType.name}</MenuItem>);
+                return (<MenuItem className="dropdown-list-item input-obj" eventKey={partnerType.name} > {partnerType.name}</MenuItem>);
             });
             var buttonGroupInstance = (
                 <ButtonGroup className="spacing-bottom">
-                    <DropdownButton title={this.state.dropdownTitle} onSelect={this.handleSelect}>
-                        <MenuItem eventKey="all">Alle partnertyper</MenuItem>
+                    <DropdownButton className="dropdown-list input-obj" title={this.state.dropdownTitle} onSelect={this.handleSelect}>
+                        <MenuItem className="dropdown-list-item input-obj" eventKey="all">Alle partnertyper</MenuItem>
                         {partnerTypeMenuItems}
                     </DropdownButton>
                 </ButtonGroup>

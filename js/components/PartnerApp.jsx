@@ -95,7 +95,7 @@ module.exports =
         
         buildBackButton: function(){
             if(this.getIterator() > 0){
-                return (<a className="navbar-brand btn {additionalClasses}" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></a>);
+                return (<a className="navbar-brand btn {additionalClasses} headertext" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left headertext"></i></a>);
             } else {
                 var style = {width:"68px"};
                 return  (<a className="navbar-brand" style={style}>&nbsp;</a>);
@@ -199,10 +199,10 @@ module.exports =
             var navbar = (
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container-fluid">
-                        <div className="navbar-header"> 
+                        <div className="navbar-header navbar-header-gold">
                             {backButton}
-                            <a className="navbar-brand mobile-header hide-on-large"><strong>{title}</strong></a>
-                            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu">
+                            <a className="headertext navbar-brand mobile-header hide-on-large"><strong>{title}</strong></a>
+                            <button type="button" className="headertext navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu">
                                 <span className="sr-only">Toggle navigation</span>
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
@@ -218,7 +218,7 @@ module.exports =
                                 </li>
                                 <li id={Constants.MenuItems.partnerlist}>
                                     <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)} className={additionalClasses}>
-                                        <span className="glyphicon glyphicon-briefcase" />&nbsp;&nbsp;Partnerliste
+                                        <span className="glyphicon glyphicon-briefcase" />&nbsp;&nbsp;Partnere
                                     </a>
                                 </li>
                                 <li id={Constants.MenuItems.favorites}>

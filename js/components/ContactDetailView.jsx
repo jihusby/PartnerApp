@@ -69,9 +69,24 @@ module.exports = React.createClass({
 
     buildPartnerName: function(partner){
         return (
-            <div>
-                <a onClick={this.onClickPartner.bind(this, partner.id)}>{partner.name}</a><br/>
+        <span>
+            <div className="row">
+                <div className="col-xs-1">
+                    <div className="parent-content">
+                        <div className="left-icon">
+                            <i className="glyphicon glyphicon-briefcase"></i>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-xs-10">
+                    <div className="parent-content">
+                        <div className="right-line">
+                            <small><a onClick={this.onClickPartner.bind(this, partner.id)}>{partner.name}</a></small><br/>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </span>
         )
     },
 

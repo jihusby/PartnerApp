@@ -60,11 +60,11 @@ module.exports = React.createClass({
         } else {
             var activityFilters = this.buildFilters();
             var filterOptions = activityFilters.map(function(options){
-                return (<MenuItem eventKey={options.text} > {options.text}</MenuItem>);
+                return (<MenuItem className="dropdown-list-item input-obj" eventKey={options.text} > {options.text}</MenuItem>);
             });
             var buttonGroupInstance = (
                 <ButtonGroup className="spacing-bottom">
-                    <DropdownButton title={this.state.dropdownTitle} onSelect={this.handleSelect}>
+                    <DropdownButton className="dropdown-list input-obj" title={this.state.dropdownTitle} onSelect={this.handleSelect}>
                         {filterOptions}
                     </DropdownButton>
                 </ButtonGroup>
