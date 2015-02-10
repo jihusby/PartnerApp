@@ -33,39 +33,62 @@ module.exports = React.createClass({
         var partner = _.find(this.props.partners, function(p){
             return p.id == contact.partnerId;
         });
-        var name = [contact.firstName, contact.lastName].join(" ");
-        var position = this.buildPosition(contact.position);
         var phone = this.buildPhone(contact.phone);
         var mobile = this.buildMobile(contact.mobile);
         var mail = this.buildMailTo(contact.email);
         var sms = this.buildSMS(contact.mobile);
         var partnerName = this.buildPartnerName(partner);
 
-        /* TODO: Remove this placeholder and add contact image */
-        var logoSrc = contact.picture ? Constants.URLS.personImages + contact.picture : "";
-
+        var upperBlock = this.buildUpperBlock(contact);
         return (
             <div>
+                {upperBlock}
+                <address>
+                    {partnerName}
+                    {phone}
+                    {mobile}
+                    {mail}
+                    {sms}
+                </address>
+                <small><ContactNote contact={contact} /></small>
+            </div>
+        )},
+
+    buildUpperBlock: function(contact) {
+        var name = [contact.firstName, contact.lastName].join(" ");
+        var position = this.buildPosition(contact.position);
+        var logoSrc = contact.picture ? Constants.URLS.personImages + contact.picture : "";
+        if(logoSrc) {
+
+            return (
                 <div className="spacing-bottom">
                     <div className="media-left">
                         <span className="helper"></span>
                         <img className="media-object" src={logoSrc} />
                     </div>
                     <div className="media-body">
-                        <h3><strong>{name}</strong> <Favorite id={contact.id} /></h3>
+                        <h3>
+                            <strong>{name}&nbsp;</strong>
+                            <Favorite id={contact.id} />
+                        </h3>
                         <small>{position}</small>
                     </div>
                 </div>
-                <address>
-                {partnerName}
-                {phone}
-                {mobile}
-                {mail}
-                {sms}
-                </address>
-                <small><ContactNote contact={contact} /></small>
-            </div>
-        )},
+            )
+        }else{
+            return(
+                <div className="spacing-bottom">
+                    <div className="media-body">
+                        <h3>
+                            <strong>{name}&nbsp;</strong>
+                            <Favorite id={contact.id} />
+                        </h3>
+                        <small>{position}</small>
+                    </div>
+                </div>
+            )
+        }
+    },
 
     buildPartnerName: function(partner){
         return (
