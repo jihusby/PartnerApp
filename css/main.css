@@ -58,7 +58,9 @@ form{
 .helper{
     display: inline-block;
     height: 100%;
-    vertical-align: middle;
+    vertical-align: top;
+    margin-top: 0px;
+    background-color: blue;
 }
 
 .list-group-item-text{
@@ -95,7 +97,7 @@ form{
     color:#fff;
 }
 .content-container {
-    margin-top: 50px;
+    margin-top: 40px;
     padding-top: 10px;
 }
 
@@ -127,7 +129,7 @@ form{
     font-size: 1.1em;
 }
 
-.spacing-bottom {
+.spacing-bottom{
     margin-bottom: 15px;
 }
 
