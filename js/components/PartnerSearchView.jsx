@@ -83,7 +83,9 @@ module.exports = React.createClass({
         } else {
             bodyContent = (
                 <div className="logo-container">
-                    <img src="images/logo_xs_small.png" className="rbk-logo" />
+                    <img src="images/logo_xs_small.png" className="rbk-logo" /><br/><br/>
+                    <h2>Godfoten</h2>
+                    <h4>RBK Partner</h4>
                 </div>
             );
         }
@@ -94,7 +96,7 @@ module.exports = React.createClass({
                     id="search"
                     type="Search"
                     value={this.state.searchText}
-                    placeholder="Søk på firma eller navn på person"
+                    placeholder="Søk på firma eller personnavn"
                     ref="searchPartner"
                     onChange={this.handleSearchInput}/>
                 <br/>

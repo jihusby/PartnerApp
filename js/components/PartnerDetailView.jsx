@@ -38,7 +38,7 @@ module.exports = React.createClass({
         });
 
         return (
-            <div>
+            <div className="list-group">
                 <div className="media">
                     <div className="media-left">
                         <span className="helper"></span>
@@ -56,7 +56,7 @@ module.exports = React.createClass({
                     {website}
                     {proffLink}
                 </address>
-                <strong>Kontaktpersoner</strong>
+                <div className="list-group-item list-heading gold-header"><h4 className="list-group-item-heading"><strong>Kontaktpersoner</strong></h4></div>
                 {contacts}
             </div>
         )},

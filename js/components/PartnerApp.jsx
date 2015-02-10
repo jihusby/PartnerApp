@@ -201,7 +201,7 @@ module.exports =
                     <div className="container-fluid">
                         <div className="navbar-header navbar-header-gold">
                             {backButton}
-                            <a className="headertext navbar-brand mobile-header hide-on-large"><strong>{title}</strong></a>
+                            <a className="navbar-brand mobile-header hide-on-large"><strong><span className="headertext">{title}</span></strong></a>
                             <button type="button" className="headertext navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-menu">
                                 <span className="sr-only">Toggle navigation</span>
                                 <span className="icon-bar"></span>
