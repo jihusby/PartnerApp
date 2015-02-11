@@ -67,11 +67,12 @@ module.exports = React.createClass({
                         <img className="media-object" src={logoSrc} />
                     </div>
                     <div className="media-body">
-                        <h3>
+                        <h4 className="position">
                             <strong>{name}&nbsp;</strong>
                             <Favorite id={contact.id} />
-                        </h3>
-                        <small>{position}</small>
+                            <br/>
+                            <small><i className="position">{position}</i></small>
+                        </h4>
                     </div>
                 </div>
             )
@@ -79,11 +80,12 @@ module.exports = React.createClass({
             return(
                 <div className="spacing-bottom">
                     <div className="media-body">
-                        <h3>
+                        <h4 className="position">
                             <strong>{name}&nbsp;</strong>
                             <Favorite id={contact.id} />
-                        </h3>
-                        <small>{position}</small>
+                            <br/>
+                            <small><i className="position">{position}</i></small>
+                        </h4>
                     </div>
                 </div>
             )
@@ -116,7 +118,7 @@ module.exports = React.createClass({
     buildPosition: function(position){
         if(position && position.length > 0){
             return (
-                <small>{position}</small>
+                position
             );
         }else{
             return ("");

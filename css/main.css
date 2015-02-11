@@ -18,12 +18,18 @@ a{
 }
 
 a:hover{
+    color: gold;
     cursor: pointer;
     cursor: hand;
 }
 
 a.disabled:hover{
+    color: gold;
     cursor: wait;
+}
+
+a.selection{
+    color: gold;
 }
 
 address{
@@ -39,6 +45,10 @@ form{
     background-color: dimgray;
 }
 .headertext{
+    color: white;
+}
+
+.position{
     color: white;
 }
 
