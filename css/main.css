@@ -14,22 +14,22 @@ html, body{
 
 a{
     font-weight: 600;
-    color: gold;
+    color: #ffcc00;
 }
 
 a:hover{
-    color: gold;
+    color: #ffcc00;
     cursor: pointer;
     cursor: hand;
 }
 
 a.disabled:hover{
-    color: gold;
+    color: #ffcc00;
     cursor: wait;
 }
 
 a.selection{
-    color: gold;
+    color: #ffcc00;
 }
 
 address{
@@ -228,14 +228,14 @@ form{
     height:auto;
 }
 
-.gold-header{
+.gold-header {
     color: black;
-    background-color: gold;
+    background-color: #ffcc00;
 }
 
 .gold-btn{
     color: black;
-    background-color: gold;
+    background-color: #ffcc00;
 }
 
 .top-margin{
