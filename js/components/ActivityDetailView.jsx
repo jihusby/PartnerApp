@@ -46,8 +46,16 @@ module.exports = React.createClass({
                 });
 
                 if(contact){
+                    var partnerId = enrollment.partnerId;
+                    console.log("--->partnerId: " + partnerId);
+                    var partner = _.find(that.props.partners, function(p){
+                        return p.id === partnerId;
+                    });
+                    if(partner) {
+                        contact.partnerName = partner.name;
+                    }
                     return (
-                        <ContactBox contact={contact} showPosition={true} showPartner={true} />
+                        <ContactBox contact={contact} showPosition={true} showPartner={true} showFavorite={true} />
                     );
                 }
             }
@@ -62,12 +70,12 @@ module.exports = React.createClass({
                 return (
                     /*<PersonBox freeText={enrollment.freeText} partnerId={enrollment.partnerId} partners={that.props.partners} />*/
 
-                    <ContactBox contact={contact} showPosition={true} showPartner={true} />
+                    <ContactBox contact={contact} showPartner={true} />
                 );
             }
         });
 
-        if(contacts || persons){
+        if(contacts.lengt>0 || persons.length>0){
             return (
                 <div>
                     <div className="list-group-item list-heading gold-header"><h4 className="list-group-item-heading"><strong>Påmeldte ({persons.length})</strong></h4></div>
@@ -76,7 +84,12 @@ module.exports = React.createClass({
                 </div>
             )
         }else{
-            <small>Ingen påmeldte ennå</small>
+            return(
+            <div>
+                <div className="list-group-item list-heading gold-header"><h4 className="list-group-item-heading"><strong>Påmeldte</strong></h4></div>
+                <div className="list-group-item"><h4 className="list-group-item-heading"><small>Ingen er påmeldt.</small></h4></div>
+            </div>
+            )
         }
     },
 
