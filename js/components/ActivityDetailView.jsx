@@ -23,28 +23,8 @@ module.exports = React.createClass({
         var html = activity.description.replace(/["]/g, "");
         var dateString = this.formatDates(activity.startDate, activity.endDate);
         var deadlineDate = this.buildDeadlineDate(activity.deadlineDate);
-        var contacts = activity.enrollments.map(function(enrollment){
-            if(enrollment.personId){
-                var contact = _.find(that.props.contacts, function(c){
-                    return c.id === enrollment.personId;
-                });
+        var contacts = this.buildEnrollments(activity, that);
 
-                if(contact){
-                    return (
-                        <ContactBox contact={contact} showPosition={true} showFavorite={true} />
-                    );
-                }
-            }
-        });
-        
-        var persons = activity.enrollments.map(function(enrollment){
-            if(enrollment.freeText){
-                return (
-                    <PersonBox freeText={enrollment.freeText} partnerId={enrollment.partnerId} partners={that.props.partners} />
-                );
-            }
-        });
-        
         return (
             <div className="activity-detail panel">
                 <h3>{activity.title}</h3>
@@ -53,13 +33,53 @@ module.exports = React.createClass({
                 <span dangerouslySetInnerHTML={{__html:html}}></span>
                 {deadlineDate}
                 <br/>
-                <strong>Påmeldte</strong>
                 {contacts}
-                {persons}
             </div>
         );
     },
-    
+
+    buildEnrollments : function(activity, that) {
+        var contacts = activity.enrollments.map(function(enrollment){
+            if(enrollment.personId){
+                var contact = _.find(that.props.contacts, function(c){
+                    return c.id === enrollment.personId;
+                });
+
+                if(contact){
+                    return (
+                        <ContactBox contact={contact} showPosition={true} showPartner={true} />
+                    );
+                }
+            }
+        });
+        var persons = activity.enrollments.map(function(enrollment){
+            if(enrollment.freeText){
+                var partnerId = enrollment.partnerId;
+                var partner = _.find(that.props.partners, function(p){
+                    return p.id === partnerId;
+                });
+                var contact={"id":"", "firstName":"", "lastName":enrollment.freeText,"partnerName": partner.name};
+                return (
+                    /*<PersonBox freeText={enrollment.freeText} partnerId={enrollment.partnerId} partners={that.props.partners} />*/
+
+                    <ContactBox contact={contact} showPosition={true} showPartner={true} />
+                );
+            }
+        });
+
+        if(contacts || persons){
+            return (
+                <div>
+                    <div className="list-group-item list-heading gold-header"><h4 className="list-group-item-heading"><strong>Påmeldte ({persons.length})</strong></h4></div>
+                    {contacts}
+                    {persons}
+                </div>
+            )
+        }else{
+            <small>Ingen påmeldte ennå</small>
+        }
+    },
+
     buildDeadlineDate : function(deadlineDate){
         if(deadlineDate){
             var formattedDate = this.formatDate(deadlineDate);
