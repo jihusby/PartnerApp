@@ -47,7 +47,6 @@ module.exports = React.createClass({
 
                 if(contact){
                     var partnerId = enrollment.partnerId;
-                    console.log("--->partnerId: " + partnerId);
                     var partner = _.find(that.props.partners, function(p){
                         return p.id === partnerId;
                     });
