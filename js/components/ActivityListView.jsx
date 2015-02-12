@@ -87,7 +87,7 @@ module.exports = React.createClass({
                         });
             }
             return (
-                <div>
+                <div className="top-margin">
                     {buttonGroupInstance}
                     <div>
                         {activities}

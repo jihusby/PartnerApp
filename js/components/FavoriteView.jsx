@@ -27,7 +27,7 @@ module.exports = React.createClass({
             });
 
             return (
-                <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div className="top-margin" id="accordion" role="tablist" aria-multiselectable="true">
                     {favoriteList}
                 </div>
             );

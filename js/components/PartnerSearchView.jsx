@@ -91,7 +91,7 @@ module.exports = React.createClass({
         }
 
         return (
-            <div>
+            <div className="top-margin">
                 <Input
                     id="search"
                     type="Search"
