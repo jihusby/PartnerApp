@@ -39,5 +39,9 @@ module.exports = {
     
     formatDate: function(date){
         return moment(date).format(fullDateFormat);
+    },
+
+    formatString: function(string){
+        return string.replace(/[^a-zA-Z\u00C6\u00E6\u00C5\u00E5\u00F8\u00D8 ]/g, "");
     }
 }

@@ -132,23 +132,27 @@ module.exports = Reflux.createStore({
                 var partnerTypes = _.filter(json.partnerTypes.partnerTypes, function(partnerType)                         {
                     return partnerType.name !== "VIP-Kunde";
                 });
-                
                 var partners = _.chain(json.partners)
+
                     .filter(function(p){
                         return p.partnerType !== "VIP-Kunde";
                     })
-                    .sortBy("name")
+                    .sortBy(function(p){
+                        return Utils.formatString(p.name);
+                    })
                     .map(function(p){
                         var partner = new Partner(p);
+
                         partner.setContacts(
                             _.filter(json.persons, function(person){ 
                                 return person.partnerId == partner.id;
                             })
                         );
+
                         return partner;
                     })
                     .value();
-                
+
                 var persons = _.chain(json.persons)
                     .filter(function(person){
                         return !!_.find(partners, function(partner){ 
