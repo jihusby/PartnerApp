@@ -42,7 +42,8 @@ form{
 }
 
 .navbar-header-gold{
-    background-color: dimgray;
+    paddin-top: 20px;
+    /*background-color: dimgray;*/
 }
 .headertext{
     color: white;
