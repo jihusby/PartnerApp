@@ -245,12 +245,14 @@ form{
     border-top-right-radius: 3px;
 }
 
-.gold-btn{
+.gold-btn {
     color: black;
-    background-color: #ffcc00;
     /*background-color: #ffcc00;*/
     background-color: rgb(165, 135, 67);
+}
 
+.company-btn{
+    min-width: 150px;
 }
 
 .top-margin{

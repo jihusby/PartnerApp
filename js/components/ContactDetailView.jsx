@@ -4,6 +4,8 @@ var _ = require("underscore");
 var LocalStorageUtils = require("../utils/localstorage-utils");
 var FormatUtils = require("../utils/format-utils");
 var Constants = require("../utils/partner-constants");
+
+var Button = require("react-bootstrap/Button");
 var Favorite = require("./Favorite.jsx");
 var ContactNote = require("./ContactNote.jsx");
 
@@ -92,7 +94,24 @@ module.exports = React.createClass({
         }
     },
 
+
     buildPartnerName: function(partner){
+        return (
+            <span>
+                <div className="row">
+                    <div className="col-xs-1">
+                        <div className="parent-content">
+                            <div className="left-icon">
+                                <Button className="gold-btn company-btn" bsStyle="btn" onClick={this.onClickPartner.bind(this, partner.id)}>{partner.name}</Button><br/>&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </span>
+        )
+    },
+
+    buildPartnerName_old: function(partner){
         return (
         <span>
             <div className="row">
