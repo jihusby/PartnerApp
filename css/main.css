@@ -14,22 +14,26 @@ html, body{
 
 a{
     font-weight: 600;
-    color: #ffcc00;
+    /*color: #ffcc00;*/
+    color: rgb(165, 135, 67);
 }
 
 a:hover{
-    color: #ffcc00;
+    /*color: #ffcc00;*/
+    color: rgb(165, 135, 67);
     cursor: pointer;
     cursor: hand;
 }
 
 a.disabled:hover{
-    color: #ffcc00;
+    /*color: #ffcc00;*/
+    color: rgb(165, 135, 67);
     cursor: wait;
 }
 
 a.selection{
-    color: #ffcc00;
+    /*color: #ffcc00;*/
+    color: rgb(165, 135, 67);
 }
 
 address{
@@ -235,7 +239,8 @@ form{
 
 .gold-header {
     color: black;
-    background-color: #ffcc00;
+    /*background-color: #ffcc00;*/
+    background-color: rgb(165, 135, 67);
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
 }
@@ -243,6 +248,9 @@ form{
 .gold-btn{
     color: black;
     background-color: #ffcc00;
+    /*background-color: #ffcc00;*/
+    background-color: rgb(165, 135, 67);
+
 }
 
 .top-margin{
