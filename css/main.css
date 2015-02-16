@@ -66,6 +66,10 @@ form{
     width: 100%;
 }
 
+.footer > span{
+    top: 2px;
+    position: relative;
+}
 .filler {
     height: 100%;
 }
