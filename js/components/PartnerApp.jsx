@@ -97,7 +97,7 @@ module.exports =
             if(this.getIterator() > 0){
                 return (<a className="navbar-brand btn {additionalClasses} headertext" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left headertext"></i></a>);
             } else {
-                var style = {width:"68px"};
+                var style = {width:"50px"};
                 return  (<a className="navbar-brand" style={style}>&nbsp;</a>);
             }
         },
