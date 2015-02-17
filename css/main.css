@@ -49,6 +49,25 @@ form{
     paddin-top: 20px;
     /*background-color: dimgray;*/
 }
+
+.navbar-header > button{
+    margin: 0;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    background-color: #333;
+    border: 1px solid #333;
+}
+
+.navbar-header > button:hover{
+    background-color: transparent !important;
+}
+
+.ghost-button{
+    background-color: transparent !important;
+    border: 0 !important;
+}
+
 .headertext{
     color: white;
 }
@@ -66,6 +85,10 @@ form{
     width: 100%;
 }
 
+.footer > span{
+    top: 2px;
+    position: relative;
+}
 .filler {
     height: 100%;
 }
