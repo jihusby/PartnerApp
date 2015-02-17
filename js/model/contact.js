@@ -1,8 +1,8 @@
 
 function Contact(json) {
     this.id = json.id;
-    this.firstName = json.firstName;
-    this.lastName = json.lastName;
+    this.firstName = json.firstName.trim();
+    this.lastName = json.lastName.trim();
     this.email = json.email;
     this.phone = json.phone;
     this.mobile = json.mobile;

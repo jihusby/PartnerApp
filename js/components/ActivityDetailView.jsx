@@ -9,13 +9,13 @@ var PersonBox = require("./PersonBox.jsx");
 
 module.exports = React.createClass({
     mixins: [Utils],
-    
+
     propTypes: {
         activities: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
         contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
         partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
     },
-    
+
     render: function(){
         var that = this;
         var id = this.props.id;
@@ -39,55 +39,72 @@ module.exports = React.createClass({
     },
 
     buildEnrollments : function(activity, that) {
+
+        var sortedContactList = [];
+
         var contacts = activity.enrollments.map(function(enrollment){
-            if(enrollment.personId){
-                var contact = _.find(that.props.contacts, function(c){
+            if(enrollment.personId) {
+                var contact = _.find(that.props.contacts, function (c) {
                     return c.id === enrollment.personId;
                 });
 
-                if(contact){
+                if (contact) {
                     var partnerId = contact.partnerId;
-                    var partner = _.find(that.props.partners, function(p){
+                    var partner = _.find(that.props.partners, function (p) {
                         return p.id === partnerId;
                     });
-                    if(partner) {
+                    if (partner) {
                         contact.partnerName = partner.name;
                     }
-                    return (
-                        <ContactBox contact={contact} showPosition={true} showPartner={true} showFavorite={true} />
-                    );
+                    return contact;
                 }
             }
         });
-        var persons = activity.enrollments.map(function(enrollment){
-            if(enrollment.freeText){
-                var partnerId = enrollment.partnerId;
-                var partner = _.find(that.props.partners, function(p){
-                    return p.id === partnerId;
-                });
-                var contact={"id":"", "firstName":"", "lastName":enrollment.freeText,"partnerName": partner.name};
-                return (
-                    /*<PersonBox freeText={enrollment.freeText} partnerId={enrollment.partnerId} partners={that.props.partners} />*/
 
-                    <ContactBox contact={contact} showPartner={true} />
-                );
+        Array.prototype.clean = function(deleteValue) {
+            for (var i = 0; i < this.length; i++) {
+                if (this[i] == deleteValue) {
+                    this.splice(i, 1);
+                    i--;
+                }
             }
-        });
+            return this;
+        };
 
-        if(contacts.lengt>0 || persons.length>0){
+        contacts.clean(null);
+
+        if(contacts.length>0){
+            sortedContactList = _.chain(contacts).sortBy(function(contact){
+                return [contact.lastName, contact.firstName].join("_");
+            }).map(function(contact){
+                return <ContactBox contact={contact} showPartner={true} showPosition={true} showFavorite={true} />
+            }).value();
+
+        }else{
+            sortedContactList = activity.enrollments.map(function(enrollment){
+                if(enrollment.freeText){
+
+                    var partnerId = enrollment.partnerId;
+                    var partner = _.find(that.props.partners, function(p){
+                        return p.id === partnerId;
+                    });
+                    var partnerName = "";
+                    if(partner){
+                        partnerName = partner.name;
+                    }
+                    var contact={"id":"", "firstName":"", "lastName":enrollment.freeText,"partnerName": partnerName};
+                    return <ContactBox contact={contact} showPartner={true} showPosition={true} />
+                }
+            });
+        }
+
+        console.log(sortedContactList.length);
+        if(sortedContactList.length>0){
             return (
                 <div>
-                    <div className="list-group-item list-heading gold-header"><h4 className="list-group-item-heading"><strong>Påmeldte ({persons.length})</strong></h4></div>
-                    {contacts}
-                    {persons}
+                    <div className="list-group-item list-heading gold-header"><h4 className="list-group-item-heading"><strong>Påmeldte ({sortedContactList.length})</strong></h4></div>
+                    {sortedContactList}
                 </div>
-            )
-        }else{
-            return(
-            <div>
-                <div className="list-group-item list-heading gold-header"><h4 className="list-group-item-heading"><strong>Påmeldte</strong></h4></div>
-                <div className="list-group-item"><h4 className="list-group-item-heading"><small>Ingen er påmeldt.</small></h4></div>
-            </div>
             )
         }
     },

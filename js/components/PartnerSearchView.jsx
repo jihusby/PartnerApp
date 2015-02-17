@@ -56,9 +56,14 @@ module.exports = React.createClass({
             // persons
             searchList.push(<div className="list-group-item list-heading gold-header"><h4 className="list-group-item-heading"><strong>Kontaktpersoner</strong></h4></div>);
             var contactList = [];
-            this.props.contacts.forEach(function(contact) {
+            var orderedContactList = _.chain(this.props.contacts)
+                .sortBy(function(person){
+                    return [person.lastName, person.firstName].join("_");
+                });
+
+            orderedContactList.forEach(function(contact) {
                 if(contact.firstName.toLowerCase().indexOf(searchString) > -1 || contact.lastName.toLowerCase().indexOf(searchString) > -1){
-                    var partnerForPerson = _.find(partners, function(partner){ 
+                    var partnerForPerson = _.find(partners, function(partner){
                         return partner.id === contact.partnerId;
                     });
                     if(partnerForPerson) {
@@ -67,7 +72,7 @@ module.exports = React.createClass({
                     contactList.push(<ContactBox contact={contact} showPartner={true} showPosition={true} showFavorite={true} />);
                 }
             });
-            
+
             if(contactList.length > 0){
                 searchList = _.union(searchList, contactList);
             } else {

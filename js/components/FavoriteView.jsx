@@ -8,6 +8,8 @@ var localStorageUtils = require("../utils/localstorage-utils");
 var ContactDetailView = require("./ContactDetailView.jsx");
 var ContactBox = require("./ContactBox.jsx");
 
+var _ = require("underscore");
+
 module.exports = React.createClass({
 
     mixins: [Reflux.connect(ContactStore,"favorites")],  
@@ -19,16 +21,24 @@ module.exports = React.createClass({
     
     render: function () {
         if(this.state.favorites){
-            var favoriteList = this.state.favorites.map(function(favorite){
+            var contactList = this.state.favorites.map(function(favorite){
                 var contact = localStorageUtils.findContact(favorite.id);
                 var partner = localStorageUtils.findPartner(contact.partnerId);
                 contact.partnerName = partner.name;
+                return contact;
+            });
+
+            var sortedContactList = _.chain(contactList).sortBy(function(contact){
+                return [contact.lastName, contact.firstName].join("_");
+            }).map(function(contact){
                 return <ContactBox contact={contact} showPartner={true} showPosition={true} showFavorite={true} />
             });
 
             return (
                 <div className="top-margin" id="accordion" role="tablist" aria-multiselectable="true">
-                    {favoriteList}
+                    <div className="list-group">
+                        {sortedContactList}
+                    </div>
                 </div>
             );
         } else{
