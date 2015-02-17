@@ -95,10 +95,10 @@ module.exports =
         
         buildBackButton: function(){
             if(this.getIterator() > 0){
-                return (<a className="navbar-brand btn {additionalClasses} headertext" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left headertext"></i></a>);
+                return (<button className="navbar-brand btn {additionalClasses} headertext back-button" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left headertext"></i></button>);
             } else {
-                var style = {width:"68px"};
-                return  (<a className="navbar-brand" style={style}>&nbsp;</a>);
+                var style = {width:"50px"};
+                return  (<button className="navbar-brand ghost-button" style={style}>&nbsp;</button>);
             }
         },
         
