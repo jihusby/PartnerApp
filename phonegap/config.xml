@@ -59,6 +59,15 @@
 	<icon src="www/res/windows-phone/icon-62-tile.png" platform="wp8" width="62" height="62" />
 	<icon src="www/res/windows-phone/icon-173-tile.png" platform="wp8" width="173" height="173" />
 
+    <!-- iPhone -->
+    <splash src="www/res/screen/ios/splash-640-960.png" platform="ios" width="640" height="960" />
+    <splash src="www/res/screen/ios/splash-640-1136.png" platform="ios" width="640" height="1136" />
+    <splash src="www/res/screen/ios/splash-750-1334.png" platform="ios" width="750" height="1334" />
+    <splash src="www/res/screen/ios/splash-1242-2208.png" platform="ios" width="1242" height="2208" />
+    <!-- iPad -->
+    <splash src="www/res/screen/ios/splash-768-1024.png" platform="ios" width="768" height="1024" />
+    <splash src="www/res/screen/ios/splash-1536-2048.png" platform="ios" width="1536" height="2048" />
+
     <access origin="*" />
 	<access origin="tel:*" launch-external="yes" />
 	<access origin="mailto:*" launch-external="yes" />
