@@ -49,6 +49,26 @@ form{
     padding-right: 30px;
 }
 
+.image-background{
+    background-color: dimgray;
+    margin-left: 0px;
+    margin-right: 0px;
+    spacing-right: 0px;
+    padding-right: 0px;
+    width: 1px;
+    height: 1px;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.right-name{
+    padding-left: 5px;
+}
+
+.image{
+    alignment: center;
+    border-radius: 3px 3px 3px 3px;
+}
+
 .navbar-header-gold{
     paddin-top: 20px;
     /*background-color: dimgray;*/
