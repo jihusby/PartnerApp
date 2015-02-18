@@ -118,6 +118,36 @@ form{
     margin-bottom: 0px;
     color: black;
 }
+
+.header-item {
+    border-radius: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+    padding: 15px 15px 15px 15px;
+    background-color: #333333;
+    font-size: 110%;
+}
+
+.list-choice:active{
+    background-color: rgb(165, 135, 67);
+    color: black;
+}
+
+.list-group-item:active{
+    background-color: rgb(165, 135, 67);
+    color: black;
+}
+
+.homeButton{
+    font-size: 150%;
+    background-color: #333333;
+    border: none;
+    alignment: right;
+}
+
+.enabled{
+    color: #ffffff;
+}
+
 .media-left{
     white-space: nowrap;
     text-align: center; margin: 1em 0;

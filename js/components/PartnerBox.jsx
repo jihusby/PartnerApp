@@ -18,10 +18,10 @@ module.exports = React.createClass({
     render: function() {
     var partner = this.props.partner;
         return (
-            <a className="list-group-item" onClick={this.onClickPartner.bind(this, partner.id)}>
+            <div className="list-group-item list-choice" onClick={this.onClickPartner.bind(this, partner.id)}>
                 <h4 className="list-group-item-heading">{partner.name}</h4>
                 <p className="list-group-item-text partnertype-list-item"><small>{partner.partnerType}</small></p>
-            </a>
+            </div>
         );
     }
 });

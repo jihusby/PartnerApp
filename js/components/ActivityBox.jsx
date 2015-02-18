@@ -14,11 +14,11 @@ module.exports = React.createClass({
         var dateString = Utils.formatDates(activity.startDate, activity.endDate);
         
         return (
-            <a className="list-group-item" onClick={this.onClickActivity.bind(this, activity.id)}>
+            <div className="list-group-item list-choice" onClick={this.onClickActivity.bind(this, activity.id)}>
                 <h4 className="list-group-item-heading">{activity.titleShort}</h4>
                 <small><p className="list-group-item-text">{dateString}</p></small>
                 <p className="list-group-item-text">{activity.location}</p>
-            </a>
+            </div>
         );
     }
 });
