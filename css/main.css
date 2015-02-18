@@ -136,11 +136,6 @@ form{
     color: black;
 }
 
-.list-group-item:active{
-    background-color: rgb(165, 135, 67);
-    color: black;
-}
-
 .homeButton{
     font-size: 150%;
     background-color: #333333;

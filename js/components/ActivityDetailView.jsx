@@ -5,6 +5,7 @@ var store = require("store.js");
 var Utils = require("../utils/format-utils");
 var Constants = require("../utils/partner-constants.js");
 var ContactBox = require("./ContactBox.jsx");
+var ContactBoxPassive = require("./ContactBoxPassive.jsx");
 var PersonBox = require("./PersonBox.jsx");
 
 module.exports = React.createClass({
@@ -93,12 +94,11 @@ module.exports = React.createClass({
                         partnerName = partner.name;
                     }
                     var contact={"id":"", "firstName":"", "lastName":enrollment.freeText,"partnerName": partnerName};
-                    return <ContactBox contact={contact} showPartner={true} showPosition={true} />
+                    return <ContactBoxPassive contact={contact} />
                 }
             });
         }
 
-        console.log(sortedContactList.length);
         if(sortedContactList.length>0){
             return (
                 <div>
