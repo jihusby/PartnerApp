@@ -134,6 +134,12 @@ form{
 
 .media-object{
     vertical-align: middle;
+    width:  75px;
+    height: auto;
+}
+
+.media-object-large{
+    vertical-align: middle;
     max-width:  100%;
     height: auto;
     max-height: 70px;

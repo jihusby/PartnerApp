@@ -40,7 +40,7 @@ module.exports = React.createClass({
         return (
             <div className="list-group">
                 <div className="list-group media-frame">
-                    <img className="media-object" src={logoSrc} data-rel="external" />
+                    <img className="media-object-large" src={logoSrc} data-rel="external" />
                 </div>
                 <h4>{partner.name}</h4>
 
