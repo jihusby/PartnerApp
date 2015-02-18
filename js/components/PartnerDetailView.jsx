@@ -39,16 +39,11 @@ module.exports = React.createClass({
 
         return (
             <div className="list-group">
-                <div className="media">
-                    <div className="media-left">
-                        <span className="helper"></span>
-                        <img className="media-object" src={logoSrc} data-rel="external" />
-                    </div>
-                    <div className="media-body">
-                        <h3><strong>{partner.name}</strong></h3>
-                        <small>{partner.partnerType}</small>
-                    </div>
+                <div className="list-group media-frame">
+                    <img className="media-object" src={logoSrc} data-rel="external" />
                 </div>
+                <h4>{partner.name}</h4>
+
                 <address>
                     {address}
                     {phone}

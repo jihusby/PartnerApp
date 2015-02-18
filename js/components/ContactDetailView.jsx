@@ -211,7 +211,7 @@ module.exports = React.createClass({
                         <div className="col-xs-1">
                             <div className="parent-content">
                                 <div className="left-icon">
-                                    <i className="glyphicon glyphicon-earphone"></i>
+                                    <i className="glyphicon glyphicon-phone"></i>
                                 </div>
                             </div>
                         </div>

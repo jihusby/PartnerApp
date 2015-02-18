@@ -163,12 +163,13 @@ module.exports =
                         content = <Login />
                         break;
                     case Constants.MenuItems.partner_detail:
-                        title = "Partner";
+
                         // refactor - pass id
                         var partnerId = this.state.menuItem.id;
                         var partner = _.find(this.props.partners, function(partner){
                             return partner.id == partnerId;
                         });
+                        title = partner.partnerType;
                         content = <PartnerDetailView selectedPartner={partner} />
                         break;
                     case Constants.MenuItems.person_detail:

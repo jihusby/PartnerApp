@@ -101,7 +101,7 @@ module.exports = React.createClass({
                     id="search"
                     type="Search"
                     value={this.state.searchText}
-                    placeholder="Søk på firma eller personnavn"
+                    placeholder="Søk på partner eller kontakt"
                     ref="searchPartner"
                     onChange={this.handleSearchInput}/>
                 <br/>
