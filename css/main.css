@@ -44,6 +44,10 @@ form{
     padding: 15px;
     color: black;
 }
+.loginForm{
+    padding-left: 30px;
+    padding-right: 30px;
+}
 
 .navbar-header-gold{
     paddin-top: 20px;

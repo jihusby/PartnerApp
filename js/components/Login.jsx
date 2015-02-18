@@ -29,47 +29,47 @@ module.exports = React.createClass({
     
     render: function () {
                 return (
-                <div>
-               <div className="logo-container">
-                    <img src="images/logo_xs_small.png" className="rbk-logo" />
-               </div>
-                <p>Logg inn med samme epostadresse og passord som du bruker på nettsiden til Godfoten.</p>
-                    <form className="form-horizontal">
-                      <div className="form-group">
-                          <div className="row">
-                            <div className="col-sm-12">
-                              <Input
-                                type="email"
-                                placeholder="E-post"
-                                ref="username"
-                                className="form-control"
-                            />
+                    <div className="loginForm">
+                       <div className="logo-container">
+                            <img src="images/logo_xs_small.png" className="rbk-logo" />
+                       </div>
+                        <p>Logg inn med samme epostadresse og passord som du bruker på nettsiden til Godfoten.</p>
+                        <form className="form-horizontal">
+                            <div className="form-group">
+                                <div className="row">
+                                    <div className="col-sm-12">
+                                        <Input
+                                            type="email"
+                                            placeholder="E-post"
+                                            ref="username"
+                                            className="form-control"
+                                        />
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-                      </div>
-                      <div className="form-group">
-                          <div className="row">
-                            <div className="col-sm-12">
-                              <Input
-                                type="password"
-                                placeholder="Passord"
-                                ref="password"
-                                className="form-control"
-                                onKeyDown={this.handleKeyDown}
-                            />
+                            <div className="form-group">
+                                <div className="row">
+                                    <div className="col-sm-12">
+                                        <Input
+                                            type="password"
+                                            placeholder="Passord"
+                                            ref="password"
+                                            className="form-control"
+                                            onKeyDown={this.handleKeyDown}
+                                        />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                      </div>
-                      <div className="form-group">
-                          <div className="row">
-                            <div className="col-sm-offset-1 col-sm-9 pull-right">
-                              <Button className="gold-btn" bsStyle="btn" onClick={this.login}>Logg inn</Button>
+                            <div className="form-group">
+                                <div className="row">
+                                    <div className="col-sm-offset-1 col-sm-9 pull-right">
+                                        <Button className="gold-btn" bsStyle="btn" onClick={this.login}>Logg inn</Button>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-                      </div>
-                    </form>
-                   <Alert />
-               </div>
+                        </form>
+                        <Alert />
+                    </div>
                 );
         },
         
