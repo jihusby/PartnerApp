@@ -160,6 +160,11 @@ form{
 .navbar-form{
     color:#fff;
 }
+
+.container {
+   padding: 4px 4px 4px 4px;
+}
+
 .content-container {
     margin-top: 40px;
     padding-top: 10px;
