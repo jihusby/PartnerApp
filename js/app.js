@@ -29,24 +29,12 @@ if (updateStatusBar) {
 
 var container = document.getElementById("container");
 React.render(<Main/>, container);
-$(".navbar-collapse").collapse('hide'); // close on startup
 
 var swipe = new Hammer(document.body);
 swipe.get('swipe').set({ direction: Hammer.DIRECTION_RIGHT });
 
 swipe.on("swiperight", function(){
     Navigator.goBack();
-});
-
-// thanks to: http://stackoverflow.com/a/25409035
-$(document).click(function (event) {
-    var clickover = $(event.target);
-    var $navbar = $(".navbar-collapse");               
-    var _opened = $navbar.hasClass("in");
-    var isUpdate = clickover && clickover.parents().hasClass("updater");
-    if (_opened === true && !clickover.hasClass("navbar-toggle") && !isUpdate) {
-        $navbar.collapse('hide');
-    }
 });
 
 // check if user is active on resume
@@ -60,7 +48,13 @@ function onResume() {
 
 routie({
     "": function() {
-        MenuActions.search(); 
+        MenuActions.home();
+    },
+    "home": function() {
+        MenuActions.home();
+    },
+    "search": function() {
+        MenuActions.search();
     },
     "favorites": function() {
         MenuActions.favorites();

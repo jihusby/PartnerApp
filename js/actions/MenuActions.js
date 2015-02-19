@@ -6,6 +6,7 @@ var Reflux = require("reflux");
 
 module.exports = Reflux.createActions(
     [
+        "home",
         "search",
         "partnerlist",
         "favorites",

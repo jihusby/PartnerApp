@@ -65,8 +65,7 @@ module.exports = React.createClass({
             return (
                 <div className="spacing-bottom">
                     <div className="media-left">
-                        <span className="helper"></span>
-                        <img className="image-background media-object" src={logoSrc} />
+                        <img className="media-object image image-background" src={logoSrc} data-rel="external" />
                     </div>
                     <div className="media-body">
                         <h4 className="position">

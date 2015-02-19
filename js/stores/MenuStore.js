@@ -6,10 +6,14 @@ var Constants = require("../utils/partner-constants");
 
 module.exports = Reflux.createStore({
     
-    listenables: [MenuActions]  ,
+    listenables: [MenuActions],
+
+    onHome: function() {
+        this.menuItemSelected(Constants.MenuItems.home);
+    },
 
     onSearch: function() {
-        this.menuItemSelected(Constants.MenuItems.home);
+        this.menuItemSelected(Constants.MenuItems.search);
     },
 
     onPartnerlist: function() {
@@ -50,10 +54,13 @@ module.exports = Reflux.createStore({
     },
 
     menuItemSelected: function(menuItem, id) {
+        console.log("1 id " + id);
+        console.log("1 menuItem " + menuItem);
         if(id){
             this.trigger({path: menuItem, id: id});
         }else{
             this.trigger({path: menuItem});
         }
+        console.log("2 done");
     }
 });

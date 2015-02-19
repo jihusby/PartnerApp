@@ -8,7 +8,8 @@ module.exports =  {
         active: "http://godfotenrestapi.azurewebsites.net/api/persons/active"
     },
     MenuItems: {
-        home: "home", 
+        home: "home",
+        search: "search",
         favorites: "favorites",
         partnerlist: "partnerlist",
         login: "login",
