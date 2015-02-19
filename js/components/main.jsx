@@ -17,11 +17,12 @@ module.exports =
         render: function () {
             return (
                 <div>
-                    <div>
+                    <div className="no-margin">
                         <PartnerApp partners={this.state.rbkData.partners} contacts={this.state.rbkData.persons} activities={this.state.rbkData.activities} partnerTypes={this.state.rbkData.partnerTypes} />
-                    </div>
+
                     <div className="footer">
-                            Utviklet av <img src="images/itema-logo_graa_xxsmall.png" />
+                            Utviklet av <img src="images/itema-logo_graa_xxsmall.png" className="footer-logo" />
+                    </div>
                     </div>
                 </div>
             );

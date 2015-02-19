@@ -14,3 +14,11 @@ body {
   /* Set the fixed height of the footer here */
   height: 38px;
 }
+
+.footer-logo{
+    max-height: 5px;
+}
+
+.no-margin{
+    margin-bottom: 0px;
+}
