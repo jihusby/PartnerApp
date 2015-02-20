@@ -54,13 +54,10 @@ module.exports = Reflux.createStore({
     },
 
     menuItemSelected: function(menuItem, id) {
-        console.log("1 id " + id);
-        console.log("1 menuItem " + menuItem);
         if(id){
             this.trigger({path: menuItem, id: id});
         }else{
             this.trigger({path: menuItem});
         }
-        console.log("2 done");
     }
 });

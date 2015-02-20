@@ -1,15 +1,11 @@
 var React = require("react");
 var Reflux = require("reflux");
 var store = require("store.js");
-
+var Spinner = require("react-spinner");
+var _ = require("underscore");
 jQuery = require("jquery"); // bootstrap needs jQuery variable to be set
 var $ = jQuery;
 require("bootstrap");
-
-var Spinner = require("react-spinner");
-
-var _ = require("underscore");
-var Constants = require("../utils/partner-constants.js");
 
 var MenuStore = require("../stores/MenuStore");
 var DataStore = require("../stores/DataStore");
@@ -158,7 +154,6 @@ module.exports = React.createClass({
     },
 
     synchronize: function(){
-        //this.setState({ rbkData: {isUpdating: true}});
         BackendActions.synchronizeData(true);
     },
 

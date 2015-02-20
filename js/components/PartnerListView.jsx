@@ -32,7 +32,6 @@ module.exports = React.createClass({
     },
     
     handleSelect: function(partnerType) {
-    
         this.setState({init: false });
         if (partnerType){
             SessionStorage.set(Constants.SessionStorageKeys.partnerFilter, partnerType);
@@ -88,6 +87,7 @@ module.exports = React.createClass({
                     return (<PartnerBox partner={partner} />);
                 });
             }
+
             return (
                 <div className="top-margin">
                     {buttonGroupInstance}

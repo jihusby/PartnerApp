@@ -35,9 +35,10 @@ module.exports =
     },
     
     handleAlertDismiss: function(){
-     this.setState({             
-        loginResult:{
-              error: undefined
-      } });   
+        this.setState({             
+            loginResult:{
+                  error: undefined
+            } 
+        });
     }
 });
