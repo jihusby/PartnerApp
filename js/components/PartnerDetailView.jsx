@@ -57,7 +57,7 @@ module.exports = React.createClass({
         )},
 
     openExternalLink: function(link){
-        window.open(link, '_system');
+        window.open(link, '_blank', 'location=yes');
         },
 
 buildAddress: function(address, zipCode, city){
