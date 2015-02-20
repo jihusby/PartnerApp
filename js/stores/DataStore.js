@@ -23,6 +23,7 @@ module.exports = Reflux.createStore({
     listenables: [BackendActions],
 
     onSynchronizeData: function(forceUpdate) {
+        this.trigger({ isUpdating: true});
         console.log("Updating: " + forceUpdate);
         this.getDataFromBackend(this.updateData, forceUpdate);
     },
@@ -92,7 +93,8 @@ module.exports = Reflux.createStore({
                 error: function(xhr, status, err) {
                     console.log("Error: " + status);
                     callback(status);
-                }
+                },
+                timeout: Constants.Timeout
             });
         } else {
             callback(true);
@@ -198,7 +200,7 @@ module.exports = Reflux.createStore({
                 }
                 $(".navbar-collapse").collapse('hide'); // closes menu
             },
-            timeout: 20000
+            timeout: Constants.Timeout
         });
     }
 });

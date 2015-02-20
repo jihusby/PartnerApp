@@ -36,17 +36,18 @@ module.exports =
 
     React.createClass({
 
-        mixins: [Reflux.connect(MenuStore,"menuItem"), Reflux.connect(DataStore, "rbkData"), Navigator],
+        mixins: [Reflux.connect(MenuStore,"menuItem"), Navigator],
 
         propTypes: {
             activities: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
             contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
             partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-            partnerTypes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+            partnerTypes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+            isUpdating: React.PropTypes.bool.isRequired
         },
 
         handleMenuSelect: function(menuEvent) {
-            if(this.state.rbkData.isUpdating){
+            if(this.props.isUpdating){
                 return;
             }
 
@@ -95,7 +96,7 @@ module.exports =
                 switch(this.state.menuItem.path){
                     case Constants.MenuItems.home:
                         title = "Godfoten";
-                        content = <HomeView partners={this.props.partners} contacts={this.props.contacts} />
+                        content = <HomeView partners={this.props.partners} contacts={this.props.contacts} isUpdating={this.props.isUpdating} />
                         homeButton = "";
                         break;
                     case Constants.MenuItems.search:

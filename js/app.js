@@ -41,10 +41,8 @@ swipe.on("swiperight", function(){
 document.addEventListener("resume", onResume, false);
 
 function onResume() {
-    Alerter.alert("Sjekker om bruker er aktiv.", "Test"); // remove after tested OK.
     DataStore.getDataFromBackend(DataStore.updateData, false);
 }
-
 
 routie({
     "": function() {

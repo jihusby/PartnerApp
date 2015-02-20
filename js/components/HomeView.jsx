@@ -25,8 +25,12 @@ var Login = require("./Login.jsx");
 
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(MenuStore,"menuItem"), Reflux.connect(DataStore, "rbkData"), Reflux.connect(AuthStore,"loginResult"), Navigator],
+    mixins: [Reflux.connect(MenuStore,"menuItem"), Reflux.connect(AuthStore,"loginResult"), Navigator],
 
+    propTypes: {
+        isUpdating: React.PropTypes.bool.isRequired
+    },
+    
     getInitialState: function(){
         return {
         };
@@ -89,7 +93,7 @@ module.exports = React.createClass({
         )},
 
     buildSpinButton: function(lastSync){
-        if(this.state.rbkData.isUpdating){
+        if(this.props.isUpdating){
             return (
                 <div className="list-group-item header-item disabled">
                     <div className="container list-container">
@@ -124,7 +128,7 @@ module.exports = React.createClass({
     },
 
     buildAdditionalClasses: function(){
-        if(this.state.rbkData.isUpdating){
+        if(this.props.isUpdating){
             return "list-group-item header-item list-choice disabled";
         } else {
             return "list-group-item header-item list-choice enabled";
@@ -154,12 +158,12 @@ module.exports = React.createClass({
     },
 
     synchronize: function(){
-        this.setState({ rbkData: {isUpdating: true}});
+        //this.setState({ rbkData: {isUpdating: true}});
         BackendActions.synchronizeData(true);
     },
 
     handleMenuSelect: function(menuEvent) {
-        if(this.state.rbkData.isUpdating){
+        if(this.props.isUpdating){
             return;
         }
 
