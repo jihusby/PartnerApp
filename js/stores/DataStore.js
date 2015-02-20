@@ -52,6 +52,9 @@ module.exports = Reflux.createStore({
                         }, 10);
                         console.log("Data updated from localstorage");
                     } else{
+                        if(forceUpdate){
+                            Alerter.alert("Oppdatert.", "Vellykket oppdatering.");
+                        }
                         console.log("Fetching data from server");
                         that.getDataFromServer(callback);
                     }
