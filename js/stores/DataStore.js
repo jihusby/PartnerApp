@@ -52,11 +52,13 @@ module.exports = Reflux.createStore({
                         }, 10);
                         console.log("Data updated from localstorage");
                     } else{
-                        if(forceUpdate){
-                            Alerter.alert("Oppdatert.", "Vellykket oppdatering.");
-                        }
                         console.log("Fetching data from server");
-                        that.getDataFromServer(callback);
+                        that.getDataFromServer(function(data){
+                            callback(data);
+                            if(forceUpdate){
+                                Alerter.alert("Oppdatert.", "Vellykket oppdatering.");
+                            }
+                        });
                     }
                 } else if(!isActive) { // if not, delete data and send user to a not active screen
                     that.invalidateUser();
