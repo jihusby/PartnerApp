@@ -31,7 +31,7 @@ var container = document.getElementById("container");
 React.render(<Main/>, container);
 
 var swipe = new Hammer(document.body);
-swipe.get('swipe').set({ direction: Hammer.DIRECTION_RIGHT });
+swipe.get('swipe').set({ direction: Hammer.DIRECTION_RIGHT, threshold: 7, velocity: 0.5 });
 
 swipe.on("swiperight", function(){
     Navigator.goBack();
@@ -41,10 +41,8 @@ swipe.on("swiperight", function(){
 document.addEventListener("resume", onResume, false);
 
 function onResume() {
-    Alerter.alert("Sjekker om bruker er aktiv.", "Test"); // remove after tested OK.
     DataStore.getDataFromBackend(DataStore.updateData, false);
 }
-
 
 routie({
     "": function() {

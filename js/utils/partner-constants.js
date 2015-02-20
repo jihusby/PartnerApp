@@ -1,5 +1,6 @@
 
 module.exports =  {
+    Timeout: 20000,
     URLS: { 
         search: "http://godfotenrestapi.azurewebsites.net/api/search",
         login: "http://godfotenrestapi.azurewebsites.net/api/login",

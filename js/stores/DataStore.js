@@ -23,6 +23,7 @@ module.exports = Reflux.createStore({
     listenables: [BackendActions],
 
     onSynchronizeData: function(forceUpdate) {
+        this.trigger({ isUpdating: true});
         console.log("Updating: " + forceUpdate);
         this.getDataFromBackend(this.updateData, forceUpdate);
     },
@@ -52,7 +53,12 @@ module.exports = Reflux.createStore({
                         console.log("Data updated from localstorage");
                     } else{
                         console.log("Fetching data from server");
-                        that.getDataFromServer(callback);
+                        that.getDataFromServer(function(data){
+                            callback(data);
+                            if(forceUpdate){
+                                Alerter.alert("Oppdatert.", "Vellykket oppdatering.");
+                            }
+                        });
                     }
                 } else if(!isActive) { // if not, delete data and send user to a not active screen
                     that.invalidateUser();
@@ -92,7 +98,8 @@ module.exports = Reflux.createStore({
                 error: function(xhr, status, err) {
                     console.log("Error: " + status);
                     callback(status);
-                }
+                },
+                timeout: Constants.Timeout
             });
         } else {
             callback(true);
@@ -198,7 +205,7 @@ module.exports = Reflux.createStore({
                 }
                 $(".navbar-collapse").collapse('hide'); // closes menu
             },
-            timeout: 20000
+            timeout: Constants.Timeout
         });
     }
 });
