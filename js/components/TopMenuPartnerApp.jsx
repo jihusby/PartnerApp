@@ -49,7 +49,9 @@ module.exports =
         },
 
         handleMenuToggle: function() {
-            this.setState({showMenu:!this.state.showMenu});
+            if (this.isMounted()) {
+                this.setState({showMenu:!this.state.showMenu});
+            }
         },
 
         handleMenuSelect: function(menuEvent) {
