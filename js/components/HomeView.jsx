@@ -42,6 +42,17 @@ module.exports = React.createClass({
         /* TODO: Save timestamp for last sync, show on button */
         return (
             <div>
+                <div className="container list-container">
+                    <div className="logo-container">
+                        <img src="images/logo_xs_small.png" className="rbk-logo" />
+                    </div>
+                </div>
+                <div className="container list-container">
+                    <div className="logo-container">
+                        <h4>RBK Partner</h4>
+                    </div>
+                </div>
+                
                 <div className={additionalClasses} onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)} >
                     <div className="container list-container">
                         <div id={Constants.MenuItems.partnerlist}>
@@ -74,17 +85,6 @@ module.exports = React.createClass({
                 {spinIcon}
 
                 {/*Comment 18.02.2015: The variable {loginBlock} goes here if we want to add a logout option to the app (initially, we do not) */}
-
-                <div className="container list-container">
-                    <div className="logo-container">
-                        <img src="images/logo_xs_small.png" className="rbk-logo" />
-                    </div>
-                </div>
-                <div className="container list-container">
-                    <div className="logo-container">
-                        <h4>RBK Partner</h4>
-                    </div>
-                </div>
             </div>
         )},
 
