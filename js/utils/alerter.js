@@ -8,7 +8,7 @@ module.exports = {
                 "Skjul"
             );
         } else{
-            alert(message);   
+            alert("JS Alert" + message);   
         }
     },
     

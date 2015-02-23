@@ -25,6 +25,10 @@
                         {
                             "xml": "<feature name=\"StatusBar\"><param name=\"wp-package\" value=\"StatusBar\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"wp-package\" value=\"Notification\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -36,6 +40,9 @@
             "PACKAGE_NAME": "{be5e1a30-ac65-11e4-9959-9f89c768baeb}"
         },
         "org.apache.cordova.statusbar": {
+            "PACKAGE_NAME": "{be5e1a30-ac65-11e4-9959-9f89c768baeb}"
+        },
+        "org.apache.cordova.dialogs": {
             "PACKAGE_NAME": "{be5e1a30-ac65-11e4-9959-9f89c768baeb}"
         }
     },
