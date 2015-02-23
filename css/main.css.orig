@@ -1,0 +1,485 @@
+html, body{
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 1em;
+<<<<<<< HEAD
+    overflow-x: hidden;
+    color: white;
+}
+
+html{
+    background: -moz-linear-gradient(top,  rgba(0,0,0,1) 20%, rgba(0,0,0,0.15) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,rgba(0,0,0,15)), color-stop(100%,rgba(0,0,0,0.1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 20%,rgba(0,0,0,0.15) 100%); /* Chrome10+,Safari5.1+ */
+    background: linear-gradient(to bottom,  rgba(0,0,0,1) 20%,rgba(0,0,0,0.15) 100%); /* W3C */
+    background-repeat: repeat-x;
+    background-size: 100%;
+    background-attachment: fixed;    
+    height: 100%;    
+}
+body{
+    height: 93%;
+    height: calc(100% - 45px);
+    background-color: transparent;
+=======
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0.65) 30%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(30%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0.65) 30%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 30%,rgba(0,0,0,0) 100%); /* W3C */
+    background-repeat: repeat-x;
+    background-size: 100%;
+    overflow-x: hidden;
+    color: white;
+    min-height: 500px;
+>>>>>>> parent of a2b068b... Addresses #99
+}
+
+a{
+    font-weight: 600;
+    /*color: #ffcc00;*/
+    color: rgb(165, 135, 67);
+}
+
+a:hover{
+    /*color: #ffcc00;*/
+    color: rgb(165, 135, 67);
+    cursor: pointer;
+    cursor: hand;
+}
+
+a.disabled:hover{
+    /*color: #ffcc00;*/
+    color: rgb(165, 135, 67);
+    cursor: wait;
+}
+
+a.selection{
+    /*color: #ffcc00;*/
+    color: rgb(165, 135, 67);
+}
+
+address{
+    line-height: 1.875em;
+}
+
+form{
+    padding: 15px;
+    color: black;
+}
+.loginForm{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.image-background{
+    background-color: dimgray;
+    margin-left: 0px;
+    margin-right: 0px;
+    spacing-right: 0px;
+    padding-right: 0px;
+    width: 1px;
+    height: 1px;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.right-name{
+    padding-left: 5px;
+}
+
+.image{
+    alignment: center;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.navbar-header-gold{
+    paddin-top: 20px;
+    /*background-color: dimgray;*/
+}
+
+.navbar-header > button{
+    margin: 0;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    background-color: #333;
+    border: 1px solid #333;
+}
+
+.navbar-header > button:hover{
+    background-color: transparent !important;
+}
+
+.ghost-button{
+    background-color: transparent !important;
+    border: 0 !important;
+}
+
+.headertext{
+    font-size: 100%;
+}
+
+@media (device-width: 320px) {
+    .headertext {
+        font-size: 90%;
+    }
+}
+
+.position{
+    color: white;
+}
+
+.footer{
+<<<<<<< HEAD
+    position: fixed;
+    bottom: 0px;
+    height: 28px;
+=======
+    height: auto;
+>>>>>>> parent of a2b068b... Addresses #99
+    color: black;
+    text-align: center;
+    margin-left: -15px;
+    width: 100%;
+}
+
+.footer > span{
+    top: 2px;
+    position: relative;
+}
+.filler {
+    height: 100%;
+}
+
+.helper{
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+    margin-top: 0px;
+    background-color: blue;
+}
+
+.list-group-item-text{
+    font-size: 0.875em;
+    line-height: 1em;
+    color: black;
+    font-weight: normal;
+}
+
+.list-group-item-heading{
+    margin-bottom: 0px;
+    color: black;
+}
+
+.header-item {
+    border-radius: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+    padding: 15px 15px 15px 15px;
+    background-color: #333333;
+    font-size: 110%;
+}
+
+.list-choice:active{
+    background-color: rgb(165, 135, 67);
+    color: black;
+}
+
+.favorite-button:active{
+    background-color: transparent;
+}
+
+.homeButton{
+    font-size: 150%;
+    background-color: #333333;
+    border: none;
+    alignment: right;
+}
+
+.enabled{
+    color: #ffffff;
+}
+
+.media-left{
+    white-space: nowrap;
+    text-align: center; margin: 1em 0;
+}
+
+.media-frame{
+    text-align: center;
+    alignment: center;
+
+    border-radius: 5px 3px 3px 3px;
+    background-color: white;
+    padding: 5px 5px 5px 5px;
+}
+
+.media-object{
+    vertical-align: middle;
+    width:  75px;
+    height: auto;
+}
+
+.media-object-large{
+    vertical-align: middle;
+    max-width:  100%;
+    height: auto;
+    max-height: 70px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.spin {
+    -webkit-animation: spin .8s infinite linear;
+    -moz-animation: spin .8s infinite linear;
+    -o-animation: spin .8s infinite linear;
+    animation: spin .8s infinite linear;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin:50% 50%;
+    -ms-transform-origin:50% 50%; /* IE 9 */
+}
+.navbar-form{
+    color:#fff;
+}
+
+.container {
+   padding: 4px 4px 4px 4px;
+}
+
+.content-container {
+    margin-top: 30px;
+}
+
+.top-margin{
+    margin-top: 20px;
+}
+
+.jumbotron > .container{
+    padding: 20px 0;
+}
+
+.react-spinner_bar {
+    background-color: black;
+}
+
+.spacing-top {
+    margin-top: 15px;
+}
+
+.dropdown-list{
+    font-size: 1.1em;
+}
+
+.input-obj{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 1.1em;
+    width: 100%;
+    color: black;
+}
+
+.dropdown-list-item{
+    font-size: 1.1em;
+}
+
+.spacing-bottom{
+    margin-bottom: 15px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.contact-detail > div > div{
+    padding-bottom: 10px;
+}
+
+.contact-detail > div > a{
+    margin-right: 15px;
+}
+
+.contact-detail > div > .panel-title{
+}
+
+.hide-on-small{
+    display: none !important;
+}
+
+@media (min-width: 768px) {
+    .hide-on-small{
+        display: inherit !important;
+    }
+}
+
+.hide-on-large{
+    display: inherit !important;
+}
+
+@media (min-width: 768px) {
+    .hide-on-large{
+        display: none !important;
+    }
+}
+
+.panel-body{
+    padding: 15px 30px 0;
+}
+
+.list-heading{
+    background-color: #A0A0A0;
+}
+
+.partnertype-list-item{
+    text-align: right;
+}
+
+.list-container{
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+}
+
+.position-list-item{
+    text-align: left;
+}
+
+.firm-list-item{
+    text-align: right;
+}
+
+.mobile-header{
+    text-align: center;
+    padding-right: 138px;
+    margin-right: -138px;
+    width: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.navbar-nav{
+    float:right;
+}
+
+.activity-detail{
+    color: black !important;
+    padding: 15px;
+}
+
+.activity-detail img{
+    max-width: 100%;
+    height:auto;
+}
+
+.gold-header {
+    color: black;
+    /*background-color: #ffcc00;*/
+    background-color: rgb(165, 135, 67);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.gold-btn {
+    color: black;
+    /*background-color: #ffcc00;*/
+    background-color: rgb(165, 135, 67);
+}
+
+.company-btn{
+    min-width: 150px;
+}
+
+.top-margin{
+    margin-top: 10px;
+}
+
+.parent-content{
+    display: table;
+    height: 30px;
+}
+
+.left-icon{
+    width: 10px;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: right;
+    font-size: 120%;
+}
+
+.right-line{
+    vertical-align: middle;
+    line-height: 17px;
+    display: table-cell;
+}
+
+.black{
+    background-color: #000000;
+}
+
+.textarea{
+    width: 100%;
+}
+
+.textareaPassive{
+    background-color: #dedede;
+    color: #545454;
+    font-size: 0.875em;
+    outline: none;
+    overflow: auto;
+    width: 100%;
+    height: 100px;
+    border-radius: 3px 3px 3px 3px;
+
+}
+
+.textareaActive{
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 0.875em;
+    outline: auto;
+    overflow: auto;
+    width: 100%;
+    height: 100px;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.disabled{
+    color: #606060 !important;
+}
+
+.logo-container{
+    width: 100%;
+    text-align: center;
+}
+.rbk-logo{
+    width: 60%;
+    margin: auto;
+}
+
+#container{
+    height: 100%;
+}
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
