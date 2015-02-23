@@ -16,13 +16,13 @@ module.exports = React.createClass({
     render: function(){
         if(this.isFavorite(this.state.favorites)){
             return  (
-                <a onClick={this.removeFavorite}>
+                <a onClick={this.removeFavorite} className="favorite-button">
                         <big><i className="glyphicon glyphicon-star"></i></big>
                 </a>
             );
         } else {
             return  (
-                <a onClick={this.addToFavorites}>
+                <a onClick={this.addToFavorites} className="favorite-button">
                         <big><i className="glyphicon glyphicon-star-empty"></i></big>
                 </a>
             );
