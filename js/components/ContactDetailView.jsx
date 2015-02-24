@@ -35,8 +35,11 @@ module.exports = React.createClass({
         var partner = _.find(this.props.partners, function(p){
             return p.id == contact.partnerId;
         });
-        var phone = this.buildPhone(contact.phone);
         var mobile = this.buildMobile(contact.mobile);
+        var phone = '';
+        if(contact.phone !== contact.mobile){
+            phone = this.buildPhone(contact.phone);
+        }
         var mail = this.buildMailTo(contact.email);
         var sms = this.buildSMS(contact.mobile);
         var partnerName = this.buildPartnerName(partner);
