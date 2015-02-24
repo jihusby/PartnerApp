@@ -72,12 +72,19 @@ module.exports =
                     <span className="icon-bar"></span>
                 </button>
             )
+        },
 
+        buildIPadHomeButton: function(){
+            return (
+                <button type="button" className="home-ipad" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>
+                    <span className="glyphicon glyphicon-menu-hamburger"></span>
+                </button>
+            )
         },
 
         render: function () {
             var content, title;
-            var homeButton;
+            var homeButton, iPadHomeButton;
             if (!store.get(Constants.LocalStorageKeys.bearer_token)){
                 title = "Logg inn";
                 content = (<Login />);
@@ -98,26 +105,31 @@ module.exports =
                         title = "Godfoten";
                         content = <HomeView partners={this.props.partners} contacts={this.props.contacts} isUpdating={this.props.isUpdating} />
                         homeButton = "";
+                        iPadHomeButton = "";
                         break;
                     case Constants.MenuItems.search:
                         title = "Søk";
                         content = <PartnerSearchView partners={this.props.partners} contacts={this.props.contacts} />
                         homeButton = this.buildHomeButton();
+                        iPadHomeButton = this.buildIPadHomeButton();
                         break;
                     case Constants.MenuItems.partnerlist:
                         title = "Partnere";
                         content = <PartnerListView partners={this.props.partners} partnerTypes={this.props.partnerTypes} />
                         homeButton = this.buildHomeButton();
+                        iPadHomeButton = this.buildIPadHomeButton();
                         break;
                     case Constants.MenuItems.favorites:
                         title = "Favoritter";
                         content = <FavoriteView />
                         homeButton = this.buildHomeButton();
+                        iPadHomeButton = this.buildIPadHomeButton();
                         break;
                     case Constants.MenuItems.login:
                         title = "Logg inn";
                         content = <Login />
                         homeButton = "";
+                        iPadHomeButton = this.buildIPadHomeButton();
                         break;
                     case Constants.MenuItems.partner_detail:
 
@@ -129,27 +141,32 @@ module.exports =
                         title = partner.partnerType;
                         content = <PartnerDetailView selectedPartner={partner} />
                         homeButton = this.buildHomeButton();
+                        iPadHomeButton = this.buildIPadHomeButton();
                         break;
                     case Constants.MenuItems.person_detail:
                         title = "Person";
                         content = <PersonDetailView index="0" id={this.state.menuItem.id} />
                         homeButton = this.buildHomeButton();
+                        iPadHomeButton = this.buildIPadHomeButton();
                         break;
                     case Constants.MenuItems.contact_detail:
                         title = "Kontakt";
                         var contactId = this.state.menuItem.id;
                         content = <ContactDetailView contacts={this.props.contacts} partners={this.props.partners} id={contactId} />
                         homeButton = this.buildHomeButton();
+                        iPadHomeButton = this.buildIPadHomeButton();
                         break;
                     case Constants.MenuItems.activities:
                         title = "Aktiviteter";
                         content = <ActivityListView activities={this.props.activities} />;
                         homeButton = this.buildHomeButton();
+                        iPadHomeButton = this.buildIPadHomeButton();
                         break;
                     case Constants.MenuItems.activity:
                         title = "Aktivitet";
                         content = <ActivityDetailView activities={this.props.activities} contacts={this.props.contacts} partners={this.props.partners} id={this.state.menuItem.id} />;
                         homeButton = this.buildHomeButton();
+                        iPadHomeButton = this.buildIPadHomeButton();
                         break;
                 }
                 // hack to ensure scrolling to top of page
@@ -164,6 +181,7 @@ module.exports =
                         <div className="navbar-header navbar-header-gold">
                             {backButton}
                             <strong><span className="headertext navbar-brand mobile-header headertext">{title}</span></strong>
+                            {iPadHomeButton}
                             {homeButton}
                         </div>
                     </div>

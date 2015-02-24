@@ -99,6 +99,14 @@ form{
     border: 0 !important;
 }
 
+.home-ipad{
+    font-size: large;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 50px;
+}
+
 .headertext{
     font-size: 100%;
 }
