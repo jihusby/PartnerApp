@@ -31,9 +31,12 @@ module.exports = React.createClass({
                 <h3>{activity.title}</h3>
                 <h4>{activity.location}</h4>
                 <p>{dateString}</p>
+                <a href="#attendees">Påmeldte <i className="glyphicon glyphicon-chevron-right"></i></a>
+                <br/>
                 <span dangerouslySetInnerHTML={{__html:html}}></span>
                 {deadlineDate}
                 <br/>
+                <a name="attendees"></a>
                 {contacts}
             </div>
         );

@@ -1,9 +1,9 @@
 html, body{
     font-family: Helvetica,Arial,sans-serif;
     font-size: 1em;
+<<<<<<< HEAD
     overflow-x: hidden;
     color: white;
-    min-height: 500px;
 }
 
 html{
@@ -13,10 +13,24 @@ html{
     background: linear-gradient(to bottom,  rgba(0,0,0,1) 20%,rgba(0,0,0,0.15) 100%); /* W3C */
     background-repeat: repeat-x;
     background-size: 100%;
+    background-attachment: fixed;    
+    height: 100%;    
 }
-
 body{
+    height: 93%;
+    height: calc(100% - 45px);
     background-color: transparent;
+=======
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0.65) 30%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(30%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0.65) 30%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 30%,rgba(0,0,0,0) 100%); /* W3C */
+    background-repeat: repeat-x;
+    background-size: 100%;
+    overflow-x: hidden;
+    color: white;
+    min-height: 500px;
+>>>>>>> parent of a2b068b... Addresses #99
 }
 
 a{
@@ -114,7 +128,13 @@ form{
 }
 
 .footer{
+<<<<<<< HEAD
+    position: fixed;
+    bottom: 0px;
+    height: 28px;
+=======
     height: auto;
+>>>>>>> parent of a2b068b... Addresses #99
     color: black;
     text-align: center;
     margin-left: -15px;
@@ -221,13 +241,11 @@ form{
 }
 
 .container {
-    max-width: 768px;
-    padding: 4px 4px 4px 4px;
+   padding: 4px 4px 4px 4px;
 }
 
 .content-container {
     margin-top: 30px;
-    padding-top: 10px;
 }
 
 .top-margin{
