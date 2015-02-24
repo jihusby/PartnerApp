@@ -59,7 +59,7 @@ module.exports = React.createClass({
                 </div>
                 
                 <div className={additionalClasses} onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)} >
-                    <div className="container list-container">
+                    <div className="menuLink container list-container">
                         <div id={Constants.MenuItems.partnerlist}>
                             <span className="glyphicon glyphicon-briefcase" />&nbsp;&nbsp;Partnere
                         </div>
@@ -86,17 +86,32 @@ module.exports = React.createClass({
                         </div>
                     </div>
                 </div>
-
-                {spinIcon}
-
+                <div className={additionalClasses} onClick={this.openExternalLink.bind(this, "http://www.rbk.no")}>
+                    <div className="container list-container">
+                        <div id={Constants.MenuItems.search}>
+                            <span className="glyphicon glyphicon-globe" /> &nbsp;&nbsp;Gå til rbk.no
+                        </div>
+                    </div>
+                </div>
+                <div className="updateLink">
+                    <small>Sist oppdatert {lastSync} <a className="updateLink" href="#" onClick={this.synchronize}>Oppdater nå</a></small>
+                </div>
                 {/*Comment 18.02.2015: The variable {loginBlock} goes here if we want to add a logout option to the app (initially, we do not) */}
             </div>
         )},
 
+    openExternalLink: function(link){
+        if(navigator.userAgent.match(/iphone|ipad|ipod/i)){
+            window.open(link, '_blank', 'location=yes');
+        } else {
+            window.open(link, '_system');
+        }
+    },
+
     buildSpinButton: function(lastSync){
         if(this.props.isUpdating){
             return (
-                <div className="list-group-item header-item disabled">
+                <div className="menuLink list-group-item header-item list-choice disabled">
                     <div className="container list-container">
                         <span className="glyphicon glyphicon-refresh spin" />&nbsp;&nbsp;Oppdaterer...
                     </div>
@@ -104,7 +119,7 @@ module.exports = React.createClass({
             );
         } else {
             return (
-                <div className="list-group-item header-item enabled"  onClick={this.synchronize}>
+                <div className="menuLink list-group-item header-item list-choice enabled" onClick={this.synchronize}>
                     <div className="container list-container">
                         <span className="glyphicon glyphicon-refresh" />&nbsp;&nbsp;Oppdater <small>({lastSync})</small>
                     </div>
@@ -130,9 +145,9 @@ module.exports = React.createClass({
 
     buildAdditionalClasses: function(){
         if(this.props.isUpdating){
-            return "list-group-item header-item list-choice disabled";
+            return "menuLink list-group-item header-item list-choice disabled";
         } else {
-            return "list-group-item header-item list-choice enabled";
+            return "menuLink list-group-item header-item list-choice enabled";
         }
     },
 

@@ -92,7 +92,7 @@ module.exports =
                 content =  (
                     <div>
                         <div className="center-text">
-                            Laster data...
+                            Oppdaterer...
                         </div>
                         <div className="spacing-top">
                             <Spinner />

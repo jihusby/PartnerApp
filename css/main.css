@@ -329,6 +329,18 @@ form{
     padding-right: 0px;
 }
 
+.updateLink{
+    font-weight: normal;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+}
+
+.menuLink{
+    line-height: 7px;
+    vertical-align: middle;
+}
+
 .position-list-item{
     text-align: left;
 }
