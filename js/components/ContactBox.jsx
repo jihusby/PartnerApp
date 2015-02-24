@@ -64,11 +64,11 @@ module.exports = React.createClass({
                 <div className="container list-container">
 
                     <div className="row list-container">
-                        <div className="col-xs-10" onClick={this.onClickContact.bind(this, contact.id)}>
+                        <div className="col-xs-10 col-sm-9" onClick={this.onClickContact.bind(this, contact.id)}>
                             <h4 className="list-group-item-heading">{contactName}</h4>
                             <small><p className="list-group-item-text">{position}</p></small>
                         </div>
-                        <div className="col-xs-2 firm-list-item">
+                        <div className="col-xs-2 col-sm-2 firm-list-item">
                             <big>{favorite}</big>
                         </div>
                     </div>

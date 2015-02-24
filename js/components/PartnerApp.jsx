@@ -65,12 +65,12 @@ module.exports =
 
         buildHomeButton: function(){
             return (
-            <button type="button" className="navbar-toggle" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>
-                <span className="sr-only">Toggle navigation</span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-            </button>
+                <button type="button" className="navbar-toggle" onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.home)}>
+                    <span className="sr-only">Toggle navigation</span>
+                    <span className="icon-bar"></span>
+                    <span className="icon-bar"></span>
+                    <span className="icon-bar"></span>
+                </button>
             )
 
         },
@@ -91,7 +91,7 @@ module.exports =
                             <Spinner />
                         </div>
                     </div>
-                    );
+                );
             } else{
                 switch(this.state.menuItem.path){
                     case Constants.MenuItems.home:

@@ -17,7 +17,7 @@ module.exports =
         render: function () {
             return (
                 <div>
-                    <div className="no-margin">
+                    <div>
                         <PartnerApp partners={this.state.rbkData.partners} contacts={this.state.rbkData.persons} activities={this.state.rbkData.activities} partnerTypes={this.state.rbkData.partnerTypes} isUpdating={this.state.rbkData.isUpdating} />
 
                     <div className="footer">

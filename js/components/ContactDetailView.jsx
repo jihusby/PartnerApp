@@ -47,8 +47,8 @@ module.exports = React.createClass({
                 {upperBlock}
                 <address>
                     {partnerName}
-                    {phone}
                     {mobile}
+                    {phone}
                     {mail}
                     {sms}
                 </address>
