@@ -33,9 +33,11 @@ module.exports = React.createClass({
         };
     },
 
+    goToActivities: function(){
+
+    },
+
     render: function () {
-        SessionStorage.set(Constants.SessionStorageKeys.activityFilter, '');
-        SessionStorage.set(Constants.SessionStorageKeys.partnerFilter, '');
         var additionalClasses = this.buildAdditionalClasses();
         var lastSync = this.getlastRefreshDate();
         var spinIcon = this.buildSpinButton(lastSync);
@@ -167,9 +169,11 @@ module.exports = React.createClass({
 
         switch(menuEvent){
             case Constants.MenuItems.partnerlist:
+                SessionStorage.set(Constants.SessionStorageKeys.partnerFilter, '');
                 this.goTo("partnerList");
                 break;
             case Constants.MenuItems.activities:
+                SessionStorage.set(Constants.SessionStorageKeys.activityFilter, '');
                 this.goTo("activities");
                 break;
             case Constants.MenuItems.favorites:
