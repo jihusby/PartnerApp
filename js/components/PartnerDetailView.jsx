@@ -57,8 +57,12 @@ module.exports = React.createClass({
         )},
 
     openExternalLink: function(link){
-        window.open(link, '_blank', 'location=yes');
-        },
+        if(navigator.userAgent.match(/iphone|ipad|ipod/i)){
+            window.open(link, '_blank', 'location=yes');
+        } else {
+            window.open(link, '_system');
+        }
+    },
 
 buildAddress: function(address, zipCode, city){
     if(address && address.length > 0){
