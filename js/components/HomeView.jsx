@@ -16,6 +16,7 @@ var AuthActions = require("../actions/AuthActions");
 
 var Constants = require("../utils/partner-constants");
 var Navigator = require("../utils/navigator");
+var SessionStorage = require("../utils/sessionstorage");
 
 var Login = require("./Login.jsx");
 
@@ -33,6 +34,8 @@ module.exports = React.createClass({
     },
 
     render: function () {
+        SessionStorage.set(Constants.SessionStorageKeys.activityFilter, '');
+        SessionStorage.set(Constants.SessionStorageKeys.partnerFilter, '');
         var additionalClasses = this.buildAdditionalClasses();
         var lastSync = this.getlastRefreshDate();
         var spinIcon = this.buildSpinButton(lastSync);
