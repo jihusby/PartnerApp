@@ -9,11 +9,11 @@ body {
 
 }
 .footer {
-  margin-top: 0px;
-  padding-top: 0px;
-  position: absolute;
-  bottom: 0;
-  /* Set the fixed height of the footer here */
+    margin-top: 0px;
+    padding-top: 0px;
+    position: absolute;
+    bottom: 0;
+    /* Set the fixed height of the footer here */
     height: 30px;
 }
 
