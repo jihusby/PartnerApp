@@ -68,6 +68,7 @@ module.exports = React.createClass({
                                 </div>
                             </div>
                         </form>
+                        Hvis du har glemt passordet, ta kontakt med RBK.
                         <Alert />
                     </div>
                 );
