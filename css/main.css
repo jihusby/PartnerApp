@@ -34,6 +34,14 @@ a:hover{
     cursor: hand;
 }
 
+/* Thanks to http://stackoverflow.com/questions/3163615/how-to-scroll-html-page-to-given-anchor-using-jquery-or-javascript */
+a.anchor{
+    display: block; 
+    position: relative; 
+    top: -55px; 
+    visibility: hidden;
+}
+
 a.disabled:hover{
     /*color: #ffcc00;*/
     color: rgb(165, 135, 67);

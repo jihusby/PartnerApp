@@ -7,9 +7,10 @@ var Constants = require("../utils/partner-constants.js");
 var ContactBox = require("./ContactBox.jsx");
 var ContactBoxPassive = require("./ContactBoxPassive.jsx");
 var PersonBox = require("./PersonBox.jsx");
+var Navigator = require("../utils/navigator");
 
 module.exports = React.createClass({
-    mixins: [Utils],
+    mixins: [Utils, Navigator],
 
     propTypes: {
         activities: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
@@ -31,15 +32,19 @@ module.exports = React.createClass({
                 <h3>{activity.title}</h3>
                 <h4>{activity.location}</h4>
                 <p>{dateString}</p>
-                <a href="#attendees">Påmeldte <i className="glyphicon glyphicon-chevron-right"></i></a>
-                <br/>
+                <a onClick={this.goToAttendees}>Påmeldte <i className="glyphicon glyphicon-chevron-right"></i></a>
+                <br/><br/>
                 <span dangerouslySetInnerHTML={{__html:html}}></span>
                 {deadlineDate}
                 <br/>
-                <a name="attendees"></a>
+                <a className="anchor" name="attendees"></a>
                 {contacts}
             </div>
         );
+    },
+    
+    goToAttendees: function(){
+        this.goToAnchor("attendees");
     },
 
     buildEnrollments : function(activity, that) {

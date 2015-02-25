@@ -10,6 +10,11 @@ module.exports = {
         routie(route);
     },
     
+    goToAnchor: function(hash){
+        navigatorIterator++;
+        location.hash = "#" + hash;  
+    },
+    
     getIterator: function(){
         return navigatorIterator;   
     },
