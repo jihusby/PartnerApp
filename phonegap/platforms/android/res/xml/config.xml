@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="org.itema.godfoten" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <preference name="loglevel" value="DEBUG" />
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <name>Godfoten</name>
+    <description>
+        RBK partnerapp
+    </description>
+    <author email="firmapost@itema.no" href="http://www.itema.no">
+        Itema AS
+    </author>
+    <content src="index.html" />
+    <preference name="permissions" value="none" />
+    <preference name="phonegap-version" value="3.5.0" />
+    <preference name="orientation" value="portrait" />
+    <preference name="target-device" value="universal" />
+    <preference name="fullscreen" value="true" />
+    <preference name="webviewbounce" value="true" />
+    <preference name="prerendered-icon" value="true" />
+    <preference name="stay-in-webview" value="false" />
+    <preference name="detect-data-types" value="true" />
+    <preference name="exit-on-suspend" value="false" />
+    <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="disable-cursor" value="false" />
+    <preference name="android-minSdkVersion" value="7" />
+    <preference name="android-installLocation" value="auto" />
+    <gap:plugin name="org.apache.cordova.battery-status" />
+    <gap:plugin name="org.apache.cordova.camera" />
+    <gap:plugin name="org.apache.cordova.media-capture" />
+    <gap:plugin name="org.apache.cordova.console" />
+    <gap:plugin name="org.apache.cordova.contacts" />
+    <gap:plugin name="org.apache.cordova.device" />
+    <gap:plugin name="org.apache.cordova.device-motion" />
+    <gap:plugin name="org.apache.cordova.device-orientation" />
+    <gap:plugin name="org.apache.cordova.dialogs" />
+    <gap:plugin name="org.apache.cordova.file" />
+    <gap:plugin name="org.apache.cordova.file-transfer" />
+    <gap:plugin name="org.apache.cordova.geolocation" />
+    <gap:plugin name="org.apache.cordova.globalization" />
+    <gap:plugin name="org.apache.cordova.inappbrowser" />
+    <gap:plugin name="org.apache.cordova.media" />
+    <gap:plugin name="org.apache.cordova.network-information" />
+    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <gap:plugin name="org.apache.cordova.vibration" />
+    <gap:plugin name="com.phonegap.plugin.statusbar" />
+    <icon src="www/icon.png" />
+    <icon density="ldpi" height="36" platform="android" src="www/res/icon/android/icon-36-ldpi.png" width="36" />
+    <icon density="mdpi" height="48" platform="android" src="www/res/icon/android/icon-48-mdpi.png" width="48" />
+    <icon density="hdpi" height="72" platform="android" src="www/res/icon/android/icon-72-hdpi.png" width="72" />
+    <icon density="xhdpi" height="96" platform="android" src="www/res/icon/android/icon-96-xhdpi.png" width="96" />
+    <icon density="ldpi" height="36" platform="ios" src="www/res/ios/icon-36-ldpi.png" width="36" />
+    <icon density="mdpi" height="48" platform="ios" src="www/res/ios/icon-48-mdpi.png" width="48" />
+    <icon height="57" platform="ios" src="www/res/ios/icon-57.png" width="57" />
+    <icon height="114" platform="ios" src="www/res/ios/icon-57-2x.png" width="114" />
+    <icon height="72" platform="ios" src="www/res/ios/icon-72.png" width="72" />
+    <icon height="144" platform="ios" src="www/res/ios/icon-72-2x.png" width="144" />
+    <icon density="hdpi" height="72" platform="ios" src="www/res/ios/icon-72-hdpi.png" width="72" />
+    <icon density="xhdpi" height="96" platform="ios" src="www/res/ios/icon-96-xhdpi.png" width="96" />
+    <icon height="48" platform="wp8" src="www/res/windows-phone/icon-48.png" width="48" />
+    <icon height="62" platform="wp8" src="www/res/windows-phone/icon-62-tile.png" width="62" />
+    <icon height="173" platform="wp8" src="www/res/windows-phone/icon-173-tile.png" width="173" />
+    <splash height="960" platform="ios" src="www/res/screen/ios/splash-640-960.png" width="640" />
+    <splash height="1136" platform="ios" src="www/res/screen/ios/splash-640-1136.png" width="640" />
+    <splash height="1334" platform="ios" src="www/res/screen/ios/splash-750-1334.png" width="750" />
+    <splash height="2208" platform="ios" src="www/res/screen/ios/splash-1242-2208.png" width="1242" />
+    <splash height="1024" platform="ios" src="www/res/screen/ios/splash-768-1024.png" width="768" />
+    <splash height="2048" platform="ios" src="www/res/screen/ios/splash-1536-2048.png" width="1536" />
+    <access origin="*" />
+    <access launch-external="yes" origin="tel:*" />
+    <access launch-external="yes" origin="mailto:*" />
+    <access launch-external="yes" origin="sms:*" />
+    <access launch-external="yes" origin="http://*" />
+    <access launch-external="yes" origin="https://*" />
+</widget>

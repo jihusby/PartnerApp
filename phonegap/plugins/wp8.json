@@ -10,7 +10,7 @@
                     "/Deployment/App/Capabilities": [
                         {
                             "xml": "<Capability Name=\"ID_CAP_NETWORKING\" />",
-                            "count": 2
+                            "count": 3
                         }
                     ]
                 }
@@ -29,6 +29,10 @@
                         {
                             "xml": "<feature name=\"Notification\"><param name=\"wp-package\" value=\"Notification\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NetworkStatus\"><param name=\"wp-package\" value=\"NetworkStatus\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -43,6 +47,9 @@
             "PACKAGE_NAME": "{be5e1a30-ac65-11e4-9959-9f89c768baeb}"
         },
         "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "{be5e1a30-ac65-11e4-9959-9f89c768baeb}"
+        },
+        "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "{be5e1a30-ac65-11e4-9959-9f89c768baeb}"
         }
     },
