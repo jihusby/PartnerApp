@@ -93,8 +93,13 @@ module.exports = React.createClass({
                         </div>
                     </div>
                 </div>
-                <div className="updateLink">
-                    <small>Sist oppdatert {lastSync} <a className="updateLink" href="#" onClick={this.synchronize}>Oppdater nå</a></small>
+                <div className="updateLink row">
+                    <div className="col-xs-6">
+                        <a className="updateLink" href="#" onClick={this.synchronize}><i className="glyphicon glyphicon-refresh"></i> Oppdater nå</a>
+                    </div>
+                    <div className="col-xs-6 ">
+                        <small className="pull-right">Sist oppdatert {lastSync} </small>
+                    </div>
                 </div>
                 {/*Comment 18.02.2015: The variable {loginBlock} goes here if we want to add a logout option to the app (initially, we do not) */}
             </div>
