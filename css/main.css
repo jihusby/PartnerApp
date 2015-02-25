@@ -7,10 +7,10 @@ html, body{
 }
 
 html{
-    background: -moz-linear-gradient(top,  rgba(0,0,0,1) 20%, rgba(0,0,0,0.15) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,rgba(0,0,0,15)), color-stop(100%,rgba(0,0,0,0.1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 20%,rgba(0,0,0,0.15) 100%); /* Chrome10+,Safari5.1+ */
-    background: linear-gradient(to bottom,  rgba(0,0,0,1) 20%,rgba(0,0,0,0.15) 100%); /* W3C */
+    background: -moz-linear-gradient(top,  rgba(0,0,0,1) 20%, rgba(0,0,0,0.1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,0.1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 20%,rgba(0,0,0,0.1) 100%); /* Chrome10+,Safari5.1+ */
+    background: linear-gradient(to bottom,  rgba(0,0,0,1) 20%,rgba(0,0,0,0.1) 100%); /* W3C */
     background-repeat: repeat-x;
     background-size: 100%;
     background-attachment: fixed;
@@ -115,6 +115,7 @@ form{
     right: 0px;
     top: 0px;
     width: 50px;
+    border-radius: 4px;
 }
 
 .headertext{
@@ -342,7 +343,11 @@ form{
     font-weight: normal;
     margin-left: auto;
     margin-right: auto;
-    width: 250px;
+    width: 100%;
+}
+
+.updateLink a {
+    /*text-decoration: underline;*/
 }
 
 .menuLink{
@@ -360,8 +365,8 @@ form{
 
 .mobile-header{
     text-align: center;
-    padding-right: 138px;
-    margin-right: -138px;
+    padding-right: 118px;
+    margin-right: -118px;
     width: 100%;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
