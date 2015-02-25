@@ -29,8 +29,13 @@ module.exports = React.createClass({
         var phone = this.buildPhone(partner.phone);
 
         var proffLink = this.buildProffLink(partner.name);
-        var logoSrc = Constants.URLS.partnerLogos + partner.logo;
-
+        var logoSrc = "";
+        if(!navigator || !navigator.connection || navigator.connection.type != Connection.NONE){
+            logoSrc = Constants.URLS.partnerLogos + partner.logo;
+        }
+        
+        var logo = logoSrc ? this.buildLogo(logoSrc) : "";
+        
         var contacts = sortedContacts.map(function(contact){
             return (
                 <ContactBox contact={contact} showPosition={true} showFavorite={true} />
@@ -39,9 +44,7 @@ module.exports = React.createClass({
 
         return (
             <div className="list-group">
-                <div className="list-group media-frame">
-                    <img className="media-object-large" src={logoSrc} data-rel="external" />
-                </div>
+                {logo}
                 <h4>{partner.name}</h4>
 
                 <address>
@@ -62,6 +65,14 @@ module.exports = React.createClass({
         } else {
             window.open(link, '_system');
         }
+    },
+    
+    buildLogo: function(logo){
+        return (
+            <div className="list-group media-frame">
+                <img className="media-object-large" src={logo} data-rel="external" />
+            </div>
+            );
     },
 
 buildAddress: function(address, zipCode, city){

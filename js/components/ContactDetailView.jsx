@@ -62,7 +62,11 @@ module.exports = React.createClass({
     buildUpperBlock: function(contact) {
         var name = [contact.firstName, contact.lastName].join(" ");
         var position = this.buildPosition(contact.position);
-        var logoSrc = contact.picture ? Constants.URLS.personImages + contact.picture : "";
+
+        var logoSrc = "";
+        if(!navigator || !navigator.connection || navigator.connection.type != Connection.NONE){
+            logoSrc = contact.picture ? Constants.URLS.personImages + contact.picture : "";
+        } 
         if(logoSrc) {
 
             return (
