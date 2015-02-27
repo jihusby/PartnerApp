@@ -34,7 +34,7 @@ module.exports = React.createClass({
                 <p>{dateString}</p>
                 <a onClick={this.goToAttendees}>Påmeldte <i className="glyphicon glyphicon-chevron-right"></i></a>
                 <br/><br/>
-                <span dangerouslySetInnerHTML={{__html:html}}></span>
+                <span className="activity-detail-description" dangerouslySetInnerHTML={{__html:html}}></span>
                 {deadlineDate}
                 <br/>
                 <a className="anchor" name="attendees"></a>

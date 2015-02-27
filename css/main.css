@@ -385,6 +385,9 @@ form{
     max-width: 100%;
     height:auto;
 }
+.activity-detail-description a{
+    color: #000;
+}
 
 .gold-header {
     color: black;
