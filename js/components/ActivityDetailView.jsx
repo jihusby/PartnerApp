@@ -22,7 +22,7 @@ module.exports = React.createClass({
         var that = this;
         var id = this.props.id;
         var activity = _.find(this.props.activities, function(a){return a.id == id;});
-        var html = activity.description.replace(/["]/g, "");
+        var html = activity.description ? activity.description.replace(/["]/g, "") : "";
         var dateString = this.formatDates(activity.startDate, activity.endDate);
         var deadlineDate = this.buildDeadlineDate(activity.deadlineDate);
         var contacts = this.buildEnrollments(activity, that);
