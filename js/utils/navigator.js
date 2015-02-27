@@ -36,14 +36,12 @@ module.exports = {
     
     openExternalLink: function(url){
         if(navigator && navigator.userAgent.match(/iphone|ipad|ipod/i)){
-            window.open(link, '_blank', 'location=yes');
+            window.open(url, '_blank', 'location=yes');
         } else {
-            console.log("Android");
-            
             if(navigator && navigator.app){
                 navigator.app.loadUrl(url, {openExternal: true});
             } else{
-                window.open(link, '_system');
+                window.open(url, '_system');
             }
         }
     }
