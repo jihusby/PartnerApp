@@ -105,14 +105,6 @@ module.exports = React.createClass({
             </div>
         )},
 
-    openExternalLink: function(link){
-        if(navigator.userAgent.match(/iphone|ipad|ipod/i)){
-            window.open(link, '_blank', 'location=yes');
-        } else {
-            window.open(link, '_system');
-        }
-    },
-
     buildSpinButton: function(lastSync){
         if(this.props.isUpdating){
             return (
