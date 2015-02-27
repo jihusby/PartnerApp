@@ -2,11 +2,11 @@
 module.exports =  {
     Timeout: 20000,
     URLS: { 
-        search: "http://godfotenrestapi.azurewebsites.net/api/search",
-        login: "http://godfotenrestapi.azurewebsites.net/api/login",
+        search: "http://api.sponsorweb.no/api/search",
+        login: "http://api.sponsorweb.no/api/login",
         personImages: "http://godfoten.rbk.no/media/",
         partnerLogos: "http://godfoten.rbk.no/media/firmalogo/",
-        active: "http://godfotenrestapi.azurewebsites.net/api/persons/active"
+        active: "http://api.sponsorweb.no/api/persons/active"
     },
     MenuItems: {
         home: "home",
