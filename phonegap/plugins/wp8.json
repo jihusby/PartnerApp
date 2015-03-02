@@ -33,6 +33,10 @@
                         {
                             "xml": "<feature name=\"NetworkStatus\"><param name=\"wp-package\" value=\"NetworkStatus\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Vibration\"><param name=\"wp-package\" value=\"Vibration\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -50,6 +54,9 @@
             "PACKAGE_NAME": "{be5e1a30-ac65-11e4-9959-9f89c768baeb}"
         },
         "org.apache.cordova.network-information": {
+            "PACKAGE_NAME": "{be5e1a30-ac65-11e4-9959-9f89c768baeb}"
+        },
+        "org.apache.cordova.vibration": {
             "PACKAGE_NAME": "{be5e1a30-ac65-11e4-9959-9f89c768baeb}"
         }
     },
