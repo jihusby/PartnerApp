@@ -130,7 +130,7 @@ module.exports =
                 $("nav.navbar").find("li#"+Constants.MenuItems.login).addClass('active');
                 title = "Logg inn";
                 content = (<Login />);
-            } else if (!(this.props.partners  && (this.props.partners.length > 0))){
+            } else if (!this.props.partners || !(this.props.partners  && (this.props.partners.length > 0))){
                 content =  (
                     <div>
                         <div className="center-text">
