@@ -47,7 +47,7 @@ module.exports = React.createClass({
         });
 
         return (
-            <div className="list-group">
+            <div className="list-group top-margin">
                 {logo}
                 <h4>{partner.name}</h4>
 

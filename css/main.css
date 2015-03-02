@@ -250,7 +250,7 @@ form{
 }
 
 .top-margin{
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .jumbotron > .container{
@@ -278,6 +278,7 @@ form{
 }
 
 .dropdown-list-item{
+
     font-size: 1.1em;
 }
 
@@ -405,10 +406,6 @@ form{
 
 .company-btn{
     min-width: 150px;
-}
-
-.top-margin{
-    margin-top: 10px;
 }
 
 .parent-content{
