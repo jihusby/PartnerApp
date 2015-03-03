@@ -8,6 +8,8 @@ var ContactBox = require("./ContactBox.jsx");
 var ContactBoxPassive = require("./ContactBoxPassive.jsx");
 var PersonBox = require("./PersonBox.jsx");
 var Navigator = require("../utils/navigator");
+jQuery = require("jquery"); // bootstrap needs jQuery variable to be set
+var $ = jQuery;
 
 module.exports = React.createClass({
     mixins: [Utils, Navigator],
@@ -26,13 +28,13 @@ module.exports = React.createClass({
         var dateString = this.formatDates(activity.startDate, activity.endDate);
         var deadlineDate = this.buildDeadlineDate(activity.deadlineDate);
         var contacts = this.buildEnrollments(activity, that);
-
+        var attendeesLink = this.buildAttendeesLink(activity.enrollments.length);
         return (
             <div className="activity-detail panel">
                 <h3>{activity.title}</h3>
                 <h4>{activity.location}</h4>
                 <p>{dateString}</p>
-                <a onClick={this.goToAttendees}>Påmeldte <i className="glyphicon glyphicon-chevron-right"></i></a>
+                {attendeesLink}
                 <br/><br/>
                 <span className="activity-detail-description" dangerouslySetInnerHTML={{__html:html}}></span>
                 {deadlineDate}
@@ -45,6 +47,19 @@ module.exports = React.createClass({
     
     goToAttendees: function(){
         this.goToAnchor("attendees");
+    },
+    
+    buildAttendeesLink: function(numberOfAttendees){
+        var attendeesListHeight = numberOfAttendees * 73; // attendee div is 73px high
+        console.log("Window height: " + window.screen.availHeight);
+        console.log("Document height: " + $(document).height());
+        if(window.screen.availHeight < $(document).height() - attendeesListHeight){
+            return (
+                <a onClick={this.goToAttendees}>Påmeldte <i className="glyphicon glyphicon-chevron-right"></i></a>
+            );
+        } else {
+            return ("");
+        }
     },
 
     buildEnrollments : function(activity, that) {
