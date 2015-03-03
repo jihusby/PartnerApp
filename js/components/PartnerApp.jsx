@@ -89,8 +89,8 @@ module.exports =
             if (!store.get(Constants.LocalStorageKeys.bearer_token)){
                 title = "Logg inn";
                 content = (<Login />);
-            } else if (!(this.props.partners  && (this.props.partners.length > 0))){
-                content =  (
+            } else if (!(this.props.partners && this.props.partners.length > 0)){
+                content = (
                     <div>
                         <div className="center-text">
                             Oppdaterer...
