@@ -50,7 +50,7 @@ module.exports = React.createClass({
     },
     
     buildAttendeesLink: function(numberOfAttendees){
-        var attendeesListHeight = numberOfAttendees * 73; // attendee div is 73px high
+        var attendeesListHeight = numberOfAttendees * 51; // attendee div is 73px high
         console.log("Window height: " + window.screen.availHeight);
         console.log("Document height: " + $(document).height());
         if(window.screen.availHeight < $(document).height() - attendeesListHeight){
