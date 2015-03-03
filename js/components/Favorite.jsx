@@ -4,6 +4,7 @@ var _ = require("underscore");
 
 var ContactActions = require("../actions/ContactActions.js");
 var ContactStore = require("../stores/ContactStore.js");
+var Button = require("react-bootstrap/Button");
 
 module.exports = React.createClass({
 
@@ -16,18 +17,18 @@ module.exports = React.createClass({
     render: function(){
         if(this.isFavorite(this.state.favorites)){
             return  (
-                <a onClick={this.removeFavorite} className="favorite-button">
-                    <div className="favorite">
+                <a onClick={this.removeFavorite} className="ghost-favorite">
+                    <Button className="ghost-favorite">
                         <big><i className="glyphicon glyphicon-star"></i></big>
-                    </div>
+                    </Button>
                 </a>
             );
         } else {
             return  (
-                <a onClick={this.addToFavorites} className="favorite-button">
-                    <div className="favorite">
+                <a onClick={this.addToFavorites} className="ghost-favorite">
+                    <Button className="ghost-favorite">
                         <big><i className="glyphicon glyphicon-star-empty"></i></big>
-                    </div>
+                    </Button>
                 </a>
             );
         }
