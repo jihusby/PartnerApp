@@ -111,7 +111,8 @@ form{
 
 .ghost-favorite{
     width: 45px;
-    height: 45px;
+    height: 40px;
+    font-size: 20px;
     color: rgb(165, 135, 67);
     opacity:1;
     background:none;
@@ -120,7 +121,8 @@ form{
 }
 .ghost-favorite:active{
     width: 45px;
-    height: 45px;
+    height: 40px;
+    font-size: 20px;
     color: rgb(165, 135, 67);
     opacity:1;
     background:none;
