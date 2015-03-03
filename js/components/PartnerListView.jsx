@@ -89,7 +89,7 @@ module.exports = React.createClass({
                         <div className="center-text">
                             Venter på data...
                         </div>
-                        <div className="spacing-top">
+                        <div className="top-margin">
                             <Spinner />
                         </div>
                     </div>);

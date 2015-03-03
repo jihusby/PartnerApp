@@ -136,7 +136,7 @@ module.exports =
                         <div className="center-text">
                             Laster data...
                         </div>
-                        <div className="spacing-top">
+                        <div className="top-margin">
                             <Spinner />
                         </div>
                     </div>

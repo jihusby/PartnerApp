@@ -46,7 +46,7 @@ module.exports = React.createClass({
 
         var upperBlock = this.buildUpperBlock(contact);
         return (
-            <div>
+            <div className="list-group top-margin">
                 {upperBlock}
                 <address>
                     {partnerName}

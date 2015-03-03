@@ -86,11 +86,6 @@ form{
     border-radius: 3px 3px 3px 3px;
 }
 
-.navbar-header-gold{
-    paddin-top: 20px;
-    /*background-color: dimgray;*/
-}
-
 .navbar-header > button{
     margin: 0;
     height: 50px;
@@ -115,7 +110,7 @@ form{
 }
 
 .ghost-favorite{
-    width: 45px;
+    width: 40px;
     height: 40px;
     font-size: 20px;
     color: rgb(165, 135, 67);
@@ -125,7 +120,7 @@ form{
     box-shadow:none;
 }
 .ghost-favorite:active{
-    width: 45px;
+    width: 40px;
     height: 40px;
     font-size: 20px;
     color: rgb(165, 135, 67);
@@ -264,15 +259,17 @@ form{
 .container {
     max-width: 768px;
     padding: 4px 4px 4px 4px;
+    margin-top: 0px;
 }
 
 .content-container {
-    margin-top: 30px;
+    margin-top: 20px;
     padding-top: 10px;
 }
 
 .top-margin{
-    margin-top: 10px;
+    margin-top: 30px;
+    padding-top: 0px;
 }
 
 .jumbotron > .container{
@@ -281,10 +278,6 @@ form{
 
 .react-spinner_bar {
     background-color: black;
-}
-
-.spacing-top {
-    margin-top: 15px;
 }
 
 .dropdown-list{
