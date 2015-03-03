@@ -16,13 +16,4 @@ out/
 /phonegap/www/index.html
 /phonegap/www/css/main.css
 /phonegap/plugins/
-/phonegap/platforms/android/ant-build/
-/phonegap/platforms/android/assets/www/
-/phonegap/platforms/android/cordova/
-/phonegap/platforms/android/CordovaLib/
-/phonegap/platforms/wp8/bin/
-/phonegap/platforms/wp8/cordova/
-/phonegap/platforms/wp8/cordovalib/
-/phonegap/platforms/wp8/Plugins/
-/phonegap/platforms/wp8/obj/
-/phonegap/platforms/wp8/www/
+/phonegap/platforms/
