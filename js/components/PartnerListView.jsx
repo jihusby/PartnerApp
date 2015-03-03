@@ -1,3 +1,5 @@
+var _ = require("underscore");
+
 var React = require("react");
 var Reflux = require("reflux");
 
@@ -13,6 +15,7 @@ var PartnerBox = require("./PartnerBox.jsx");
 
 var SessionStorage = require("../utils/sessionstorage");
 var Constants = require("../utils/partner-constants");
+
 
 module.exports = React.createClass({
 
@@ -52,6 +55,34 @@ module.exports = React.createClass({
         });
     },
     
+    buildPartnerList: function(filteredPartners){
+        return _.map(this.props.partnerTypes, function(partnerType) {
+            var partnerTypePartners = _.filter(filteredPartners, function(partner)
+            {
+                return partner.partnerType === partnerType.name;
+            });
+            var partnerList = partnerTypePartners.map(function(p){
+                return (
+                    <PartnerBox partner={p} />
+                );
+            });
+            
+            var header = "";
+            if(partnerList.length > 0){
+                header = (
+                    <h3>{partnerType.name}</h3>
+                );
+            }
+            
+            return (
+                <div>
+                    {header}
+                    {partnerList}
+                </div>
+            );
+        });
+    },
+    
     render: function () {
         if(!this.props.partners || !this.props.partnerTypes){
             return (<div>
@@ -79,13 +110,9 @@ module.exports = React.createClass({
             if(this.state.init){
                 var filterInStorage = SessionStorage.get(Constants.SessionStorageKeys.partnerFilter);
                 var filteredPartnerList = this.filterPartners(filterInStorage || "all");
-                partnerNodes = filteredPartnerList.map(function (partner) {
-                    return (<PartnerBox partner={partner} />);
-                });
+                partnerNodes = this.buildPartnerList(filteredPartnerList);
             } else{
-                partnerNodes = this.state.filteredPartnerList.map(function (partner) {
-                    return (<PartnerBox partner={partner} />);
-                });
+                partnerNodes = this.buildPartnerList(this.state.filteredPartnerList);
             }
 
             return (
@@ -96,7 +123,6 @@ module.exports = React.createClass({
                     </div>
                 </div>
             );
-
         }
     } 
 });
