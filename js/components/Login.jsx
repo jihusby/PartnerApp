@@ -29,7 +29,7 @@ module.exports = React.createClass({
     
     render: function () {
                 return (
-                    <div className="loginForm">
+                    <div className="top-margin loginForm">
                        <div className="logo-container">
                             <img src="images/logo_xs_small.png" className="rbk-logo" />
                        </div>

@@ -15,34 +15,40 @@ module.exports = React.createClass({
     },
     
     render: function(){
+        var link = "link_" + this.props.id;
         if(this.isFavorite(this.state.favorites)){
             return  (
-                <a onClick={this.removeFavorite} className="ghost-favorite">
-                    <Button className="ghost-favorite">
-                        <big><i className="glyphicon glyphicon-star"></i></big>
+                <a id={link} onClick={this.removeFavorite} className="ghost-favorite">
+                    <Button id={this.props.id} bsStyle="default" className="ghost-favorite">
+                        <i className="glyphicon glyphicon-star"></i>
                     </Button>
                 </a>
             );
         } else {
             return  (
-                <a onClick={this.addToFavorites} className="ghost-favorite">
-                    <Button className="ghost-favorite">
-                        <big><i className="glyphicon glyphicon-star-empty"></i></big>
+                <a id={link} onClick={this.addToFavorites} className="ghost-favorite">
+                    <Button id={this.props.id} bsStyle="default" className="ghost-favorite">
+                        <i className="glyphicon glyphicon-star-empty"></i>
                     </Button>
                 </a>
             );
         }
     },
 
+    componentDidMount: function() {
+        document.getElementById(this.props.id).className="ghost-favorite";
+        document.getElementById("link_" + this.props.id).className="ghost-favorite";
+    },
+
     addToFavorites: function(e){
-        e.preventDefault();
         var favorites = this.state.favorites || [];
         var favorite = { id: this.props.id };
         ContactActions.setFavorites(_.union(favorites, [favorite]));
+        document.getElementById(this.props.id).className="ghost-favorite";
+        document.getElementById("link_" + this.props.id).className="ghost-favorite";
     },
     
     removeFavorite: function(e){
-        e.preventDefault();
         var favoriteId = this.props.id;
         var favorites = this.state.favorites || [];
         
@@ -50,6 +56,8 @@ module.exports = React.createClass({
                 return f.id == favoriteId;
             })
         ));
+        document.getElementById(this.props.id).className="ghost-favorite";
+        document.getElementById("link_" + this.props.id).className="ghost-favorite";
     },
     
     isFavorite: function(favorites){

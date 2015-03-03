@@ -95,7 +95,7 @@ module.exports =
                         <div className="center-text">
                             Oppdaterer...
                         </div>
-                        <div className="spacing-top">
+                        <div className="top-margin">
                             <Spinner />
                         </div>
                     </div>
@@ -179,7 +179,7 @@ module.exports =
             var navbar = (
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container-fluid">
-                        <div className="navbar-header navbar-header-gold">
+                        <div className="navbar-header">
                             {backButton}
                             <strong><span className="headertext navbar-brand mobile-header headertext">{title}</span></strong>
                             {iPadHomeButton}

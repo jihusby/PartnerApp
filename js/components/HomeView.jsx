@@ -46,7 +46,7 @@ module.exports = React.createClass({
 
         /* TODO: Save timestamp for last sync, show on button */
         return (
-            <div>
+            <div className="list-group top-margin">
                 <div className="container list-container">
                     <div className="logo-container">
                         <img src="images/logo_xs_small.png" className="rbk-logo" />
