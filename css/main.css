@@ -104,6 +104,11 @@ form{
     background-color: transparent !important;
 }
 
+.list-group-item:first-of-type {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
 .ghost-button{
     background-color: transparent !important;
     border: 0 !important;

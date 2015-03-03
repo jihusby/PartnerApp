@@ -43,6 +43,7 @@ module.exports =
             contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
             partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
             partnerTypes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+            favorites: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
             isUpdating: React.PropTypes.bool.isRequired
         },
 
@@ -121,7 +122,7 @@ module.exports =
                         break;
                     case Constants.MenuItems.favorites:
                         title = "Favoritter";
-                        content = <FavoriteView />
+                        content = <FavoriteView favorites={this.props.favorites} />
                         homeButton = this.buildHomeButton();
                         iPadHomeButton = this.buildIPadHomeButton();
                         break;

@@ -1,9 +1,6 @@
 var React = require("react");
 var Reflux = require("reflux");
 
-var ContactStore = require("../stores/ContactStore.js");
-var ContactActions = require("../actions/ContactActions.js");
-
 var localStorageUtils = require("../utils/localstorage-utils");
 var ContactDetailView = require("./ContactDetailView.jsx");
 var ContactBox = require("./ContactBox.jsx");
@@ -12,16 +9,18 @@ var _ = require("underscore");
 
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(ContactStore,"favorites")],  
-    
+    propTypes: {
+        favorites: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+    },
+        
     getInitialState: function(){
-        ContactActions.getFavorites();
-        return this.state;
+        var initialFavorites = this.props.favorites || [];
+        return { initialFavorites: initialFavorites };
     },
     
     render: function () {
-        if(this.state.favorites){
-            var contactList = this.state.favorites.map(function(favorite){
+        if(this.state.initialFavorites){
+            var contactList = this.state.initialFavorites.map(function(favorite){
                 var contact = localStorageUtils.findContact(favorite.id);
                 var partner = localStorageUtils.findPartner(contact.partnerId);
                 contact.partnerName = partner.name;
