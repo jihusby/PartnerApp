@@ -23,6 +23,8 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
+
+    <!--
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.media-capture" />
@@ -42,6 +44,8 @@
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
     <gap:plugin name="com.phonegap.plugin.statusbar" />
+    -->
+
 	<icon src="www/icon.png" />
     <icon src="www/res/icon/android/icon-36-ldpi.png" platform="android" height="36" width="36" density="ldpi"/>
     <icon src="www/res/icon/android/icon-48-mdpi.png" platform="android" height="48" width="48" density="mdpi"/>
@@ -58,7 +62,7 @@
 	<icon src="www/res/icon/windows-phone/icon-48.png" platform="wp8" width="48" height="48" />
 	<icon src="www/res/icon/windows-phone/icon-62-tile.png" platform="wp8" width="62" height="62" />
 	<icon src="www/res/icon/windows-phone/icon-173-tile.png" platform="wp8" width="173" height="173" />
-icon/
+
     <!-- iPhone -->
     <splash src="www/res/screen/ios/splash-640-960.png" platform="ios" width="640" height="960" />
     <splash src="www/res/screen/ios/splash-640-1136.png" platform="ios" width="640" height="1136" />
@@ -74,6 +78,8 @@ icon/
 	<access origin="sms:*" launch-external="yes" />
 	<access origin="http://*" launch-external="yes" />
 	<access origin="https://*" launch-external="yes" />
+
+    <!--
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true" />
     </feature>
@@ -92,4 +98,6 @@ icon/
     <feature name="Vibration">
         <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
     </feature>
+    -->
+
 </widget>

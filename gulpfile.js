@@ -48,6 +48,7 @@ gulp.task('watch', function() {
 gulp.task('phonegap', function() {
         runSequence(
             'phonegap-init',
+            'phonegap-plugins',
             'phonegap-copy',
             'phonegap-build');
 });
@@ -55,6 +56,19 @@ gulp.task('phonegap', function() {
 // Init phonegap - add platforms
 gulp.task('phonegap-init', shell.task([
    'phonegap platform add android', 'phonegap platform add ios', 'phonegap platform add wp8']
+    , {
+        ignoreErrors: 'true',
+        cwd: 'phonegap'
+    }
+));
+
+// Install phonegap plugins
+gulp.task('phonegap-plugins', shell.task([
+    'cordova plugin add org.apache.cordova.statusbar@0.1.10',
+    'cordova plugin add org.apache.cordova.inappbrowser@0.6.0',
+    'cordova plugin add org.apache.cordova.dialogs@0.3.0',
+    'cordova plugin add org.apache.cordova.network-information@0.2.15',
+    'cordova plugin add org.apache.cordova.vibration@0.3.13']
     , {
         ignoreErrors: 'true',
         cwd: 'phonegap'
