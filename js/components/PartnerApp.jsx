@@ -171,7 +171,7 @@ module.exports =
                         break;
                 }
                 // hack to ensure scrolling to top of page
-                $(window).scrollTop(0);
+                /*$(window).scrollTop(0);*/
             }
 
 

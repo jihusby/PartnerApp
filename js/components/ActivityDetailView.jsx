@@ -20,7 +20,19 @@ module.exports = React.createClass({
         partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
     },
 
+    getInitialState: function(){
+        return {
+            top: true
+        };
+    },
+
     render: function(){
+
+        if(this.state.top == true){
+            $(window).scrollTop(0);
+            this.state.top = false;
+        }
+
         var that = this;
         var id = this.props.id;
         var activity = _.find(this.props.activities, function(a){return a.id == id;});
