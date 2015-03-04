@@ -42,7 +42,7 @@ module.exports = React.createClass({
             );
         } else{
             return (
-                <h4>Du har ikke lagt til noen favoritter.</h4>
+                    <h4>Du har ikke lagt til noen favoritter.</h4>
             );
         }
     }

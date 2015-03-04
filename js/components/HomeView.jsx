@@ -8,7 +8,6 @@ var $ = jQuery;
 require("bootstrap");
 
 var MenuStore = require("../stores/MenuStore");
-var DataStore = require("../stores/DataStore");
 var AuthStore = require("../stores/AuthStore");
 
 var BackendActions = require("../actions/BackendActions");
@@ -24,25 +23,15 @@ module.exports = React.createClass({
 
     mixins: [Reflux.connect(MenuStore,"menuItem"), Reflux.connect(AuthStore,"loginResult"), Navigator],
 
-    propTypes: {
-        isUpdating: React.PropTypes.bool.isRequired
-    },
-    
     getInitialState: function(){
         return {
         };
     },
 
-    goToActivities: function(){
-
-    },
-
     render: function () {
         var additionalClasses = this.buildAdditionalClasses();
         var lastSync = this.getlastRefreshDate();
-        var spinIcon = this.buildSpinButton(lastSync);
         var loginText = <div><span className="glyphicon glyphicon-log-out" />&nbsp;&nbsp;Logg ut</div>;
-        var loginBlock = this.buildLoginBlock(loginText, additionalClasses);
 
         /* TODO: Save timestamp for last sync, show on button */
         return (
@@ -104,41 +93,6 @@ module.exports = React.createClass({
                 {/*Comment 18.02.2015: The variable {loginBlock} goes here if we want to add a logout option to the app (initially, we do not) */}
             </div>
         )},
-
-    buildSpinButton: function(lastSync){
-        if(this.props.isUpdating){
-            return (
-                <div className="menuLink list-group-item header-item list-choice disabled">
-                    <div className="container list-container">
-                        <span className="glyphicon glyphicon-refresh spin" />&nbsp;&nbsp;Oppdaterer...
-                    </div>
-                </div>
-            );
-        } else {
-            return (
-                <div className="menuLink list-group-item header-item list-choice enabled" onClick={this.synchronize}>
-                    <div className="container list-container">
-                        <span className="glyphicon glyphicon-refresh" />&nbsp;&nbsp;Oppdater <small>({lastSync})</small>
-                    </div>
-                </div>
-            )
-        }
-    },
-
-    buildLoginBlock: function(loginText, additionalClasses) {
-        return (
-            <div className="list-group-item header-item">
-                <div className="container list-container">
-                    <div id={Constants.MenuItems.home}>
-                        <a onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.login)} className={additionalClasses}>
-                                {loginText}
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-        )
-    },
 
     buildAdditionalClasses: function(){
         if(this.props.isUpdating){

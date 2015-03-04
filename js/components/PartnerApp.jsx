@@ -92,7 +92,7 @@ module.exports =
             } else if (!(this.props.partners  && (this.props.partners.length > 0))){
                 content =  (
                     <div>
-                        <div className="center-text">
+                        <div className="center-text top-margin">
                             Oppdaterer...
                         </div>
                         <div className="top-margin">
