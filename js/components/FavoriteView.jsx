@@ -19,7 +19,7 @@ module.exports = React.createClass({
     },
     
     render: function () {
-        if(this.state.initialFavorites){
+        if(this.state.initialFavorites.length > 0){
             var contactList = this.state.initialFavorites.map(function(favorite){
                 var contact = localStorageUtils.findContact(favorite.id);
                 var partner = localStorageUtils.findPartner(contact.partnerId);
