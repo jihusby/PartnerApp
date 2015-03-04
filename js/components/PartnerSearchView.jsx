@@ -62,7 +62,7 @@ module.exports = React.createClass({
                 });
 
             orderedContactList.forEach(function(contact) {
-                if(contact.firstName.toLowerCase().indexOf(searchString) > -1 || contact.lastName.toLowerCase().indexOf(searchString) > -1){
+                if((contact.firstName.toLowerCase() + " " +contact.lastName.toLowerCase()).indexOf(searchString) > -1){
                     var partnerForPerson = _.find(partners, function(partner){
                         return partner.id === contact.partnerId;
                     });
