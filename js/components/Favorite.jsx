@@ -41,6 +41,7 @@ module.exports = React.createClass({
     },
 
     addToFavorites: function(e){
+        e.preventDefault();
         var favorites = this.state.favorites || [];
         var favorite = { id: this.props.id };
         ContactActions.setFavorites(_.union(favorites, [favorite]));
@@ -49,6 +50,7 @@ module.exports = React.createClass({
     },
     
     removeFavorite: function(e){
+        e.preventDefault();
         var favoriteId = this.props.id;
         var favorites = this.state.favorites || [];
         

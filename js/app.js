@@ -24,7 +24,7 @@ document.addEventListener('deviceready', function() {
 var updateStatusBar = navigator.userAgent.match(/iphone|ipad|ipod/i) &&
 parseInt(navigator.appVersion.match(/OS (\d)/)[1], 10) >= 7;
 if (updateStatusBar) {
-    document.body.style.marginTop = '20px';
+    document.body.style.marginTop = '0px';
 }
 
 var container = document.getElementById("container");

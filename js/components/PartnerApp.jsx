@@ -93,7 +93,7 @@ module.exports =
                 content = (
                     <div>
                         <div className="center-text top-margin">
-                            Oppdaterer...
+                            <h4>Oppdaterer...</h4>
                         </div>
                         <div className="top-margin">
                             <Spinner />

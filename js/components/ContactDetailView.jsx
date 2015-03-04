@@ -88,12 +88,12 @@ module.exports = React.createClass({
             return(
                 <div className="spacing-bottom">
                     <div className="media-body">
-                        <h4 className="position">
+                        <div className="position">
                             <strong>{name}&nbsp;</strong>
                             <Favorite id={contact.id} />
                             <br/>
                             <small><i className="position">{position}</i></small>
-                        </h4>
+                        </div>
                     </div>
                 </div>
             )
