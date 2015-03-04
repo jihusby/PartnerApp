@@ -28,37 +28,39 @@ module.exports = React.createClass({
         var dateString = this.formatDates(activity.startDate, activity.endDate);
         var deadlineDate = this.buildDeadlineDate(activity.deadlineDate);
         var contacts = this.buildEnrollments(activity, that);
-        var attendeesLink = this.buildAttendeesLink(activity.enrollments.length);
+        setTimeout(function(){}, 200); // hack for ensuring calculation of correct document height
+        var attendeesLink = this.buildAttendeesLink(activity);
         return (
-            <div className="activity-detail panel">
-                <h3>{activity.title}</h3>
-                <h4>{activity.location}</h4>
-                <p>{dateString}</p>
-                {attendeesLink}
-                <br/><br/>
-                <span className="activity-detail-description" dangerouslySetInnerHTML={{__html:html}}></span>
-                {deadlineDate}
-                <br/>
-                <a className="anchor" name="attendees"></a>
-                {contacts}
-            </div>
-        );
+        <div className="activity-detail panel">
+            <h3>{activity.title}</h3>
+            <h4>{activity.location}</h4>
+            <p>{dateString}</p>
+            {attendeesLink}
+            <span className="activity-detail-description" dangerouslySetInnerHTML={{__html:html}}></span>
+            {deadlineDate}
+            <br/>
+            <a className="anchor" name="attendees"></a>
+            {contacts}
+        </div>
+    );
     },
     
     goToAttendees: function(){
         this.goToAnchor("attendees");
     },
     
-    buildAttendeesLink: function(numberOfAttendees){
-        var attendeesListHeight = numberOfAttendees * 51; // attendee div is 73px high
-        console.log("Window height: " + window.screen.availHeight);
-        console.log("Document height: " + $(document).height());
-        if(window.screen.availHeight < $(document).height() - attendeesListHeight){
-            return (
-                <a onClick={this.goToAttendees}>Påmeldte <i className="glyphicon glyphicon-chevron-right"></i></a>
-            );
-        } else {
+    buildAttendeesLink: function(activity){
+        var divHeight = !!_.find(activity.enrollments, function(enrollment) { return !!enrollment.personId; }) ? 73 : 51; // attendee div is 73px high if contact, 51px if not
+        var docHeight = Math.max(document.body.clientHeight, document.body.offsetHeight, document.body.scrollHeight, $(document).height(), document.documentElement.scrollHeight);
+        var attendeesListHeight = activity.enrollments.length * divHeight;
+        if(activity.enrollments.length == 0 || window.screen.availHeight > docHeight - attendeesListHeight){
             return ("");
+        } else {
+            return (
+                <div>
+                    <a onClick={this.goToAttendees}>Påmeldte <i className="glyphicon glyphicon-chevron-right"></i></a><br/><br/>
+                </div>
+            );
         }
     },
 
@@ -124,7 +126,7 @@ module.exports = React.createClass({
 
         if(sortedContactList.length>0){
             return (
-                <div>
+                <div className="attendees-list">
                     <div className="list-group-item list-heading gold-header"><h4 className="list-group-item-heading"><strong>Påmeldte ({sortedContactList.length})</strong></h4></div>
                     {sortedContactList}
                 </div>

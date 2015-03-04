@@ -70,7 +70,7 @@ module.exports = React.createClass({
             var header = "";
             if(partnerList.length > 0){
                 header = (
-                    <h3>{partnerType.name}</h3>
+                    <h4>{partnerType.name}</h4>
                 );
             }
             

@@ -184,6 +184,10 @@ form{
     font-size: 110%;
 }
 
+.attendees-list > .list-group-item{
+    min-height: 51px;
+}
+
 .list-choice:active{
     background-color: rgb(165, 135, 67);
     color: black;

@@ -15,13 +15,14 @@ var AuthActions = require("../actions/AuthActions");
 
 var Constants = require("../utils/partner-constants");
 var Navigator = require("../utils/navigator");
+var Alerter = require("../utils/alerter");
 var SessionStorage = require("../utils/sessionstorage");
 
 var Login = require("./Login.jsx");
 
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(MenuStore,"menuItem"), Reflux.connect(AuthStore,"loginResult"), Navigator],
+    mixins: [Reflux.connect(MenuStore,"menuItem"), Reflux.connect(AuthStore,"loginResult"), Navigator, Alerter],
 
     getInitialState: function(){
         return {
@@ -91,8 +92,13 @@ module.exports = React.createClass({
                     </div>
                 </div>
                 {/*Comment 18.02.2015: The variable {loginBlock} goes here if we want to add a logout option to the app (initially, we do not) */}
+                <a onClick={this.test2}>Test</a>
             </div>
         )},
+
+    test2: function(){
+        this.alert("lfikjw", "grewger");
+    },
 
     buildAdditionalClasses: function(){
         if(this.props.isUpdating){
