@@ -12,8 +12,8 @@ out/
 *.suo
 
 #Files copied into phonegap
-/phonegap/www/js/external
-/phonegap/www/index.html
-/phonegap/www/css/main.css
-/phonegap/plugins/
-/phonegap/platforms/
+phonegap/www/js/external
+phonegap/www/index.html
+phonegap/www/css/main.css
+phonegap/platforms
+phonegap/plugins
