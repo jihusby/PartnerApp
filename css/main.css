@@ -104,6 +104,10 @@ form{
     border-top-left-radius: 4px;
 }
 
+#search-field{
+    border-radius: 5px 5px 5px 5px;
+}
+
 .ghost-button{
     background-color: transparent !important;
     border: 0 !important;
