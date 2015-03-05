@@ -149,7 +149,12 @@ form{
     color: black;
     text-align: center;
     margin-left: -15px;
+    margin-bottom: 0px;
     width: 100%;
+}
+
+.main-menu{
+    margin-bottom: -5px;
 }
 
 .footer > span{

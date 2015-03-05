@@ -2,6 +2,8 @@ var navigatorIterator = 0;
 var Constants = require("../utils/partner-constants");
 var store = require("store.js");
 
+var $ = require("jquery");
+
 module.exports = {
     goTo: function(route){
         if (store.get(Constants.LocalStorageKeys.bearer_token)){
@@ -44,6 +46,14 @@ module.exports = {
                 window.open(url, '_system');
             }
         }
+    },
+
+    goToTop: function(top) {
+        if(top == true){
+            $(window).scrollTop(0);
+            top = false;
+        }
+        return top;
     }
 }
 

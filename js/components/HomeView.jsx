@@ -49,35 +49,35 @@ module.exports = React.createClass({
                 </div>
                 
                 <div className={additionalClasses} onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.partnerlist)} >
-                    <div className="menuLink container list-container">
+                    <div className="menuLink container list-container main-menu">
                         <div id={Constants.MenuItems.partnerlist}>
                             <span className="glyphicon glyphicon-briefcase" />&nbsp;&nbsp;Partnere
                         </div>
                     </div>
                 </div>
                 <div className={additionalClasses} onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.activities)}>
-                    <div className="container list-container">
+                    <div className="container list-container main-menu">
                         <div id={Constants.MenuItems.activities}>
                             <span className="glyphicon glyphicon-calendar" />&nbsp;&nbsp;Aktiviteter
                         </div>
                     </div>
                 </div>
                 <div className={additionalClasses} onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.favorites)}>
-                    <div className="container list-container">
+                    <div className="container list-container main-menu">
                         <div id={Constants.MenuItems.favorites}>
                             <span className="glyphicon glyphicon-star" />&nbsp;&nbsp;Mine favoritter
                         </div>
                     </div>
                 </div>
                 <div className={additionalClasses} onClick={this.handleMenuSelect.bind(this, Constants.MenuItems.search)}>
-                    <div className="container list-container">
+                    <div className="container list-container main-menu">
                         <div id={Constants.MenuItems.search}>
                             <span className="glyphicon glyphicon-search" /> &nbsp;&nbsp;Søk
                         </div>
                     </div>
                 </div>
                 <div className={additionalClasses} onClick={this.openExternalLink.bind(this, "http://www.rbk.no")}>
-                    <div className="container list-container">
+                    <div className="container list-container main-menu">
                         <div id={Constants.MenuItems.search}>
                             <span className="glyphicon glyphicon-globe" /> &nbsp;&nbsp;Gå til rbk.no
                         </div>
@@ -92,13 +92,8 @@ module.exports = React.createClass({
                     </div>
                 </div>
                 {/*Comment 18.02.2015: The variable {loginBlock} goes here if we want to add a logout option to the app (initially, we do not) */}
-                <a onClick={this.test2}>Test</a>
             </div>
         )},
-
-    test2: function(){
-        this.alert("lfikjw", "grewger");
-    },
 
     buildAdditionalClasses: function(){
         if(this.props.isUpdating){

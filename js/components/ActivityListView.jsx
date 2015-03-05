@@ -14,6 +14,7 @@ var DataStore = require("../stores/DataStore.js");
 var ActivityBox = require("./ActivityBox.jsx");
 var SessionStorage = require("../utils/sessionstorage");
 var Constants = require("../utils/partner-constants");
+var Navigator = require("../utils/navigator");
 
 var commingActivities = "Kommende aktiviteter";
 
@@ -28,7 +29,8 @@ module.exports = React.createClass({
             filteredActivities: [],
             activities: [],
             dropdownTitle: activityFilter || commingActivities,
-            init: true
+            init: true,
+            top: true
         };
     },
     
@@ -45,6 +47,8 @@ module.exports = React.createClass({
     },
     
     render: function(){
+        this.state.top = Navigator.goToTop(this.state.top);
+
         var that = this;
         if(!this.props.activities){
             return (

@@ -8,8 +8,6 @@ var ContactBox = require("./ContactBox.jsx");
 var ContactBoxPassive = require("./ContactBoxPassive.jsx");
 var PersonBox = require("./PersonBox.jsx");
 var Navigator = require("../utils/navigator");
-jQuery = require("jquery"); // bootstrap needs jQuery variable to be set
-var $ = jQuery;
 
 module.exports = React.createClass({
     mixins: [Utils, Navigator],
@@ -28,10 +26,7 @@ module.exports = React.createClass({
 
     render: function(){
 
-        if(this.state.top == true){
-            $(window).scrollTop(0);
-            this.state.top = false;
-        }
+        this.state.top = Navigator.goToTop(this.state.top);
 
         var that = this;
         var id = this.props.id;

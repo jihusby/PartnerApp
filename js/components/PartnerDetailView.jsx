@@ -5,8 +5,6 @@ var ContactBox = require("./ContactBox.jsx");
 var Constants = require("../utils/partner-constants");
 var Navigator = require("../utils/navigator");
 
-jQuery = require("jquery"); // bootstrap needs jQuery variable to be set
-var $ = jQuery;
 
 module.exports = React.createClass({
 
@@ -26,10 +24,8 @@ module.exports = React.createClass({
     },
 
     render: function () {
-        if(this.state.top == true){
-            $(window).scrollTop(0);
-            this.state.top = false;
-        }
+        this.state.top = Navigator.goToTop(this.state.top);
+
 
         var partner = this.props.selectedPartner;
         var sortedContacts = _.sortBy(partner.contacts, function(contact) {
