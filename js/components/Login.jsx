@@ -62,8 +62,8 @@ module.exports = React.createClass({
                             </div>
                             <div className="form-group">
                                 <div className="row">
-                                    <div className="col-sm-offset-1 col-sm-9 pull-right">
-                                        <Button className="gold-btn" bsStyle="btn" onClick={this.login}>Logg inn</Button>
+                                    <div className="col-sm-offset-1 col-sm-9 pull-right login">
+                                        <Button className="gold-btn loginbtn" bsStyle="btn" onClick={this.login}>Logg inn</Button>
                                     </div>
                                 </div>
                             </div>

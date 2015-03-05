@@ -57,7 +57,7 @@ module.exports =
 
         buildBackButton: function(){
             if(this.getIterator() > 0){
-                return (<button className="navbar-brand btn {additionalClasses} headertext back-button" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left headertext"></i></button>);
+                return (<button className="navbar-brand btn {additionalClasses} back-button" onClick={this.goBack}><i className="glyphicon glyphicon-chevron-left"></i></button>);
             } else {
                 var style = {width:"50px"};
                 return  (<button className="navbar-brand ghost-button" style={style}>&nbsp;</button>);
@@ -127,7 +127,7 @@ module.exports =
                         iPadHomeButton = this.buildIPadHomeButton();
                         break;
                     case Constants.MenuItems.login:
-                        title = "Logg inn";
+                        title = "Logg&nbsp;inne";
                         content = <Login />
                         homeButton = "";
                         iPadHomeButton = this.buildIPadHomeButton();
@@ -181,7 +181,7 @@ module.exports =
                     <div className="container-fluid">
                         <div className="navbar-header">
                             {backButton}
-                            <strong><span className="headertext navbar-brand mobile-header headertext">{title}</span></strong>
+                            <strong><span className="navbar-brand mobile-header headertext">{title}</span></strong>
                             {iPadHomeButton}
                             {homeButton}
                         </div>

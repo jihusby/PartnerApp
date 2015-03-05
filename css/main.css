@@ -126,6 +126,7 @@ form{
 }
 
 .home-ipad{
+    visibility: hidden;
     font-size: large;
     position: absolute;
     right: 0px;
@@ -519,5 +520,29 @@ form{
 @media (device-width: 320px) {
     .headertext {
         font-size: 90%;
+    }
+}
+
+.login {
+}
+.loginbtn{
+}
+
+@media (min-width: 768px) {
+    .home-ipad{
+        visibility: visible;
+    }
+    .headertext {
+        position: absolute;
+        padding-left: 70px;
+    }
+    .login {
+        position: absolute;
+
+    }
+    .loginbtn{
+        position: absolute;
+        margin-left: 530px;
+
     }
 }
