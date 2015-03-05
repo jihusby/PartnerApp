@@ -16,7 +16,6 @@ var PartnerBox = require("./PartnerBox.jsx");
 var SessionStorage = require("../utils/sessionstorage");
 var Constants = require("../utils/partner-constants");
 
-
 module.exports = React.createClass({
 
     propTypes: {
