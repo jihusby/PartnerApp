@@ -5,6 +5,7 @@ var ContactBox = require("./ContactBox.jsx");
 var Constants = require("../utils/partner-constants");
 var Navigator = require("../utils/navigator");
 
+
 module.exports = React.createClass({
 
     mixins: [Navigator],
@@ -17,11 +18,15 @@ module.exports = React.createClass({
         return {
             sortedContacts: [],
             contacts: [],
-            partner: ''
+            partner: '',
+            top: true
         };
     },
 
     render: function () {
+        this.state.top = Navigator.goToTop(this.state.top);
+
+
         var partner = this.props.selectedPartner;
         var sortedContacts = _.sortBy(partner.contacts, function(contact) {
             return [contact.lastName, contact.firstName].join("_");

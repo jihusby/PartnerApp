@@ -25,7 +25,7 @@ module.exports = React.createClass({
     },
 
     componentDidMount: function() {
-        document.getElementById("search").className="input-obj";
+        document.getElementById("search-field").className="input-obj";
     },
 
     render: function () {
@@ -98,8 +98,9 @@ module.exports = React.createClass({
         return (
             <div className="top-margin">
                 <Input
-                    id="search"
+                    id="search-field"
                     type="Search"
+                    className="search"
                     value={this.state.searchText}
                     placeholder="Søk på partner eller kontakt"
                     ref="searchPartner"

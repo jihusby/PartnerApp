@@ -104,6 +104,10 @@ form{
     border-top-left-radius: 4px;
 }
 
+#search-field{
+    border-radius: 5px 5px 5px 5px;
+}
+
 .ghost-button{
     background-color: transparent !important;
     border: 0 !important;
@@ -145,7 +149,12 @@ form{
     color: black;
     text-align: center;
     margin-left: -15px;
+    margin-bottom: 0px;
     width: 100%;
+}
+
+.main-menu{
+    margin-bottom: -5px;
 }
 
 .footer > span{
