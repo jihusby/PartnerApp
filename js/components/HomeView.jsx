@@ -23,20 +23,14 @@ var Login = require("./Login.jsx");
 module.exports = React.createClass({
 
     mixins: [Reflux.connect(MenuStore,"menuItem"), Reflux.connect(AuthStore,"loginResult"), Navigator, Alerter],
-
-    getInitialState: function(){
-        return {
-        };
-    },
-
+        
     render: function () {
         var additionalClasses = this.buildAdditionalClasses();
         var lastSync = this.getlastRefreshDate();
         var loginText = <div><span className="glyphicon glyphicon-log-out" />&nbsp;&nbsp;Logg ut</div>;
-
         /* TODO: Save timestamp for last sync, show on button */
         return (
-            <div className="list-group top-margin">
+            <div className="home-menu list-group top-margin">
                 <div className="container list-container">
                     <div className="logo-container">
                         <img src="images/logo_xs_small.png" className="rbk-logo" />
