@@ -8,6 +8,8 @@ var ContactBox = require("./ContactBox.jsx");
 var ContactBoxPassive = require("./ContactBoxPassive.jsx");
 var PersonBox = require("./PersonBox.jsx");
 var Navigator = require("../utils/navigator");
+jQuery = require("jquery"); // bootstrap needs jQuery variable to be set
+var $ = jQuery;
 
 module.exports = React.createClass({
     mixins: [Utils, Navigator],
