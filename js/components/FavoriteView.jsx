@@ -4,6 +4,7 @@ var Reflux = require("reflux");
 var localStorageUtils = require("../utils/localstorage-utils");
 var ContactDetailView = require("./ContactDetailView.jsx");
 var ContactBox = require("./ContactBox.jsx");
+var Navigator = require("../utils/navigator");
 
 var _ = require("underscore");
 
@@ -19,6 +20,8 @@ module.exports = React.createClass({
     },
     
     render: function () {
+        Navigator.goToTop();
+
         if(this.state.initialFavorites.length > 0){
             var contactList = this.state.initialFavorites.map(function(favorite){
                 var contact = localStorageUtils.findContact(favorite.id);

@@ -20,15 +20,9 @@ module.exports = React.createClass({
         partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
     },
 
-    getInitialState: function(){
-        return {
-            top: true
-        };
-    },
-
     render: function(){
 
-        this.state.top = Navigator.goToTop(this.state.top);
+        Navigator.goToTop();
 
         var that = this;
         var id = this.props.id;

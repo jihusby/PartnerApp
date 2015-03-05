@@ -84,6 +84,7 @@ module.exports =
         },
 
         render: function () {
+
             var content, title;
             var homeButton, iPadHomeButton;
             if (!store.get(Constants.LocalStorageKeys.bearer_token)){

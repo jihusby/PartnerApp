@@ -29,8 +29,7 @@ module.exports = React.createClass({
             filteredActivities: [],
             activities: [],
             dropdownTitle: activityFilter || commingActivities,
-            init: true,
-            top: true
+            init: true
         };
     },
     
@@ -47,7 +46,7 @@ module.exports = React.createClass({
     },
     
     render: function(){
-        this.state.top = Navigator.goToTop(this.state.top);
+        Navigator.goToTop();
 
         var that = this;
         if(!this.props.activities){

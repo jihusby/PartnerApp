@@ -15,6 +15,8 @@ var PartnerBox = require("./PartnerBox.jsx");
 
 var SessionStorage = require("../utils/sessionstorage");
 var Constants = require("../utils/partner-constants");
+var Navigator = require("../utils/navigator");
+
 
 module.exports = React.createClass({
 
@@ -83,6 +85,8 @@ module.exports = React.createClass({
     },
     
     render: function () {
+        Navigator.goToTop();
+
         if(!this.props.partners || !this.props.partnerTypes){
             return (<div>
                         <div className="center-text">

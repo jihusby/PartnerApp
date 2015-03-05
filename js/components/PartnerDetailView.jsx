@@ -18,13 +18,12 @@ module.exports = React.createClass({
         return {
             sortedContacts: [],
             contacts: [],
-            partner: '',
-            top: true
+            partner: ''
         };
     },
 
     render: function () {
-        this.state.top = Navigator.goToTop(this.state.top);
+        Navigator.goToTop();
 
 
         var partner = this.props.selectedPartner;

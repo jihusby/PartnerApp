@@ -5,6 +5,7 @@ var _ = require("underscore");
 var ContactActions = require("../actions/ContactActions.js");
 var ContactStore = require("../stores/ContactStore.js");
 var Button = require("react-bootstrap/Button");
+var SessionStorage = require("../utils/sessionstorage");
 
 module.exports = React.createClass({
 
@@ -35,6 +36,7 @@ module.exports = React.createClass({
     },
 
     addToFavorites: function(e){
+        SessionStorage.set('ignoreTop', true);
         e.preventDefault();
         var favorites = this.state.favorites || [];
         var favorite = { id: this.props.id };
@@ -43,6 +45,7 @@ module.exports = React.createClass({
     },
     
     removeFavorite: function(e){
+        SessionStorage.set('ignoreTop', true);
         e.preventDefault();
         var favoriteId = this.props.id;
         var favorites = this.state.favorites || [];
