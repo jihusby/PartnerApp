@@ -42,7 +42,6 @@ document.addEventListener("resume", onResume, false);
 
 function onResume() {
     DataStore.getDataFromBackend(DataStore.updateData, false);
-    
 }
 
 routie({
