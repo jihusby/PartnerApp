@@ -3,16 +3,13 @@ module.exports = {
         if(navigator && navigator.notification){
             navigator.notification.alert(
                 message,
-                alertDismissed,
+                function () {
+                },
                 title,
-                "Skjul"
-            );
+                "OK"
+            )
         } else{
             alert(message);   
         }
-    },
-    
-    alertDismissed: function(){
-       
     }
 }

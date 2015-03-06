@@ -54,10 +54,10 @@ module.exports = Reflux.createStore({
                     } else{
                         console.log("Fetching data from server");
                         that.getDataFromServer(function(data){
-                            callback(data);
                             if(forceUpdate){
-                                Alerter.alert("Oppdatert.", "Vellykket oppdatering.");
+                                Alerter.alert("Oppdatering", "Vellykket oppdatering.");
                             }
+                            callback(data);
                         });
                     }
                 } else if(!isActive) { // if not, delete data and send user to a not active screen
