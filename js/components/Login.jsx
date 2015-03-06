@@ -12,10 +12,11 @@ var Alert = require("./Alert.jsx");
 var AuthActions = require("../actions/AuthActions");
 var AuthStore = require("../stores/AuthStore");
 var Constants = require("../utils/partner-constants");
+var Alerter = require("../utils/alerter");
 
 module.exports = React.createClass({
     
-    mixins: [Reflux.connect(AuthStore,"loginResult")],
+    mixins: [Reflux.connect(AuthStore,"loginResult"), Alerter],
     
     getInitialState: function() {
         return {
@@ -28,6 +29,13 @@ module.exports = React.createClass({
     },
     
     render: function () {
+                if(this.state.loginResult.error){
+                    if(this.state.loginResult.error.message === "Invalid username/password"){
+                        this.alert("Pålogging feilet", "Feil brukernavn/passord.");
+                    } else {
+                        this.alert("Pålogging feilet", "Fikk ikke kontakt med server.");
+                    }
+                }
                 return (
                     <div className="top-margin loginForm">
                        <div className="logo-container">
@@ -69,7 +77,6 @@ module.exports = React.createClass({
                             </div>
                         </form>
                         Hvis du har glemt passordet, ta kontakt med RBK.
-                        <Alert />
                     </div>
                 );
         },
