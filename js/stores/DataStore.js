@@ -40,7 +40,7 @@ module.exports = Reflux.createStore({
 
     getDataFromBackend: function(callback, forceUpdate) {
         var that = this;
-        if(navigator && navigator.connection && navigator.connection.type === Connection.NONE){
+        if(forceUpdate && navigator && navigator.connection && navigator.connection.type === Connection.NONE){
             Alerter.alert("Offline", "Enheten er offline, prøv igjen senere.");
             callback(that.getDataFromLocalStorage());
         } else if(store.get("bearer_token")){
