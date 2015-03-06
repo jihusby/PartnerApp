@@ -42,7 +42,7 @@ module.exports = Reflux.createStore({
         var that = this;
         if(navigator && navigator.connection && navigator.connection.type === Connection.NONE){
             Alerter.alert("Offline", "Enheten er offline, prøv igjen senere.");
-            callback({ isUpdating: false});
+            callback(that.getDataFromLocalStorage());
         } else if(store.get("bearer_token")){
             // check if user is active, once per day
             this.checkIfActive(function(isActive){
