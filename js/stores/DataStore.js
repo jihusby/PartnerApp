@@ -63,10 +63,10 @@ module.exports = Reflux.createStore({
                 } else if(!isActive) { // if not, delete data and send user to a not active screen
                     that.invalidateUser();
                 } else { // error, most likely due to dropped connection, use data from local storage
+                    Alerter.alert("Fikk ikke kontakt med serveren.", "Tilkobling feilet.");
                     setTimeout(function(){ // hack
                         callback(that.getDataFromLocalStorage());
                     }, 10);
-                    Alerter.alert("Fikk ikke kontakt med serveren.", "Tilkobling feilet.");
                     console.log("Offline. Data updated from localstorage.");
                 }
             });
