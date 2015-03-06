@@ -68,7 +68,6 @@ module.exports = React.createClass({
             logoSrc = contact.picture ? Constants.URLS.personImages + contact.picture : "";
         } 
         if(logoSrc) {
-
             return (
                 <div className="spacing-bottom">
                     <div className="media-left">
@@ -76,10 +75,9 @@ module.exports = React.createClass({
                     </div>
                     <div className="media-body">
                         <h4 className="position">
-                            <strong>{name}&nbsp;</strong>
-                            <Favorite id={contact.id} />
-                            <br/>
-                            <small><i className="position">{position}</i></small>
+                            <strong className="line-height">{name}&nbsp;</strong>
+                            <small><Favorite id={contact.id} />
+                            <br/><i className="position">{position}</i></small>
                         </h4>
                     </div>
                 </div>
@@ -89,7 +87,7 @@ module.exports = React.createClass({
                 <div className="spacing-bottom">
                     <div className="media-body">
                         <div className="position">
-                            <strong>{name}&nbsp;</strong>
+                            <strong className="line-height">{name}&nbsp;</strong>
                             <Favorite id={contact.id} />
                             <br/>
                             <small><i className="position">{position}</i></small>
@@ -114,29 +112,6 @@ module.exports = React.createClass({
                     </div>
                 </div>
             </span>
-        )
-    },
-
-    buildPartnerName_old: function(partner){
-        return (
-        <span>
-            <div className="row">
-                <div className="col-xs-1">
-                    <div className="parent-content">
-                        <div className="left-icon">
-                            <i className="glyphicon glyphicon-briefcase"></i>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-xs-10">
-                    <div className="parent-content">
-                        <div className="right-line">
-                            <small><a onClick={this.onClickPartner.bind(this, partner.id)}>{partner.name}</a></small><br/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </span>
         )
     },
 

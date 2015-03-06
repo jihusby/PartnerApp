@@ -145,9 +145,16 @@ form{
     font-size: 100%;
 }
 
+.line-height{
+    display: inline-block;
+    vertical-align: baseline;
+    line-height: 37px;
+    margin-top: 0px;
+}
+
 .position{
-    vertical-align: text-top;
-    margin-top: -5px;
+    display: inline-block;
+    margin-top: 0px;
     color: white;
 }
 
