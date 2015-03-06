@@ -152,6 +152,10 @@ form{
     margin-top: 0px;
 }
 
+.contact-link{
+    z-index: 9999;
+}
+
 .position{
     display: inline-block;
     margin-top: 0px;

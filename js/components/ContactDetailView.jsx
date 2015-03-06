@@ -134,7 +134,7 @@ module.exports = React.createClass({
                         <div className="col-xs-1">
                             <div className="parent-content">
                                 <div className="left-icon">
-                                    <i className="glyphicon glyphicon-envelope"></i>
+                                    <i className="glyphicon glyphicon-envelope contact-link"></i>
                                 </div>
                             </div>
                         </div>
@@ -163,7 +163,7 @@ module.exports = React.createClass({
                         <div className="col-xs-1">
                             <div className="parent-content">
                                 <div className="left-icon">
-                                    <i className="glyphicon glyphicon-earphone"></i>
+                                    <i className="glyphicon glyphicon-earphone contact-link"></i>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +192,7 @@ module.exports = React.createClass({
                         <div className="col-xs-1">
                             <div className="parent-content">
                                 <div className="left-icon">
-                                    <i className="glyphicon glyphicon-phone"></i>
+                                    <i className="glyphicon glyphicon-phone contact-link"></i>
                                 </div>
                             </div>
                         </div>
@@ -220,7 +220,7 @@ module.exports = React.createClass({
                         <div className="col-xs-1">
                             <div className="parent-content">
                                 <div className="left-icon">
-                                    <i className="glyphicon glyphicon-comment"></i>
+                                    <i className="glyphicon glyphicon-comment contact-link"></i>
                                 </div>
                             </div>
                         </div>
