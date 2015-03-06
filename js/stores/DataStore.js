@@ -40,12 +40,14 @@ module.exports = Reflux.createStore({
 
     getDataFromBackend: function(callback, forceUpdate) {
         var that = this;
-        if(store.get("bearer_token")){
+        if(navigator && navigator.connection && navigator.connection.type === Connection.NONE){
+            Alerter.alert("Offline", "Enheten er offline, prøv igjen senere.");
+            callback(that.getDataFromLocalStorage());
+        } else if(store.get("bearer_token")){
             // check if user is active, once per day
             this.checkIfActive(function(isActive){
                 if(isActive === true){ // if active, get data
                     var refreshDate = store.get(Constants.LocalStorageKeys.last_refresh_date);
-
                     if(!forceUpdate && refreshDate && !that.aDayHasPassed(refreshDate)){ // data is fresh, get from localstorage
                         setTimeout(function(){ // hack
                             callback(that.getDataFromLocalStorage());
@@ -54,16 +56,13 @@ module.exports = Reflux.createStore({
                     } else{
                         console.log("Fetching data from server");
                         that.getDataFromServer(function(data){
-                            if(forceUpdate){
-                                Alerter.alert("Oppdatering", "Vellykket oppdatering.");
-                            }
                             callback(data);
-                        });
+                        }, forceUpdate);
                     }
                 } else if(!isActive) { // if not, delete data and send user to a not active screen
                     that.invalidateUser();
                 } else { // error, most likely due to dropped connection, use data from local storage
-                    Alerter.alert("Fikk ikke kontakt med serveren.", "Tilkobling feilet.");
+                    Alerter.alert("Tilkobling feilet", "Fikk ikke kontakt med serveren.");
                     setTimeout(function(){ // hack
                         callback(that.getDataFromLocalStorage());
                     }, 10);
@@ -127,7 +126,7 @@ module.exports = Reflux.createStore({
         return data;
     },
     
-    getDataFromServer: function(callback){
+    getDataFromServer: function(callback, forceUpdate){
         var that = this;
         $.ajax({
             url: Constants.URLS.search,
@@ -191,15 +190,16 @@ module.exports = Reflux.createStore({
                     isUpdating: false
                 };
                 $(".navbar-collapse").collapse('hide'); // closes menu
+                Alerter.alert("Oppdatering", "Vellykket oppdatering.");
                 callback(data);
             },
             error: function(xhr, status, err) {
                 if (xhr.status === 401){
-                    Alerter.alert("Ugyldig tilkoblingsdata. Logg inn på nytt", "Autorisering feilet.");
+                    Alerter.alert("Autorisering feilet", "Ugyldig tilkoblingsdata. Logg inn på nytt.");
                     AuthActions.logOut();
                     callback({ isUpdating: false });
                 } else {
-                    Alerter.alert("Oppdateringen tok for lang tid. Prøv igjen.", "Oppdatering feilet.");
+                    Alerter.alert("Oppdatering feilet", "Oppdateringen tok for lang tid. Prøv igjen.");
                     console.log("Timeout: " + status);
                     callback(that.getDataFromLocalStorage());
                 }
