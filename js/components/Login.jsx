@@ -30,7 +30,11 @@ module.exports = React.createClass({
     
     render: function () {
                 if(this.state.loginResult.error){
-                    this.alert(this.state.loginResult.error.title, this.state.loginResult.error.message);
+                    if(this.state.loginResult.error.message === "Invalid username/password"){
+                        this.alert("Pålogging feilet", "Feil brukernavn/passord.");
+                    } else {
+                        this.alert("Pålogging feilet", "Fikk ikke kontakt med server.");
+                    }
                 }
                 return (
                     <div className="top-margin loginForm">
