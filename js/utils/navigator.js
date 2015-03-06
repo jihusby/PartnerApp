@@ -24,18 +24,22 @@ module.exports = {
     },
     
     goBack: function(){
+        console.log("going back");
         if(navigatorIterator > 0){
             var nav = window.navigator;
             if( this.phonegapNavigationEnabled &&
                 nav &&
                 nav.app &&
                 nav.app.backHistory ){
+                console.log("going back 1");
                 nav.app.backHistory();
             } else {
+                console.log("going back 2 (history.back)");
                 window.history.back();
-            }        
+            }
             navigatorIterator--;
         }
+
     },
     
     openExternalLink: function(url){
@@ -51,14 +55,15 @@ module.exports = {
     },
 
     goToTop: function() {
+
         var ignoreTop =  SessionStorage.get('ignoreTop');
         if(ignoreTop == 'true') {
             SessionStorage.set('ignoreTop', false);
         }else{
             $(window).scrollTop(0);
         }
-
     }
+
 }
 
 window.onpopstate = function(e) { 

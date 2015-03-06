@@ -22,8 +22,11 @@ module.exports = React.createClass({
         };
     },
 
-    render: function () {
+    componentDidMount: function() {
         Navigator.goToTop();
+    },
+
+    render: function () {
 
 
         var partner = this.props.selectedPartner;

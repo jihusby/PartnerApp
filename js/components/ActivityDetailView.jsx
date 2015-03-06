@@ -20,9 +20,11 @@ module.exports = React.createClass({
         partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
     },
 
-    render: function(){
-
+    componentDidMount: function() {
         Navigator.goToTop();
+    },
+
+    render: function(){
 
         var that = this;
         var id = this.props.id;

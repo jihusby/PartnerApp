@@ -83,9 +83,12 @@ module.exports = React.createClass({
             );
         });
     },
-    
-    render: function () {
+
+    componentDidMount: function() {
         Navigator.goToTop();
+    },
+
+    render: function () {
 
         if(!this.props.partners || !this.props.partnerTypes){
             return (<div>
@@ -127,5 +130,6 @@ module.exports = React.createClass({
                 </div>
             );
         }
+
     } 
 });
