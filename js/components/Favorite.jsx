@@ -7,15 +7,12 @@ var ContactStore = require("../stores/ContactStore.js");
 var Button = require("react-bootstrap/Button");
 var SessionStorage = require("../utils/sessionstorage");
 
-var Alerter = require("../utils/alerter");
-
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(ContactStore,"favorites"), Alerter],
+    mixins: [Reflux.connect(ContactStore,"favorites")],
     
     propTypes: {
-        id: React.PropTypes.number.isRequired,
-        name: React.PropTypes.string.isRequired
+        id: React.PropTypes.number.isRequired
     },
     
     getInitialState: function() {
@@ -48,7 +45,6 @@ module.exports = React.createClass({
         var favorite = { id: this.props.id };
         ContactActions.setFavorites(_.union(favorites, [favorite]));
         document.getElementById(this.props.id).className="ghost-favorite";
-        this.alert("Favoritter", this.props.name + " er lagt til i dine favoritter");
     },
     
     removeFavorite: function(e){
@@ -60,7 +56,6 @@ module.exports = React.createClass({
             })
         ));
         document.getElementById(this.props.id).className="ghost-favorite";
-        this.alert("Favoritter", this.props.name + " er fjernet fra dine favoritter");
     },
     
     isFavorite: function(favorites){

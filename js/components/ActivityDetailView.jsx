@@ -11,6 +11,8 @@ var Navigator = require("../utils/navigator");
 jQuery = require("jquery"); // bootstrap needs jQuery variable to be set
 var $ = jQuery;
 
+var SessionStorage = require("../utils/sessionstorage");
+
 module.exports = React.createClass({
     mixins: [Utils, Navigator],
 
