@@ -65,7 +65,6 @@ module.exports = React.createClass({
                 </div>
             );
         } else {
-            Alerter.alert("Filtering", " ...");
             var activityFilters = this.buildFilters();
             var filterOptions = activityFilters.map(function(options){
                 return (<MenuItem className="dropdown-list-item input-obj" eventKey={options.text} > {options.text}</MenuItem>);

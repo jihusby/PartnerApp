@@ -3,6 +3,7 @@ var Constants = require("../utils/partner-constants");
 var store = require("store.js");
 var SessionStorage = require("../utils/sessionstorage");
 var $ = require("jquery");
+var Alerter = require("../utils/alerter");
 
 module.exports = {
     goTo: function(route){
@@ -22,6 +23,7 @@ module.exports = {
     },
     
     goBack: function(){
+        Alerter.alert("Going back ...", "to my roots");
         if(navigatorIterator > 0){
             var nav = window.navigator;
             if( this.phonegapNavigationEnabled &&
