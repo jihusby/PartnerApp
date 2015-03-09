@@ -153,6 +153,7 @@ form{
 }
 
 .contact-link{
+    z-index: 4999;
 }
 
 .position{
@@ -404,6 +405,10 @@ form{
     width: 100%;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.navbar{
+    z-index: 9999;
 }
 
 .navbar-nav{
