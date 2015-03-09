@@ -47,7 +47,7 @@ module.exports =
             contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
             partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
             partnerTypes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-            favorites: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+            favorites: React.PropTypes.arrayOf(React.PropTypes.object),
             isUpdating: React.PropTypes.bool.isRequired
         },
 

@@ -122,21 +122,12 @@ module.exports = React.createClass({
             }).value();
 
         }else{
-            sortedContactList = activity.enrollments.map(function(enrollment){
-                if(enrollment.freeText){
-
-                    var partnerId = enrollment.partnerId;
-                    var partner = _.find(that.props.partners, function(p){
-                        return p.id === partnerId;
+            sortedContactList = _.chain(activity.enrollments)
+                .filter(function(enrollment) { return !!enrollment.freeText; })
+                .map(function(enrollment) { 
+                    var partner = _.find(that.props.partners, function(p) { return p.id == enrollment.partnerId; });
+                    return <ContactBoxPassive contact={{ lastName: enrollment.freeText, partnerName: partner ? partner.name : "" }} />;
                     });
-                    var partnerName = "";
-                    if(partner){
-                        partnerName = partner.name;
-                    }
-                    var contact={"id":"", "firstName":"", "lastName":enrollment.freeText,"partnerName": partnerName};
-                    return <ContactBoxPassive contact={contact} />
-                }
-            });
         }
 
         if(sortedContactList.length>0){
