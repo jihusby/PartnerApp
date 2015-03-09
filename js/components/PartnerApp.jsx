@@ -34,6 +34,7 @@ var ContactActions = require("../actions/ContactActions.js");
 var Constants = require("../utils/partner-constants");
 var Constants = require("../utils/partner-constants");
 var Navigator = require("../utils/navigator");
+var Alerter = require("../utils/alerter");
 
 module.exports =
 
@@ -62,9 +63,13 @@ module.exports =
             ContactActions.getFavorites();
         },
 
+        backBtn: function(){
+            Alerter.alert("Back", "ABcaaff");
+        },
+        
         buildBackButton: function(){
             if(this.getIterator() > 0){
-                return (<button className="navbar-brand btn {additionalClasses} back-button" onClick={Navigator.goBack}><i className="glyphicon glyphicon-chevron-left"></i></button>);
+                return (<button className="navbar-brand btn {additionalClasses} back-button" onClick={this.backBtn}><i className="glyphicon glyphicon-chevron-left"></i></button>);
             } else {
                 var style = {width:"50px"};
                 return  (<button className="navbar-brand ghost-button" style={style}>&nbsp;</button>);
