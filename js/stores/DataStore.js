@@ -122,7 +122,6 @@ module.exports = Reflux.createStore({
             activities: store.get(Constants.LocalStorageKeys.activities),
             isUpdating: false
         };
-        $(".navbar-collapse").collapse('hide'); // closes menu
         return data;
     },
     

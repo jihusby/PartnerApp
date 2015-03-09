@@ -14,7 +14,7 @@ module.exports = React.createClass({
     getInitialState: function() {
         ContactActions.getFavorites();
     },
-    
+
     render: function(){
         if(this.isFavorite(this.state.favorites)){
             return  (

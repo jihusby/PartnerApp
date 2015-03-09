@@ -18,7 +18,7 @@ module.exports = React.createClass({
         var initialFavorites = this.props.favorites || [];
         return { initialFavorites: initialFavorites };
     },
-    
+
     render: function () {
         Navigator.goToTop();
 

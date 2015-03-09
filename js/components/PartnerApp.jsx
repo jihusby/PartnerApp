@@ -29,6 +29,9 @@ var ActivityListView = require("./ActivityListView.jsx");
 var ActivityDetailView = require("./ActivityDetailView.jsx");
 var SessionStorage = require("../utils/sessionstorage");
 
+var ContactActions = require("../actions/ContactActions.js");
+
+var Constants = require("../utils/partner-constants");
 var Constants = require("../utils/partner-constants");
 var Navigator = require("../utils/navigator");
 
@@ -53,6 +56,10 @@ module.exports =
             }
 
             this.goTo("");
+        },
+
+        getInitialState: function(){
+            ContactActions.getFavorites();
         },
 
         buildBackButton: function(){

@@ -4,7 +4,7 @@ var Favorite = require("./Favorite.jsx");
 var ContactBox = require("./ContactBox.jsx");
 var Constants = require("../utils/partner-constants");
 var Navigator = require("../utils/navigator");
-
+var ContactActions = require("../actions/ContactActions.js");
 
 module.exports = React.createClass({
 
@@ -15,6 +15,7 @@ module.exports = React.createClass({
     },
     
     getInitialState: function(){
+        ContactActions.getFavorites();
         return {
             sortedContacts: [],
             contacts: [],
