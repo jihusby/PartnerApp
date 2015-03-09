@@ -2,6 +2,7 @@ var React = require("react");
 var Reflux = require("reflux");
 var moment = require("moment");
 var _ = require("underscore");
+var store = require("store.js");
 
 var Spinner = require("react-spinner");
 var ButtonGroup = require("react-bootstrap/ButtonGroup");
@@ -24,7 +25,7 @@ module.exports = React.createClass({
     },
     
     getInitialState: function(){
-        var activityFilter = SessionStorage.get(Constants.SessionStorageKeys.activityFilter);
+        var activityFilter = store.get(Constants.SessionStorageKeys.activityFilter);
         return {
             filteredActivities: [],
             activities: [],
@@ -36,7 +37,7 @@ module.exports = React.createClass({
     handleSelect: function(filter) {
         this.setState({init: false });
         if (filter){
-            SessionStorage.set(Constants.SessionStorageKeys.activityFilter, filter);
+            store.set(Constants.SessionStorageKeys.activityFilter, filter);
             var filteredActivities = this.filterActivities(filter);
             this.setState({
                 filteredActivities: filteredActivities,
@@ -78,7 +79,7 @@ module.exports = React.createClass({
             
             var activities;
             if(this.state.init){
-                var filterInStorage = SessionStorage.get(Constants.SessionStorageKeys.activityFilter);
+                var filterInStorage = store.get(Constants.SessionStorageKeys.activityFilter);
                 var commingActivitiesList = this.filterActivities(filterInStorage || commingActivities);
                 activities = commingActivitiesList.map(function(activity){
                         return (
