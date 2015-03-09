@@ -46,7 +46,7 @@ module.exports = React.createClass({
     buildFavorite: function(contact, showFavorite) {
         if(showFavorite) {
             return (
-                <Favorite id={contact.id} />
+                <Favorite id={contact.id} name={contact.firstName + " " + contact.lastName} />
                 );
         }else {
             return ("");

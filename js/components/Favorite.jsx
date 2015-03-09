@@ -7,9 +7,16 @@ var ContactStore = require("../stores/ContactStore.js");
 var Button = require("react-bootstrap/Button");
 var SessionStorage = require("../utils/sessionstorage");
 
+var Alerter = require("../utils/alerter");
+
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(ContactStore,"favorites")],
+    mixins: [Reflux.connect(ContactStore,"favorites"), Alerter],
+    
+    propTypes: {
+        id: React.PropTypes.number.isRequired,
+        name: React.PropTypes.string.isRequired
+    },
     
     getInitialState: function() {
         ContactActions.getFavorites();
@@ -37,24 +44,23 @@ module.exports = React.createClass({
 
     addToFavorites: function(e){
         SessionStorage.set('ignoreTop', true);
-        e.preventDefault();
         var favorites = this.state.favorites || [];
         var favorite = { id: this.props.id };
         ContactActions.setFavorites(_.union(favorites, [favorite]));
         document.getElementById(this.props.id).className="ghost-favorite";
+        this.alert("Favoritter", this.props.name + " er lagt til i dine favoritter");
     },
     
     removeFavorite: function(e){
         SessionStorage.set('ignoreTop', true);
-        e.preventDefault();
         var favoriteId = this.props.id;
         var favorites = this.state.favorites || [];
-        
         ContactActions.setFavorites(_.without(favorites, _.find(favorites, function(f){ 
                 return f.id == favoriteId;
             })
         ));
         document.getElementById(this.props.id).className="ghost-favorite";
+        this.alert("Favoritter", this.props.name + " er fjernet fra dine favoritter");
     },
     
     isFavorite: function(favorites){

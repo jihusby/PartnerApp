@@ -21,31 +21,11 @@
     <preference name="exit-on-suspend" value="false" />
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="SplashScreen" value="screen"/>
+    <preference name="SplashScreenDelay" value="2000" />
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
-
-    <!--
-    <gap:plugin name="org.apache.cordova.battery-status" />
-    <gap:plugin name="org.apache.cordova.camera" />
-    <gap:plugin name="org.apache.cordova.media-capture" />
-    <gap:plugin name="org.apache.cordova.console" />
-    <gap:plugin name="org.apache.cordova.contacts" />
-    <gap:plugin name="org.apache.cordova.device" />
-    <gap:plugin name="org.apache.cordova.device-motion" />
-    <gap:plugin name="org.apache.cordova.device-orientation" />
-    <gap:plugin name="org.apache.cordova.dialogs" />
-    <gap:plugin name="org.apache.cordova.file" />
-    <gap:plugin name="org.apache.cordova.file-transfer" />
-    <gap:plugin name="org.apache.cordova.geolocation" />
-    <gap:plugin name="org.apache.cordova.globalization" />
-    <gap:plugin name="org.apache.cordova.inappbrowser" />
-    <gap:plugin name="org.apache.cordova.media" />
-    <gap:plugin name="org.apache.cordova.network-information" />
-    <gap:plugin name="org.apache.cordova.splashscreen" />
-    <gap:plugin name="org.apache.cordova.vibration" />
-    <gap:plugin name="com.phonegap.plugin.statusbar" />
-    -->
 
 	<icon src="www/icon.png" />
     <icon src="www/res/icon/android/icon-36-ldpi.png" platform="android" height="36" width="36" density="ldpi"/>
@@ -81,6 +61,13 @@
     <splash src="www/res/screen/ios/splash-768-1024.png" platform="ios" width="768" height="1024" />
     <splash src="www/res/screen/ios/splash-1536-2048.png" platform="ios" width="1536" height="2048" />
 
+    <!-- Android -->
+    <splash src="www/res/screen/android/Splash-200-320.png" platform="android" density="ldpi" />
+    <splash src="www/res/screen/android/Splash-320-480.png" platform="android" density="mdpi" />
+    <splash src="www/res/screen/android/Splash-480-800.png" platform="android" density="hdpi" />
+    <splash src="www/res/screen/android/Splash-720-1280.png" platform="android" density="xhdpi" />
+    <splash src="www/res/screen/android/Splash-1080-1440.png" platform="android" density="xxhdpi" />
+
     <access origin="*" />
 	<access origin="tel:*" launch-external="yes" />
 	<access origin="mailto:*" launch-external="yes" />
@@ -91,22 +78,5 @@
 		<param name="android-package" value="org.apache.cordova.dialogs.Notification" />
 		<param name="ios-package" value="CDVNotification" />
 	</feature>
-    <!--
-    <feature name="StatusBar">
-        <param name="ios-package" value="CDVStatusBar" onload="true" />
-    </feature>
-	<feature name="InAppBrowser">
-		<param name="ios-package" value="CDVInAppBrowser" />
-		<param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
-	</feature>
-
-	<feature name="NetworkStatus">
-		<param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
-		<param name="ios-package" value="CDVConnection" />
-	</feature>
-    <feature name="Vibration">
-        <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
-    </feature>
-    -->
 
 </widget>

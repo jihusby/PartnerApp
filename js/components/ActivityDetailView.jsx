@@ -24,6 +24,10 @@ module.exports = React.createClass({
         Navigator.goToTop();
     },
 
+    componentDidUpdate: function(){
+        Navigator.goToTop();
+    },
+    
     render: function(){
 
         var that = this;
