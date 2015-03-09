@@ -14,6 +14,10 @@ module.exports = React.createClass({
     onClickContact: function(id) {
         this.goTo("contact/" + id);
     },
+    
+    shouldComponentUpdate: function(nextProps, nextState) {
+        return nextProps.contact.id !== this.props.contact.id;
+    },
 
     buildPartnerName: function(contact, showName) {
         if(showName) {

@@ -18,7 +18,11 @@ module.exports = React.createClass({
             return ("");
         }
     },
-
+    
+    shouldComponentUpdate: function(nextProps, nextState) {
+        return nextProps.contact.id !== this.props.contact.id;
+    },
+    
     buildPosition: function(contact, showPosition) {
         if(showPosition) {
             if(contact.position) {
