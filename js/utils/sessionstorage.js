@@ -1,13 +1,13 @@
 module.exports = {
     set: function(key, value){
-        sessionStorage.setItem(key, value);   
+        window.sessionStorage.setItem(key, value);   
     },
     
     get: function(key){
-        return sessionStorage.getItem(key);
+        return window.sessionStorage.getItem(key);
     },
     
     remove: function(key){
-        sessionStorage.removeItem(key);
+        window.sessionStorage.removeItem(key);
     }
 }
