@@ -50,12 +50,9 @@ module.exports = {
     },
 
     goToTop: function() {
-
-        var ignoreTop =  store.get('ignoreTop');
-        //var ignoreTop =  SessionStorage.get('ignoreTop');
+        var ignoreTop =  SessionStorage.get('ignoreTop');
         if(ignoreTop == 'true') {
-            //SessionStorage.set('ignoreTop', false);
-            store.set('ignoreTop', false);
+            SessionStorage.set('ignoreTop', false);
         }else{
             $(window).scrollTop(0);
         }

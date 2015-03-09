@@ -2,7 +2,6 @@ var React = require("react");
 var Reflux = require("reflux");
 var moment = require("moment");
 var _ = require("underscore");
-var store = require("store.js");
 
 var Spinner = require("react-spinner");
 var ButtonGroup = require("react-bootstrap/ButtonGroup");
@@ -16,6 +15,7 @@ var ActivityBox = require("./ActivityBox.jsx");
 var SessionStorage = require("../utils/sessionstorage");
 var Constants = require("../utils/partner-constants");
 var Navigator = require("../utils/navigator");
+var Alerter = require("../utils/alerter");
 
 var commingActivities = "Kommende aktiviteter";
 
@@ -25,7 +25,7 @@ module.exports = React.createClass({
     },
     
     getInitialState: function(){
-        var activityFilter = store.get(Constants.SessionStorageKeys.activityFilter);
+        var activityFilter = SessionStorage.get(Constants.SessionStorageKeys.activityFilter);
         return {
             filteredActivities: [],
             activities: [],
@@ -37,7 +37,7 @@ module.exports = React.createClass({
     handleSelect: function(filter) {
         this.setState({init: false });
         if (filter){
-            store.set(Constants.SessionStorageKeys.activityFilter, filter);
+            SessionStorage.set(Constants.SessionStorageKeys.activityFilter, filter);
             var filteredActivities = this.filterActivities(filter);
             this.setState({
                 filteredActivities: filteredActivities,
@@ -65,6 +65,7 @@ module.exports = React.createClass({
                 </div>
             );
         } else {
+            Alerter.alert("Filtering", " ...");
             var activityFilters = this.buildFilters();
             var filterOptions = activityFilters.map(function(options){
                 return (<MenuItem className="dropdown-list-item input-obj" eventKey={options.text} > {options.text}</MenuItem>);
@@ -79,7 +80,7 @@ module.exports = React.createClass({
             
             var activities;
             if(this.state.init){
-                var filterInStorage = store.get(Constants.SessionStorageKeys.activityFilter);
+                var filterInStorage = SessionStorage.get(Constants.SessionStorageKeys.activityFilter);
                 var commingActivitiesList = this.filterActivities(filterInStorage || commingActivities);
                 activities = commingActivitiesList.map(function(activity){
                         return (

@@ -1,7 +1,6 @@
 var React = require("react");
 var Reflux = require("reflux");
 var _ = require("underscore");
-var store = require("store.js");
 var Utils = require("../utils/format-utils");
 var Constants = require("../utils/partner-constants.js");
 var ContactBox = require("./ContactBox.jsx");
@@ -57,8 +56,7 @@ module.exports = React.createClass({
     },
     
     goToAttendees: function(){
-        store.set('ignoreTop', true);
-        //SessionStorage.set('ignoreTop', true);
+        SessionStorage.set('ignoreTop', true);
         this.goToAnchor("attendees");
     },
     
