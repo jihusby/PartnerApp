@@ -37,7 +37,7 @@ module.exports = React.createClass({
         var dateString = this.formatDates(activity.startDate, activity.endDate);
         var deadlineDate = this.buildDeadlineDate(activity.deadlineDate);
         var contacts = this.buildEnrollments(activity, that);
-        setTimeout(function(){}, 200); // hack for ensuring calculation of correct document height
+        //setTimeout(function(){}, 200); // hack for ensuring calculation of correct document height
         var attendeesLink = this.buildAttendeesLink(activity);
         return (
         <div className="activity-detail panel">
