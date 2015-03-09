@@ -1,9 +1,7 @@
 var navigatorIterator = 0;
 var Constants = require("../utils/partner-constants");
 var store = require("store.js");
-
 var SessionStorage = require("../utils/sessionstorage");
-
 var $ = require("jquery");
 
 module.exports = {
@@ -53,9 +51,11 @@ module.exports = {
 
     goToTop: function() {
 
-        var ignoreTop =  SessionStorage.get('ignoreTop');
+        var ignoreTop =  store.get('ignoreTop');
+        //var ignoreTop =  SessionStorage.get('ignoreTop');
         if(ignoreTop == 'true') {
-            SessionStorage.set('ignoreTop', false);
+            //SessionStorage.set('ignoreTop', false);
+            store.set('ignoreTop', false);
         }else{
             $(window).scrollTop(0);
         }

@@ -15,14 +15,13 @@ var AuthActions = require("../actions/AuthActions");
 
 var Constants = require("../utils/partner-constants");
 var Navigator = require("../utils/navigator");
-var Alerter = require("../utils/alerter");
 var SessionStorage = require("../utils/sessionstorage");
 
 var Login = require("./Login.jsx");
 
 module.exports = React.createClass({
 
-    mixins: [Reflux.connect(MenuStore,"menuItem"), Reflux.connect(AuthStore,"loginResult"), Navigator, Alerter],
+    mixins: [Reflux.connect(MenuStore,"menuItem"), Reflux.connect(AuthStore,"loginResult"), Navigator],
         
     render: function () {
         var additionalClasses = this.buildAdditionalClasses();
