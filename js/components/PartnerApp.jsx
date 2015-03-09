@@ -43,12 +43,12 @@ module.exports =
         mixins: [Reflux.connect(MenuStore,"menuItem"), Navigator],
 
         propTypes: {
-            activities: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-            contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-            partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-            partnerTypes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+            activities: React.PropTypes.arrayOf(React.PropTypes.object),
+            contacts: React.PropTypes.arrayOf(React.PropTypes.object),
+            partners: React.PropTypes.arrayOf(React.PropTypes.object),
+            partnerTypes: React.PropTypes.arrayOf(React.PropTypes.object),
             favorites: React.PropTypes.arrayOf(React.PropTypes.object),
-            isUpdating: React.PropTypes.bool.isRequired
+            isUpdating: React.PropTypes.bool
         },
 
         handleMenuSelect: function(menuEvent) {

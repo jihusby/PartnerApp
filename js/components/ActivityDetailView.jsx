@@ -122,18 +122,20 @@ module.exports = React.createClass({
             }).value();
 
         }else{
+            var key = 0;
             sortedContactList = _.chain(activity.enrollments)
                 .filter(function(enrollment) { return !!enrollment.freeText; })
                 .map(function(enrollment) { 
+                    key++;
                     var partner = _.find(that.props.partners, function(p) { return p.id == enrollment.partnerId; });
-                    return <ContactBoxPassive contact={{ lastName: enrollment.freeText, partnerName: partner ? partner.name : "" }} />;
-                    });
+                    return <ContactBoxPassive contact={{ id: key, firstName: "", lastName: enrollment.freeText, partnerName: partner ? partner.name : "" }} />;
+                }).value();
         }
 
         if(sortedContactList.length>0){
             return (
                 <div className="attendees-list">
-                    <div className="list-group-item list-heading gold-header"><h4 className="list-group-item-heading"><strong>Påmeldte ({sortedContactList.length})</strong></h4></div>
+                    <div className="list-group-item list-heading gold-header" key="0"><h4 className="list-group-item-heading"><strong>Påmeldte ({sortedContactList.length})</strong></h4></div>
                     {sortedContactList}
                 </div>
             )

@@ -42,7 +42,7 @@ module.exports = React.createClass({
         var partnerName = this.buildPartnerName(contact, this.props.showPartner);
         var contactName = contact.firstName + " " + contact.lastName;
         return (
-            <div className="list-group-item">
+            <div className="list-group-item" key={contact.id}>
                 <div className="container list-container">
                     <h4 className="list-group-item-heading">{contactName}</h4>
                 </div>
