@@ -29,7 +29,7 @@ module.exports = React.createClass({
     },
     
     shouldComponentUpdate: function(nextProps, nextState) {
-        return false;
+        return nextProps.id !== this.props.id;
     },
     
     render: function(){
