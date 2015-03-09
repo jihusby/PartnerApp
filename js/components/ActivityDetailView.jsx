@@ -59,7 +59,7 @@ module.exports = React.createClass({
     },
     
     goToAttendees: function(){
-        SessionStorage.set('ignoreTop', true);
+        //SessionStorage.set('ignoreTop', true);
         this.goToAnchor("attendees");
     },
     
