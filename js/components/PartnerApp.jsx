@@ -64,7 +64,7 @@ module.exports =
         },
 
         backBtn: function(){
-            Alerter.alert("Back", "ABcaaff");
+            this.goBack();
         },
         
         buildBackButton: function(){

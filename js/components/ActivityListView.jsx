@@ -134,11 +134,9 @@ module.exports = React.createClass({
         
     filterActivities: function(filter){
         var that = this;
-        return _.sortBy(this.props.activities.filter(function(activity){
-            return that.filterOnYear(activity, filter);
-        }), function(activity){
-            return that.sortActivities(activity, filter);
-        });
+        return _.chain(this.props.activities)
+            .filter(function(activity){ return that.filterOnYear(activity, filter); })
+            .sortBy(function(activity){ return that.sortActivities(activity, filter); });
     },
     
     buildFilters: function(){
