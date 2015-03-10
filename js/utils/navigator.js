@@ -14,7 +14,10 @@ module.exports = {
     },
     
     goToAnchor: function(topPadding){
-        $(window).scrollTop(topPadding);
+        $('html, body').animate({
+            scrollTop: topPadding
+        }, 1000);
+        //$(window).scrollTop(topPadding);
         /*
         navigatorIterator++;
         if(navigator && navigator.userAgent.match(/iphone|ipad|ipod/i)){
