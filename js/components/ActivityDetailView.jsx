@@ -22,11 +22,17 @@ module.exports = React.createClass({
 
     componentDidMount: function() {
         Navigator.goToTop();
+        var that = this;
         var id = this.props.id;
         var activity = _.find(this.props.activities, function(a){return a.id == id;});
-        var attendeesLink = this.buildAttendeesLink(activity);
+        var docHeight = Math.max(document.body.clientHeight, document.body.offsetHeight, document.body.scrollHeight, $(document).height(), document.documentElement.scrollHeight);        
+        var divHeight = !!_.find(activity.enrollments, function(enrollment) { return !enrollment.passive; }) ? 73 : 51; // attendee div is 73px high if contact, 51px if not        
+        var attendeesListHeight = activity.enrollments.length * divHeight;
+        console.log("Doc: " + docHeight);
+        console.log("List: " + attendeesListHeight);
+        var attendeesLink = this.buildAttendeesLink(activity, attendeesListHeight, docHeight);
         $("#attendeeLink").replaceWith(attendeesLink);
-        $("#goToAttendees").click(this.goToAttendees);
+        $("#goToAttendees").on("click", function(){ that.goToAttendees(docHeight - attendeesListHeight - 78)});
     },
 
     componentDidUpdate: function(){
@@ -47,7 +53,6 @@ module.exports = React.createClass({
         var dateString = this.formatDates(activity.startDate, activity.endDate);
         var deadlineDate = this.buildDeadlineDate(activity.deadlineDate);
         var contacts = this.buildEnrollments(activity, that);
-        //setTimeout(function(){}, 200); // hack for ensuring calculation of correct document height
         
         return (
         <div className="activity-detail panel">
@@ -64,15 +69,13 @@ module.exports = React.createClass({
     );
     },
     
-    goToAttendees: function(){
+    goToAttendees: function(topPadding){
         //SessionStorage.set('ignoreTop', true);
-        this.goToAnchor("attendees");
+        this.goToAnchor(topPadding);
     },
     
-    buildAttendeesLink: function(activity){
-        var divHeight = !!_.find(activity.enrollments, function(enrollment) { return !!enrollment.personId; }) ? 73 : 51; // attendee div is 73px high if contact, 51px if not
-        var docHeight = Math.max(document.body.clientHeight, document.body.offsetHeight, document.body.scrollHeight, $(document).height(), document.documentElement.scrollHeight);
-        var attendeesListHeight = activity.enrollments.length * divHeight;
+    buildAttendeesLink: function(activity, attendeesListHeight, docHeight){
+
         if(activity.enrollments.length == 0 || window.screen.availHeight > docHeight - attendeesListHeight){
             return ("<span></span>");
         } else {

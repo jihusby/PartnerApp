@@ -13,14 +13,16 @@ module.exports = {
         routie(route);
     },
     
-    goToAnchor: function(hash){
+    goToAnchor: function(topPadding){
+        $(window).scrollTop(topPadding);
+        /*
         navigatorIterator++;
         if(navigator && navigator.userAgent.match(/iphone|ipad|ipod/i)){
-            routie(location.hash);
-            $(window).scrollTop(500);
+            $(window).scrollTop(topPadding);
         } else{
             location.hash = "#" + hash;
         }
+        */
     },
     
     getIterator: function(){
