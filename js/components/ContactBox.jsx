@@ -62,14 +62,14 @@ module.exports = React.createClass({
         var favorite = this.buildFavorite(contact, this.props.showFavorite);
         var position = this.buildPosition(contact, this.props.showPosition);
         var partnerName = this.buildPartnerName(contact, this.props.showPartner);
-        var contactName = contact.firstName + " " + contact.lastName;
+        //var contactName = contact.firstName + " " + contact.lastName;
         return (
             <div className="list-group-item list-choice" key={contact.id}>
                 <div className="container list-container">
 
                     <div className="row list-container">
                         <div className="col-xs-8 col-sm-8" onClick={this.onClickContact.bind(this, contact.id)}>
-                            <h4 className="list-group-item-heading">{contactName}</h4>
+                            <h4 className="list-group-item-heading">{contact.name}</h4>
                             <small><p className="list-group-item-text">{position}</p></small>
                             <small>{partnerName}</small>
                         </div>

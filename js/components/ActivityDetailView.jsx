@@ -80,7 +80,14 @@ module.exports = React.createClass({
     },
 
     buildEnrollments : function(activity, that) {
-
+        var sortedContactList = _.map(activity.enrollments, function(enrollment){
+            if(enrollment.passive){
+                return <ContactBoxPassive contact={enrollment} />;
+            } else{
+                return <ContactBox contact={enrollment} showPartner={true} showPosition={true} showFavorite={true} />;
+            }
+        });
+        /*
         var sortedContactList = [];
 
         var contacts = activity.enrollments.map(function(enrollment){
@@ -128,10 +135,10 @@ module.exports = React.createClass({
                 .map(function(enrollment) { 
                     key++;
                     var partner = _.find(that.props.partners, function(p) { return p.id == enrollment.partnerId; });
-                    return <ContactBoxPassive contact={{ id: key, firstName: "", lastName: enrollment.freeText, partnerName: partner ? partner.name : "" }} />;
+                    return <ContactBoxPassive contact={{ id: key, name: enrollment.freeText, partnerName: partner ? partner.name : "" }} />;
                 }).value();
         }
-
+*/
         if(sortedContactList.length>0){
             return (
                 <div className="attendees-list">
