@@ -1,7 +1,6 @@
 var React = require("react");
 var Reflux = require("reflux");
 var _ = require("underscore");
-var store = require("store.js");
 var Utils = require("../utils/format-utils");
 var Constants = require("../utils/partner-constants.js");
 var ContactBox = require("./ContactBox.jsx");
@@ -10,7 +9,6 @@ var PersonBox = require("./PersonBox.jsx");
 var Navigator = require("../utils/navigator");
 jQuery = require("jquery"); // bootstrap needs jQuery variable to be set
 var $ = jQuery;
-
 var SessionStorage = require("../utils/sessionstorage");
 
 module.exports = React.createClass({
@@ -28,6 +26,11 @@ module.exports = React.createClass({
 
     componentDidUpdate: function(){
         Navigator.goToTop();
+    },
+    
+    shouldComponentUpdate: function(nextProps, nextState) {
+        //return nextProps.id !== this.props.id;
+        return false;
     },
     
     render: function(){
@@ -57,7 +60,6 @@ module.exports = React.createClass({
     },
     
     goToAttendees: function(){
-        store.set('ignoreTop', true);
         //SessionStorage.set('ignoreTop', true);
         this.goToAnchor("attendees");
     },
@@ -78,7 +80,14 @@ module.exports = React.createClass({
     },
 
     buildEnrollments : function(activity, that) {
-
+        var sortedContactList = _.map(activity.enrollments, function(enrollment){
+            if(enrollment.passive){
+                return <ContactBoxPassive contact={enrollment} />;
+            } else{
+                return <ContactBox contact={enrollment} showPartner={true} showPosition={true} showFavorite={true} />;
+            }
+        });
+        /*
         var sortedContactList = [];
 
         var contacts = activity.enrollments.map(function(enrollment){
@@ -120,27 +129,20 @@ module.exports = React.createClass({
             }).value();
 
         }else{
-            sortedContactList = activity.enrollments.map(function(enrollment){
-                if(enrollment.freeText){
-
-                    var partnerId = enrollment.partnerId;
-                    var partner = _.find(that.props.partners, function(p){
-                        return p.id === partnerId;
-                    });
-                    var partnerName = "";
-                    if(partner){
-                        partnerName = partner.name;
-                    }
-                    var contact={"id":"", "firstName":"", "lastName":enrollment.freeText,"partnerName": partnerName};
-                    return <ContactBoxPassive contact={contact} />
-                }
-            });
+            var key = 0;
+            sortedContactList = _.chain(activity.enrollments)
+                .filter(function(enrollment) { return !!enrollment.freeText; })
+                .map(function(enrollment) { 
+                    key++;
+                    var partner = _.find(that.props.partners, function(p) { return p.id == enrollment.partnerId; });
+                    return <ContactBoxPassive contact={{ id: key, name: enrollment.freeText, partnerName: partner ? partner.name : "" }} />;
+                }).value();
         }
-
+*/
         if(sortedContactList.length>0){
             return (
                 <div className="attendees-list">
-                    <div className="list-group-item list-heading gold-header"><h4 className="list-group-item-heading"><strong>Påmeldte ({sortedContactList.length})</strong></h4></div>
+                    <div className="list-group-item list-heading gold-header" key="0"><h4 className="list-group-item-heading"><strong>Påmeldte ({sortedContactList.length})</strong></h4></div>
                     {sortedContactList}
                 </div>
             )

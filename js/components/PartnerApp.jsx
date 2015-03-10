@@ -34,6 +34,7 @@ var ContactActions = require("../actions/ContactActions.js");
 var Constants = require("../utils/partner-constants");
 var Constants = require("../utils/partner-constants");
 var Navigator = require("../utils/navigator");
+var Alerter = require("../utils/alerter");
 
 module.exports =
 
@@ -42,12 +43,12 @@ module.exports =
         mixins: [Reflux.connect(MenuStore,"menuItem"), Navigator],
 
         propTypes: {
-            activities: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-            contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-            partners: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-            partnerTypes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-            favorites: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-            isUpdating: React.PropTypes.bool.isRequired
+            activities: React.PropTypes.arrayOf(React.PropTypes.object),
+            contacts: React.PropTypes.arrayOf(React.PropTypes.object),
+            partners: React.PropTypes.arrayOf(React.PropTypes.object),
+            partnerTypes: React.PropTypes.arrayOf(React.PropTypes.object),
+            favorites: React.PropTypes.arrayOf(React.PropTypes.object),
+            isUpdating: React.PropTypes.bool
         },
 
         handleMenuSelect: function(menuEvent) {
@@ -62,9 +63,13 @@ module.exports =
             ContactActions.getFavorites();
         },
 
+        backBtn: function(){
+            this.goBack();
+        },
+        
         buildBackButton: function(){
             if(this.getIterator() > 0){
-                return (<button className="navbar-brand btn {additionalClasses} back-button" onClick={Navigator.goBack}><i className="glyphicon glyphicon-chevron-left"></i></button>);
+                return (<button className="navbar-brand btn {additionalClasses} back-button" onClick={this.backBtn}><i className="glyphicon glyphicon-chevron-left"></i></button>);
             } else {
                 var style = {width:"50px"};
                 return  (<button className="navbar-brand ghost-button" style={style}>&nbsp;</button>);

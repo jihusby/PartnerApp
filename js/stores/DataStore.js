@@ -172,13 +172,49 @@ module.exports = Reflux.createStore({
                     })
                     .value();
                 
-                var activities = _.map(json.activities, function(activity){
-                   return new Activity(activity); 
+                var activities = _.map(json.activities, function(a){
+                    var i = 0;
+                    var activity = {
+                        id: a.id,
+                        title: a.title,
+                        titleShort: a.titleShort,
+                        location: a.location,
+                        description: a.description,
+                        startDate: a.startDate,
+                        endDate: a.endDate,
+                        employeeId: a.employeeId,
+                        deadlineDate: a.deadlineDate,
+                        enrollments: _.map(_.compact(a.enrollments), function(e){
+                            i++;
+                            
+                            if(e.freeText){
+                                var partner = _.find(partners, function(p) { return p.id == e.partnerId; });
+                                return {id: i, name: e.freeText, partnerName: partner ? partner.name : "", passive: true };
+                            } else if(e.personId) {
+                                var person = _.find(persons, function(p) { return p.id == e.personId; });
+                                if(person){
+                                    var partner = _.find(partners, function(p) { return p.id == person.partnerId; });
+                                    return {id: e.personId, name: person.firstName + " " + person.lastName, partnerName: partner ? partner.name : "", position: person.position, passive: false };
+                                }
+                            }
+                        })
+                    };
+                    return new Activity(activity);
                 });
+/*
+                    sortedContactList = _.chain(activity.enrollments)
+                .filter(function(enrollment) { return !!enrollment.freeText; })
+                .map(function(enrollment) { 
+                    key++;
+                    var partner = _.find(that.props.partners, function(p) { return p.id == enrollment.partnerId; });
+                    return <ContactBoxPassive contact={{ id: key, name: enrollment.freeText, partnerName: partner ? partner.name : "" }} />;
+                }).value();
+                   
+                */
                 store.set(Constants.LocalStorageKeys.partnerdata, partners);
                 store.set(Constants.LocalStorageKeys.persons, persons);
                 store.set(Constants.LocalStorageKeys.partnerTypes, partnerTypes);
-                store.set(Constants.LocalStorageKeys.activities, json.activities);
+                store.set(Constants.LocalStorageKeys.activities, activities);
                 store.set(Constants.LocalStorageKeys.last_refresh_date, moment());
 
                 var data = {
