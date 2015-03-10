@@ -3,6 +3,7 @@ var _ = require("underscore");
 
 var PartnerBox = require("./PartnerBox.jsx");
 var ContactBox = require("./ContactBox.jsx");
+var Navigator = require("../utils/navigator");
 
 var Input = require("react-bootstrap/Input");
 
@@ -25,6 +26,7 @@ module.exports = React.createClass({
     },
 
     componentDidMount: function() {
+        Navigator.goToTop();
         document.getElementById("search-field").className="input-obj";
     },
 
