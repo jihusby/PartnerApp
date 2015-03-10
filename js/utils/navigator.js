@@ -16,7 +16,7 @@ module.exports = {
     goToAnchor: function(hash){
         navigatorIterator++;
         if(navigator && navigator.userAgent.match(/iphone|ipad|ipod/i)){
-            routie(location.href);
+            routie(location.hash);
             $(window).scrollTop(500);
         } else{
             location.hash = "#" + hash;
