@@ -194,23 +194,14 @@ module.exports = Reflux.createStore({
                                 var person = _.find(persons, function(p) { return p.id == e.personId; });
                                 if(person){
                                     var partner = _.find(partners, function(p) { return p.id == person.partnerId; });
-                                    return {id: e.personId, name: person.firstName + " " + person.lastName, partnerName: partner ? partner.name : "", position: person.position, passive: false };
+                                    return {id: e.personId, firstName: person.firstName, lastName: person.lastName, partnerName: partner ? partner.name : "", position: person.position, passive: false };
                                 }
                             }
                         }))
                     };
                     return new Activity(activity);
                 });
-/*
-                    sortedContactList = _.chain(activity.enrollments)
-                .filter(function(enrollment) { return !!enrollment.freeText; })
-                .map(function(enrollment) { 
-                    key++;
-                    var partner = _.find(that.props.partners, function(p) { return p.id == enrollment.partnerId; });
-                    return <ContactBoxPassive contact={{ id: key, name: enrollment.freeText, partnerName: partner ? partner.name : "" }} />;
-                }).value();
-                   
-                */
+
                 store.set(Constants.LocalStorageKeys.partnerdata, partners);
                 store.set(Constants.LocalStorageKeys.persons, persons);
                 store.set(Constants.LocalStorageKeys.partnerTypes, partnerTypes);

@@ -74,72 +74,21 @@ module.exports = React.createClass({
         var docHeight = Math.max(document.body.clientHeight, document.body.offsetHeight, document.body.scrollHeight, $(document).height(), document.documentElement.scrollHeight);
         var attendeesListHeight = activity.enrollments.length * divHeight;
         if(activity.enrollments.length == 0 || window.screen.availHeight > docHeight - attendeesListHeight){
-            return ("<span>Tets</span>");
+            return ("<span></span>");
         } else {
             return ("<div><a id='goToAttendees'>Påmeldte <i class='glyphicon glyphicon-chevron-right'></i></a><br/><br/></div>");
         }
     },
 
     buildEnrollments : function(activity, that) {
-        var sortedContactList = _.map(activity.enrollments, function(enrollment){
+        var sortedContactList = _.sortBy(_.map(activity.enrollments, function(enrollment){
             if(enrollment.passive){
                 return <ContactBoxPassive contact={enrollment} />;
             } else{
                 return <ContactBox contact={enrollment} showPartner={true} showPosition={true} showFavorite={true} />;
             }
-        });
-        /*
-        var sortedContactList = [];
+        }), function(c){return c.partnerName});
 
-        var contacts = activity.enrollments.map(function(enrollment){
-            if(enrollment.personId) {
-                var contact = _.find(that.props.contacts, function (c) {
-                    return c.id === enrollment.personId;
-                });
-
-                if (contact) {
-                    var partnerId = contact.partnerId;
-                    var partner = _.find(that.props.partners, function (p) {
-                        return p.id === partnerId;
-                    });
-                    if (partner) {
-                        contact.partnerName = partner.name;
-                    }
-                    return contact;
-                }
-            }
-        });
-
-        Array.prototype.clean = function(deleteValue) {
-            for (var i = 0; i < this.length; i++) {
-                if (this[i] == deleteValue) {
-                    this.splice(i, 1);
-                    i--;
-                }
-            }
-            return this;
-        };
-
-        contacts.clean(null);
-
-        if(contacts.length>0){
-            sortedContactList = _.chain(contacts).sortBy(function(contact){
-                return [contact.lastName, contact.firstName].join("_");
-            }).map(function(contact){
-                return <ContactBox contact={contact} showPartner={true} showPosition={true} showFavorite={true} />
-            }).value();
-
-        }else{
-            var key = 0;
-            sortedContactList = _.chain(activity.enrollments)
-                .filter(function(enrollment) { return !!enrollment.freeText; })
-                .map(function(enrollment) { 
-                    key++;
-                    var partner = _.find(that.props.partners, function(p) { return p.id == enrollment.partnerId; });
-                    return <ContactBoxPassive contact={{ id: key, name: enrollment.freeText, partnerName: partner ? partner.name : "" }} />;
-                }).value();
-        }
-*/
         if(sortedContactList.length>0){
             return (
                 <div className="attendees-list">
