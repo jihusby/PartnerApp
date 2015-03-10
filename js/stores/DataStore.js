@@ -184,7 +184,7 @@ module.exports = Reflux.createStore({
                         endDate: a.endDate,
                         employeeId: a.employeeId,
                         deadlineDate: a.deadlineDate,
-                        enrollments: _.map(_.compact(a.enrollments), function(e){
+                        enrollments: _.compact(_.map(_.compact(a.enrollments), function(e){
                             i++;
                             
                             if(e.freeText){
@@ -197,7 +197,7 @@ module.exports = Reflux.createStore({
                                     return {id: e.personId, name: person.firstName + " " + person.lastName, partnerName: partner ? partner.name : "", position: person.position, passive: false };
                                 }
                             }
-                        })
+                        }))
                     };
                     return new Activity(activity);
                 });

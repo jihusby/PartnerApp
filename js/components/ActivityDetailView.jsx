@@ -22,6 +22,11 @@ module.exports = React.createClass({
 
     componentDidMount: function() {
         Navigator.goToTop();
+        var id = this.props.id;
+        var activity = _.find(this.props.activities, function(a){return a.id == id;});
+        var attendeesLink = this.buildAttendeesLink(activity);
+        $("#attendeeLink").replaceWith(attendeesLink);
+        $("#goToAttendees").click(this.goToAttendees);
     },
 
     componentDidUpdate: function(){
@@ -42,14 +47,14 @@ module.exports = React.createClass({
         var dateString = this.formatDates(activity.startDate, activity.endDate);
         var deadlineDate = this.buildDeadlineDate(activity.deadlineDate);
         var contacts = this.buildEnrollments(activity, that);
-        setTimeout(function(){}, 200); // hack for ensuring calculation of correct document height
-        var attendeesLink = this.buildAttendeesLink(activity);
+        //setTimeout(function(){}, 200); // hack for ensuring calculation of correct document height
+        
         return (
         <div className="activity-detail panel">
             <h3>{activity.title}</h3>
             <h4>{activity.location}</h4>
             <p>{dateString}</p>
-            {attendeesLink}
+            <div id="attendeeLink"></div>
             <span className="activity-detail-description" dangerouslySetInnerHTML={{__html:html}}></span>
             {deadlineDate}
             <br/>
@@ -69,13 +74,9 @@ module.exports = React.createClass({
         var docHeight = Math.max(document.body.clientHeight, document.body.offsetHeight, document.body.scrollHeight, $(document).height(), document.documentElement.scrollHeight);
         var attendeesListHeight = activity.enrollments.length * divHeight;
         if(activity.enrollments.length == 0 || window.screen.availHeight > docHeight - attendeesListHeight){
-            return ("");
+            return ("<span>Tets</span>");
         } else {
-            return (
-                <div>
-                    <a onClick={this.goToAttendees}>Påmeldte <i className="glyphicon glyphicon-chevron-right"></i></a><br/><br/>
-                </div>
-            );
+            return ("<div><a id='goToAttendees'>Påmeldte <i class='glyphicon glyphicon-chevron-right'></i></a><br/><br/></div>");
         }
     },
 
