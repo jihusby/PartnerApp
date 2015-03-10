@@ -51,6 +51,24 @@ module.exports =
             isUpdating: React.PropTypes.bool
         },
 
+        componentDidMount: function() {
+            var that = this;
+            var backButton = $("#backButton");
+            if(backButton){
+                backButton.on("click", that.backBtn);
+                backButton.removeClass("disabled");
+            }
+        },
+        
+        componentDidUpdate: function(){
+            var that = this;
+            var backButton = $("#backButton");
+            if(backButton){
+                backButton.on("click", that.backBtn);
+                backButton.removeClass("disabled");
+            }
+        },
+        
         handleMenuSelect: function(menuEvent) {
             if(this.props.isUpdating){
                 return;
@@ -69,7 +87,7 @@ module.exports =
         
         buildBackButton: function(){
             if(this.getIterator() > 0){
-                return (<button className="navbar-brand btn {additionalClasses} back-button" onClick={this.backBtn}><i className="glyphicon glyphicon-chevron-left"></i></button>);
+                return (<button id="backButton" className="navbar-brand btn {additionalClasses} back-button disabled"><i className="glyphicon glyphicon-chevron-left"></i></button>);
             } else {
                 var style = {width:"50px"};
                 return  (<button className="navbar-brand ghost-button" style={style}>&nbsp;</button>);
