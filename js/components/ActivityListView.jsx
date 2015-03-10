@@ -5,7 +5,6 @@ var _ = require("underscore");
 
 var Spinner = require("react-spinner");
 var ButtonGroup = require("react-bootstrap/ButtonGroup");
-var Button = require("react-bootstrap/Button");
 var DropdownButton = require("react-bootstrap/DropdownButton");
 var MenuItem = require("react-bootstrap/MenuItem");
 
