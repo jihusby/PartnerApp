@@ -25,9 +25,11 @@ module.exports = React.createClass({
         var that = this;
         var id = this.props.id;
         var activity = _.find(this.props.activities, function(a){return a.id == id;});
-        var docHeight = Math.max(document.body.clientHeight, document.body.offsetHeight, document.body.scrollHeight, $(document).height(), document.documentElement.scrollHeight);        
-        var divHeight = !!_.find(activity.enrollments, function(enrollment) { return !enrollment.passive; }) ? 73 : 51; // attendee div is 73px high if contact, 51px if not        
-        var attendeesListHeight = activity.enrollments.length * divHeight;
+        //var docHeight = Math.max(document.body.clientHeight, document.body.offsetHeight, document.body.scrollHeight, $(document).height(), document.documentElement.scrollHeight);
+        var docHeight = $(document).height();
+        //var divHeight = !!_.find(activity.enrollments, function(enrollment) { return !enrollment.passive; }) ? 73 : 51; // attendee div is 73px high if contact, 51px if not        
+        //var attendeesListHeight = activity.enrollments.length * divHeight;
+        var attendeesListHeight = $(".attendees-list").height();
         console.log("Doc: " + docHeight);
         console.log("List: " + attendeesListHeight);
         var attendeesLink = this.buildAttendeesLink(activity, attendeesListHeight, docHeight);
