@@ -33,6 +33,7 @@
     <icon src="www/res/icon/android/icon-48-mdpi.png" platform="android" height="48" width="48" density="mdpi"/>
     <icon src="www/res/icon/android/icon-72-hdpi.png" platform="android" height="72" width="72" density="hdpi"/>
     <icon src="www/res/icon/android/icon-96-xhdpi.png" platform="android" height="96" width="96" density="xhdpi"/>
+    <icon src="www/res/icon/android/playstore-icon.png" platform="android" height="512" width="512" density="xhdpi"/>
 	<icon src="www/res/icon/ios/icon-36-ldpi.png" platform="ios" width="36" height="36"  />
 	<icon src="www/res/icon/ios/icon-48-mdpi.png" platform="ios" width="48" height="48" />
 	<icon src="www/res/icon/ios/icon-57.png" platform="ios" width="57" height="57" />
