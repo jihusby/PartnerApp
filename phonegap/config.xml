@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.itema.godfoten" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="org.itema.godfoten" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Godfoten</name>
     <description>
         RBK partnerapp
@@ -27,6 +27,7 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
+    <preference name="BackupWebStorage" value="none" />
 
 	<icon src="www/icon.png" />
     <icon src="www/res/icon/android/icon-36-ldpi.png" platform="android" height="36" width="36" density="ldpi"/>
