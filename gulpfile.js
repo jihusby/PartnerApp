@@ -14,10 +14,10 @@ gulp.task('install', function(){
 });
 
 gulp.task('bower', function(cb){
-  bower.commands.install([], {save: true}, {})
-    .on('end', function(installed){
-      cb(); // notify gulp that this task is finished
-    });
+    bower.commands.install([], {save: true}, {})
+        .on('end', function(installed){
+            cb(); // notify gulp that this task is finished
+        });
 });
 
 // Basic usage
@@ -46,16 +46,16 @@ gulp.task('watch', function() {
 
 // Runs all phonegap tasks in sequence
 gulp.task('phonegap', function() {
-        runSequence(
-            'phonegap-init',
-            'phonegap-plugins',
-            'phonegap-copy',
-            'phonegap-build');
+    runSequence(
+        'phonegap-init',
+        'phonegap-plugins',
+        'phonegap-copy',
+        'phonegap-build');
 });
 
 // Init phonegap - add platforms
 gulp.task('phonegap-init', shell.task([
-   'phonegap platform add android', 'phonegap platform add ios', 'phonegap platform add wp8']
+        'phonegap platform add android', 'phonegap platform add ios', 'phonegap platform add wp8']
     , {
         ignoreErrors: 'true',
         cwd: 'phonegap'
@@ -64,11 +64,11 @@ gulp.task('phonegap-init', shell.task([
 
 // Install phonegap plugins
 gulp.task('phonegap-plugins', shell.task([
-    'cordova plugin add org.apache.cordova.statusbar@0.1.10',
-    'cordova plugin add org.apache.cordova.inappbrowser@0.6.0',
-    'cordova plugin add org.apache.cordova.dialogs@0.3.0',
-    'cordova plugin add org.apache.cordova.network-information@0.2.15',
-    'cordova plugin add org.apache.cordova.vibration@0.3.13']
+        'cordova plugin add org.apache.cordova.statusbar@0.1.10',
+        'cordova plugin add org.apache.cordova.inappbrowser@0.6.0',
+        'cordova plugin add org.apache.cordova.dialogs@0.3.0',
+        'cordova plugin add org.apache.cordova.network-information@0.2.15',
+        'cordova plugin add org.apache.cordova.vibration@0.3.13']
     , {
         ignoreErrors: 'true',
         cwd: 'phonegap'
@@ -82,20 +82,21 @@ gulp.task('phonegap-copy', function() {
     gulp.src(['js/external/**/*']).pipe(gulp.dest('phonegap/www/js/external'));
     gulp.src(['index.html']).pipe(gulp.dest('phonegap/www'));
     gulp.src(['images/*']).pipe(gulp.dest('phonegap/www/images'));
+    gulp.src(['phonegap/ant.properties']).pipe(gulp.dest('phonegap/platforms/android'));
 });
 
 gulp.task('phonegap-build', shell.task([
-    'phonegap build'
-], {
+        'phonegap build'
+    ], {
         ignoreErrors: 'true',
         cwd: 'phonegap'
     }
 ));
 
 gulp.task('build', function() {
-   runSequence(
-       'scripts',
-       'phonegap'
+    runSequence(
+        'scripts',
+        'phonegap'
     );
 });
 
