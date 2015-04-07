@@ -10,13 +10,13 @@ Sentrale biblioteker / rammeverk:
 - Gulp
 - Node.js
 
-### Kodebeskrivelse
+### Kodebeskrivelse - arkitektur
 All React-kode ligger under /js.
 
 #### /js/components
-Alle React-komponenter som brukes i appen. De er gjenbrukbare og representerer typisk et synlig objekt i appen. De bruker en kombinasjon av HTML og JSX. 
-JSX er et objektorientert språk for moderne browsere. Det kompileres til Javascript.  
-Eksempel: 
+Her ligger alle React-komponenter som brukes i appen. De er gjenbrukbare og representerer typisk et synlig objekt i appen. De bruker en kombinasjon av HTML og JSX. 
+JSX er et objektorientert språk for moderne browsere som kompileres til Javascript.  
+Eksempel på komponenter: 
 - PartnerBox.jsx viser ett innslag i listen over partnere. Den viser navn og type partner. Den brukes av PartnerListView.
 - PartnerDetailView.jsx viser alle detaljer om en bestemt partner (Navn, kontaktinfo, liste over kontaktpersoner etc).
 
@@ -34,10 +34,13 @@ Komponenter som sørger for lagring/henting av lokale data og henting av serverd
 - DataStore.js inneholder alle funksjonskall til API'et.
 
 #### /js/utils
-Utility-funksjoner som brukes i appen.
+Utility-metoder som brukes i appen.
 
 #### /js/app.js
 Startpunkt for appen.
+
+#### /css
+CSS for appen. I tillegg til disse to css-filene brukes også Bootstrap.
 
 #### /node_modules
 Eksterne biblioteker som er brukt i appen. Vanligvis ikke nødvendig/lurt å endre.
@@ -48,13 +51,11 @@ Inneholder Phonegap-spesifikk data.
 - /ant.properties inneholder info om keystore som skal brukes for å signere Android-bygg.
 - /config.xml inneholder konfigureringsparametre for både IOS- og Androidbygg.
 
-
 ## Godfoten API
 
 ## Produksjonsmiljø  
 
 ## Utviklingsmiljø
-
 
 
 ## Publisering på App Store
@@ -91,7 +92,7 @@ Release/Any iOS SDK = “iPhone Distribution: Zoftconsult AS (LN6DYTAA9H)”.
 
 ### Bygging
 - For bygging av signert versjon brukes phonegap fra kommandolinjen: cordova build android --release
-- Skriv inn passord for keystore/key
+- Skriv inn passord for keystore/key: zC03Android/zC03Android
 - Bygging av signert versjon genererer filen phonegap/platforms/android/ant-build/CordovaApp-release.apk. Denne filen lastes opp til Google Play.
 
 ### Publisering på Google Play
@@ -106,3 +107,4 @@ Release/Any iOS SDK = “iPhone Distribution: Zoftconsult AS (LN6DYTAA9H)”.
 - For mer info om betatesting, se "Android Beta testing on the Play Store": http://pugetworks.com/blog/2013/06/beta-testing-android-apps-on-the-google-play-store/
 
 ### Produksjonssetting
+Velg fanen "I produksjon".
