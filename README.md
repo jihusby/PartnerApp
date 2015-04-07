@@ -8,11 +8,11 @@ Webappen er distribuert som en ”hybrid” applikasjon til Android og IOS ved h
 All React-kode ligger under /js.
 
 #### /js/components
-Alle React-komponenter som brukes i appen. De er gjenbrukbare og representerer typisk et synlig objekt i appen. De bruker en kombinasjon av HTML og JSX. 
+- Alle React-komponenter som brukes i appen. De er gjenbrukbare og representerer typisk et synlig objekt i appen. De bruker en kombinasjon av HTML og JSX. 
 JSX er et objektorientert språk for moderne browsere. Det kompileres til Javascript.  
-Eksempel:
-PartnerBox.jsx viser ett innslag i listen over partnere. Den viser navn og type partner. Den brukes av PartnerListView.
-PartnerDetailView.jsx viser alle detaljer om en bestemt partner (Navn, kontaktinfo, liste over kontaktpersoner etc).
+- Eksempel:
+-- PartnerBox.jsx viser ett innslag i listen over partnere. Den viser navn og type partner. Den brukes av PartnerListView.
+-- PartnerDetailView.jsx viser alle detaljer om en bestemt partner (Navn, kontaktinfo, liste over kontaktpersoner etc).
 
 #### /js/external
 Eksterne biblioteker som er brukt i appen. Vanligvis ikke nødvendig/lurt å endre.
