@@ -2,15 +2,7 @@
 
 ## Teknologi
 
-## Godfoten API
-
-## Produksjonsmiljø  
-
-## Utviklingsmiljø
-
-
-
-## Publisering på App Store
+## Publisering på App Store (første gang)
 
 ### App ID
 Opprett app id i Member Center (se "[Registering App IDs](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingProfiles/MaintainingProfiles.html)").  
@@ -30,7 +22,7 @@ Prefix genereres, men suffix må være det samme som i .plist filen (“CFBundle
 - Konfigurer riktig sertifikat/distribusjonsprofil under "Build Settings" => “Code Signing”:  
 Release/Any iOS SDK = “iPhone Distribution: Zoftconsult AS (LN6DYTAA9H)”.
 
-- Lag arktiv: "Product" => "Archive"
+- Lag arkiv: "Product" => "Archive"
 
 - Legg ut (submit) ny versjon på iTunes Connect: åpne Organizer => velg arkiv som skal legges ut => "Submit"
 
