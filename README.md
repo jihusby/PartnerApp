@@ -47,7 +47,7 @@ Eksterne biblioteker som er brukt i appen. Vanligvis ikke nødvendig/lurt å end
 
 #### /phonegap
 Inneholder Phonegap-spesifikk data.
-- /platforms/android/ant-build inneholder ferdig bygd apk-fil for Android
+- /platforms/android/ant-build inneholder ferdig bygd apk-fil for Android.
 - /ant.properties inneholder info om keystore som skal brukes for å signere Android-bygg.
 - /config.xml inneholder konfigureringsparametre for både IOS- og Androidbygg.
 
