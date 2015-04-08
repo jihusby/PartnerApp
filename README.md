@@ -75,6 +75,14 @@ Release/Any iOS SDK = “iPhone Distribution: Zoftconsult AS (LN6DYTAA9H)”.
 
 - Legg ut (submit) ny versjon på iTunes Connect: åpne Organizer => velg arkiv som skal legges ut => "Submit"
 
+NB!   
+Før man lager en ny versjon, så skal Godfoten-Info.plist filen ikke inneholde disse to linjene for “UISupportedInterfaceOrientations~ipad”:  
+- UIInterfaceOrientationLandscapeLeft  
+- UIInterfaceOrientationLandscapeRight  
+  
+I tillegg skal "BackupWebStorage" være satt lik "none" i defaults.xml under phonegap/platforms/ios/cordova/ katalogen.  
+  
+Dette er to mangler/feil i PhoneGap som de har sagt skal fikses.
 
 ## Publisering på Google Play
 
