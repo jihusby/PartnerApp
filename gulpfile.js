@@ -1,5 +1,6 @@
 var install = require("gulp-install");
 var gulp = require('gulp');
+var nodemon = require('nodemon');
 var plumber = require('gulp-plumber');
 var browserify = require('gulp-browserify');
 var bower = require('bower');
@@ -18,6 +19,20 @@ gulp.task('bower', function(cb){
         .on('end', function(installed){
             cb(); // notify gulp that this task is finished
         });
+});
+
+gulp.task('nodemon', function(cb){
+    nodemon({
+        script: 'server.js',
+        ext: 'js',
+        env: {
+            PORT:8000
+        },
+        ignore: ['./node_modules/**']
+    })
+    .on('restart', function() {
+        console.log('Restarting');
+    })
 });
 
 // Basic usage
@@ -102,4 +117,4 @@ gulp.task('build', function() {
 
 
 
-gulp.task('default', ['install', 'bower', 'build', 'watch'])
+gulp.task('default', ['install', 'bower', 'build', 'nodemon', 'watch'])

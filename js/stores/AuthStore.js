@@ -21,13 +21,16 @@ module.exports = Reflux.createStore({
             error: undefined
         };
     },
+
     onLogIn: function(credentials) {
+        console.log(JSON.stringify(credentials));
             var that = this;
             $.ajax({
                 type: "POST",
                 url: Constants.URLS.login,
                 data: credentials,
                 success: function (data) {
+                    console.log("Login success: " + JSON.stringify(data));
                     store.set(Constants.LocalStorageKeys.bearer_token, data.token);
                     store.set(Constants.LocalStorageKeys.uid, data.userId);
                     store.set(Constants.LocalStorageKeys.name, data.name);

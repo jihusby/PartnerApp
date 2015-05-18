@@ -1,12 +1,35 @@
 
 module.exports =  {
     Timeout: 20000,
-    URLS: { 
+    URLS: {
+        search: "http://localhost:8000/api/search",
+        login: "http://localhost:8000/api/login",
+        personImages: "http://localhost:8000/api/media/",
+        partnerLogos: "http://localhost:8000/api/media/firmalogo/",
+        active: "http://localhost:8000/api/persons/active"
+    },
+
+    URLS_live: {
         search: "http://api.sponsorweb.no/api/search",
         login: "http://api.sponsorweb.no/api/login",
         personImages: "http://godfoten.rbk.no/media/",
         partnerLogos: "http://godfoten.rbk.no/media/firmalogo/",
         active: "http://api.sponsorweb.no/api/persons/active"
+    },
+
+    URLS_local_azure: {
+        search: "http://godfotenrestapi.azurewebsites.net/api/search",
+        login: "http://godfotenrestapi.azurewebsites.net/api/login",
+        personImages: "http://godfoten.rbk.no/media/",
+        partnerLogos: "http://godfoten.rbk.no/media/firmalogo/",
+        active: "http://godfotenrestapi.azurewebsites.net/api/persons/active"
+    },
+        URLS_local_MongoDB: {
+        search: "http://localhost:8000/api/search",
+        login: "http://localhost:8000/api/login",
+        personImages: "http://localhost:8000/api/media/",
+        partnerLogos: "http://localhost:8000/api/media/firmalogo/",
+        active: "http://localhost:8000/api/persons/active"
     },
     MenuItems: {
         home: "home",
