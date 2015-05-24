@@ -11,6 +11,7 @@ var Activity = require('./models/activityModel');
 var TestScript = require('./server/js/testScript');
 var app = express();
 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 var port = process.env.PORT || 3000;
@@ -22,12 +23,15 @@ var partnerData = {
     activities: []
 };
 
-prepareTestData();
+//prepareTestData();
 
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
+    res.header('Content-type: application/json');
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header("Access-Control-Allow-Headers", "Authorize");
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+    res.header('Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS');
     next();
 });
 
@@ -68,34 +72,77 @@ partnerRouter.route('/search')
         res.json(partnerData);
     });
 
+partnerRouter.route('/partnerDetail')
+    .get(function(req,res){
+        var id = req.query.id;
+        console.log("Getting partner with id " + id);
+
+        Partner.collection.find({id: id}).toArray(function(err,result){
+            if (err) {
+                console.log("Error!" + err);
+                res(err);
+            } else if (result.length) {
+
+                var partner = result[0];
+                res.json(partner);
+
+            } else {
+                console.log("Error!" + err);
+                res.send("Error");
+            }
+        });
+    });
+
+partnerRouter.route('/partnerSave')
+    .post(function(req,res) {
+        var updated = req.body.data;
+        if(updated.id) {
+            var partner = Partner.find({id: updated.id}, function (err, partner) {
+                partner[0].name = updated.name;
+                partner[0].address = updated.address;
+                partner[0].zipCode = updated.zipCode;
+                partner[0].city = updated.city;
+                partner[0].email = updated.email;
+                partner[0].phone = updated.phone;
+                partner[0].webSite = updated.webSite;
+                partner[0].partnerType = updated.partnerType;
+                partner[0].save(function (err, partner) {
+                    if (err) {
+                        return console.error(err);
+                    } else {
+                        res.json(partner[0]);
+                    }
+                });
+            });
+        }else{
+            var partner = new Partner({
+                id: '666',
+                name: updated.name,
+                address: updated.address,
+                zipCode: updated.zipCode,
+                city: updated.city,
+                email: updated.email,
+                phone: updated.phone,
+                webSite: updated.webSite,
+                partnerType: updated.partnerType
+            });
+            partner.save(function(err, partner) {
+                if(err) return console.error(err);
+            });
+        }
+
+    });
+
 partnerRouter.route('/persons/active')
     .get(function(req,res){
         console.log("Sending true");
+
+        /* TODO: Implement the check active functionality
+         */
         var activeData = {
             active: true
         };
         res.json(activeData);
-        /* TODO: Fix check active function
-        var token = req.body.token;
-        Person.collection.find({token: token, active: true}).toArray(function (err, result) {
-            if (err) {
-                console.log(err);
-                res(err);
-            } else if (result.length) {
-
-                var person = result[0];
-                credentials = {
-                    token: person.token,
-                    userId: person.id,
-                    name: person.firstName + " " + person.lastName
-                };
-                res.send(true);
-
-            } else {
-                res.send(false);
-            }
-        });
-        */
     });
 
 partnerRouter.route('/login')

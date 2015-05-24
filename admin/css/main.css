@@ -1,0 +1,46 @@
+.main-container{
+    margin-top: 15px;
+    background-color: #CACACA;
+    border: 1px solid;
+    border-color: #333333;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.header{
+    height: 30px;
+    margin: 0px 0px 0px 0px;
+    padding: 2px 2px 2px 2px;
+    color: white;
+    font-weight: bold;
+    background-color: #888888;
+}
+
+.form-input{
+    padding: 0px 3px 0px 3px;
+    margin: 3px 3px 3px 3px;
+    width: 200px;
+    height: 25px;
+    color: #444444;
+    font-weight: normal;
+    border: 1px solid;
+    border-color: #999999;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.form-field{
+    padding: 0px 0px 0px 5px;
+    width: 200px;
+    height: 25px;
+    color: #444444;
+    font-weight: normal;
+}
+
+.form-btn{
+    padding: 0px 3px 0px 3px;
+    margin: 3px 3px 3px 3px;
+    width: 200px;
+    height: 25px;
+    border: 1px solid;
+    border-color: #999999;
+    border-radius: 3px 3px 3px 3px;
+}

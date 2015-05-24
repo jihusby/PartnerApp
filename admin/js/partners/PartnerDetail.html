@@ -1,0 +1,43 @@
+<div class="container main-container" ng-model="partner">
+<h4>{{ partner.name }}</h4>
+
+    <div>
+        <div class="row">
+            <div class="col-xs-2 header">Adresse</div>
+            <div class="col-xs-10"><span class="form-field">
+                {{ partner.address }}, {{ partner.zipCode }} {{ partner.city }}
+            </span></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 header">Email</div>
+            <div class="col-xs-10"><span class="form-field">
+                {{ partner.email }}
+            </span></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 header">Telefon</div>
+            <div class="col-xs-10"><span class="form-field">
+                {{ partner.phone }}
+            </span></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 header">URL</div>
+            <div class="col-xs-10"><span class="form-field">
+                {{ partner.webSite }}
+            </span></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 header">Partnertype</div>
+            <div class="col-xs-10"><span class="form-field">
+                {{ partner.partnerType }}
+            </span></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 header">&nbsp;</div>
+            <div class="col-xs-10">
+                <button class="btn btn-xs btn-success input form-btn" ng-click="editPartner(partner.id)">Rediger info</button>
+            </div>
+        </div>
+
+    </div>
+</div>

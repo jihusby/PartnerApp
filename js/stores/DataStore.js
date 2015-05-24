@@ -82,8 +82,6 @@ module.exports = Reflux.createStore({
     },
 
     checkIfActive: function(callback){
-        callback(true);
-        /*
         var lastActiveCheck = store.get(Constants.LocalStorageKeys.last_active_check);
         if(!lastActiveCheck || this.aDayHasPassed(lastActiveCheck)){
             $.ajax({
@@ -105,7 +103,6 @@ module.exports = Reflux.createStore({
         } else {
             callback(true);
         }
-        */
     },
 
     aDayHasPassed: function(date){
@@ -137,8 +134,7 @@ module.exports = Reflux.createStore({
                 request.setRequestHeader("Authorize", store.get("bearer_token"));
             },
             success: function(json) {
-                console.log(JSON.stringify(json));
-                var partnerTypes = _.filter(json.partnerTypes, function(partnerType)                         {
+                var partnerTypes = _.filter(json.partnerTypes.partnerTypes, function(partnerType)                         {
                     return partnerType.name !== "VIP-Kunde";
                 });
                 var partners = _.chain(json.partners)
