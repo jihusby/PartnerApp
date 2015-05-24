@@ -1,7 +1,7 @@
-# GodfotenWebUI
+# PartnerApp
 
 ## Teknologi
-Godfoten Partner App er en webapp laget med React, som er et Javascriptbibliotek for å bygge brukergrensesnitt.
+PartnerApp er en webapp laget med React, som er et Javascriptbibliotek for å bygge brukergrensesnitt.
 Webappen er distribuert som en ”hybrid” applikasjon til Android og IOS ved hjelp av Phonegap (Apache Cordova).
 Sentrale biblioteker / rammeverk:
 - React
@@ -9,6 +9,8 @@ Sentrale biblioteker / rammeverk:
 - JQuery
 - Gulp
 - Node.js
+- AngularJS (Admin)
+- MongoDB
 
 ### Kodebeskrivelse - arkitektur
 All React-kode ligger under /js.

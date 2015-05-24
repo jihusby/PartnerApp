@@ -2,20 +2,8 @@
 
 myApp.controller('PartnerCtrl', function InitCtrl($scope, partnerService, $log, $routeParams, $location) {
     $scope.partner = {};
-    $log.info("1 partner is " +$scope.partner);
-
-    partnerService.getPartners(function(partners) {
-        $scope.partners = partners;
-    });
-
-    $scope.getPartnerDetail = function(partner) {
-        $log.info("2 partner is " + partner);
-        window.location = "#/partnerDetail/" + partner.id;
-    }
-
-    $scope.id = $routeParams.id;
-    if($scope.id) {
-        partnerService.getPartner($scope.id, function (partner) {
+    if($routeParams.id) {
+        partnerService.getPartner($routeParams.id, function (partner) {
             $scope.partner = partner;
         });
 
@@ -28,13 +16,18 @@ myApp.controller('PartnerCtrl', function InitCtrl($scope, partnerService, $log, 
         };
     }
 
+    partnerService.getPartners(function(partners) {
+        $scope.partners = partners;
+    });
+
+    $scope.getPartnerDetail = function(partner) {
+        window.location = "#/partnerDetail/" + partner.id;
+    }
+
     $scope.savePartner = function (partner){
-        partnerService.savePartner(partner, function(partner) {
-            $scope.getPartnerDetail(partner);
-            window.location = "#/partnerDetail/" + partner.id;
+        partnerService.savePartner(partner, function(p) {
+            $scope.getPartnerDetail(p);
         });
-
     };
-
 
 });

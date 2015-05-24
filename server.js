@@ -23,7 +23,7 @@ var partnerData = {
     activities: []
 };
 
-//prepareTestData();
+prepareTestData();
 
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -75,20 +75,19 @@ partnerRouter.route('/search')
 partnerRouter.route('/partnerDetail')
     .get(function(req,res){
         var id = req.query.id;
-        console.log("Getting partner with id " + id);
 
-        Partner.collection.find({id: id}).toArray(function(err,result){
+        var partner = Partner.collection.find({id: id}).toArray(function(err,result){
             if (err) {
-                console.log("Error!" + err);
-                res(err);
+                console.log("Error! " + err);
+                res.send(err);
             } else if (result.length) {
-
+                console.log("Result: " + result);
                 var partner = result[0];
                 res.json(partner);
 
             } else {
-                console.log("Error!" + err);
-                res.send("Error");
+                console.log("Error! " + err);
+                res.send(err);
             }
         });
     });
@@ -110,13 +109,14 @@ partnerRouter.route('/partnerSave')
                     if (err) {
                         return console.error(err);
                     } else {
-                        res.json(partner[0]);
+                        res.json(partner);
                     }
                 });
             });
         }else{
+
             var partner = new Partner({
-                id: '666',
+                id: "0",
                 name: updated.name,
                 address: updated.address,
                 zipCode: updated.zipCode,
@@ -127,7 +127,11 @@ partnerRouter.route('/partnerSave')
                 partnerType: updated.partnerType
             });
             partner.save(function(err, partner) {
-                if(err) return console.error(err);
+                if (err) {
+                    return console.error(err);
+                } else {
+                    res.json(partner);
+                }
             });
         }
 
@@ -185,6 +189,7 @@ app.listen(port, function() {
 
 function prepareTestData() {
 
+    console.log("Preparing test data");
     removeTestData();
 
     insertPartner("1", "Itema as", "Granåsveien 3", "hei@itema.no", "12345678");
@@ -193,6 +198,7 @@ function prepareTestData() {
     insertPartnerType();
     insertPerson();
     insertActivity();
+    console.log("Preparing test data done");
 }
 
 function removeTestData() {

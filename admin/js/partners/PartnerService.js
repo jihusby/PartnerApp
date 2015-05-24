@@ -28,7 +28,7 @@ myApp.factory('partnerService', function ($http, $log, $location) {
             }
             $http.post('http://localhost:8000/api/partnerSave?id=' + partner.id, req).
                 success(function(data, status, headers, config) {
-                    successcb(partner);
+                    successcb(data);
                 }).
                 error(function(data, status, headers, config) {
                     $log.warn(data, status, headers, config);
