@@ -15,6 +15,13 @@
     background-color: #888888;
 }
 
+.header-light{
+    height: 30px;
+    margin: 0px 0px 0px 0px;
+    padding: 2px 2px 2px 2px;
+    font-weight: bold;
+}
+
 .form-input{
     padding: 0px 3px 0px 3px;
     margin: 3px 3px 3px 3px;
@@ -36,11 +43,34 @@
 }
 
 .form-btn{
-    padding: 0px 3px 0px 3px;
-    margin: 3px 3px 3px 3px;
-    width: 200px;
+    width: 150px;
     height: 25px;
     border: 1px solid;
     border-color: #999999;
     border-radius: 3px 3px 3px 3px;
+}
+
+.form input.ng-valid {
+    color: green;
+    width: 200px;
+}
+.form input.ng-invalid {
+    color: red;
+    width: 200px;
+}
+
+.form .ng-valid.ng-touched + span,
+.form .ng-invalid.ng-touched + span{
+    font-weight:bold;
+    font-size: 18px;
+}
+
+.form .ng-valid.ng-touched + span:after {
+    content:"\2713";
+    color: green;
+}
+
+.form .ng-invalid.ng-touched + span:after {
+    content:"\2715";
+    color: red;
 }

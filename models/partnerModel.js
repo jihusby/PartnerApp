@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 Schema = mongoose.Schema;
 
 var partnerModel = new Schema({
-        id: {type: String},
+        _id: {type: String},
         name: {type: String},
         address: {type: String},
         zipCode: {type: String},

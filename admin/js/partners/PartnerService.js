@@ -26,7 +26,37 @@ myApp.factory('partnerService', function ($http, $log, $location) {
                 url: 'http://localhost:8000/api/partnerSave',
                 data: partner
             }
-            $http.post('http://localhost:8000/api/partnerSave?id=' + partner.id, req).
+            $http.post('http://localhost:8000/api/partnerSave?id=' + partner._id, req).
+                success(function(data, status, headers, config) {
+                    successcb(data);
+                }).
+                error(function(data, status, headers, config) {
+                    $log.warn(data, status, headers, config);
+                });
+        },
+        insertPartner: function (partner, successcb) {
+            var req = {
+                method: 'POST',
+                url: 'http://localhost:8000/api/partnerInsert',
+                data: partner
+            }
+            $http.post('http://localhost:8000/api/partnerInsert?id=' + partner.email, req).
+                success(function(data, status, headers, config) {
+                    successcb(data);
+                }).
+                error(function(data, status, headers, config) {
+                    $log.warn(data, status, headers, config);
+                });
+
+        },
+
+        deletePartner: function (partner, successcb) {
+            var req = {
+                method: 'POST',
+                url: 'http://localhost:8000/api/partnerDelete',
+                data: partner
+            }
+            $http.post('http://localhost:8000/api/partnerDelete?id=' + partner.email, req).
                 success(function(data, status, headers, config) {
                     successcb(data);
                 }).

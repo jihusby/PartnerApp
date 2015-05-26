@@ -1,7 +1,7 @@
-<div class="container main-container">
+<div class="container main-container" ng-model="partner">
 <h4>Partnere</h4>
 
-    <div ng-model="partner">
+    <div>
         <div class="row">
             <div class="col-xs-3 header">Firma</div>
             <div class="col-xs-6 header">Adresse</div>
@@ -9,14 +9,14 @@
         </div>
         <div ng-repeat="partner in partners">
             <a ng-click="getPartnerDetail(partner)"><div class="row">
-                <div class="col-xs-3">{{ partner.name }}</div>
+                <div class="col-xs-3 header-light"">{{ partner.name }}</div>
                 <div class="col-xs-6">{{ partner.address }}, {{ partner.zipCode }} {{ partner.city }}</div>
                 <div class="col-xs-3">&nbsp;</div>
             </div>
             </a>
         </div>
         <div class="row">
-            <div class="col-xs-3">&nbsp;</div>
+            <div class="col-xs-3 header-light">&nbsp;</div>
             <div class="col-xs-9">
                 <button class="btn btn-xs btn-success input form-btn" ng-click="newPartner()">
                     Ny partner

@@ -1,35 +1,40 @@
 <div class="container main-container" ng-model="partner">
-<h4>{{ partner.name }}</h4>
-    <form name="editProgramForm">
+<h4>{{ partner.name }}&nbsp;</h4>
+    <form name="editProgramForm" class="form">
     <div>
         <div class="row">
             <div class="col-xs-2 header"><label for="name">Firmanavn</label></div>
             <div class="col-xs-10">
-                <input class="btn btn-xs form-input" id="name" type="text" ng-model="partner.name">
+                <input class="btn btn-xs form-input" id="name" type="text" ng-model="partner.name" required>
+                <span></span>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-2 header"><label for="address">Adresse</label></div>
             <div class="col-xs-10">
-                <input class="btn btn-xs form-input" id="address" type="text" ng-model="partner.address">
+                <input class="btn btn-xs form-input" id="address" type="text" ng-model="partner.address" required>
+                <span></span>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-2 header"><label for="zipCode">Postnummer</label></div>
             <div class="col-xs-10">
-                <input class="btn btn-xs form-input" id="zipCode" type="text"ng-model="partner.zipCode">
+                <input class="btn btn-xs form-input" id="zipCode" type="text"ng-model="partner.zipCode" required>
+                <span></span>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-2 header"><label for="city">Poststed</label></div>
             <div class="col-xs-10">
-                <input class="btn btn-xs form-input" id="city" type="text" ng-model="partner.city">
+                <input class="btn btn-xs form-input" id="city" type="text" ng-model="partner.city" required>
+                <span></span>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-2 header"><label for="email">Email</label></div>
             <div class="col-xs-10">
-                <input class="btn btn-xs form-input" id="email" type="text" ng-model="partner.email">
+                <input class="btn btn-xs form-input" id="email" type="text" ng-model="partner.email" required>
+                <span></span>
             </div>
         </div>
         <div class="row">
@@ -47,7 +52,14 @@
         <div class="row">
             <div class="col-xs-2 header"><label for="partnerType">Partnertype</label></div>
             <div class="col-xs-10">
-                <input class="btn btn-xs form-input" id="partnerType" type="text" ng-model="partner.partnerType">
+                <!--<input class="btn btn-xs form-input" id="partnerType" type="text" ng-model="partner.partnerType"
+                        required>-->
+                <select class="btn btn-xs form-input" id="partnerType" ng-model="partner.partnerType">
+                    <option value="Nettverkspartner">Nettverkspartner</option>
+                    <option value="Hovedpartner">Hovedpartner</option>
+                    <option value="VIP-partner">VIP-partner</option>
+                </select>
+                <span></span>
             </div>
         </div>
         <div class="row">
@@ -55,6 +67,7 @@
             <div class="col-xs-10">
                 <button class="btn btn-xs btn-success input form-btn" ng-click="savePartner(partner)">Lagre
                     info</button>
+                <button class="btn btn-xs btn-default input form-btn" ng-click="getPartners()">Avbryt</button>
             </div>
         </div>
     </div>

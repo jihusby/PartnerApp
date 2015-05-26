@@ -23,7 +23,7 @@ var partnerData = {
     activities: []
 };
 
-prepareTestData();
+// prepareTestData();
 
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -76,7 +76,7 @@ partnerRouter.route('/partnerDetail')
     .get(function(req,res){
         var id = req.query.id;
 
-        var partner = Partner.collection.find({id: id}).toArray(function(err,result){
+        var partner = Partner.collection.find({_id: id}).toArray(function(err,result){
             if (err) {
                 console.log("Error! " + err);
                 res.send(err);
@@ -94,9 +94,12 @@ partnerRouter.route('/partnerDetail')
 
 partnerRouter.route('/partnerSave')
     .post(function(req,res) {
+
         var updated = req.body.data;
-        if(updated.id) {
-            var partner = Partner.find({id: updated.id}, function (err, partner) {
+        console.log("saving... " + updated);
+        if(updated._id) {
+            var partner = Partner.find({_id: updated._id}, function (err, partner) {
+                partner[0]._id = updated.email;
                 partner[0].name = updated.name;
                 partner[0].address = updated.address;
                 partner[0].zipCode = updated.zipCode;
@@ -114,23 +117,64 @@ partnerRouter.route('/partnerSave')
                 });
             });
         }else{
+            return console.error("Email do not exist!");
+        }
 
-            var partner = new Partner({
-                id: "0",
-                name: updated.name,
-                address: updated.address,
-                zipCode: updated.zipCode,
-                city: updated.city,
-                email: updated.email,
-                phone: updated.phone,
-                webSite: updated.webSite,
-                partnerType: updated.partnerType
+    });
+
+partnerRouter.route('/partnerInsert')
+    .post(function(req,res) {
+
+        var updated = req.body.data;
+        console.log("inserting... " + JSON.stringify(updated));
+        if(updated.email) {
+            var partner = Partner.find({_id: updated.email}, function (err, partner) {
+                console.log("partner... " + partner.length);
+                if(partner.length==0){
+                    var partner = new Partner({
+                        _id: updated.email,
+                        name: updated.name,
+                        address: updated.address,
+                        zipCode: updated.zipCode,
+                        city: updated.city,
+                        email: updated.email,
+                        phone: updated.phone,
+                        webSite: updated.webSite,
+                        partnerType: updated.partnerType
+                    });
+                    partner.save(function(err, partner) {
+                        if (err) {
+                            return console.error(err);
+                        } else {
+                            res.json(partner);
+                        }
+                    });
+                }else{
+                    return console.error("Email already exists!");
+                }
             });
-            partner.save(function(err, partner) {
-                if (err) {
-                    return console.error(err);
-                } else {
-                    res.json(partner);
+        }
+
+    });
+
+partnerRouter.route('/partnerDelete')
+    .post(function(req,res) {
+
+        var updated = req.body.data;
+        console.log("deleting... " + JSON.stringify(updated));
+        if(updated.email) {
+            var partner = Partner.find({_id: updated.email}, function (err, partner) {
+                console.log("partner... " + partner.length);
+                if(partner.length!=0){
+                    Partner.collection.remove({_id: updated.email}, function(err, partner) {
+                        if (err) {
+                            return console.error(err);
+                        } else {
+                            res.json(partner);
+                        }
+                    });
+                }else{
+                    return console.error("Cannot find partner!");
                 }
             });
         }
@@ -219,7 +263,7 @@ function removeTestData() {
 
 function insertPartner(id, name, address, email, phone) {
     var partner = new Partner({
-        id: id,
+        _id: email,
         name: name,
         address: address,
         zipCode: '7048',

@@ -35,8 +35,11 @@
         <div class="row">
             <div class="col-xs-2 header">&nbsp;</div>
             <div class="col-xs-10">
-                <button class="btn btn-xs btn-success input form-btn" ng-click="editPartner(partner.id)">Rediger
-                    info</button>
+                <button class="btn btn-xs btn-success form-btn" ng-click="editPartner(partner)">
+                    Rediger info</button>
+                <button class="btn btn-xs btn-danger form-btn" ng-click="deletePartner(partner)">
+                    Slett partner</button>
+                <button class="btn btn-xs btn-default input form-btn" ng-click="getPartners()">Tilbake</button>
             </div>
         </div>
 
